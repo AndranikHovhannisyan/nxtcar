@@ -16,7 +16,10 @@ require.config({
     shim: {
         'angular': {
             deps: ['jquery'],
-            exports: 'angular'
+            exports: 'angular',
+            init: function(f){
+                console.log(f(2,1));
+            }
         },
         'jquery': {
             exports: "$"
@@ -25,8 +28,9 @@ require.config({
         'angular-resource': [],
         'nanoscroller': ['jquery'],
         'angular-strap': [],
-        'angular-strap-tpl': [],
+        'angular-strap-tpl': []
         //------------------------------------------------------------------//
     },
     waitSeconds: 7
 });
+require(['angular'],null);
