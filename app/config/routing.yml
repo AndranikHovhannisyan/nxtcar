@@ -1,3 +1,7 @@
+main:
+    resource: "@MainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 #sonata_user_security:
 #    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
 
