@@ -223,6 +223,11 @@ header .background{
 .content .row div,.content .row a {
     color: #666;
 }
+.content .row .video-tutorial {
+    background-image: url("/bundles/main/images/home-new-video.png");
+    height: 118px;
+    width: 219px;
+}
 .content .vertica-lLine{
 	/*width: 100%;*/
 	height: 100%;
