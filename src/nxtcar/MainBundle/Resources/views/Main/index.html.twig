@@ -1,1 +1,68 @@
 {% extends "MainBundle::layout.html.twig" %}
+
+{% block bottomHeader %}
+    <div class="background">
+        <span class="lenta-before"></span>
+        <div class="lenta">Connecting piople who need to travel with drivers who have empty seats</div>
+        <span class="lenta-after"></span>
+        <span class="lenta-after1"></span>
+        <br>
+        <h1>Find a ride</h1>
+        <p>Choose from thousands of rides offered by drivers across the UK, averydey.</p>
+        <!-- form -->
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <img src="{{ asset("bundles/main/images/markergreen.jpg") }}" width="18px" height="px">
+                    </div>
+                    <input class="form-control" type="text" placeholder="From">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <img src="{{ asset("bundles/main/images/markerred.png") }}" width="11px" height="17px">
+                    </div>
+                    <input class="form-control" type="text" placeholder="To">
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Saerch</button>
+            </div>
+        </form>
+        <small><small>Discover our most popular car share departures: London, Manchester, Nottingham...</small></small>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            Watch How it Works<br>
+            <span class='vertica-lLine'></span>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            Best Travel Prices
+            <span class='vertica-lLine'></span>
+        </div>
+        <div class="col-xs-6 col-md-4">Download the App</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-4">
+            <p>	Drivers:</p>
+            <p>	Easily cut your motoring costs</p>
+
+            <h6>	Stop travelling alone! Save money by taking passengers on your long car journeys.</h6>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <p>Passengers:</p>
+            <p>Travel across the UK for less</p>
+            <h6>Easily book your seat and travel from city A to city B for much less, even at the last minute!</h6>
+        </div>
+        <div class="col-xs-6 col-md-4">
+            <p>Ridesharing with confidence:</p>
+            <p>Trust and safety</p>
+            <h6>Verified profiles with member ratings create a trustworthy community.</h6>
+        </div>
+    </div>
+{% endblock %}

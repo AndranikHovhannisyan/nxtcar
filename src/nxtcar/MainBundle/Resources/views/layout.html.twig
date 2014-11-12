@@ -16,6 +16,7 @@
 <body>
     <!-- stsrt header -->
     <header class='header'>
+        {% block topHeader %}
         <div class="bla">
             <a href="#">
                 <p><b class="green">Bla </b><b class="blue">Bla </b><b class="red">Car</b></p>
@@ -32,43 +33,11 @@
                 </ul>
             </div>
         </div>
-        {% block header %}
-        <div class="background">
-            <span class="lenta-before"></span>
-            <div class="lenta">Connecting piople who need to travel with drivers who have empty seats</div>
-            <span class="lenta-after" ></span>
-            <span class="lenta-after1" ></span>
-            <br>
-            <h1 >Find a ride</h1>
-            <p>Choose from thousands of rides offered by drivers across the UK, averydey.</p>
-            <!-- form -->
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <img src="{{ asset("bundles/main/images/markergreen.jpg") }}" width="18px" height="px">
-                        </div>
-                        <input class="form-control" type="text" placeholder="From">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <img src="{{ asset("bundles/main/images/markerred.png") }}" width="11px" height="17px">
-                        </div>
-                        <input class="form-control" type="text" placeholder="To">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default">Saerch</button>
-                </div>
-            </form>
-            <small><small>Discover our most popular car share departures: London, Manchester, Nottingham...</small></small>
-        </div>
         {% endblock %}
+        {% block bottomHeader %}{% endblock %}
     </header>
     <!-- end  header -->
-{% block body %}{% endblock %}
+    <div class="content">{% block content %}{% endblock %}</div>
 {% block footer %}
     <!-- footer -->
     <footer class= "footer">
