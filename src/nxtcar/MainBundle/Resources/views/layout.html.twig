@@ -2,12 +2,152 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    <title>
+    {% block title %}
+        Easy car sharing with BlaBlaCar, the UK's leading low cost travel community | BlaBlaCar.com!
+    {% endblock %}
+    </title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("bundles/main/css/main.css") }}">
+    {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
+{% block header %}
+    <!-- stsrt header -->
+    <header class='header'>
+        <div class="bla">
+            <a href="#">
+                <p><b class="green">Bla </b><b class="blue">Bla </b><b class="red">Car</b></p>
+            </a>
+            <a href="#" class="bla-btn bla-btn-1  btn btn-warning btn-lg " role="button">Find a ride</a>
+            <span>or</span>
+            <a href="#" class="bla-btn  btn btn-success btn-lg " role="button">Offer a ride</a>
+            <div class="header-menu">
+                <ul class="list-inline">
+                    <li><a href="">Join <span class='vertica-lLine'></span></a></li>
+                    <li><a href="">Log in</a></li>
+                    <li><a href="">How it works</a></li>
+                    <li><a href=""><i class="caret"></i> </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="background">
+            <span class="lenta-before"></span>
+            <div class="lenta">Connecting piople who need to travel with drivers who have empty seats</div>
+            <span class="lenta-after" ></span>
+            <span class="lenta-after1" ></span>
+            <br>
+            <h1 >Find a ride</h1>
+            <p>Choose from thousands of rides offered by drivers across the UK, averydey.</p>
+            <!-- form -->
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <img src="{{ asset("bundles/main/images/markergreen.jpg") }}" width="18px" height="px">
+                        </div>
+                        <input class="form-control" type="text" placeholder="From">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <img src="{{ asset("bundles/main/images/markerred.png") }}" width="11px" height="17px">
+                        </div>
+                        <input class="form-control" type="text" placeholder="To">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Saerch</button>
+                </div>
+            </form>
+            <small><small>Discover our most popular car share departures: London, Manchester, Nottingham...</small></small>
+        </div>
+    </header>
+    <!-- end  header -->
+{% endblock %}
 {% block body %}{% endblock %}
+{% block footer %}
+    <!-- footer -->
+    <footer class= "footer">
+        <div class="footer-lenta-before"></div>
+        <div class="footer-lenta-after"></div>
+        <div class="footer-lenta">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">Using BlaBlaCar</div>
+                <div class="col-xs-6 col-md-4">Our Company</div>
+                <div class="col-xs-6 col-md-4">BlaBla Blog</div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">
+                    <ul class="list-unstyled">
+                        <li><a href="">How BlaBlaCar Works</a></li>
+                        <li><a href="">Trust, Safety & Insurance</a></li>
+                        <li><a href="">Experience Levels</a></li>
+                        <li><a href="">Ratings</a> </li>
+                        <li><a href="">Ladies Only</a></li>
+                        <li><a href="">Frequently Asked Questions</a></li>
+                        <li><a href="">Member stories</a></li>
+                        <li><a href=""><span class="go-to" ></span>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <ul class="list-unstyled">
+                        <li><a href="">About Us</a></li>
+                        <li><a href="">Press</a></li>
+                        <li><a href="">Partners</a></li>
+                        <li><a href="">We're Hiring!</a></li>
+                        <li><a href="">Cookies policy</a></li>
+                        <li><a href="">Good conduct charter</a></li>
+                        <li><a href="">Terms & Conditions</a></li>
+                        <li><a href="">Privacy policy</a> </li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="footer-imeg-first row">
+                                <div class="col-xs-6">
+                                    <img src="{{ asset("bundles/main/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55" height="40">
+                                    <p >nmbhjbnujhnu</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="footer-imeg-last row">
+                                <div class="col-xs-6">
+                                    <img src="{{ asset("bundles/main/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55	" height="40">
+                                    <p>nmbhjbnujhnu</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="go-to" ></span>Go to the BlaBla Blog
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-end">
+            <p class="footer-end-keep"> Keep in Touchi</p>
+            <ul class=" list-inline">
+                <li><a href="#"><div class="youtobe"></div></a></li>
+                <li><a href="#"><div class="twitter"></div></a></li>
+                <li><a href="#"><div class="facebook"></div></a></li>
+                <li><a href="#"><div class="gmail"></div></a></li>
+                <li><a href="#"><div class="youtobe1"></div></a></li>
+            </ul>
+            <small class="BlaBlaCar">BlaBlaCar, 2014 ©</small>
+        </div>
+    </footer>
+    <!-- end footer -->
+{% endblock %}
 {% block javascripts %}{% endblock %}
 </body>
 </html>
