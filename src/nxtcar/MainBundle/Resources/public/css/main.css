@@ -8,13 +8,11 @@ body{
 	padding: 0;
 	margin: 0;
 
-
 	background: -webkit-linear-gradient(rgba(143, 214, 255, 1), #fff); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(rgba(143, 214, 255, 1), #fff); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(rgba(143, 214, 255, 1), #fff); /* For Firefox 3.6 to 15 */
     background: linear-gradient(rgba(143, 214, 255, 1), #fff); /* Standard syntax (must be last) */
 }
-
 
 .header,.content{
 	width: 750px;
@@ -213,7 +211,7 @@ header .background{
 	width: 100%;
 	padding-bottom: 5px;
 }
-.content> div:last-child{
+.content > div:last-child{
 	/*border-bottom: 1px solid #9E9E9E;*/
 	margin-bottom: 0px;
 	width: 103.1%;
@@ -222,15 +220,17 @@ header .background{
 	background-color: #E4F5FC;
 	padding-top:12px; 
 }
+.content .row div,.content .row a {
+    color: #666;
+}
 .content .vertica-lLine{
-	width: 100%;
+	/*width: 100%;*/
 	height: 100%;
 	border-right: 1px solid #9E9E9E;
 	position: absolute;
 	top: 0;
 	right: 30px;
 }
-
 /**** footer ****/
 footer {
 	width: 750px;
