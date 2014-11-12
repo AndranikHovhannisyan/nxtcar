@@ -1,4 +1,4 @@
 main:
-    resource: "@MainBundle/Controller/MainController.php"
+    resource: "@nxtcarMainBundle/Controller/MainController.php"
     type:     annotation
     prefix:   /

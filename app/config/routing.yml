@@ -1,5 +1,5 @@
 main:
-    resource: "@MainBundle/Resources/config/routing.yml"
+    resource: "@nxtcarMainBundle/Resources/config/routing.yml"
     prefix:   /
 
 #sonata_user_security:

@@ -16,7 +16,7 @@ class MainController extends Controller
 {
     /**
      * @Route("/",name="homepage")
-     * @Template("MainBundle:Main:index.html.twig")
+     * @Template("nxtcarMainBundle:Main:index.html.twig")
      */
     public function indexAction()
     {
