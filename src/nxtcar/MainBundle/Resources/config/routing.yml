@@ -2,3 +2,8 @@ main:
     resource: "@nxtcarMainBundle/Controller/MainController.php"
     type:     annotation
     prefix:   /
+
+profile:
+    resource: "@nxtcarMainBundle/Controller/ProfileController.php"
+    type:     annotation
+    prefix:   /
