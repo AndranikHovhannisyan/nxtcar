@@ -17,22 +17,29 @@
     <!-- stsrt header -->
     <header class='header'>
         {% block topHeader %}
-        <div class="bla">
-            <a href="#">
-                <p><b class="green">Bla </b><b class="blue">Bla </b><b class="red">Car</b></p>
-            </a>
-            <a href="#" class="bla-btn bla-btn-1 btn btn-warning btn-lg" role="button">Find a ride</a>
-            <span>or</span>
-            <a href="#" class="bla-btn btn btn-success btn-lg" role="button">Offer a ride</a>
-            <div class="header-menu">
-                <ul class="list-inline">
-                    <li><a href="">Join<span class='vertica-lLine'></span></a></li>
-                    <li><a href="{{ path('fos_user_security_login') }}">Log in</a></li>
-                    <li><a href="">How it works</a></li>
-                    <li><a href=""><i class="caret"></i> </a></li>
-                </ul>
+            <div class="bla">
+                <a href="#">
+                    <div class="bla-img"></div></a>
+                <a href="#" class="bla-btn bla-btn-1  btn btn-warning btn-lg " role="button">Find a ride</a>
+                <span>or</span>
+                <a href="#" class="bla-btn  btn btn-success btn-lg " role="button">Offer a ride</a>
+                <div class="header-menu">
+                    <ul class=" list-inline">
+                        <li><a href="#">Sign up<span class='header-vertica-lLine'></span></a></li>
+                        <li>
+                            <a href="#">Log in
+                                <span class='header-vertica-lLine'></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">How it works
+                                <span class='header-vertica-lLine'></span>
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="caret"></i> </a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
         {% endblock %}
         {% block bottomHeader %}{% endblock %}
     </header>
@@ -81,21 +88,21 @@
                         <li>
                             <div class="footer-imeg-first row">
                                 <div class="col-xs-6">
-                                    <img src="{{ asset("bundles/main/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55" height="40">
-                                    <p >nmbhjbnujhnu</p>
+                                    <img src="{{ asset("bundles/nxtcarmain/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55" height="40">
+                                    <p>nmbhjbnujhnu</p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="footer-imeg-last row">
                                 <div class="col-xs-6">
-                                    <img src="{{ asset("bundles/main/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55	" height="40">
-                                    <p>nmbhjbnujhnu</p>
+                                    <img src="{{ asset("bundles/nxtcarmain/images/background-homepage-search.png") }}" alt="" class="img-rounded" width="55" height="40">
+                                    <p >nmbhjbnujhnu</p>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <span class="go-to" ></span>Go to the BlaBla Blog
                             </a>
                         </li>
@@ -106,11 +113,11 @@
         <div class="footer-end">
             <p class="footer-end-keep"> Keep in Touchi</p>
             <ul class=" list-inline">
-                <li><a href="#"><div class="youtobe"></div></a></li>
-                <li><a href="#"><div class="twitter"></div></a></li>
-                <li><a href="#"><div class="facebook"></div></a></li>
-                <li><a href="#"><div class="gmail"></div></a></li>
-                <li><a href="#"><div class="youtobe1"></div></a></li>
+                <li><a href="#"> <div class="youtobe"></div></a></li>
+                <li><a href="#"> <div class="twitter"></div></a></li>
+                <li><a href="#"> <div class="facebook"></div></a></li>
+                <li><a href="#"> <div class="gmail"></div></a></li>
+                <li><a href="#"> <div class="youtobe1"></div></a></li>
             </ul>
             <small class="BlaBlaCar">BlaBlaCar, 2014 ©</small>
         </div>

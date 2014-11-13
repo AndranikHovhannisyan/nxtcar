@@ -16,10 +16,7 @@ require.config({
     shim: {
         'angular': {
             deps: ['jquery'],
-            exports: 'angular',
-            init: function(f){
-                console.log(f(2,1));
-            }
+            exports: 'angular'
         },
         'jquery': {
             exports: "$"
