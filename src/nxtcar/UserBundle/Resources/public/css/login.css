@@ -1,0 +1,76 @@
+.lod-in{
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #CFCFCF;
+    margin: 15px 0px 0px 67px;
+    padding: 10px 10px;
+    z-index: 100;
+    box-shadow: 2px 2px 5px #ADADAD;
+}
+.login-arrow-menu{
+    width: 25px;
+    height: 12px;
+    background-image: url("/bundles/nxtcarmain/images/login-arrow-menu.png");
+    margin: -22px 0px 10px 0px;
+
+}
+.lod-in .f-btn{
+    background-color: #3b5998;
+    background-image: url("/bundles/nxtcarmain/images/bt-fb-large.png");
+    background-repeat: no-repeat;
+    height: 36px;
+    border-radius: 3px;
+    padding: 7px 16px 7px 38px;
+    background-position: 4px;
+    font-size: 15px;
+    color: #fff ;/*
+	margin-left: 0px;
+*/}
+.lod-in hr{
+    border-top: 1px solid #C3C3C3;
+    margin-bottom: -12px;
+}
+.lod-in .div-or{
+    width: 12% !important;
+    height: 25px;
+    background: #Fff;
+    padding: 0px 0px 0px 7px;
+    margin: 0 auto;
+    color:  #ADADAD;
+}
+.lod-in .form-mail,.lod-in .form-password{
+    border-radius: 4px;
+    margin: 8px 0px 9px 0px;
+    padding: 4px 27px 4px 6px;
+    width: 100%;
+}
+.lod-in .forgotten-password a{
+    color: #19ADFA ;
+    font-size: 13px;
+}
+.lod-in .form-mail{
+    background: #fff url("/bundles/nxtcarmain/images/login-arobase.png") no-repeat 186px 50%;
+}
+.lod-in .form-password{
+    background: #fff url("/bundles/nxtcarmain/images/login-lock.png") no-repeat 186px 50%;
+}
+
+.lod-in .form-checkbox{
+    margin: 5px 0px 0px 0px;
+}
+.lod-in .form input.submit{
+    background-color: #0CB1F0;
+    margin: 0px 0px 16px -14px;
+    width: 141%;
+    font-size: 18px;
+    height: 37px;
+    color: #fff;
+    text-shadow: 1px 0px;
+}
+.lod-in	h6{
+    margin: 0px;
+}
+.lod-in  .form input.submit:hover{
+    box-shadow: inset 0px 0px 7px 4px #9AE1FC;
+    color: #fff;
+}

@@ -1,45 +1,35 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/login.css") }}">
+{% endblock %}
+
 {% block content %}
-
-
-    {# TODO need to change #}
-    <div id="content-login">
-        <div id="login-middle">
-
-            {% if error %}
-                <span class="glyphicon glyphicon-info-sign error">
-                {{ error }}
-            </span>
-            {% endif %}
-
-            <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" role="form">
-                <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <input type="text" class="form-control" name="_username" id="inputEmail3 " value="{{ last_username }}" placeholder="{{ 'user_placeholder'|trans({}, 'user') }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class=" col-sm-offset-1 col-sm-10">
-                        <input type="password" class="form-control" name="_password" id="inputPassword3" placeholder="{{ 'password'|trans({}, 'user') }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-7">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                                <label for="remember_me">{{ 'remember_me' | trans({}, 'user') }}</label>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <button id="enter" type="submit" class="btn btn-default">{{ 'login' | trans({}, 'user') }}</button>
-                    </div>
-                </div>
-                <a href="/resetting/request?email={{ last_username }}">{{ 'reset_pass' | trans({}, 'user') }}</a>
-            </form>
-        </div>
-    </div>
-
+    {#<div class="lod-in">#}
+        {#<div class="login-arrow-menu"></div>#}
+        {#<div class="div-f-btn">#}
+            {#<a href="#"class="f-btn btn btn-primary btn-lg " role="button">Connect with Facebook</a>#}
+        {#</div>#}
+        {#<hr>#}
+        {#<div class="div-or">or</div>#}
+        {#<div class="form">#}
+            {#<form class="form-horizontal1" role="form1">#}
+                {#<input type="email" class="form-mail" id="" placeholder="Email"><br>#}
+                {#<input type="password" class="form-password" id="" placeholder="Password">#}
+                {#<div class="forgotten-password"><a href=""> I've forgotten my password</a></div>#}
+                {#<div class="checkbox">#}
+                    {#<input type="checkbox" class="form-checkbox">#}
+                    {#<label>Remember me</label>#}
+                {#</div>#}
+                {#<div class="col-sm-10">#}
+                    {#<input type="submit" class="submit btn btn-default" value="Log in">#}
+                {#</div><br><br>#}
+                {#<hr><br>#}
+                {#<h6><b>Not a member yet? </b></h6>#}
+                {#<div class="forgotten-password"><a href="">Sign-up in 30 seconds</a></div>#}
+            {#</form>#}
+        {#</div>#}
+    {#</div>#}
 {% endblock %}

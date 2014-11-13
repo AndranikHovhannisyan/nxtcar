@@ -9,7 +9,7 @@
     </title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
-        <link rel="stylesheet" href="{{ asset("bundles/main/css/main.css") }}">
+        <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -20,14 +20,14 @@
             <div class="bla">
                 <a href="#">
                     <div class="bla-img"></div></a>
-                <a href="#" class="bla-btn bla-btn-1  btn btn-warning btn-lg " role="button">Find a ride</a>
+                <a href="#" class="bla-btn bla-btn-1  btn btn-warning btn-lg" role="button">Find a ride</a>
                 <span>or</span>
-                <a href="#" class="bla-btn  btn btn-success btn-lg " role="button">Offer a ride</a>
+                <a href="#" class="bla-btn  btn btn-success btn-lg" role="button">Offer a ride</a>
                 <div class="header-menu">
                     <ul class=" list-inline">
                         <li><a href="#">Sign up<span class='header-vertica-lLine'></span></a></li>
                         <li>
-                            <a href="#">Log in
+                            <a href="{{ path("fos_user_security_login") }}">Log in
                                 <span class='header-vertica-lLine'></span>
                             </a>
                         </li>
