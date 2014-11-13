@@ -14,7 +14,7 @@ body{
     background: linear-gradient(rgba(143, 214, 255, 1), #fff); /* Standard syntax (must be last) */
 }
 
-.header,.content,.homepage-content,.itinerary-content,.registr-content,footer{
+.header,.content,.itinerary-content,.registr-content,footer{
     width:  990px;
     background: #fff;
     margin: 0 auto;
