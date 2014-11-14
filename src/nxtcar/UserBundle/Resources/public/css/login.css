@@ -74,3 +74,29 @@
     box-shadow: inset 0px 0px 7px 4px #9AE1FC;
     color: #fff;
 }
+.login-content{
+    padding: 15px 0px 34px 0px;
+}
+.lod-in-page{
+    position: static;
+    width: 286px;
+    box-shadow: 0px 0px 0px #fff;
+    margin: 0 auto;
+    background-color: #F1F1E9;
+}
+.lod-in-page .form input{
+    background-position:97% 50%;
+}
+.lod-in-page .div-or{
+    background-color: #F1F1E9;
+}
+.lod-in .f-btn{
+    width: 100%;
+}
+.lod-in  .div-login{
+    margin: 2% 0% 5% 39%;
+    font-size: 23px;
+}
+.form-checkbox {
+    margin-left: 0 !important;
+}
