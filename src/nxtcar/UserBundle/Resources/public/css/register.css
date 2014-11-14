@@ -1,0 +1,143 @@
+
+
+
+
+
+/**** registr  content****/
+
+.registr-content{
+	padding: 0px 0px 10px 0px;
+}
+.registr-content-header{
+	height: 64px;
+	width: 100%;
+	background-color: #EEEEEE;
+	padding: 15px 2px;
+}
+.registr-content-header .text{
+	float: right;
+	font-size: 18px;
+	color: #4E4E4E;
+	margin-right: 20px;
+}
+.registr-content-header .btn{
+	background-color: #0CA9FA;
+	padding: 5px 13px;
+	font-size: 18px;
+	border-radius: 3px;
+	border: 1px;
+	border-bottom: 2px solid #898181;
+	margin-left: 20px;
+	border-right: 5px;
+}
+.registr-h4{
+	font-size: 168%;
+	margin: 14px 0px -9px 15%;
+}
+.registr-content-content{
+	width: 100%;
+	margin: 0;
+	margin-top: 10px;
+	padding: 10px 17px;
+}
+.registr-content .form-content{
+	background-color: #F9F8F4;
+}
+
+.registr-content .form-content div,
+.registr-content .f-btn
+
+{
+	margin: 0 auto ;
+}
+.in-just{
+	font-size: 19px;
+	color: #5E5E5E;
+	width: 27%;
+	padding: 13px 0px;
+}
+.in-just span{
+	color: #0ca9fa;
+
+}
+.registr-content .form-content .div-f-btn{
+	width: 39%;
+}
+.registr-content .f-btn{
+	background-color: #3b5998;
+	background-image: url("../img/bt-fb-large.png");
+	background-repeat: no-repeat;
+	height: 36px;
+	border-radius: 3px;
+	padding: 7px 16px 7px 38px;
+	background-position: 4px;
+	font-size: 16px;
+}
+ .registr-content-content .text1{
+ 	width: 53% ;
+	padding: 18px 0px 15px 0px;
+	color: #6A6A6A;
+ }
+.registr-content-content hr{
+	border-top: 1px solid #C3C3C3;
+	margin-bottom: -12px; 
+}
+.registr-content .div-or{
+	width: 7% !important;
+	height: 25px;
+	background: #F9F8F4;
+	padding: 0px 14px;
+	color: #777;
+}
+.registr-content .form-horizontal{
+	margin: 6px -32px 25px 72px;
+}
+.registr-content .form-horizontal input{
+	border-radius: 3px;
+}
+
+.registr-content .form{
+	width: 74% ;
+	margin-right: -5px;
+}
+.registr-content .inputEmail3{
+	background: #fff url(../img/login-arobase.png) no-repeat 98.3%  50%;
+	padding-right: 26px;
+	width: 275px;
+}
+.registr-content .inputPassword3{
+	background: #fff url(../img/login-lock.png) no-repeat 98.3%  50%;
+	padding-right: 26px;
+	width: 275px;
+}
+.registr-content .form input,.registr-content .form select{
+	margin: 0px 0px 13px 0px;
+	box-shadow: 0px 0px 0px;
+	border-left: 1px solid #BBB !important;;
+}
+.registr-content .form input.form-checkbox{
+	margin: 2px 3px 0px 0px;
+}
+.registr-content .form div.checkbox{
+	padding: 0;
+	font-size: 13px;
+}
+.registr-content .form .smal-text{
+	font-size: 10px;
+	margin: 5px 0px 15px 0px;
+}
+.registr-content .form .smal-text a:hover{
+	text-decoration: none;
+}
+.registr-content .form input.submit{
+	background-color: #0CB1F0;
+	margin: 0px 0px 25px 19%;
+	width: 56%;
+	font-size: 16px;
+	height: 37px;
+}
+.registr-content .form input.submit:hover{
+	 box-shadow: inset 0px 0px 7px 4px #9AE1FC;
+	 color: #fff;
+}
+

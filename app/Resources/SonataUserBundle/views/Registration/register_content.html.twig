@@ -1,0 +1,110 @@
+{% extends 'nxtcarMainBundle::layout.html.twig' %}
+
+{#<div class="panel panel-success">#}
+    {#<div class="panel-heading">#}
+        {#<h2 class="panel-title">{{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}</h2>#}
+    {#</div>#}
+    {#<div class="panel-body">#}
+        {#<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">#}
+            {#{{ form_widget(form) }}#}
+            {#<div class="form-actions">#}
+                {#<input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-success pull-right" />#}
+            {#</div>#}
+        {#</form>#}
+    {#</div>#}
+{#</div>#}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/register.css") }}">
+{% endblock %}
+
+{% block content %}
+    <div class="registr-content">
+        <div class="registr-content-header">
+            <div class="text">Already a member?
+                <a href="#" class="btn btn-primary btn-lg " role="button">Login</a>
+            </div>
+        </div>
+        <h4 class="registr-h4">Not yet a member? Sign up for free</h4>
+        <div class="registr-content-content row">
+            <div class="form-content col-md-8">
+                <div class="in-just">
+                    In just<span> 2 seconds</span>
+                </div>
+                <div class="div-f-btn">
+                    <a href="#"class="f-btn btn btn-primary btn-lg " role="button">Connect with Facebook</a>
+                </div>
+                <div class="text1 ">
+                    We don't publish on your wall without your consent
+                </div><hr>
+                <div class="div-or">or</div>
+                <div class="in-just">
+                    In just<span> 30 seconds</span>
+                </div>
+
+                <div class="form">
+                    <form class="form-horizontal" role="form">
+
+                        <div class="col-sm-5">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Last name">
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control inputEmail3" id="inputEmail3" placeholder="Email">
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control inputPassword3" id="inputPassword" placeholder="Password">
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control inputPassword3"  placeholder="Password confirmation">
+                        </div>
+                        <div class="col-sm-10">
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <label>
+                                        Receive updates on new features, or useful information for you
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-10 smal-text" >
+                            By clicking on "Get started now" or “Connect with Facebook” you accept our
+                            <a href=""> ToS</a> and certify you are over 18 years old.
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="submit" class="submit btn btn-default" value="Get started now">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">.col-md-4</div>
+        </div>
+    </div>
+{% endblock %}

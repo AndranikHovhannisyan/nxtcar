@@ -1,8 +1,7 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/login.css") }}">
 {% endblock %}
 
@@ -16,9 +15,13 @@
             <hr>
             <div class="div-or">or</div>
             <div class="form">
-                <form class="form-horizontal1" role="form1">
-                    <input type="email" class="form-mail" id="" placeholder="Email"><br>
-                    <input type="password" class="form-password" id="" placeholder="Password">
+
+                {# TODO ned to change style and may be position #}
+                <span>{{ error }}</span>
+
+                <form class="form-horizontal1" role="form1" action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="text" class="form-mail" id="" name="_username" placeholder="Email"><br>
+                    <input type="password" class="form-password" id="" name="_password" placeholder="Password">
                     <div class="forgotten-password"><a href=""> I've forgotten my password</a></div>
                     <div class="checkbox">
                         <input type="checkbox" class="form-checkbox">
