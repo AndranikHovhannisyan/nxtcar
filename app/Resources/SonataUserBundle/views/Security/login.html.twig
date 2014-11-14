@@ -1,8 +1,9 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">
+    {{ parent() }}
+    {#<link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">#}
+    {#<link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">#}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/login.css") }}">
 {% endblock %}
 
