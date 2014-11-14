@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ProfileController extends Controller
 {
     /**
-     * @Route("/dashboard",name="dashboard")
+     * @Route("/dashboard", name="dashboard")
      * @Template("nxtcarMainBundle:Dashboard:dashboard.html.twig")
      */
     public function dashboardAction()
@@ -24,7 +24,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * @Route("/messages/{status}",name="messages", requirements={"status": "archived|received|questions_answers"})
+     * @Route("/messages/{status}", name="messages", requirements={"status": "archived|received|questions_answers"})
      * @Template("nxtcarMainBundle:Dashboard:messages.html.twig")
      */
     public function messageAction($status)

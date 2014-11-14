@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class MainController extends Controller
 {
     /**
-     * @Route("/",name="homepage")
+     * @Route("/", name="homepage")
      * @Template("nxtcarMainBundle:Main:index.html.twig")
      */
     public function indexAction()

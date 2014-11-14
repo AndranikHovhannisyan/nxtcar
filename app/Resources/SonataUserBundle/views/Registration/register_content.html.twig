@@ -1,29 +1,16 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
-{#<div class="panel panel-success">#}
-    {#<div class="panel-heading">#}
-        {#<h2 class="panel-title">{{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}</h2>#}
-    {#</div>#}
-    {#<div class="panel-body">#}
-        {#<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">#}
-            {#{{ form_widget(form) }}#}
-            {#<div class="form-actions">#}
-                {#<input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-success pull-right" />#}
-            {#</div>#}
-        {#</form>#}
-    {#</div>#}
-{#</div>#}
-
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/register.css") }}">
 {% endblock %}
 
 {% block content %}
+
     <div class="registr-content">
         <div class="registr-content-header">
             <div class="text">Already a member?
-                <a href="#" class="btn btn-primary btn-lg " role="button">Login</a>
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-primary btn-lg " role="button">Login</a>
             </div>
         </div>
         <h4 class="registr-h4">Not yet a member? Sign up for free</h4>
@@ -56,19 +43,23 @@
                             </select>
                         </div>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="First name">
+                            {{ form_widget(form.username, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
+                            {#<input type="text" class="form-control" placeholder="First name">#}
                         </div>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="Last name">
+                            <input type="text" name="lastName" class="form-control" placeholder="Last name">
                         </div>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control inputEmail3" id="inputEmail3" placeholder="Email">
+                            {{ form_widget(form.email, {'attr': {'class': "form-control inputEmail3", "id": "inputEmail3", "placeholder": "Email" } }) }}
+                            {#<input type="email" class="form-control inputEmail3" id="inputEmail3" placeholder="Email">#}
                         </div>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control inputPassword3" id="inputPassword" placeholder="Password">
+                            {{ form_widget(form.plainPassword.first, {'attr': {'class': "form-control inputPassword3", "id": "inputPassword", "placeholder": "Password" } }) }}
+                            {#<input type="password" class="form-control inputPassword3" id="inputPassword" placeholder="Password">#}
                         </div>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control inputPassword3"  placeholder="Password confirmation">
+                            {{ form_widget(form.plainPassword.second, {'attr': {'class': "form-control inputPassword3", "placeholder": "Password confirmation" } }) }}
+                            {#<input type="password" class="form-control inputPassword3"  placeholder="Password confirmation">#}
                         </div>
                         <div class="col-sm-10">
                             <select class="form-control">
