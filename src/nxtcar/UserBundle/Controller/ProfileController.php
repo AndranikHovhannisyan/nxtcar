@@ -10,19 +10,18 @@ namespace nxtcar\UserBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sonata\UserBundle\Model\UserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sonata\UserBundle\Controller\RegistrationFOSUser1Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProfileController extends Controller
+class ProfileController extends RegistrationFOSUser1Controller
 {
     /**
-     * @param Request $request
      * @return RedirectResponse
      *
      * @Route("/register", name="register")
      */
-    public function registerAction(Request $request)
+    public function registerAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
 
@@ -36,6 +35,8 @@ class ProfileController extends Controller
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
+
+        echo($form->getErrorsAsString());
 
         $process = $formHandler->process($confirmationEnabled);
         if ($process) {
@@ -51,7 +52,7 @@ class ProfileController extends Controller
                 $this->container->get('session')->remove('sonata_basket_delivery_redirect');
             }
 
-
+            $request = $this->container->get('request');
             $lastname = $request->get('lastName');
             $gender = $request->get('gender');
 
@@ -75,7 +76,6 @@ class ProfileController extends Controller
 
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
             'form' =>       $form->createView(),
-            'formEdit' =>   $formEdit->createView(),
         ));
     }
 }
