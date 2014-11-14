@@ -12,6 +12,10 @@ require.config({
         'nanoscroller': '/app/bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.min',
         'angular-strap': '/app/bower_components/angular-strap/dist/angular-strap.min',
         'angular-strap-tpl': '/app/bower_components/angular-strap/dist/angular-strap.tpl.min',
+        /*-------------------------------------------------------------------------------------*/
+        'Facebook': '/app/scripts/Facebook/Facebook',
+        'main': '/bundles/nxtcarmain/js/angular/main'
+
     },
     shim: {
         'angular': {
@@ -21,13 +25,14 @@ require.config({
         'jquery': {
             exports: "$"
         },
-        'angular-animate': [],
-        'angular-resource': [],
-        'nanoscroller': ['jquery'],
-        'angular-strap': [],
-        'angular-strap-tpl': []
+        'angular-animate': ['angular'],
+        'angular-resource': ['angular'],
+        'nanoscroller': ['jquery','angular'],
+        'angular-strap': ['angular'],
+        'angular-strap-tpl': ['angular'],
         //------------------------------------------------------------------//
+        'Facebook': ['angular'],
+        'main': ['Facebook']
     },
     waitSeconds: 7
 });
-require(['angular'],null);
