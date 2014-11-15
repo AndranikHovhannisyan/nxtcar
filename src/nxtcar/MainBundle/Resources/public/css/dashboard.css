@@ -33,43 +33,42 @@ ul {
     border-radius:4px 4px 0px 0px;
     box-shadow: inset 0px 0px 0px #fff;
 }
-
-
-
-
-
-
-
-.profile-information{
-    background-color: #ececec;
-    border-radius: 2px;
-    margin: 17px 21px 0px 22px;
-    width: 200px;
-    border:  1px  solid #000000;
-    border-bottom: 0px;
+.div-profile-information{
+    display: inline-block;
+    padding: 21px;
+}
+.profile-information-header{
+    background: #ececec;
+    border-radius: 4px 4px 0px 0px;
+    border: 1px solid #DDD;
+    border-bottom: 0px solid #DDD;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 75px 8px 15px;
 }
 .profile-information li{
-    padding: 2px 2px 3px 0px;
-    border-bottom: 1px solid #000000;
+    background-color: #F9F9F9;
+    float: none;
+    border: 1px solid #DDD;
+    border-bottom: 0px solid #DDD;
+}
+.profile-information li.last{
+    border-bottom: 1px solid #DDD;
+    border-radius: 0px 0px 4px 4px;
 }
 .profile-information li a  {
-    padding: 5px;
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 8px 75px 8px 15px;
+    display:block;
 }
-
-
 .profile-information li a:hover{
-    color: #0ca9fa;
     text-decoration:none;
-    background-color: #FFEB00;
-    border-left-color: #fafafa;
-    border-right-color: #fafafa;
-    border-radius: 2px;
+    padding: 8px 75px 8px 15px;
+    background-color: #ffeb00;
 }
-
-.profile-informationli.current a{
-    background-color: #fff;
-    border: 1px solid #C4C2C2;
-    border-bottom-color: #fff;
-    border-radius:4px 4px 0px 0px;
-    /*box-shadow: inset 0px 0px 0px #fff;*/
+.profile-information .current {
+    background-color: #ffeb00;
 }
