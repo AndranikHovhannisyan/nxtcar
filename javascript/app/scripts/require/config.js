@@ -14,7 +14,8 @@ require.config({
         'angular-strap-tpl': '/app/bower_components/angular-strap/dist/angular-strap.tpl.min',
         /*-------------------------------------------------------------------------------------*/
         'Facebook': '/app/scripts/Facebook/Facebook',
-        'main': '/bundles/nxtcarmain/js/angular/main'
+        'Geolocation': '/app/scripts/Geolocation/Geolocation',
+        'main': '/bundles/nxtcarmain/js/angular/main',
 
     },
     shim: {
@@ -32,7 +33,8 @@ require.config({
         'angular-strap-tpl': ['angular'],
         //------------------------------------------------------------------//
         'Facebook': ['angular'],
-        'main': ['Facebook']
+        'Geolocation': ['angular'],
+        'main': ['Geolocation','Facebook']
     },
     waitSeconds: 7
 });
