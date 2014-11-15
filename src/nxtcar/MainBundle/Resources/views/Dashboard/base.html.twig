@@ -1,5 +1,10 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/dashboard.css") }}">
+{% endblock %}
+
 {% block bottomHeader %}
     {{ knp_menu_render('nxtcarMainBundle:Builder:profileMenu', {'depth': 1}) }}
 {% endblock %}
