@@ -33,6 +33,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\Column(name="year_of_birth", type="integer", nullable=true)
+     */
+    protected $yearOfBirth;
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -40,5 +45,24 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYearOfBirth()
+    {
+        return $this->yearOfBirth;
+    }
+
+    /**
+     * @param $year
+     * @return $this
+     */
+    public function setYearOfBirth($year)
+    {
+        $this->yearOfBirth = $year;
+
+        return $this;
     }
 }

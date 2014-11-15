@@ -36,11 +36,24 @@ class ProfileController extends RegistrationFOSUser1Controller
         $formHandler = $this->container->get('fos_user.registration.form.handler');
         $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
 
-        echo($form->getErrorsAsString());
+        $request = $this->container->get('request');
 
-        $process = $formHandler->process($confirmationEnabled);
+        $process = false;
+        if ($request->get('gender') && $request->get('lastName') && $request->get('birthYear')) {
+            $process = $formHandler->process($confirmationEnabled);
+        }
+
         if ($process) {
             $user = $form->getData();
+
+            $user->setGender($request->get('gender'));
+            $user->setFirstName($user->getUsername());
+            $user->setLastName($request->get('lastName'));
+            $user->setYearOfBirth($request->get('birthYear'));
+            $user->setUsername($user->getEmail());
+
+            $em = $this->container->get('doctrine')->getManager();
+            $em->flush();
 
             $authUser = false;
             if ($confirmationEnabled) {
@@ -51,10 +64,6 @@ class ProfileController extends RegistrationFOSUser1Controller
                 $route = $this->container->get('session')->get('sonata_basket_delivery_redirect', 'sonata_user_profile_show');
                 $this->container->get('session')->remove('sonata_basket_delivery_redirect');
             }
-
-            $request = $this->container->get('request');
-            $lastname = $request->get('lastName');
-            $gender = $request->get('gender');
 
             $this->setFlash('fos_user_success', 'registration.flash.user_created');
             $url = $this->container->get('session')->get('sonata_user_redirect_url');

@@ -31,48 +31,49 @@
                 </div>
 
                 <div class="form">
-                    <form class="form-horizontal" role="form" method="post" action="{{ path('sonata_user_registration_register') }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ path('register') }}">
 
                         <div class="col-sm-5">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select name="gender" class="form-control">
+                                <option value="u" selected="selected">Gender</option>
+                                <option value="f">Female</option>
+                                <option value="m">Male</option>
                             </select>
                         </div>
+
                         <div class="col-sm-10">
                             {{ form_widget(form.username, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
-                            {#<input type="text" class="form-control" placeholder="First name">#}
                         </div>
+
                         <div class="col-sm-10">
                             <input type="text" name="lastName" class="form-control" placeholder="Last name">
                         </div>
+
                         <div class="col-sm-10">
+                            {% if form_errors(form.email) %}
+                                <div class="alert-error no-icon">{{ form_errors(form.email) }}</div>
+                            {% endif %}
                             {{ form_widget(form.email, {'attr': {'class': "form-control inputEmail3", "id": "inputEmail3", "placeholder": "Email" } }) }}
-                            {#<input type="email" class="form-control inputEmail3" id="inputEmail3" placeholder="Email">#}
                         </div>
+
                         <div class="col-sm-10">
+                            {{ form_errors(form.plainPassword.first) }}
                             {{ form_widget(form.plainPassword.first, {'attr': {'class': "form-control inputPassword3", "id": "inputPassword", "placeholder": "Password" } }) }}
-                            {#<input type="password" class="form-control inputPassword3" id="inputPassword" placeholder="Password">#}
                         </div>
+
                         <div class="col-sm-10">
+                            {{ form_errors(form.plainPassword.second) }}
                             {{ form_widget(form.plainPassword.second, {'attr': {'class': "form-control inputPassword3", "placeholder": "Password confirmation" } }) }}
-                            {#<input type="password" class="form-control inputPassword3"  placeholder="Password confirmation">#}
                         </div>
+
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select name="birthYear" class="form-control">
+                                <option value selected="selected">Birth year</option>
+                                {% for i in 1996..1914 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
                             </select>
                         </div>
-
-
-
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -92,6 +93,7 @@
                         <div class="col-sm-10">
                             <input type="submit" class="submit btn btn-default" value="Get started now">
                         </div>
+                        {{ form_widget(form._token) }}
                     </form>
                 </div>
             </div>

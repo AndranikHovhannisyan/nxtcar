@@ -24,21 +24,46 @@
                 <span>or</span>
                 <a href="#" class="bla-btn  btn btn-success btn-lg" role="button">Offer a ride</a>
                 <div class="header-menu">
-                    <ul class="list-inline">
-                        <li><a href="#">Sign up<span class='header-vertica-lLine'></span></a></li>
-                        <li>
-                            <a href="{{ path("fos_user_security_login") }}">Log in
-                                <span class='header-vertica-lLine'></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">How it works
-                                <span class='header-vertica-lLine'></span>
-                            </a>
-                        </li>
-                        <li><a href="#"><i class="caret"></i></a></li>
-                        <li><f-like></f-like></li>
-                    </ul>
+                    {% if not is_granted('ROLE_USER') %}
+                        <ul class="list-inline">
+                            <li>
+                                <a href="{{ path("register") }}">Sign up
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path("fos_user_security_login") }}">Log in
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">How it works
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li><a href="#"><i class="caret"></i></a></li>
+                            <li><f-like></f-like></li>
+                        </ul>
+                    {% else %}
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#">Messages
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">Notifications
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">Logout
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li><a href="#"><i class="caret"></i></a></li>
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         {% endblock %}
