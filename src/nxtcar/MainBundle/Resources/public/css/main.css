@@ -157,6 +157,12 @@ header .background{
     padding-top: 3px;
     height: 354px;
 }
+.countries {
+    padding-left: 0px;
+}
+.countries > li {
+    display: block !important;
+}
 .form-inline{
     margin: 8px 0px 0px 22px;
     width: 70%;

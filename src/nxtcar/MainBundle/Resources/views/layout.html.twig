@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
     <title>
     {% block title %}
         Easy car sharing with BlaBlaCar, the UK's leading low cost travel community | BlaBlaCar.com!
@@ -9,11 +10,12 @@
     </title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset("app/bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+        <link rel="stylesheet" href="{{ asset("app/bower_components/angular-motion/dist/angular-motion.min.css") }}">
         <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main.css") }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
-<body>
+<body {% block AngularController %}{% endblock %}>
     <!-- stsrt header -->
     <header class='header'>
         {% block topHeader %}
@@ -41,7 +43,12 @@
                                     <span class='header-vertica-lLine'></span>
                                 </a>
                             </li>
-                            <li><a href="#"><i class="caret"></i></a></li>
+                            <a href="javascript:void(0)"
+                               data-template="/bundles/nxtcarmain/htmls/countries.html"
+                               data-animation="am-flip-x"
+                               data-placement="bottom"
+                               bs-popover><i class="caret"></i>
+                            </a>
                             <li><f-like></f-like></li>
                         </ul>
                     {% else %}
@@ -63,7 +70,12 @@
                             </li>
                             <li>
                                 <span class="flag"></span>
-                                <a href="javascript:void(0)"><i class="caret"></i></a>
+                                <a href="javascript:void(0)"
+                                   data-template="/bundles/nxtcarmain/htmls/countries.html"
+                                   data-animation="am-flip-x"
+                                   data-placement="bottom"
+                                   bs-popover><i class="caret"></i>
+                                </a>
                             </li>
                         </ul>
                     {% endif %}

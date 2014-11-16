@@ -5,6 +5,7 @@ require.config({
     urlArgs: 'v='+(new Date()).getTime(),
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
+        'bootstrap': '/app/bower_components/bootstrap/dist/js/bootstrap.min',
         'angular': '/app/bower_components/angular/angular.min',
         'angular-resource': '/app/bower_components/angular-resource/angular-resource.min',
         'angular-animate': '/app/bower_components/angular-animate/angular-animate.min',
@@ -13,10 +14,11 @@ require.config({
         'angular-strap': '/app/bower_components/angular-strap/dist/angular-strap.min',
         'angular-strap-tpl': '/app/bower_components/angular-strap/dist/angular-strap.tpl.min',
         /*-------------------------------------------------------------------------------------*/
+        'Interpolation': '/app/scripts/Interpolation/Interpolation',
         'Facebook': '/app/scripts/Facebook/Facebook',
         'Geolocation': '/app/scripts/Geolocation/Geolocation',
-        'main': '/bundles/nxtcarmain/js/angular/main'
-
+        'main': '/bundles/nxtcarmain/js/angular/main',
+        'MainController': '/bundles/nxtcarmain/js/angular/controllers/MainController'
     },
     shim: {
         'angular': {
@@ -31,10 +33,13 @@ require.config({
         'nanoscroller': ['jquery','angular'],
         'angular-strap': ['angular'],
         'angular-strap-tpl': ['angular'],
+        'bootstrap': ['angular'],
         //------------------------------------------------------------------//
         'Facebook': ['angular'],
+        'Interpolation': ['angular'],
         'Geolocation': ['angular'],
-        'main': ['Geolocation','Facebook','angular-strap']
+        'main': [,'Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
+        'MainController': ['angular','main']
     },
     waitSeconds: 7
 });

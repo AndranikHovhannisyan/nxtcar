@@ -1,0 +1,9 @@
+'use strict';
+
+define([],function(){
+    angular.module('main')
+        .controller("MainController",function($scope,countries){
+            $scope.countries = angular.copy(countries);
+            console.log(countries);
+        });
+})

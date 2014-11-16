@@ -1,5 +1,12 @@
 <div class="popover">
-    <div class="arrow"></div>
+    <!--<div class="arrow"></div>-->
     <h3 class="popover-title" ng-bind="title" ng-show="title"></h3>
-    <div class="popover-content" ng-bind="content"></div>
+    <div class="popover-content">
+        <ul class="countries">
+            <li data-ng-repeat="country in countries">
+                <span><img ng-src="[[ country.icon ]]" width="16" height="11"/></span>
+                [[ country.name ]]
+            </li>
+        </ul>
+    </div>
 </div>
