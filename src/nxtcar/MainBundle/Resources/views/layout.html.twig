@@ -2,7 +2,11 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="max-age=0"/>
     <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
     <title>
     {% block title %}
         Easy car sharing with BlaBlaCar, the UK's leading low cost travel community | BlaBlaCar.com!
@@ -43,12 +47,19 @@
                                     <span class='header-vertica-lLine'></span>
                                 </a>
                             </li>
-                            <a href="javascript:void(0)"
-                               data-template="/bundles/nxtcarmain/htmls/countries.html"
-                               data-animation="am-flip-x"
-                               data-placement="bottom"
-                               bs-popover><i class="caret"></i>
-                            </a>
+                            <li>
+                                <span>
+                                    <img ng-src="[[ choosenCountry.icon ]]"/>
+                                    <span class="currency"></span>
+                                </span>
+                                <a href="javascript:void(0)"
+                                   data-template="/bundles/nxtcarmain/htmls/countries.html"
+                                   data-animation="am-flip-x"
+                                   data-placement="bottom"
+                                   bs-popover><i class="caret"></i>
+                                </a>
+                            </li>
+
                             <li><f-like></f-like></li>
                         </ul>
                     {% else %}

@@ -3,6 +3,11 @@
     <h3 class="popover-title" ng-bind="title" ng-show="title"></h3>
     <div class="popover-content">
         <ul class="countries">
+            <li>
+                <span><img ng-src="[[ choosenCountry.icon ]]" width="16" height="11"/></span>
+                [[ choosenCountry.name ]] - (<span ng-bind="choosenCountry.money"></span>)
+            </li>
+            <li>Choose your language</li>
             <li data-ng-repeat="country in countries">
                 <span><img ng-src="[[ country.icon ]]" width="16" height="11"/></span>
                 [[ country.name ]]

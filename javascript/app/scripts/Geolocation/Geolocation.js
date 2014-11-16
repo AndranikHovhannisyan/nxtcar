@@ -11,58 +11,69 @@ define([],function(){
             'TRY': 'TL'
         })
         .constant('countries',{
-            'en': {
-                'money': '&#163;',
+            'gb': {
+                'currency': '&#163;',
+                'money': 'GBP',
                 'name': 'English',
-                'icon': '/bundles/nxtcarmain/images/flags/png/england.png'
+                'icon': '/bundles/nxtcarmain/images/flags/png/gb.png'
             },
             'de': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Deutsch',
                 'icon': '/bundles/nxtcarmain/images/flags/png/de.png'
             },
             'es': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Español',
                 'icon': '/bundles/nxtcarmain/images/flags/png/es.png'
             },
             'fr': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Français',
                 'icon': '/bundles/nxtcarmain/images/flags/png/fr.png'
             },
             'it': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Italiano',
                 'icon': '/bundles/nxtcarmain/images/flags/png/it.png'
             },
             'nd': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Nederlands',
                 'icon': '/bundles/nxtcarmain/images/flags/png/nl.png'
             },
             'pl': {
-                'money': 'z&#322;',
+                'currency': 'z&#322;',
+                'money': 'PLN',
                 'name': 'Polski',
                 'icon': '/bundles/nxtcarmain/images/flags/png/pl.png'
             },
             'pr': {
-                'money': '&#128;',
+                'currency': '&#128;',
+                'money': 'EUR',
                 'name': 'Português',
                 'icon': '/bundles/nxtcarmain/images/flags/png/pt.png'
             },
             'ru': {
-                'money': 'p.',
+                'currency': 'p.',
+                'money': 'RUB',
                 'name': 'Русский',
                 'icon': '/bundles/nxtcarmain/images/flags/png/ru.png'
             },
             'uk': {
-                'money': '&#8372;',
+                'currency': '&#8372;',
+                'money': 'UAH',
                 'name': 'Українська',
                 'icon': '/bundles/nxtcarmain/images/flags/png/ua.png'
             },
             'tr': {
-                'money': 'TL',
+                'currency': 'TL',
+                'money': 'TRY',
                 'name': 'Türkçe',
                 'icon': '/bundles/nxtcarmain/images/flags/png/tr.png'
             }
