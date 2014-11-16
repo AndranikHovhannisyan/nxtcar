@@ -15,7 +15,7 @@ require.config({
         /*-------------------------------------------------------------------------------------*/
         'Facebook': '/app/scripts/Facebook/Facebook',
         'Geolocation': '/app/scripts/Geolocation/Geolocation',
-        'main': '/bundles/nxtcarmain/js/angular/main',
+        'main': '/bundles/nxtcarmain/js/angular/main'
 
     },
     shim: {
@@ -34,7 +34,7 @@ require.config({
         //------------------------------------------------------------------//
         'Facebook': ['angular'],
         'Geolocation': ['angular'],
-        'main': ['Geolocation','Facebook']
+        'main': ['Geolocation','Facebook','angular-strap']
     },
     waitSeconds: 7
 });
