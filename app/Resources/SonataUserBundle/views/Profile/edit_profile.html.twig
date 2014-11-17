@@ -1,23 +1,141 @@
 {% extends 'nxtcarMainBundle:Dashboard:profileBase.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/profile_edit.css") }}">
+{% endblock %}
+
 {% block content %}
 
     {{ parent() }}
 
     {{ form_errors(form) }}
 
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>
+    <div class="col-xs-12 col-md-9">
+        <div>
+            <h3 class="user-profil-header"> Your personal information</h3>
         </div>
-        <div class="panel-body">
-            <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
-                {{ form_widget(form) }}
-                <div class="form-actions">
-                    <button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>
+        <div class="user-profil-content">
+            <form class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 text-right">
+                                Gender
+                            </div>
+                            <div class="col-sm-3">
+                                Male
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputFirstname" class="col-sm-3 control-label">First name</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastname" class="col-sm-3 control-label">Last name</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectDisplayed" class="col-sm-3 control-label">Displayed As</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="selectDisplayed">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div><br><br>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectDisplayed1" class="col-sm-3 control-label">Mobile phone</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="selectDisplayed">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox  form-checkbox">
+                            <label class="">
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div><br><br>
+                <div class="form-group">
+                    <label for="selectDisplayed2" class="col-sm-3 control-label">Birth year</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="selectDisplayed2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectDisplayed2" class="col-sm-3 control-label">Mini bio</label>
+                    <div class="col-sm-9">
+                        <div class="row">
+
+                            <div class="col-sm-7">
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+
+                            <div class="col-sm-4 form-text">Tell the community a bit about yourself, so planning a car share together will be easy. For example: "I'm a student at Bristol Uni, and I often visit friends in London. I love photography."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <!-- <button type="submit" class="btn btn-default">Save</button> -->
+                        <input type="submit" class="submit btn btn-default" value="Save">
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+    {#<div class="panel panel-info">#}
+        {#<div class="panel-heading">#}
+            {#<h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>#}
+        {#</div>#}
+        {#<div class="panel-body">#}
+            {#<form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">#}
+                {#{{ form_widget(form) }}#}
+                {#<div class="form-actions">#}
+                    {#<button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>#}
+                {#</div>#}
+            {#</form>#}
+        {#</div>#}
+    {#</div>#}
 
 {% endblock %}
