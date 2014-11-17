@@ -88,12 +88,32 @@
 	margin: 6px -32px 25px 72px;
 }
 .registr-content .form-horizontal input{
-	border-radius: 3px;
+	border-radius: 4px;
 }
 
 .registr-content .form{
-	width: 74% ;
+	width: 76% ;
 	margin-right: -5px;
+}
+.form input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #888;
+    font-family: inherit;
+    font-size: 13px;
+}
+.form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #888;
+    font-family: inherit;
+    font-size: 13px;
+}
+.form input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #888;
+    font-family: inherit;
+    font-size: 13px;
+}
+.form input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #888;
+    font-family: inherit;
+    font-size: 13px;
 }
 .registr-content .inputEmail3{
 	background: #fff url("/bundles/nxtcarmain/images/login-arobase.png") no-repeat 98.3%  50%;
@@ -124,6 +144,10 @@
 .registr-content .form .smal-text a:hover{
 	text-decoration: none;
 }
+.registr-content .form input {
+    padding-left: 5px;
+    border: 1px solid #ccc;
+}
 .registr-content .form input.submit{
 	background-color: #0CB1F0;
 	margin: 0px 0px 25px 19%;
@@ -144,7 +168,14 @@
     margin-bottom: 3px !important;
     width: 298px;
 }
-
+.register-select {
+    font-family: inherit;
+    font-size: 13px;
+    color: #888 !important;
+}
+.register-gender {
+    width: 146px !important;
+}
 .no-icon {
     background-image: none;
     padding: 8px 12px;

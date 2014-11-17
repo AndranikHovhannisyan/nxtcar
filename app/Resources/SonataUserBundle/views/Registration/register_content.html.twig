@@ -41,7 +41,7 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            {{ form_widget(form.gender, {'attr': {'class': "form-control"} }) }}
+                            {{ form_widget(form.gender, {'attr': {'class': "form-control register-gender register-select"} }) }}
                         </div>
 
                         <div class="col-sm-10">
@@ -107,7 +107,7 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            {{ form_widget(form.yearOfBirth, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
+                            {{ form_widget(form.yearOfBirth, {'attr': {'class': "form-control register-select" } }) }}
                         </div>
 
                         <div class="form-group">
