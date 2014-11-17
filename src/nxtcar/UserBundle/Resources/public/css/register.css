@@ -1,8 +1,3 @@
-
-
-
-
-
 /**** registr  content****/
 
 .registr-content{
@@ -65,7 +60,7 @@
 }
 .registr-content .f-btn{
 	background-color: #3b5998;
-	background-image: url("../img/bt-fb-large.png");
+	background-image: url("/bundles/nxtcarmain/images/bt-fb-large.png");
 	background-repeat: no-repeat;
 	height: 36px;
 	border-radius: 3px;
@@ -101,12 +96,12 @@
 	margin-right: -5px;
 }
 .registr-content .inputEmail3{
-	background: #fff url(../img/login-arobase.png) no-repeat 98.3%  50%;
+	background: #fff url("/bundles/nxtcarmain/images/login-arobase.png") no-repeat 98.3%  50%;
 	padding-right: 26px;
 	width: 275px;
 }
 .registr-content .inputPassword3{
-	background: #fff url(../img/login-lock.png) no-repeat 98.3%  50%;
+	background: #fff url("/bundles/nxtcarmain/images/login-lock.png") no-repeat 98.3%  50%;
 	padding-right: 26px;
 	width: 275px;
 }

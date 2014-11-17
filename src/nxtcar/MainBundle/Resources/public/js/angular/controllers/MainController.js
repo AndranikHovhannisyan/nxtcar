@@ -12,7 +12,7 @@ define([],function(){
                 }
                 angular.element('.currency').html(d.currency);
             },true);
-            
+
             console.log(countries);
         });
 })
