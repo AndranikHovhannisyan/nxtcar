@@ -140,6 +140,8 @@
     background-color: #ffbaba;
     border: 1px solid #ff8787;
     border-radius: 3px;
+    margin-left: 0px !important;
+    margin-bottom: 3px !important;
     width: 298px;
 }
 
