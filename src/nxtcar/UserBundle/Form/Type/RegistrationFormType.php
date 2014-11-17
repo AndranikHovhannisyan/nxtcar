@@ -29,8 +29,9 @@ class RegistrationFormType extends AbstractType
             ))
             ->add('firstname', null, array('required' => false))
             ->add('lastname', null, array('required' => false))
-            ->add('email', 'email', array('required' => false))
+            ->add('email', 'email', array('required' => false, 'translation_domain' => 'FOSUserBundle'))
             ->add('plainPassword', 'repeated', array(
+                'translation_domain' => 'FOSUserBundle',
                 'required' => false,
                 'type' => 'password',
                 'options' => array(),
@@ -38,7 +39,10 @@ class RegistrationFormType extends AbstractType
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-            ->add('yearOfBirth', 'choice', array('empty_value' => 'Birth year', 'choices' => $array, 'required' => false))
+            ->add('yearOfBirth', 'choice', array(
+                'empty_value' => 'Birth year',
+                'choices' => $array, 'required' => false,
+            ))
         ;
     }
 

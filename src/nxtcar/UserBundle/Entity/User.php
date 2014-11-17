@@ -70,7 +70,6 @@ class User extends BaseUser
     protected $gender = UserInterface::GENDER_UNKNOWN;
 
     /**
-     * @Assert\NotBlank(message="Please enter your email", groups={"Registration", "Profile"})
      * @Assert\Email(
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true,
@@ -80,7 +79,7 @@ class User extends BaseUser
     protected $email;
 
     /**
-     * @Assert\NotBlank(message="Please enter your password", groups={"Registration", "Profile"})
+     * @var
      */
     protected $plainPassword;
 
