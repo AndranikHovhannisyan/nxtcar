@@ -31,48 +31,83 @@
                 </div>
 
                 <div class="form">
-                    <form class="form-horizontal" role="form" method="post" action="{{ path('register') }}">
+                    <form class="form-horizontal" role="form" method="post" action="{{ path('fos_user_registration_register') }}">
 
                         <div class="col-sm-5">
-                            <select name="gender" class="form-control">
-                                <option value="u" selected="selected">Gender</option>
-                                <option value="f">Female</option>
-                                <option value="m">Male</option>
-                            </select>
+                            {% if form_errors(form.gender) %}
+                                    <div class="alert-error no-icon">
+                                    {% for error in form.gender.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.gender, {'attr': {'class': "form-control"} }) }}
                         </div>
 
                         <div class="col-sm-10">
-                            {{ form_widget(form.username, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
+                            {% if form_errors(form.firstname) %}
+                                <div class="alert-error no-icon">
+                                    {% for error in form.firstname.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.firstname, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
                         </div>
 
                         <div class="col-sm-10">
-                            <input type="text" name="lastName" class="form-control" placeholder="Last name">
+                            {% if form_errors(form.lastname) %}
+                                <div class="alert-error no-icon">
+                                    {% for error in form.lastname.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.lastname, {'attr': {'class': "form-control", "placeholder": "Last name" } }) }}
                         </div>
 
                         <div class="col-sm-10">
                             {% if form_errors(form.email) %}
-                                <div class="alert-error no-icon">{{ form_errors(form.email) }}</div>
+                                <div class="alert-error no-icon">
+                                    {% for error in form.email.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
                             {% endif %}
                             {{ form_widget(form.email, {'attr': {'class': "form-control inputEmail3", "id": "inputEmail3", "placeholder": "Email" } }) }}
                         </div>
 
                         <div class="col-sm-10">
-                            {{ form_errors(form.plainPassword.first) }}
+                            {% if form_errors(form.plainPassword.first) %}
+                                <div class="alert-error no-icon">
+                                    {% for error in form.plainPassword.first.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             {{ form_widget(form.plainPassword.first, {'attr': {'class': "form-control inputPassword3", "id": "inputPassword", "placeholder": "Password" } }) }}
                         </div>
 
                         <div class="col-sm-10">
-                            {{ form_errors(form.plainPassword.second) }}
+                            {% if form_errors(form.plainPassword.second) %}
+                                <div class="alert-error no-icon">
+                                    {% for error in form.plainPassword.second.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                             {{ form_widget(form.plainPassword.second, {'attr': {'class': "form-control inputPassword3", "placeholder": "Password confirmation" } }) }}
                         </div>
 
                         <div class="col-sm-10">
-                            <select name="birthYear" class="form-control">
-                                <option value selected="selected">Birth year</option>
-                                {% for i in 1996..1914 %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                {% endfor %}
-                            </select>
+                            {% if form_errors(form.yearOfBirth) %}
+                                <div class="alert-error no-icon">
+                                    {% for error in form.yearOfBirth.vars.errors %}
+                                        {{ error.message }}<br>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.yearOfBirth, {'attr': {'class': "form-control", "placeholder": "First name" } }) }}
                         </div>
 
                         <div class="form-group">

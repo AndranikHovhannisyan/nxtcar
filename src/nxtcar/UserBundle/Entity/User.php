@@ -11,8 +11,10 @@
 
 namespace nxtcar\UserBundle\Entity;
 
+use Sonata\UserBundle\Model\UserInterface;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -34,8 +36,53 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(name="year_of_birth", type="integer", nullable=true)
+     * @Assert\NotBlank(message="Please choose the year of your birth", groups={"Registration", "Profile"})
      */
     protected $yearOfBirth;
+
+    /**
+     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $firstname;
+
+    /**
+     * @Assert\NotBlank(message="Please enter your last name.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max="255",
+     *     minMessage="The last name is too short.",
+     *     maxMessage="The last name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $lastname;
+
+    /**
+     * @Assert\NotBlank(message="Please choose your gender", groups={"Registration", "Profile"})
+     */
+    protected $gender = UserInterface::GENDER_UNKNOWN;
+
+    /**
+     * @Assert\NotBlank(message="Please enter your email", groups={"Registration", "Profile"})
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true,
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $email;
+
+    /**
+     * @Assert\NotBlank(message="Please enter your password", groups={"Registration", "Profile"})
+     */
+    protected $plainPassword;
 
     /**
      * Get id

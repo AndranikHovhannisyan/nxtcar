@@ -105,6 +105,9 @@ fos_user:
             name:               fos_user_profile_form
             validation_groups:  [Authentication] # Please note : this is not the default value
 
+    registration:
+        form:
+            type: nxtcar_user_registration
 
 
 # Swiftmailer Configuration
