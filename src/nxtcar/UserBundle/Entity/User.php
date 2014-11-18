@@ -84,6 +84,17 @@ class User extends BaseUser
     protected $plainPassword;
 
     /**
+     * @ORM\Column(name="displayed_as", type="string", length=20, nullable=true)
+     * @Assert\NotBlank(message="Please choose your name for display", groups={"Registration", "Profile"})
+     */
+    protected $displayedAs;
+
+    /**
+     * @ORM\Column(name="show_phone_number", type="boolean", nullable=false)
+     */
+    protected $showPhoneNumber = false;
+
+    /**
      * Get id
      *
      * @return integer $id
@@ -91,6 +102,44 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param $showPhoneNumber
+     * @return $this
+     */
+    public function setShowPhoneNumber($showPhoneNumber)
+    {
+        $this->showPhoneNumber = $showPhoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getShowPhoneNumber()
+    {
+        return $this->showPhoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayedAs()
+    {
+        return $this->displayedAs;
+    }
+
+    /**
+     * @param $displayedAs
+     * @return $this
+     */
+    public function setDisplayedAs($displayedAs)
+    {
+        $this->displayedAs = $displayedAs;
+
+        return $this;
     }
 
     /**
@@ -112,10 +161,26 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail($email)
     {
         $this->email = $email;
         $this->username = $email;
+
+        return $this;
+    }
+
+    /**
+     * @param string $firstname
+     * @return $this|void
+     */
+    public function setFirstname($firstname)
+    {
+        parent::setFirstname($firstname);
+        $this->displayedAs = $firstname;
 
         return $this;
     }

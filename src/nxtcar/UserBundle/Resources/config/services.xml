@@ -10,6 +10,11 @@
             <tag name="form.type" alias="nxtcar_user_registration" />
         </service>
 
+        <service id="nxtcar_user.edit.form.type" class="nxtcar\UserBundle\Form\Type\EditFormType">
+            <argument type="service" id="service_container" />
+            <tag name="form.type" alias="nxtcar_user_edit" />
+        </service>
+
     </services>
 
 </container>

@@ -86,7 +86,7 @@ sonata_user:
 
     profile:  # Profile Form (firstname, lastname, etc ...)
         form:
-            type:               sonata_user_profile
+            type:               nxtcar_user_edit
             handler:            sonata.user.profile.form.handler.default
             name:               sonata_user_profile_form
             validation_groups:  [Profile]
@@ -108,6 +108,7 @@ fos_user:
     registration:
         form:
             type: nxtcar_user_registration
+
 
 
 # Swiftmailer Configuration

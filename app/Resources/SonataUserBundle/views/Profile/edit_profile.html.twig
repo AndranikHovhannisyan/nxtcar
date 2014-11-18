@@ -9,23 +9,22 @@
 
     {{ parent() }}
 
-    {{ form_errors(form) }}
 
     <div class="col-xs-12 col-md-9">
         <div>
             <h3 class="user-profil-header"> Your personal information</h3>
         </div>
         <div class="user-profil-content">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" action="{{ path('sonata_user_profile_edit') }}" method="POST">
 
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-3 text-right">
-                                Gender
+                                <label for="gender" class="col-sm-3 control-label">Gender</label>
                             </div>
                             <div class="col-sm-3">
-                                Male
+                                {{ form_widget(form.gender, {'attr': {'class': "form-control", 'id': "gender"} }) }}
                             </div>
                         </div>
                     </div>
@@ -34,71 +33,53 @@
                 <div class="form-group">
                     <label for="inputFirstname" class="col-sm-3 control-label">First name</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+                        {{ form_widget(form.firstname, {'attr': {'class': "form-control", 'id': "inputFirstname", 'placeholder': "First name"} }) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputLastname" class="col-sm-3 control-label">Last name</label>
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+                        {{ form_widget(form.lastname, {'attr': {'class': "form-control", 'id': "inputLastname", 'placeholder': "Last name"} }) }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="selectDisplayed" class="col-sm-3 control-label">Displayed As</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="selectDisplayed">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                        {{ form_widget(form.displayedAs, {'attr': {'class': "form-control", 'id': "selectDisplayed"} }) }}
                     </div>
                 </div><br><br>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-6">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        {{ form_widget(form.email, {'attr': {'class': "form-control", 'id': "inputEmail3", 'placeholder': "Email"} }) }}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="selectDisplayed1" class="col-sm-3 control-label">Mobile phone</label>
+                    <label for="locale" class="col-sm-3 control-label">Mobile phone</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="selectDisplayed">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                        {{ form_widget(form.locale, {'attr': {'class': "form-control", 'id': "locale"} }) }}
                     </div>
                     <div class="col-sm-3">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        {{ form_widget(form.phone, {'attr': {'class': "form-control"} }) }}
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox  form-checkbox">
                             <label class="">
-                                <input type="checkbox"> Remember me
+                                {{ form_widget(form.showPhoneNumber) }}{{ form_label(form.showPhoneNumber) }}
                             </label>
                         </div>
                     </div>
                 </div><br><br>
                 <div class="form-group">
-                    <label for="selectDisplayed2" class="col-sm-3 control-label">Birth year</label>
+                    <label for="yearOfBirth" class="col-sm-3 control-label">Birth year</label>
                     <div class="col-sm-3">
-                        <select class="form-control" id="selectDisplayed2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                        {{ form_widget(form.yearOfBirth, {'attr': {'class': 'form-control', 'id': 'yearOfBirth'} }) }}
                     </div>
                 </div>
                 <div class="form-group">
@@ -107,7 +88,7 @@
                         <div class="row">
 
                             <div class="col-sm-7">
-                                <textarea class="form-control" rows="4"></textarea>
+                                {{ form_widget(form.biography, {'attr': {'class': 'form-control', 'rows': '4'} }) }}
                             </div>
 
                             <div class="col-sm-4 form-text">Tell the community a bit about yourself, so planning a car share together will be easy. For example: "I'm a student at Bristol Uni, and I often visit friends in London. I love photography."</div>
@@ -117,25 +98,12 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
-                        <!-- <button type="submit" class="btn btn-default">Save</button> -->
                         <input type="submit" class="submit btn btn-default" value="Save">
                     </div>
                 </div>
+                {{ form_widget(form._token) }}
             </form>
         </div>
     </div>
-    {#<div class="panel panel-info">#}
-        {#<div class="panel-heading">#}
-            {#<h3 class="panel-title">{{ "title_user_account" | trans({}, 'SonataUserBundle')}}</h3>#}
-        {#</div>#}
-        {#<div class="panel-body">#}
-            {#<form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">#}
-                {#{{ form_widget(form) }}#}
-                {#<div class="form-actions">#}
-                    {#<button type="submit" name="submit"  class="btn btn-primary pull-right">{{ 'sonata_user_submit'|trans({}, 'SonataUserBundle') }}</button>#}
-                {#</div>#}
-            {#</form>#}
-        {#</div>#}
-    {#</div>#}
 
 {% endblock %}
