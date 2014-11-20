@@ -164,7 +164,7 @@ header .background{
 .countries {
     padding-left: 0px;
 }
-.countries > li {
+.countries > li,.user-dropdown > li {
     cursor: pointer;
     padding: 3px 18px;
     display: block !important;
@@ -172,11 +172,8 @@ header .background{
 .popover-content {
     padding: 0 !important;
 }
-.countries > li:hover {
+.countries > li:hover,.user-dropdown > li:hover {
     background-color: #0ca9fa;
-}
-.user-dropdown > li{
-    display: block !important;
 }
 .list-inline .messages a {
     background-image: url("/bundles/nxtcarmain/images/home-user-messages.png");
