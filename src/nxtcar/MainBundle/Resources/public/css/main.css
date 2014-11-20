@@ -177,6 +177,9 @@ header .background{
     height: 12px;
     display: block;
 }
+.list-inline .messages a:hover {
+    background-image: url("/bundles/nxtcarmain/images/home-user-messages-hover.png");
+}
 /*----------end------------*/
 /*-------------------------*/
 .form-inline{
