@@ -165,7 +165,15 @@ header .background{
     padding-left: 0px;
 }
 .countries > li {
+    cursor: pointer;
+    padding: 3px 18px;
     display: block !important;
+}
+.popover-content {
+    padding: 0 !important;
+}
+.countries > li:hover {
+    background-color: #0ca9fa;
 }
 .user-dropdown > li{
     display: block !important;
