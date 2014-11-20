@@ -1,0 +1,67 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andranik
+ * Date: 11/20/14
+ * Time: 11:43 PM
+ */
+
+namespace nxtcar\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Car
+ * @package nxtcar\MainBundle\Entity
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="car")
+ */
+class Car
+{
+    const COMFORT_BASIC         = 0;
+    const COMFORT_NORMAL        = 1;
+    const COMFORT_COMFORTABLE   = 2;
+    const COMFORT_LUXURY        = 3;
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CarModel")
+     * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     */
+    protected $model;
+
+    /**
+     * @ORM\Column(name="comfort", type="smallint")
+     */
+    protected $comport;
+
+    /**
+     * @ORM\Column(name="number_of_sets", type="smallint")
+     */
+    protected $numberOfSets;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CarColor")
+     * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
+     */
+    protected $color;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CarType")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     */
+    protected $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="nxtcar\UserBundle\Entity\User", inversedBy="car")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+}

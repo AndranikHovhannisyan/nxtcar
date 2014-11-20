@@ -5,3 +5,32 @@ services:
 #    main.example:
 #        class: %main.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    nxtcar_main.admin.car:
+        class: nxtcar\MainBundle\Admin\CarAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\Car, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Car}
+
+    nxtcar_main.admin.car_type:
+        class: nxtcar\MainBundle\Admin\CarTypeAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\CarType, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CarType}
+
+    nxtcar_main.admin.car_model:
+        class: nxtcar\MainBundle\Admin\CarModelAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\CarModel, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CarModel}
+
+    nxtcar_main.admin.car_color:
+        class: nxtcar\MainBundle\Admin\CarColorAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\CarColor, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CarColor}
+
+    nxtcar_main.admin.car_brand:
+        class: nxtcar\MainBundle\Admin\CarBrandAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\CarBrand, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CarBrand}

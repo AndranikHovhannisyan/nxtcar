@@ -41,7 +41,7 @@ class Builder extends ContainerAware
         $menu['Profile']->addChild('Photo', array('route' => 'homepage'));
         $menu['Profile']->addChild('Preferences', array('route' => 'homepage'));
         $menu['Profile']->addChild('Verification', array('route' => 'homepage'));
-        $menu['Profile']->addChild('Car', array('route' => 'homepage'));
+        $menu['Profile']->addChild('Car', array('route' => 'car_add'));
         $menu['Profile']->addChild('Password', array('route' => 'sonata_user_change_password'));
         $menu['Profile']->addChild('Postal address', array('route' => 'homepage'));
 

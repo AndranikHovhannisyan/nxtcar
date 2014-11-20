@@ -95,139 +95,98 @@ class User extends BaseUser
     protected $showPhoneNumber = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="nxtcar\MainBundle\Entity\Car", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="user")
      */
     protected $car;
 
-    /**
-     * Get id
-     *
-     * @return integer $id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param $showPhoneNumber
-     * @return $this
-     */
-    public function setShowPhoneNumber($showPhoneNumber)
-    {
-        $this->showPhoneNumber = $showPhoneNumber;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getShowPhoneNumber()
-    {
-        return $this->showPhoneNumber;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDisplayedAs()
-    {
-        return $this->displayedAs;
-    }
-
-    /**
-     * @param $displayedAs
-     * @return $this
-     */
-    public function setDisplayedAs($displayedAs)
-    {
-        $this->displayedAs = $displayedAs;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getYearOfBirth()
-    {
-        return $this->yearOfBirth;
-    }
-
-    /**
-     * @param $year
-     * @return $this
-     */
-    public function setYearOfBirth($year)
-    {
-        $this->yearOfBirth = $year;
-
-        return $this;
-    }
-
-    /**
-     * @param string $email
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        $this->username = $email;
-
-        return $this;
-    }
-
-    /**
-     * @param string $firstname
-     * @return $this|void
-     */
-    public function setFirstname($firstname)
-    {
-        parent::setFirstname($firstname);
-        $this->displayedAs = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->car = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add car
-     *
-     * @param \nxtcar\MainBundle\Entity\Car $car
-     * @return User
-     */
-    public function addCar(\nxtcar\MainBundle\Entity\Car $car)
-    {
-        $this->car[] = $car;
-
-        return $this;
-    }
-
-    /**
-     * Remove car
-     *
-     * @param \nxtcar\MainBundle\Entity\Car $car
-     */
-    public function removeCar(\nxtcar\MainBundle\Entity\Car $car)
-    {
-        $this->car->removeElement($car);
-    }
-
-    /**
-     * Get car
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCar()
-    {
-        return $this->car;
-    }
+//    /**
+//     * Get id
+//     *
+//     * @return integer $id
+//     */
+//    public function getId()
+//    {
+//        return $this->id;
+//    }
+//
+//    /**
+//     * @param $showPhoneNumber
+//     * @return $this
+//     */
+//    public function setShowPhoneNumber($showPhoneNumber)
+//    {
+//        $this->showPhoneNumber = $showPhoneNumber;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @return boolean
+//     */
+//    public function getShowPhoneNumber()
+//    {
+//        return $this->showPhoneNumber;
+//    }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getDisplayedAs()
+//    {
+//        return $this->displayedAs;
+//    }
+//
+//    /**
+//     * @param $displayedAs
+//     * @return $this
+//     */
+//    public function setDisplayedAs($displayedAs)
+//    {
+//        $this->displayedAs = $displayedAs;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getYearOfBirth()
+//    {
+//        return $this->yearOfBirth;
+//    }
+//
+//    /**
+//     * @param $year
+//     * @return $this
+//     */
+//    public function setYearOfBirth($year)
+//    {
+//        $this->yearOfBirth = $year;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @param string $email
+//     * @return $this
+//     */
+//    public function setEmail($email)
+//    {
+//        $this->email = $email;
+//        $this->username = $email;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @param string $firstname
+//     * @return $this|void
+//     */
+//    public function setFirstname($firstname)
+//    {
+//        parent::setFirstname($firstname);
+//        $this->displayedAs = $firstname;
+//
+//        return $this;
+//    }
 }
