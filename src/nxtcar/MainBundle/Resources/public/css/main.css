@@ -63,7 +63,7 @@ ul {
     margin: 6px 15px 0px 0px;
 }
 .header-menu li{
-    display: initial;
+    /*display: initial;*/
 }
 .header-menu a{
     color: #3B3B3B;
@@ -179,6 +179,34 @@ header .background{
 }
 .list-inline .messages a:hover {
     background-image: url("/bundles/nxtcarmain/images/home-user-messages-hover.png");
+}
+
+.list-inline .notifications a {
+    background-image: url("/bundles/nxtcarmain/images/home-user-alerts.png");
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 18px;
+    display: block;
+}
+.list-inline .notifications a:hover {
+    background-image: url("/bundles/nxtcarmain/images/home-user-alerts-hover.png");
+}
+.list-inline .notifications > span {
+    position: absolute;
+    margin-left: 5px;
+    margin-top: -8px;
+    color: white;
+    background-color: #cc3237;
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
 }
 /*----------end------------*/
 /*-------------------------*/
