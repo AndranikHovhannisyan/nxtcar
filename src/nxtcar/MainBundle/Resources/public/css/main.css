@@ -13,7 +13,9 @@ body{
     background: -moz-linear-gradient(rgba(143, 214, 255, 1), #fff); /* For Firefox 3.6 to 15 */
     background: linear-gradient(rgba(143, 214, 255, 1), #fff); /* Standard syntax (must be last) */
 }
-
+ul {
+    padding-left: 0;
+}
 .header,.content,.itinerary-content,.registr-content,footer{
     width:  990px;
     background: #fff;
@@ -161,6 +163,9 @@ header .background{
     padding-left: 0px;
 }
 .countries > li {
+    display: block !important;
+}
+.user-dropdown > li{
     display: block !important;
 }
 .form-inline{
