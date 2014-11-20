@@ -59,7 +59,6 @@
                                    bs-popover><i class="caret"></i>
                                 </a>
                             </li>
-
                             <li><f-like></f-like></li>
                         </ul>
                     {% else %}
@@ -87,7 +86,10 @@
                                 </a>
                             </li>
                             <li>
-                                <span class="flag"></span>
+                                <span>
+                                    <img ng-src="[[ choosenCountry.icon ]]"/>
+                                    <span class="currency"></span>
+                                </span>
                                 <a href="javascript:void(0)"
                                    data-template="/bundles/nxtcarmain/htmls/countries.html"
                                    data-animation="am-flip-x"
