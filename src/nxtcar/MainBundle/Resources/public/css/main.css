@@ -206,6 +206,7 @@ header .background{
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
     font-size: 12px;
+    font-weight: bold;
     text-align: center;
 }
 /*----------end------------*/
