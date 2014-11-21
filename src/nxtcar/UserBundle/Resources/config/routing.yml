@@ -1,0 +1,4 @@
+profile:
+    resource: "@nxtcarUserBundle/Controller/MainController.php"
+    type:     annotation
+    prefix:   /
