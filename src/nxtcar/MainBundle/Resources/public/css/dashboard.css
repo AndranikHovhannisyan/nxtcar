@@ -35,7 +35,7 @@ ul {
 }
 .div-profile-information{
     display: inline-block;
-    padding: 21px;
+    width: 100%;
 }
 .profile-information-header{
     background: #ececec;
