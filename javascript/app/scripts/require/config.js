@@ -18,7 +18,9 @@ require.config({
         'Facebook': '/app/scripts/Facebook/Facebook',
         'Geolocation': '/app/scripts/Geolocation/Geolocation',
         'main': '/bundles/nxtcarmain/js/angular/main',
-        'MainController': '/bundles/nxtcarmain/js/angular/controllers/MainController'
+        'MainController': '/bundles/nxtcarmain/js/angular/controllers/MainController',
+        'user': '/bundles/nxtcaruser/js/angular/user',
+        'userController': '/bundles/nxtcaruser/js/angular/controllers/userController'
     },
     shim: {
         'angular': {
@@ -38,8 +40,10 @@ require.config({
         'Facebook': ['angular'],
         'Interpolation': ['angular'],
         'Geolocation': ['angular'],
-        'main': [,'Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
-        'MainController': ['angular','main']
+        'main': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
+        'MainController': ['angular','main'],
+        'user': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
+        'userController': ['angular','user']
     },
     waitSeconds: 7
 });

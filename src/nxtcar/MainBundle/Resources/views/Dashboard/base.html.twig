@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/dashboard.css") }}">
 {% endblock %}
 
+{% block AngularController %}ng-controller="userController"{% endblock %}
+
 {% block bottomHeader %}
     {{ knp_menu_render('nxtcarMainBundle:Builder:profileMenu', {'depth': 1}) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcaruser/js/require/userRunner.js") }}"></script>
 {% endblock %}
