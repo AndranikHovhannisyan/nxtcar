@@ -3,11 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/profile_edit.css") }}">
-    <style>
-        .col-md-3 {
-            width: 26%;
-        }
-    </style>
+
 {% endblock %}
 
 {% block content %}
@@ -31,7 +27,7 @@
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-3 text-right">
-                                        <label for="gender" class="col-sm-3 control-label">Gender</label>
+                                        <label for="gender" class="col-sm-3 control-label gender">Gender</label>
                                     </div>
                                     <div class="col-sm-3">
                                         {{ form_widget(form.gender, {'attr': {'class': "form-control", 'id': "gender"} }) }}
