@@ -13,7 +13,9 @@ body{
     background: -moz-linear-gradient(rgba(143, 214, 255, 1), #fff); /* For Firefox 3.6 to 15 */
     background: linear-gradient(rgba(143, 214, 255, 1), #fff); /* Standard syntax (must be last) */
 }
-
+ul {
+    padding-left: 0;
+}
 .header,.content,.itinerary-content,.registr-content,footer{
     width:  990px;
     background: #fff;
@@ -61,17 +63,17 @@ body{
     margin: 6px 15px 0px 0px;
 }
 .header-menu li{
-    display: initial;
+    /*display: initial;*/
 }
 .header-menu a{
     color: #3B3B3B;
     font-size: 15px;
 }
 .header-vertica-lLine{
-    width: 100%;
-    height: 100%;
-    border-right: 1px solid #9E9E9E;
-    padding: 0px 6px;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*border-right: 1px solid #9E9E9E;*/
+    /*padding: 0px 6px;*/
 }
 .caret{
     border-top: 4px solid #000;
@@ -151,18 +153,69 @@ header small{
 }
 header .background{
 
-    background-image: url("/bundles/nxtcarmain/images/background-homepage-search.png") ;
+    background-image: url("/bundles/nxtcarmain/images/background-homepage-search.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     padding-top: 3px;
     height: 354px;
 }
+/*------------------------*/
+/*----header user menu----*/
 .countries {
     padding-left: 0px;
 }
-.countries > li {
+.countries > li,.user-dropdown > li {
+    cursor: pointer;
+    padding: 3px 18px;
     display: block !important;
 }
+.popover-content {
+    padding: 0 !important;
+}
+.countries > li:hover,.user-dropdown > li:hover {
+    background-color: #0ca9fa;
+}
+.list-inline .messages a {
+    background-image: url("/bundles/nxtcarmain/images/home-user-messages.png");
+    background-repeat: no-repeat;
+    width: 18px;
+    height: 12px;
+    display: block;
+}
+.list-inline .messages a:hover {
+    background-image: url("/bundles/nxtcarmain/images/home-user-messages-hover.png");
+}
+
+.list-inline .notifications a {
+    background-image: url("/bundles/nxtcarmain/images/home-user-alerts.png");
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 18px;
+    display: block;
+}
+.list-inline .notifications a:hover {
+    background-image: url("/bundles/nxtcarmain/images/home-user-alerts-hover.png");
+}
+.list-inline .notifications > span {
+    position: absolute;
+    margin-left: 5px;
+    margin-top: -8px;
+    color: white;
+    background-color: #cc3237;
+    width: 16px;
+    height: 16px;
+    display: block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+/*----------end------------*/
+/*-------------------------*/
 .form-inline{
     margin: 8px 0px 0px 22px;
     width: 70%;

@@ -59,28 +59,38 @@
                                    bs-popover><i class="caret"></i>
                                 </a>
                             </li>
-
                             <li><f-like></f-like></li>
                         </ul>
                     {% else %}
                         <ul class="list-inline">
-                            <li>
-                                <a href="#">Messages
+                            <li class="messages">
+                                <a href="#">
+                                    <span class='header-vertica-lLine'></span>
+                                </a>
+                            </li>
+                            <li class="notifications">
+                                <span>1</span>
+                                <a href="#">
                                     <span class='header-vertica-lLine'></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">Notifications
+                                <a href="javascript:void(0)"
+                                   data-template="/bundles/nxtcaruser/htmls/userDropDown.html"
+                                   data-animation="am-flip-x"
+                                   data-placement="bottom"
+                                   bs-popover>
+                                    <img src="" width="18" height="18"/>
+                                    {{ app.user.firstname }}
+                                    <i class="caret"></i>
                                     <span class='header-vertica-lLine'></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ path('fos_user_security_logout') }}">Logout
-                                    <span class='header-vertica-lLine'></span>
-                                </a>
-                            </li>
-                            <li>
-                                <span class="flag"></span>
+                                <span>
+                                    <img ng-src="[[ choosenCountry.icon ]]"/>
+                                    <span class="currency"></span>
+                                </span>
                                 <a href="javascript:void(0)"
                                    data-template="/bundles/nxtcarmain/htmls/countries.html"
                                    data-animation="am-flip-x"
