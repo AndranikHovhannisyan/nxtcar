@@ -1,0 +1,128 @@
+.user-all-profil-content{
+    padding: 14px 26px;;
+}
+.user-profil-menue{
+    background-color: #FAFAFA;
+    border-radius: 4px;
+    border:1px solid #DFDFCD;
+}
+.user-profil-menue-header{
+
+    background-color: #ECECEC;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: 1px solid #D1D1D1;
+}
+.user-profil-menue .li{
+    border-bottom: 1px solid #D1D1D1;
+}
+.user-profil-header-menu{
+    background-color: #FAFAFA;
+    padding: 0px 0px 0px 5px;
+    box-shadow: inset 0px 1px 2px #DADADA,inset 0px -2px 2px #DADADA;
+    border-radius: 3px;
+}
+.user-profil-header-menu .li a div{
+    padding: 10px 9px;
+
+}
+.user-profil-header-menu .li a{
+    color: #0ca9fa;
+}
+.user-profil-header-menu .li a:hover{
+    color: #0ca9fa;
+    text-decoration:none;
+}
+.user-profil-header-menu .li:hover{
+    background-color: #f2f2f2;
+    border-left-color: #fafafa;
+    border-right-color: #fafafa;
+    box-shadow: inset 0px 1px 2px -10px #DADADA,inset 0px -2px 2px #DADADA;
+    box-shadow: inset 0px 1px 2px #DADADA,inset 0px -2px 2px #DADADA;
+    border-radius: 2px;
+}
+.user-profil-header{
+    color: #535353;
+    font-size: 22px;
+    padding: 0px 0px 5px 0px;
+    margin:  0px 0px 13px 0px;
+    border-bottom: 1px solid #D4D2D2;
+}
+.user-profil-header-menu li.active,
+.user-profil-header-menu li.active:hover{
+    background-color: #fff;
+    border: 1px solid #C4C2C2;
+    border-bottom-color: #fff;
+    border-radius:4px 4px 0px 0px;
+    border-top-left-radius:4px;
+    box-shadow: inset 0px 0px 0px #fff;
+    /*margin-top: -6px;
+    position: fixed;*/
+
+}
+.user-profil-header-menu li.active:hover{
+
+}
+.user-profil-menue{
+    margin-bottom: 12px;
+}
+.user-profil-menue .li a:hover{
+    text-decoration:none;
+    color: #020202;
+}
+.user-profil-menue .li a div:hover,
+.user-profil-menue .li a div.active{
+    background-color: #FFEB00;
+
+}
+.user-profil-menue a div,
+.user-profil-menue-header{
+    padding: 8px 10px;
+    color: #020202;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+}
+.user-profil-content{
+    background-color: #F1F1E9;
+    padding: 19px 0px 10px 0px;
+}
+label{
+    font-weight: 200;
+}
+.form-text{
+    font-size: 13px;
+    font-size: 83%;
+    color: #A5A5A5;
+    padding-right: 0px;
+}
+.form-group {
+    margin-bottom: 9px;
+}
+.form-control {
+    height: 30px;
+    width: 108% !important;
+    box-shadow: inset 1px 0px 0px 0px #B0B0B0, inset 0px 1px 1px 0px #F1F1F1;
+}
+.form-checkbox{
+    margin-left:11%;
+}
+.submit, .blablacar-forms-submit{
+    background-color: #0CB1F0;
+    margin: 0px 0px 25px 0%;
+    width: 13%;
+    font-size: 18px;
+    height: 37px;
+    box-shadow: 0px 0px 0px #A9A8A8;
+    border-left: 1px solid #BBB !important;
+    text-shadow: 1px 1px 1px #A9A8A8;
+    border: 1px solid #007FB0;
+    border-radius: 3px;
+}
+.submit:hover,
+.blablacar-forms-submit:hover
+{
+    box-shadow: inset 0px 0px 4px 3px #89DAF9;
+    color: #fff;
+    background-color: #0CB1F0;
+}
