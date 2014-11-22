@@ -1,0 +1,59 @@
+@media (min-width: 992px) {
+    .col-md-3 {
+        width: 26%;
+    }
+    .col-md-8 {
+        width: 73.66666667%;
+    }
+}
+
+.content{
+    padding: 22px;
+}
+.user-profil-header{
+    color: #535353;
+    font-size: 22px;
+    padding: 0px 0px 5px 0px;
+    margin:  0px 0px 13px 0px;
+    border-bottom: 1px solid #D4D2D2;
+}
+.user-profil-content{
+    background-color: #F1F1E9;
+    padding: 19px 0px 10px 0px;
+
+}
+label{
+    font-weight: 200;
+}
+.form-group {
+    margin-bottom: 9px;
+}
+.form-control {
+    height: 30px;
+    width: 108% !important;
+    box-shadow: inset 1px 0px 0px 0px #B0B0B0, inset 0px 1px 1px 0px #F1F1F1;
+}
+.submit, .blablacar-forms-submit{
+    background-color: #0CB1F0;
+    margin: 0px 0px 25px 0%;
+    width: 13%;
+    font-size: 18px;
+    height: 37px;
+    box-shadow: 0px 0px 0px #A9A8A8;
+    border-left: 1px solid #BBB !important;
+    text-shadow: 1px 1px 1px #A9A8A8;
+    border: 1px solid #007FB0;
+    border-radius: 3px;
+}
+.submit:hover,
+.blablacar-forms-submit:hover
+{
+    box-shadow: inset 0px 0px 4px 3px #89DAF9;
+    color: #fff;
+    background-color: #0CB1F0;
+}
+.including_driver{
+    color: #9D9D9D;
+    font-size: 13px;
+    margin-top: 5px;
+}

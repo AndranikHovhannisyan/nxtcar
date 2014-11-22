@@ -12,3 +12,8 @@ car:
     resource: "@nxtcarMainBundle/Controller/CarController.php"
     type:     annotation
     prefix:   /
+
+ride:
+    resource: "@nxtcarMainBundle/Controller/RideController.php"
+    type:     annotation
+    prefix:   /
