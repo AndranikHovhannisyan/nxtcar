@@ -39,8 +39,8 @@ class Builder extends ContainerAware
         $menu['Profile']->setChildrenAttribute('class', 'list-unstyled profile-information');
         $menu['Profile']->addChild('Personal information', array('route' => 'sonata_user_profile_edit'));
         $menu['Profile']->addChild('Photo', array('route' => 'homepage'));
-        $menu['Profile']->addChild('Preferences', array('route' => 'preferences'));
-        $menu['Profile']->addChild('Car', array('route' => 'car_add'));
+        $menu['Profile']->addChild('Preferences', array('route' => 'profile_preferences'));
+        $menu['Profile']->addChild('Car', array('route' => 'car_list'));
         $menu['Profile']->addChild('Password', array('route' => 'sonata_user_change_password'));
 
         return $menu;

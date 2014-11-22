@@ -1,8 +1,15 @@
 {% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
 
 {% block content %}
-    <div class="div-profile-information">
-        <div class="profile-information-header">Profile Information</div>
-        {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Profile']) }}
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <div class="div-profile-information">
+                <div class="profile-information-header">Profile Information</div>
+                {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Profile']) }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            {% block sub_content %}{% endblock %}
+        </div>
     </div>
 {% endblock %}
