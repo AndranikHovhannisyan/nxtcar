@@ -25,7 +25,7 @@ class MainController extends Controller
 
     /**
      * @Route("/profile/photo", name="profile_photo")
-     * @Template("nxtcarUserBundle:Profile:preferences.html.twig")
+     * @Template("nxtcarUserBundle:Profile:photo.html.twig")
      */
     public function photoAction()
     {
