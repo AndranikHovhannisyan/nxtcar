@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Car
  * @package nxtcar\MainBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="nxtcar\MainBundle\Entity\Repository\CarRepository")
  * @ORM\Table(name="car")
  */
 class Car

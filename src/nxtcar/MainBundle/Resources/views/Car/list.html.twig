@@ -1,6 +1,21 @@
 {% extends 'nxtcarMainBundle:Dashboard:profileBase.html.twig' %}
 
 {% block content %}
-    {{ parent() }}
-    list
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            {{ parent() }}
+        </div>
+        <div class="col-xs-12 col-md-8">
+            {% for car in cars %}
+                {{ car.model.title }} {{ car.model.brand.title }}
+                <br>
+                {% for i in 1..(car.comfort + 1) %}
+                    *
+                {% endfor %}
+                <a href="{{ path('car_add', {'id': car.id}) }}">edit</a>
+                <a href="{{ path('car_remove', {'id': car.id}) }}">remove</a>
+                <br><br>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Car
  * @package nxtcar\MainBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="nxtcar\MainBundle\Entity\Repository\CarRepository")
  * @ORM\Table(name="car")
  */
 class Car
@@ -40,7 +40,7 @@ class Car
     /**
      * @ORM\Column(name="comfort", type="smallint")
      */
-    protected $comport;
+    protected $comfort;
 
     /**
      * @ORM\Column(name="number_of_sets", type="smallint")
@@ -64,4 +64,160 @@ class Car
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return '';
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set comfort
+     *
+     * @param integer $comfort
+     * @return Car
+     */
+    public function setComfort($comfort)
+    {
+        $this->comfort = $comfort;
+
+        return $this;
+    }
+
+    /**
+     * Get comfort
+     *
+     * @return integer 
+     */
+    public function getComfort()
+    {
+        return $this->comfort;
+    }
+
+    /**
+     * Set numberOfSets
+     *
+     * @param integer $numberOfSets
+     * @return Car
+     */
+    public function setNumberOfSets($numberOfSets)
+    {
+        $this->numberOfSets = $numberOfSets;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfSets
+     *
+     * @return integer 
+     */
+    public function getNumberOfSets()
+    {
+        return $this->numberOfSets;
+    }
+
+    /**
+     * Set model
+     *
+     * @param \nxtcar\MainBundle\Entity\CarModel $model
+     * @return Car
+     */
+    public function setModel(\nxtcar\MainBundle\Entity\CarModel $model = null)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Get model
+     *
+     * @return \nxtcar\MainBundle\Entity\CarModel 
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Set color
+     *
+     * @param \nxtcar\MainBundle\Entity\CarColor $color
+     * @return Car
+     */
+    public function setColor(\nxtcar\MainBundle\Entity\CarColor $color = null)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return \nxtcar\MainBundle\Entity\CarColor 
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \nxtcar\MainBundle\Entity\CarType $type
+     * @return Car
+     */
+    public function setType(\nxtcar\MainBundle\Entity\CarType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \nxtcar\MainBundle\Entity\CarType 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \nxtcar\UserBundle\Entity\User $user
+     * @return Car
+     */
+    public function setUser(\nxtcar\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \nxtcar\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -9,6 +9,7 @@
 namespace nxtcar\MainBundle\Controller;
 
 use FOS\RestBundle\Util\Codes;
+use nxtcar\MainBundle\Entity\Car;
 use nxtcar\MainBundle\Form\Type\CarType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,48 +35,5 @@ class ProfileController extends Controller
     public function messageAction($status)
     {
         return array('status' => $status);
-    }
-
-    /**
-     * @Route("/car/add", name="car_add")
-     */
-    public function carAction(Request $request)
-    {
-        $form = $this->createForm(new CarType());
-
-        $form->handleRequest($request);
-
-        if ($form->isValid())
-        {
-            $em = $this->getDoctrine()->getManager();
-
-            //TODO: Must be uncommented
-//            $modelId = $request->get('modelId');
-//            $model = $em->getREpository('nxtcarMainBundle:CarModel')->find($modelId);
-//
-//            if (!$model) {
-//                throw new HttpException(Codes::HTTP_BAD_REQUEST, 'please check a car model');
-//            }
-
-            $user = $this->get('security.context')->getToken()->getUser();
-
-            $car = $form->getData();
-//            $car->setModel($model);
-            $car->setUser($user);
-            $em->persist($car);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('car_list'));
-        }
-
-        return $this->render('nxtcarMainBundle:Car:add.html.twig', array('form' => $form->createView()));
-    }
-
-    /**
-     * @Route("/car/list", name="car_list")
-     */
-    public function carListAction()
-    {
-        return $this->render('nxtcarMainBundle:Car:list.html.twig');
     }
 }

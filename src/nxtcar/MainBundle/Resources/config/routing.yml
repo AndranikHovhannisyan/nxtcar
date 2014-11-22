@@ -7,3 +7,8 @@ profile:
     resource: "@nxtcarMainBundle/Controller/ProfileController.php"
     type:     annotation
     prefix:   /
+
+car:
+    resource: "@nxtcarMainBundle/Controller/CarController.php"
+    type:     annotation
+    prefix:   /
