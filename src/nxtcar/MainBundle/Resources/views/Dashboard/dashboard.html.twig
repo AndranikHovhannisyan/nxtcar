@@ -1,5 +1,129 @@
 {% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
 
 {% block content %}
-    dashboard
+    <div class="dashboard-header">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <div class="add-your-photo">
+                            <a href="">
+                                Add your photo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-9">
+                        <p class="helo-user">
+                            Hello Aram
+                        </p>
+                        <ul class="public-profil  list-unstyled"  >
+                            <li>
+                                <a href="">
+                                    → Edit your profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    → View your public profile
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-8	">
+                <div class="clearfix">
+                    <h2 class="pull-left">Your current level</h2>
+                    <a href="" class="blue pull-right">→ What's a "Newcomer"?</a>
+                </div>
+                <ul class=" breadcrumb-level lv1 unstyled list-inline">
+                    <li class="step1 active"><span>Newcomer</span></li>
+                    <li class="step2"><span>Intermediate</span></li>
+                    <li class="step3"><span>Experienced</span></li>
+                    <li class="step4"><span>Expert</span></li>
+                    <li class="step5"><span>Ambassador</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row dashboard-content">
+        <div class="col-xs-4 span4">
+            <div class="main-column-block">
+                <p class="main-column-title">Car share preferences</p>
+                <div class="blabla clearfix"></div>
+
+                <a href="" class="edit-preferences blue">
+                    → Edit your car share preferences
+                </a>
+            </div>
+
+            <div class="main-column-block">
+                <h3 class="main-column-title">Member verification</h3>
+                <ul class=" list-unstyled main-column-list verification-list margin-bottom unstyled">
+                    <li class="img-phone tip">
+								<span class="no-checked">
+									<a href="" class="blue">Verify your phone number</a>
+								</span>
+                    </li>
+                    <li class="img-email tip">
+								<span class="no-checked">
+									<a href="" class="blue">Verify your email</a>
+								</span>
+                    </li>
+
+                    <li class="img-facebook tip" title="">
+								<span class="checked">
+									17 friends
+								</span>
+                    </li>
+                </ul>
+						<span class="full-check">
+							<a href="" class=" profil-verification display-block margin-bottom blue">
+                                → Complete your member verification
+                            </a>
+						</span>
+            </div>
+
+            <div class="main-column-block">
+                <h3 class="main-column-title">Member activity</h3>
+
+
+                <div class=" img-calendar activities-text-container">Member since: 13 November 2014</div>
+            </div>
+        </div>
+        <div class="col-xs-8">
+            <div class="span8 dashboard-notifications-messages">
+                <div class="notifications-header">
+                    <h2 class="notifications">Notifications (1)</h2>
+                </div>
+                <ol class="unstyled dashboard-notifications-list">
+                    <li class="clearfix">
+                        <div class="text-notification-container">
+                            <p>
+                                <strong>Provide a mini bio of yourself</strong><br>It will soon be necessary to increase or keep your experience level and it helps other members feel comfortable planning a car share with you.
+                            </p>
+                        </div>
+                        <div class="btn-notification-container">
+                            <a href="" class="btn-validation">
+                                Fill in your mini bio
+                            </a>
+                        </div>
+                    </li>
+
+                </ol>
+
+                <div class="messages-header">
+                    <h2 class="messages">New messages (0)</h2>
+                </div>
+                <ol class="unstyled dashboard-messages-list clearfix">
+                    <a href="" class="blue pull-right margin-top">See all messages</a>
+                </ol>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
 {% endblock %}

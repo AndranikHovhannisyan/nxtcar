@@ -72,3 +72,139 @@ ul {
 .profile-information .current {
     background-color: #ffeb00;
 }
+
+
+
+
+
+
+
+.content{
+    padding: 22px;
+}
+.dashboard-header{
+    width: 100%;
+    background-color: #f1f1e9;
+    padding: 17px !important;
+}
+.add-your-photo{
+    background: #FDF3F1;
+    border: 1px dashed #FF6500;
+    float: left;
+    font-weight: bold;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    text-align: center;
+    width: 74px;
+    height: 73px;
+}
+.add-your-photo a{
+    color: #FF6500;
+    display: table-cell;
+    font-size: 13px;
+    line-height: 13px;
+    vertical-align: middle;
+    text-align: center;
+    width: 54px;
+    height: 54px;
+}
+.helo-user{
+    font-size: 20px;
+    color: #3C3C3C;
+    margin: 0px;
+    margin-left:7px;
+}
+li {
+    line-height: 18px;
+}
+.public-profil{
+    margin-left:7px;
+}
+.pull-right,
+.public-profil a {
+    color: #0ca9fa;
+    font-size: 13px;
+}
+.pull-left{
+    font-size: 20px;
+    margin:0px;
+}
+.breadcrumb-level {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 0;
+}
+/*.breadcrumb-level:before {
+    width: 100%;
+    height: 4px;
+    top: 34px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    background: #b2b2b2;
+}*/
+.breadcrumb-level li {
+    float: left;
+    position: relative;
+    width: 20%;
+    text-align: center;
+}
+.dashboard-content{
+    padding: 14px;
+}
+.span4{
+    /*padding: 10px;*/
+    border: 1px solid #C2C2C2;
+    border-radius:3px ;
+}
+.main-column-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #414141;
+    margin-top: 16px;
+}
+.blabla{
+    width: 26px;
+    height: 27px;
+    background:url("../img/sprite-prefs.png") no-repeat 0px -50px;
+}
+.display-block{
+    display: block;
+}
+.profil-verification,
+.edit-preferences{
+    display: block;
+    padding: 15px 0px;
+    border-bottom: 1px solid #C2C2C2;
+}
+.blue{
+    color: #0ca9fa;
+}
+.no-checked,
+.checked {
+    display: block;
+    padding: 10px 0px 10px 24px;
+    background:url("../img/verification-no-check.png") no-repeat 100% 50%;
+}
+.checked{
+    background:url("../img/verification-checked.png") no-repeat 100% 50%;
+}
+.img-phone{
+    background:url("../img/sprite-icons.png") no-repeat 0% -2%;
+}
+.img-email{
+    background:url("../img/sprite-icons.png") no-repeat 0% 15%;
+}
+.img-facebook{
+    background:url("../img/sprite-icons.png") no-repeat 0% 33%;
+}
+.img-calendar{
+    background:url("../img/sprite-icons.png") no-repeat 0% 102%;
+    padding: 10px 0px 10px 24px;
+    margin-bottom: 20px;
+    color: #5e5e5e	;
+
+}

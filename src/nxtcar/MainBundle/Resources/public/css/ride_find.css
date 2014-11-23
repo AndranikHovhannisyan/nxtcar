@@ -1,3 +1,17 @@
-.test_find{
-    color: #FF0000;
+.trip-search-form{
+    background: #0ba9ef;
+    padding: 15px;
+    -webkit-box-shadow: inset 0px 0px 11px #00628D;
+    -moz-box-shadow: inset 0px 0px 11px #00628D;
+    box-shadow: inset 0px 0px 11px #00628D;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.trip-search-form h2 {
+    padding: 0 0 13px 0;
+    color: #F2F9FD;
+    font-size: 20px;
+    margin: 0;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.33);
 }
