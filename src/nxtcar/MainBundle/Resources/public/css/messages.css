@@ -1,0 +1,17 @@
+.content ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.content ul li{
+    /*padding: 12px;*/
+    background-color: #000055;
+}
+.content ul a{
+    display: block;
+    padding:12px;
+}
+.content{
+
+}

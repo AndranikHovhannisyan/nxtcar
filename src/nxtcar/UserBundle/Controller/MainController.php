@@ -16,10 +16,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class MainController extends Controller
 {
     /**
-     * @Route("/profile/preferences/{id}", name="profile_preferences")
+     * @Route("/profile/preferences", name="profile_preferences")
      * @Template("nxtcarUserBundle:Profile:preferences.html.twig")
      */
-    public function preferencesAction(User $id)
+    public function preferencesAction()
     {
         return array();
     }

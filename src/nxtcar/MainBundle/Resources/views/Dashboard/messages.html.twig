@@ -1,5 +1,11 @@
 {% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/messages.css") }}">
+{% endblock %}
+
+
 {% block content %}
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
 {% endblock %}
