@@ -7,18 +7,18 @@
                 <div class="row">
                     <div class="col-xs-3">
                         <div class="add-your-photo">
-                            <a href="">
+                            <a href="{{ path('profile_photo') }}">
                                 Add your photo
                             </a>
                         </div>
                     </div>
                     <div class="col-xs-9">
                         <p class="helo-user">
-                            Hello Aram
+                            Hello {{ app.user.firstname }}
                         </p>
                         <ul class="public-profil  list-unstyled"  >
                             <li>
-                                <a href="">
+                                <a href="{{ path('sonata_user_profile_edit') }}">
                                     → Edit your profile
                                 </a>
                             </li>
