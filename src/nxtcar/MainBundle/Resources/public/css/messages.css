@@ -1,17 +1,37 @@
-.content ul{
+.ul-message{
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
-}
-.content ul li{
-    /*padding: 12px;*/
-    background-color: #000055;
-}
-.content ul a{
-    display: block;
-    padding:12px;
-}
-.content{
+    display: inline-flex;
+    border-radius: 3px;
+    border: 1px solid #E2E2E2;
+    border-right: 0px;
 
+    background-color: #F7F4F4;
+    box-shadow: inset 0px 9px 24px -2px  #fff;
+   /* -o-box-shadow: ;
+    -webkit-box-shadow: ;
+    -moz-box-shadow: ;*/
+
+}
+.ul-message li{
+    /*padding: 12px;*/
+    /**/
+}
+.ul-message a{
+    display: block;
+    color: #474747;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 5px;
+    border-right: 1px solid #E2E2E2;
+    /*background: */
+
+}
+.ul-message a:hover{
+text-decoration: none;
+}
+.content .current{
+    background-color: #ffeb00;
+    box-shadow: inset 1px 1px 4px 1px #E2D003
 }
