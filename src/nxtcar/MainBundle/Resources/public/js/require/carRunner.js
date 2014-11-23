@@ -1,5 +1,5 @@
 'use strict';
 
-require(['car','carController'],function(car){
+require(['car','CarController'],function(car){
     angular.bootstrap(angular.element('body'),[car.name]);
 })
