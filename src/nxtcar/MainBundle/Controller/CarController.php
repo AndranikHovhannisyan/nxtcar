@@ -16,11 +16,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class CarController extends Controller
 {
     /**
      * @Route("/car/add/{id}", name="car_add", defaults={"id" = -1})
+     * @Secure(roles="ROLE_USER")
      */
     public function carAction($id, Request $request)
     {
@@ -57,6 +59,7 @@ class CarController extends Controller
 
     /**
      * @Route("/car/list", name="car_list")
+     * @Secure(roles="ROLE_USER")
      */
     public function carListAction()
     {
@@ -68,6 +71,7 @@ class CarController extends Controller
 
     /**
      * @Route("/car/remove/{id}", name="car_remove")
+     * @Secure(roles="ROLE_USER")
      */
     public function carRemoveAction(Car $car)
     {

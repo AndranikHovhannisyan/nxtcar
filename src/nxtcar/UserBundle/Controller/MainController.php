@@ -9,18 +9,20 @@
 namespace nxtcar\UserBundle\Controller;
 
 use FOS\RestBundle\Util\Codes;
-use nxtcar\UserBundle\Entity\User;
+use nxtcar\UserBundle\Entity\Photo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class MainController extends Controller
 {
     /**
      * @Route("/profile/preferences", name="profile_preferences")
      * @Template("nxtcarUserBundle:Profile:preferences.html.twig")
+     * @Secure(roles="ROLE_USER")
      */
     public function preferencesAction(Request $request)
     {
@@ -68,9 +70,33 @@ class MainController extends Controller
     /**
      * @Route("/profile/photo", name="profile_photo")
      * @Template("nxtcarUserBundle:Profile:photo.html.twig")
+     * @Secure(roles="ROLE_USER")
      */
-    public function photoAction()
+    public function photoAction(Request $request)
     {
-        return array();
+        $photo = new Photo();
+        $form = $this->createFormBuilder($photo)
+            ->setAction('#')
+            ->add('file')
+            ->add('submit', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $photo->upload();
+
+            $user = $this->get('security.context')->getToken()->getUser();
+            $lastPhoto = $em->getRepository('nxtcarUserBundle:Photo')->findByUser($user);
+            $em->remove($lastPhoto[0]);
+            $photo->setUser($user);
+
+            $em->persist($photo);
+            $em->flush();
+        }
+
+        return array('form' => $form->createView());
     }
 }

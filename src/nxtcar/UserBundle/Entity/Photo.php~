@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andranik
+ * Date: 11/24/14
+ * Time: 1:12 AM
+ */
+
+namespace nxtcar\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use nxtcar\MainBundle\Entity\BaseFile;
+
+/**
+ * Class Photo
+ * @package nxtcar\UserBundle\Entity
+ *
+ * @ORM\Entity
+ */
+class Photo extends BaseFile
+{
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="photo")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+}
