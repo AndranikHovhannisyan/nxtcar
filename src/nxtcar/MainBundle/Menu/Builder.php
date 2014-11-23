@@ -32,6 +32,7 @@ class Builder extends ContainerAware
         $menu->addChild('Ratings', array('route' => 'homepage'));
         $menu->addChild('Profile', array('route' => 'sonata_user_profile_edit'));
 
+        $menu['Messages']->setChildrenAttribute('class', 'ul-message');
         $menu['Messages']->addChild('Archived messages', array('route' => 'messages', 'routeParameters' => array('status' => 'questions_answers')));
         $menu['Messages']->addChild('Private messages', array('route' => 'messages', 'routeParameters' => array('status' => 'received')));
         $menu['Messages']->addChild('Public questions', array('route' => 'messages', 'routeParameters' => array('status' => 'archived')));

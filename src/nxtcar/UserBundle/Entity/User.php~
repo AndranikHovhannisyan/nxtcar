@@ -95,98 +95,243 @@ class User extends BaseUser
     protected $showPhoneNumber = false;
 
     /**
-     * @ORM\OneToMany(targetEntity="Car", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="nxtcar\MainBundle\Entity\Car", mappedBy="user")
      */
     protected $car;
 
-//    /**
-//     * Get id
-//     *
-//     * @return integer $id
-//     */
-//    public function getId()
-//    {
-//        return $this->id;
-//    }
-//
-//    /**
-//     * @param $showPhoneNumber
-//     * @return $this
-//     */
-//    public function setShowPhoneNumber($showPhoneNumber)
-//    {
-//        $this->showPhoneNumber = $showPhoneNumber;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @return boolean
-//     */
-//    public function getShowPhoneNumber()
-//    {
-//        return $this->showPhoneNumber;
-//    }
-//
-//    /**
-//     * @return mixed
-//     */
-//    public function getDisplayedAs()
-//    {
-//        return $this->displayedAs;
-//    }
-//
-//    /**
-//     * @param $displayedAs
-//     * @return $this
-//     */
-//    public function setDisplayedAs($displayedAs)
-//    {
-//        $this->displayedAs = $displayedAs;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @return mixed
-//     */
-//    public function getYearOfBirth()
-//    {
-//        return $this->yearOfBirth;
-//    }
-//
-//    /**
-//     * @param $year
-//     * @return $this
-//     */
-//    public function setYearOfBirth($year)
-//    {
-//        $this->yearOfBirth = $year;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @param string $email
-//     * @return $this
-//     */
-//    public function setEmail($email)
-//    {
-//        $this->email = $email;
-//        $this->username = $email;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * @param string $firstname
-//     * @return $this|void
-//     */
-//    public function setFirstname($firstname)
-//    {
-//        parent::setFirstname($firstname);
-//        $this->displayedAs = $firstname;
-//
-//        return $this;
-//    }
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="from")
+     */
+    protected $outMessages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="to")
+     */
+    protected $inMessages;
+
+    /* Preferences */
+
+    const PREFERENCES_LOW       = 0;
+    const PREFERENCES_MEDIUM    = 1;
+    const PREFERENCES_HIGH      = 2;
+
+    /**
+     * @ORM\Column(name="chattiness", type="smallint", nullable=false)
+     */
+    protected $chattiness = self::PREFERENCES_MEDIUM;
+
+    /**
+     * @ORM\Column(name="music", type="smallint", nullable=false)
+     */
+    protected $music = self::PREFERENCES_MEDIUM;
+
+    /**
+     * @ORM\Column(name="smoking", type="smallint", nullable=false)
+     */
+    protected $smoking = self::PREFERENCES_MEDIUM;
+
+    /**
+     * @ORM\Column(name="pets", type="smallint", nullable=false)
+     */
+    protected $pets = self::PREFERENCES_MEDIUM;
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param $showPhoneNumber
+     * @return $this
+     */
+    public function setShowPhoneNumber($showPhoneNumber)
+    {
+        $this->showPhoneNumber = $showPhoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getShowPhoneNumber()
+    {
+        return $this->showPhoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplayedAs()
+    {
+        return $this->displayedAs;
+    }
+
+    /**
+     * @param $displayedAs
+     * @return $this
+     */
+    public function setDisplayedAs($displayedAs)
+    {
+        $this->displayedAs = $displayedAs;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYearOfBirth()
+    {
+        return $this->yearOfBirth;
+    }
+
+    /**
+     * @param $year
+     * @return $this
+     */
+    public function setYearOfBirth($year)
+    {
+        $this->yearOfBirth = $year;
+
+        return $this;
+    }
+
+    /**
+     * @param string $email
+     * @return $this
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->username = $email;
+
+        return $this;
+    }
+
+    /**
+     * @param string $firstname
+     * @return $this|void
+     */
+    public function setFirstname($firstname)
+    {
+        parent::setFirstname($firstname);
+        $this->displayedAs = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Add car
+     *
+     * @param \nxtcar\MainBundle\Entity\Car $car
+     * @return User
+     */
+    public function addCar(\nxtcar\MainBundle\Entity\Car $car)
+    {
+        $this->car[] = $car;
+
+        return $this;
+    }
+
+    /**
+     * Remove car
+     *
+     * @param \nxtcar\MainBundle\Entity\Car $car
+     */
+    public function removeCar(\nxtcar\MainBundle\Entity\Car $car)
+    {
+        $this->car->removeElement($car);
+    }
+
+    /**
+     * Get car
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->car = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->outMessages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inMessages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add outMessages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $outMessages
+     * @return User
+     */
+    public function addOutMessage(\nxtcar\UserBundle\Entity\Message $outMessages)
+    {
+        $this->outMessages[] = $outMessages;
+
+        return $this;
+    }
+
+    /**
+     * Remove outMessages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $outMessages
+     */
+    public function removeOutMessage(\nxtcar\UserBundle\Entity\Message $outMessages)
+    {
+        $this->outMessages->removeElement($outMessages);
+    }
+
+    /**
+     * Get outMessages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOutMessages()
+    {
+        return $this->outMessages;
+    }
+
+    /**
+     * Add inMessages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $inMessages
+     * @return User
+     */
+    public function addInMessage(\nxtcar\UserBundle\Entity\Message $inMessages)
+    {
+        $this->inMessages[] = $inMessages;
+
+        return $this;
+    }
+
+    /**
+     * Remove inMessages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $inMessages
+     */
+    public function removeInMessage(\nxtcar\UserBundle\Entity\Message $inMessages)
+    {
+        $this->inMessages->removeElement($inMessages);
+    }
+
+    /**
+     * Get inMessages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInMessages()
+    {
+        return $this->inMessages;
+    }
 }

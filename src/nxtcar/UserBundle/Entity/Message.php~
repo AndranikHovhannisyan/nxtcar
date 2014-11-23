@@ -1,0 +1,41 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andranik
+ * Date: 11/23/14
+ * Time: 6:54 PM
+ */
+
+namespace nxtcar\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Class Message
+ * @package nxtcar\UserBundle\Entity
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="message")
+ */
+class Message
+{
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="outMessages")
+     * @ORM\JoinColumn(name="from_user_id", referencedColumnName="id")
+     */
+    protected $from;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="inMessages")
+     * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id")
+     */
+    protected $to;
+}
