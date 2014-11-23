@@ -30,6 +30,9 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new nxtcar\UserBundle\nxtcarUserBundle(),
             new nxtcar\MainBundle\nxtcarMainBundle(),
+
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FOS\RestBundle\FOSRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -109,6 +109,19 @@ fos_user:
         form:
             type: nxtcar_user_registration
 
+sensio_framework_extra:
+    view:
+        annotations: false
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: true
+    routing_loader:
+        default_format: json
+        include_format: false
 
 
 # Swiftmailer Configuration

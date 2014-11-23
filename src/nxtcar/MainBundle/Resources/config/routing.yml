@@ -17,3 +17,7 @@ ride:
     resource: "@nxtcarMainBundle/Controller/RideController.php"
     type:     annotation
     prefix:   /
+
+car_rests:
+    type:     rest
+    resource: nxtcar\MainBundle\Controller\Rest\RestCarController
