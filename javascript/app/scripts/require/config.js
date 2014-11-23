@@ -20,7 +20,10 @@ require.config({
         'main': '/bundles/nxtcarmain/js/angular/main',
         'MainController': '/bundles/nxtcarmain/js/angular/controllers/MainController',
         'user': '/bundles/nxtcaruser/js/angular/user',
-        'userController': '/bundles/nxtcaruser/js/angular/controllers/userController'
+        'userController': '/bundles/nxtcaruser/js/angular/controllers/userController',
+        'car': '/bundles/nxtcaruser/js/angular/controllers/car',
+        'carController': '/bundles/nxtcaruser/js/angular/controllers/carController'
+
     },
     shim: {
         'angular': {
@@ -41,9 +44,11 @@ require.config({
         'Interpolation': ['angular'],
         'Geolocation': ['angular'],
         'main': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
-        'MainController': ['angular','main'],
+        'MainController': ['main'],
         'user': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
-        'userController': ['angular','user']
+        'userController': ['angular','user'],
+        'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
+        'carController': ['car']
     },
     waitSeconds: 7
 });

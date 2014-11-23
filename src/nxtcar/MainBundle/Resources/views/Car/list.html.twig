@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/car_list.css") }}">
 {% endblock %}
 
+{% block AngularController %}ng-controller="CarController"{% endblock %}
+
 {% block sub_content %}
 
     <div>
@@ -26,4 +28,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/carRunner.js") }}"></script>
 {% endblock %}
