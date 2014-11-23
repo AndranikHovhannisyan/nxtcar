@@ -13,6 +13,39 @@
         </div>
         <div class="user-profil-content">
 
+
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="">
+                        <img src="/bundles/nxtcarmain/images/car.png" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
+                        <span class="profile-car-edit">Upload photo</span>
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <div class="vehicle-text">
+                        <h3 class="vehicle-title">MERCEDES-BENZ C-класс</h3>
+                        <div class="stars">
+                            4 seats
+
+                            <img src="/bundles/nxtcarmain/images/star-car.png" width="15" height="15" >
+                            <img src="/bundles/nxtcarmain/images/star-car.png" width="15" height="15" >
+                            <span class="star"> </span>
+                            <span class="star"> </span>
+                        </div>
+{#star-car.png#}
+                        <a href="#" class="a-edit">
+                            <img src="/bundles/nxtcarmain/images/pen.png" width="11" height="15" >
+                        </a>
+                        <a href="#" class="a-delete">
+                            <img src="/bundles/nxtcarmain/images/delete.png" width="15" height="15" >
+                        </a>
+                    </div></div>
+            </div>
+
+
+
+
+
             {% for car in cars %}
                 {{ car.model.title }} {{ car.model.brand.title }}
                 <br>
