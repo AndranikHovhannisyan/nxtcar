@@ -1,3 +1,6 @@
+.content{
+    padding: 22px;
+}
 .trip-search-form{
     background: #0ba9ef;
     padding: 15px;
@@ -14,4 +17,31 @@
     font-size: 20px;
     margin: 0;
     text-shadow: 0 1px 5px rgba(0,0,0,0.33);
+}
+.search-to,
+.search-from{
+    background-color: #fff !important;
+    padding-left: 20px;
+    border: 0px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+.search-from{
+    background: url("/bundles/nxtcarmain/images/search-from.png") no-repeat 2% 50%;
+}
+.search-to{
+    background: url("/bundles/nxtcarmain/images/search-to.png") no-repeat 2% 50%;
+    margin-left: 10px;
+}
+.search-btn{
+    border-radius: 3px;
+    border: 1px solid #f60;
+    background: #fdc50b;
+    color: #fff !important ;
+    font-weight: 600;
+    font-size: 16px;
+    text-shadow: 0px 1px rgba(0, 0, 0, 0.37);
+    box-shadow: inset 0px -13px 24px -6px #f60;
+    padding: 0px 22px;
+
 }
