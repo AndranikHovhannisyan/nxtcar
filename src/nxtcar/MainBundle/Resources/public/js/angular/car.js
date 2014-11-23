@@ -6,6 +6,10 @@ define([],function(){
         'Facebook',
         'Interpolation',
         'mgcrea.ngStrap.popover',
-        'ngAnimate'
-    ]);
+        'ngAnimate'])
+    .service("CarManager",function($resource){
+        return $resource("app_dev.php/api/cars/:where/:what:id",{},{
+            getModels: {method: 'GET',isArray: true,params: {where: 'models'}}
+        })
+    });
 })

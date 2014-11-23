@@ -47,7 +47,7 @@ require.config({
         'MainController': ['main'],
         'user': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
         'userController': ['angular','user'],
-        'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap'],
+        'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'CarController': ['car']
     },
     waitSeconds: 7

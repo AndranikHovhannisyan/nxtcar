@@ -3,6 +3,8 @@
 define([],function(){
     return angular.module('Car')
         .controller('CarController',function($scope){
-            console.log("CarController");
+            $scope.$watch('carBrand',function(d){
+                console.log(d);
+            },true)
         })
 })
