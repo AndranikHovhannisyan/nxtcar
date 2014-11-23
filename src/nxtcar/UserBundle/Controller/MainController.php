@@ -8,6 +8,7 @@
 
 namespace nxtcar\UserBundle\Controller;
 
+use nxtcar\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -15,10 +16,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class MainController extends Controller
 {
     /**
-     * @Route("/profile/preferences", name="profile_preferences")
+     * @Route("/profile/preferences/{id}", name="profile_preferences")
      * @Template("nxtcarUserBundle:Profile:preferences.html.twig")
      */
-    public function preferencesAction()
+    public function preferencesAction(User $id)
     {
         return array();
     }
