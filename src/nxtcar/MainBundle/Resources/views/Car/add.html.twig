@@ -20,13 +20,15 @@
                 <div class="form-group">
                     <label for="gender" class="col-sm-3 control-label gender">Make</label>
                     <div class="col-sm-4">
-                        {{ form_widget(form.carBrand, {'attr': {'class': "form-control"} }) }}
+                        {{ form_widget(form.carBrand, {'attr': {'class': "form-control",'ng-model':'carBrand','ng-init':'carBrand=' ~ brandId } }) }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Model</label>
                     <div class="col-sm-4">
-                        {{ form_widget(form.model, {'attr': {'class': "form-control", 'id': "inputFirstname"} }) }}
+                        <select name="{{ form.model.vars.full_name }}" id="{{ form.model.vars.id }}" class="form-control" ng-model="model" data-ng-init="model = {{ form.model.vars.value }}">
+                            <option data-ng-repeat="model in models" value="[[ model.id ]]" data-ng-bind="model.title"></option>
+                        </select>
                     </div>
                 </div>
 

@@ -7,9 +7,7 @@ define([],function(){
                 if(angular.isUndefined(d)){
                     return;
                 }
-                CarManager.getModels({id: d},function(da){
-                    console.log(da);
-                })
+                $scope.models = CarManager.getModels({id: d})
             },true)
         })
 })

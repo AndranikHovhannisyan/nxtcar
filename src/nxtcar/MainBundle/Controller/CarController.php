@@ -26,11 +26,13 @@ class CarController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $brandId = null;
         if ($id == -1) {
             $car = new Car();
         }
         else {
             $car = $em->find('nxtcarMainBundle:Car', $id);
+            $brandId = $car->getModel()->getBrand()->getId();
             if (!$car) {
                 throw new HttpException(Codes::HTTP_NOT_FOUND);
             }
@@ -42,19 +44,7 @@ class CarController extends Controller
 
         if ($form->isValid())
         {
-
-            //TODO: Must be uncommented
-//            $modelId = $request->get('modelId');
-//            $model = $em->getREpository('nxtcarMainBundle:CarModel')->find($modelId);
-//
-//            if (!$model) {
-//                throw new HttpException(Codes::HTTP_BAD_REQUEST, 'please check a car model');
-//            }
-
             $user = $this->get('security.context')->getToken()->getUser();
-
-//            $car = $form->getData();
-//            $car->setModel($model);
             $car->setUser($user);
             $em->persist($car);
             $em->flush();
@@ -62,7 +52,7 @@ class CarController extends Controller
             return $this->redirect($this->generateUrl('car_list'));
         }
 
-        return $this->render('nxtcarMainBundle:Car:add.html.twig', array('form' => $form->createView()));
+        return $this->render('nxtcarMainBundle:Car:add.html.twig', array('form' => $form->createView(), 'brandId' => $brandId));
     }
 
     /**
