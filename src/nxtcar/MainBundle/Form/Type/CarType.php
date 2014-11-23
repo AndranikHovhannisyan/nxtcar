@@ -18,7 +18,7 @@ class CarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('carBrand', 'entity', array('mapped' => false, 'class' => 'nxtcarMainBundle:CarBrand'))
+            ->add('carBrand', 'entity', array('mapped' => false,'attr'=>array('ng-model'=>'carBrand'), 'class' => 'nxtcarMainBundle:CarBrand'))
 
             //TODO: Must be deleted
             ->add('model', 'entity', array('class' => 'nxtcarMainBundle:CarModel'))
