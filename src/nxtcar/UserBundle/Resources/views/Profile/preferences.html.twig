@@ -2,9 +2,129 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {#<link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/change_password.css") }}">#}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/preferences.css") }}">
 {% endblock %}
 
 {% block sub_content %}
-    asdfasfsf
+
+        <div>
+            <h3 class="user-profil-header">Your ridesharing preferences</h3>
+        </div>
+        <div class="user-profil-content">
+            <form class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 text-right">
+                                Chattiness:
+                            </div>
+                            <div class="col-sm-7">
+                                <ul class="list-inline">
+                                    <li >
+                                        <img class="img-bla" src="../img/pref-bla-large.png">
+                                    </li>
+                                    <li class="li-blabla">
+                                        <img class="img-bla img-active" src="../img/pref-blabla-large.png">
+                                    <li class="li-blabla">
+                                        <img class="img-bla" src="../img/pref-blablabla-large.png">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 text-right">
+                                Music:
+                            </div>
+                            <div class="col-sm-7">
+                                <ul class="list-inline">
+                                    <li >
+                                        <img class="img-bla" src="../img/pref-music-no-large.png">
+                                    </li>
+                                    <li class="li-blabla">
+                                        <img class="img-bla img-active" src="../img/pref-music-maybe-large.png">
+                                    <li class="li-blabla">
+                                        <img class="img-bla" src="../img/pref-music-yes-large.png">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 text-right">
+                                Smoking:
+                            </div>
+                            <div class="col-sm-7">
+                                <ul class="list-inline">
+                                    <li >
+                                        <img class="img-bla" src="../img/pref-smoking-no-large.png">
+                                    </li>
+                                    <li class="li-blabla">
+                                        <img class="img-bla img-active" src="../img/pref-smoking-maybe-large.png">
+                                    <li class="li-blabla">
+                                        <img class="img-bla" src="../img/pref-smoking-yes-large.png">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3 text-right">
+                                Pets:
+                            </div>
+                            <div class="col-sm-7">
+                                <ul class="list-inline">
+                                    <li >
+                                        <img class="img-bla" src="../img/pref-pet-no-large.png">
+                                    </li>
+                                    <li class="li-blabla">
+                                        <img class="img-bla img-active" src="../img/pref-pet-maybe-large.png">
+                                    <li class="li-blabla">
+                                        <img class="img-bla" src="../img/pref-pet-yes-large.png">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <!-- <button type="submit" class="btn btn-default">Save</button> -->
+                        <input type="submit" class="submit btn btn-default" value="Save">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
 {% endblock %}
