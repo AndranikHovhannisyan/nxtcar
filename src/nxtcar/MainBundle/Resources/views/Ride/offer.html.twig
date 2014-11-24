@@ -7,6 +7,120 @@
 
 
 {% block content %}
-    <div class="test_offer">eee</div>
-    offer
+
+    <div class="content">
+        <div class="publication-container">
+            <h3>Offer a ride on your next long journey</h3>
+            <div class="my-schedule-1">
+                <span class="my-schedule">My schedule</span>
+                <span class="span-1">1</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <fieldset class="main-block">
+                        <div class="header-main-block">
+                            <h3>Type of trip</h3>
+                        </div>
+                        <div class="radios">
+                            <label  class="radio radio-left float-left">
+                                <input type="radio" name="radio" checked="checked">
+                                One-time trip
+                            </label>
+                            <label  class="radio label-right float-right">
+                                <input class="" type="radio" name="radio" >
+                                Recurring trip
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="main-block">
+                        <div class="header-main-block">
+                            <h3>Exact route</h3>
+                        </div>
+
+                        <section class="main-block-content">
+                            <input type="text"  placeholder="Your departure point (address, city, station...)" class=" input from tip " >
+                            <p class="helper">Example: Canary Wharf, London</p>
+                            <input type="text"  placeholder="Your arrival point (address, city, station...)" class="to tip input" >
+
+                            <section class="stages-container clearfix">
+                                <div class="alert alert-warning hide" id="alert_stopover_order" style="display: none;">
+                                    <p>The cities you listed appear to be in the wrong order. Do you want us to automatically reorder them?</p>
+                                    <a id="sort_stopovers">Automatically reorder cities</a>
+                                </div>
+                                <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
+                                <div class="div-input">
+                                    <input type="text"  placeholder="Add cities on your route" class="input remove-input " >
+                                    <a class="close  tip" href="#" title="Remove this stopover">×</a>
+                                </div>
+
+                                <div class="stage-add" >
+                                    <a class="plus-button tip">+</a>
+                                    Add more cities on your route
+                                </div>
+
+                            </section>
+                        </section>
+                    </fieldset>
+
+                    <fieldset class="main-block">
+
+                        <div class="header-main-block clearfix">
+                            <div class="simple-round-container">
+                                <label  class="checkbox">
+                                    <input type="checkbox"  class="trip-mode simple-round-choice"  checked="checked">
+                                    Round trip
+                                </label>
+
+                            </div>
+                            <h3>Date and time</h3>
+                        </div>
+
+                        <section id="publication-unique" class="main-block-content" style="display: block;">
+                            <section class="date-time">
+                                <label  class=" control-label">Departure date:</label>
+                                <div  class="departure-date">
+                                    <div class="input-date">
+                                        <input type="text"  placeholder="DD/MM/YYYY" class="input date-picker hasDatepicker">
+                                    </div>
+                                    <select  class="time-select">
+                                        <option value="" selected="selected"></option>
+                                        <option value="0">00</option>
+                                    </select>:
+                                    <select  class="time-select">
+                                        <option value="" selected="selected"></option>
+                                        <option value="0">00</option>
+                                    </select>
+                                </div>
+                                <br>
+
+                                <label  class=" control-label">Return date:</label><br>
+                                <div class="input-date">
+                                    <input type="text"  placeholder="DD/MM/YYYY" class="input date-picker hasDatepicker">
+                                </div>
+                                <select  class="time-select">
+                                    <option value="" selected="selected"></option>
+                                    <option value="0">00</option>
+                                </select> :
+                                <select  class="time-select">
+                                    <option value="" selected="selected"></option>
+                                    <option value="0">00</option>
+                                </select>
+                            </section>
+                        </section>
+
+                    </fieldset>
+
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <p>Route itinerary</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}
