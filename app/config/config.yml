@@ -30,7 +30,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles: [ "FOSCommentBundle" ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -122,6 +122,13 @@ fos_rest:
     routing_loader:
         default_format: json
         include_format: false
+
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment:  nxtcar\UserBundle\Entity\Comment
+            thread:   nxtcar\UserBundle\Entity\Thread
 
 
 # Swiftmailer Configuration
