@@ -16,12 +16,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class ProfileController extends Controller
 {
     /**
      * @Route("/dashboard", name="dashboard")
      * @Template("nxtcarMainBundle:Dashboard:dashboard.html.twig")
+     * @Secure(roles="ROLE_USER")
      */
     public function dashboardAction()
     {
@@ -29,8 +31,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * @Route("/messages/{status}", name="messages", requirements={"status": "archived|received|questions_answers"})
+     * @Route("/messages/{status}", name="messages", requirements={"status": "received|questions_answers"})
      * @Template("nxtcarMainBundle:Dashboard:messages.html.twig")
+     * @Secure(roles="ROLE_USER")
      */
     public function messageAction($status)
     {

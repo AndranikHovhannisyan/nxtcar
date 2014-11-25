@@ -15,8 +15,12 @@
         <div>
             <h3 class="user-profil-header">Your ridesharing preferences</h3>
         </div>
-        <div class="user-profil-content">
-            <form class="form-horizontal" role="form">
+        <div class="user-profil-content"
+             ng-init="user={chattiness: {{ user.chattiness }},
+                            music: {{ user.music }},
+                            smoking: {{ user.smoking }},
+                            pets: {{ user.pets }}}">
+            <form class="form-horizontal" action="#" method="POST" role="form">
 
                 <div class="form-group">
                     <div class="col-sm-12">
@@ -26,13 +30,13 @@
                             </div>
                             <div class="col-sm-7">
                                 <ul class="list-inline">
-                                    <li >
-                                        <img class="img-bla" src="../img/pref-bla-large.png">
+                                    <li>
+                                        <img class="img-bla" ng-class="{'img-active': user.chattiness==0}" ng-click="user.chattiness=0" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}">
                                     </li>
                                     <li class="li-blabla">
-                                        <img class="img-bla img-active" src="../img/pref-blabla-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.chattiness==1}" ng-click="user.chattiness=1" src="{{ asset('bundles/nxtcaruser/images/pref-blabla-large.png') }}">
                                     <li class="li-blabla">
-                                        <img class="img-bla" src="../img/pref-blablabla-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.chattiness==2}" ng-click="user.chattiness=2" src="{{ asset('bundles/nxtcaruser/images/pref-blablabla-large.png') }}">
                                     </li>
                                 </ul>
                             </div>
@@ -48,12 +52,12 @@
                             <div class="col-sm-7">
                                 <ul class="list-inline">
                                     <li >
-                                        <img class="img-bla" src="../img/pref-music-no-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.music==0}" ng-click="user.music=0" src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
                                     </li>
                                     <li class="li-blabla">
-                                        <img class="img-bla img-active" src="../img/pref-music-maybe-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.music==1}" ng-click="user.music=1" src="{{ asset('bundles/nxtcaruser/images/pref-music-maybe-large.png') }}">
                                     <li class="li-blabla">
-                                        <img class="img-bla" src="../img/pref-music-yes-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.music==2}" ng-click="user.music=2" src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}">
                                     </li>
                                 </ul>
                             </div>
@@ -69,12 +73,12 @@
                             <div class="col-sm-7">
                                 <ul class="list-inline">
                                     <li >
-                                        <img class="img-bla" src="../img/pref-smoking-no-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.smoking==0}" ng-click="user.smoking=0" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}">
                                     </li>
                                     <li class="li-blabla">
-                                        <img class="img-bla img-active" src="../img/pref-smoking-maybe-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.smoking==1}" ng-click="user.smoking=1" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-maybe-large.png') }}">
                                     <li class="li-blabla">
-                                        <img class="img-bla" src="../img/pref-smoking-yes-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.smoking==2}" ng-click="user.smoking=2" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}">
                                     </li>
                                 </ul>
                             </div>
@@ -89,13 +93,13 @@
                             </div>
                             <div class="col-sm-7">
                                 <ul class="list-inline">
-                                    <li >
-                                        <img class="img-bla" src="../img/pref-pet-no-large.png">
+                                    <li>
+                                        <img class="img-bla" ng-class="{'img-active': user.pets==0}" ng-click="user.pets=0" src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}">
                                     </li>
                                     <li class="li-blabla">
-                                        <img class="img-bla img-active" src="../img/pref-pet-maybe-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.pets==1}" ng-click="user.pets=1" src="{{ asset('bundles/nxtcaruser/images/pref-pet-maybe-large.png') }}">
                                     <li class="li-blabla">
-                                        <img class="img-bla" src="../img/pref-pet-yes-large.png">
+                                        <img class="img-bla" ng-class="{'img-active': user.pets==2}" ng-click="user.pets=2" src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}">
                                     </li>
                                 </ul>
                             </div>
@@ -103,23 +107,9 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
+                        <input type="hidden" name="preferences" value="[[ user ]]"/>
                         <!-- <button type="submit" class="btn btn-default">Save</button> -->
                         <input type="submit" class="submit btn btn-default" value="Save">
                     </div>

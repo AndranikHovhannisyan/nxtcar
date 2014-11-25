@@ -109,6 +109,11 @@ class User extends BaseUser
      */
     protected $inMessages;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Photo", mappedBy="user")
+     */
+    protected $photo;
+
     /* Preferences */
 
     const PREFERENCES_LOW       = 0;
@@ -426,5 +431,28 @@ class User extends BaseUser
     public function getPets()
     {
         return $this->pets;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param \nxtcar\UserBundle\Entity\Photo $photo
+     * @return User
+     */
+    public function setPhoto(\nxtcar\UserBundle\Entity\Photo $photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \nxtcar\UserBundle\Entity\Photo 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

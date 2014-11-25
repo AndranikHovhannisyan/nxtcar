@@ -9,8 +9,8 @@ define([],function(){
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("CarManager",function($resource){
-        return $resource("/app_dev.php/api/cars/:where/:what:id",{},{
-            getModels: {method: 'GET',isArray: true,params: {where: 'models'}}
+        return $resource("/app_dev.php/api/cars/:where:id/:what",{},{
+            getModels: {method: 'GET',isArray: true,params: {what: 'model'}}
         })
     });
 })

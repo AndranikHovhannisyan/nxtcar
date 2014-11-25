@@ -31,6 +31,9 @@ class AppKernel extends Kernel
             new nxtcar\UserBundle\nxtcarUserBundle(),
             new nxtcar\MainBundle\nxtcarMainBundle(),
 
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
         );
