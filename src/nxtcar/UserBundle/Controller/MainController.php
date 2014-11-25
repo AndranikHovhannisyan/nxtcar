@@ -83,20 +83,22 @@ class MainController extends Controller
 
         $form->handleRequest($request);
 
+        $user = $this->get('security.context')->getToken()->getUser();
+
         if ($form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
             $photo->upload();
 
-            $user = $this->get('security.context')->getToken()->getUser();
             $lastPhoto = $em->getRepository('nxtcarUserBundle:Photo')->findByUser($user);
             $em->remove($lastPhoto[0]);
             $photo->setUser($user);
+            $user->setPhoto($photo);
 
             $em->persist($photo);
             $em->flush();
         }
 
-        return array('form' => $form->createView());
+        return array('form' => $form->createView(), 'photo' => $user->getPhoto());
     }
 }

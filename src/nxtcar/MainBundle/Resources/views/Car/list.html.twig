@@ -11,52 +11,46 @@
         <div>
             <h3 class="user-profil-header">Your car</h3>
         </div>
-        <div class="user-profil-content">
 
+        {% for car in cars %}
 
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="">
-                        <img src="/bundles/nxtcarmain/images/car.png" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
-                        <span class="profile-car-edit">Upload photo</span>
-                    </a>
-                </div>
-                <div class="col-md-8">
-                    <div class="vehicle-text">
-                        <h3 class="vehicle-title">MERCEDES-BENZ C-класс</h3>
-                        <div class="stars">
-                            4 seats
+            <div class="user-profil-content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="">
+                            <img src="{{ asset("/bundles/nxtcarmain/images/car.png") }}" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="vehicle-text">
+                            <h3 class="vehicle-title">{{ car.model.brand.title }} {{ car.model.title }}</h3>
 
-                            <img src="/bundles/nxtcarmain/images/star-car.png" width="15" height="15" >
-                            <img src="/bundles/nxtcarmain/images/star-car.png" width="15" height="15" >
-                            <span class="star"> </span>
-                            <span class="star"> </span>
+                            <div class="stars">
+                                {{ car.numberOfSets }} seats
+
+                                {% for i in 1..(car.comfort + 1) %}
+                                    <img src="{{ asset("/bundles/nxtcarmain/images/star-car.png") }}" width="15" height="15" >
+                                {% endfor %}
+
+                                <span class="star"> </span>
+                                <span class="star"> </span>
+                            </div>
+
+                            <a href="{{ path('car_add', {'id': car.id}) }}" class="a-edit">
+                                <img src="{{ asset("/bundles/nxtcarmain/images/pen.png") }}" width="11" height="15" >
+                            </a>
+                            <a href="{{ path('car_remove', {'id': car.id}) }}" class="a-delete">
+                                <img src="{{ asset("/bundles/nxtcarmain/images/delete.png") }}" width="15" height="15" >
+                            </a>
                         </div>
-{#star-car.png#}
-                        <a href="#" class="a-edit">
-                            <img src="/bundles/nxtcarmain/images/pen.png" width="11" height="15" >
-                        </a>
-                        <a href="#" class="a-delete">
-                            <img src="/bundles/nxtcarmain/images/delete.png" width="15" height="15" >
-                        </a>
-                    </div></div>
+                    </div>
+                </div>
             </div>
+        {% endfor %}
 
 
+        <a href="{{ path('car_add') }}">Add a car</a>
 
-
-
-            {% for car in cars %}
-                {{ car.model.title }} {{ car.model.brand.title }}
-                <br>
-                    {{ car.comfort + 1 }}
-                    <div class="car_star">vchfg</div>
-                <a href="{{ path('car_add', {'id': car.id}) }}">edit</a>
-                <a href="{{ path('car_remove', {'id': car.id}) }}">remove</a>
-                <br><br>
-            {% endfor %}
-            <a href="{{ path('car_add') }}">Add a car</a>
-        </div>
     </div>
 
 {% endblock %}

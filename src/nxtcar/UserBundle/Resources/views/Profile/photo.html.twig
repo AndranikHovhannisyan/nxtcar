@@ -4,115 +4,77 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/photo.css") }}">
 {% endblock %}
-{% block sub_content %}
-
-
-
-
-                <div>
-                    <h3 class="user-profil-header"> Your profile photo</h3>
-                </div>
-                <div class="user-profil-content">
-                    <form class="form-horizontal" role="form">
-                        <p class="form-text">
-                            Add your photo now! Other members will be reassured to see who they'll be travelling with, and you'll find your car share much more easily. Photos also help members to recognize each other
-                        </p>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}" width="70"height="70">
-                            </div>
-                            <div class="col-md-10">
-                                <div class="your-photo">
-                                    Your photo is being approved
-                                </div>
-                                <input type="file">
-                                <div class="upload-f">
-                                    <a>Upload my Facebook photo</a>
-                                </div>
-                                <div class="photo-accepted">
-                                    <p class="p-photo-accepted">Your face must be recognizable (without sunglasses) for your photo to be approved. Please upload a PNG or JPG file.</p>
-                                    <div class="row accepte-refused">
-                                        <div class="col-md-6">{#/home/aram/Desktop/img-accepted.jpg#}
-                                            <p class="p-accepted">Photo accepted</p>
-                                            <img src="{{ asset('bundles/nxtcaruser/images/img-accepted.jpg') }}">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="p-refused"> Photos refused</p>
-                                            <img src="{{ asset('bundles/nxtcaruser/images/img-refused.jpg') }}">
-                                        </div>
-                                    </div>
-                                    <p class="p-photo-accepted">
-                                        For more information on how to best pick your profile photo, please
-                                        <a>check our FAQ </a>
-
-                                    </p >
-                                    <p class="p-photo-accepted">Move and resize the square area to centre it on your face.</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-10">
-                                <!-- <button type="submit" class="btn btn-default">Save</button> -->
-                                <input type="submit" class="submit btn btn-default" value="Save">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-{% endblock %}
-{#
 
 {% block sub_content %}
-    photo
-    {{ form(form) }}
-<<<<<<< HEAD
-&#123;&#35;<<<<<<< HEAD&#35;&#125;
+
+    <div>
+        <h3 class="user-profil-header"> Your profile photo</h3>
+    </div>
+    <div class="user-profil-content">
+        <form action="{{ path('profile_photo') }}" method="POST" enctype="multipart/form-data" class="form-horizontal" role="form">
+            <p class="form-text">
+                Add your photo now! Other members will be reassured to see who they'll be travelling with, and you'll find your car share much more easily. Photos also help members to recognize each other
+            </p>
+            <div class="row">
+
+                {% if photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ photo.webPath %}
+
+                    <div class="col-md-2">
+                        <img src="{{ photo }}" width="70" height="70">
+                    </div>
+                {% endif %}
+
+                <div class="col-md-10">
+
+                    {# TODO: Yet we needn't for it #}
+                    {#<div class="your-photo">#}
+                        {#Your photo is being approved#}
+                    {#</div>#}
+
+                    {{ form_widget(form.file) }}
+                    <div class="upload-f">
+                        <a>Upload my Facebook photo</a>
+                    </div>
+                    <div class="photo-accepted">
+                        <p class="p-photo-accepted">Your face must be recognizable (without sunglasses) for your photo to be approved. Please upload a PNG or JPG file.</p>
+                        <div class="row accepte-refused">
+                            <div class="col-md-6">
+                                <p class="p-accepted">Photo accepted</p>
+                                <img src="{{ asset('bundles/nxtcaruser/images/img-accepted.jpg') }}">
+                            </div>
+                            <div class="col-md-6">
+                                <p class="p-refused"> Photos refused</p>
+                                <img src="{{ asset('bundles/nxtcaruser/images/img-refused.jpg') }}">
+                            </div>
+                        </div>
+                        <p class="p-photo-accepted">
+                            For more information on how to best pick your profile photo, please
+                            <a>check our FAQ </a>
+
+                        </p >
+                        <p class="p-photo-accepted">Move and resize the square area to centre it on your face.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-10">
+                    <input type="submit" class="submit btn btn-default" value="Save">
+                </div>
+            </div>
+            {{ form_widget(form._token) }}
+        </form>
+    </div>
+
+
 {% endblock %}
-=======
->>>>>>> f27c3f83b4730637411b0f7aff0c2d339fb5ce05
 
+     {#TODO: chjnjel #}
+    {#{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'foo'} %}#}
 
-    &#123;&#35; TODO: chjnjel &#35;&#125;
-    &#123;&#35;{% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': 'foo'} %}&#35;&#125;
-{% endblock %}
-
-<<<<<<< HEAD
-&#123;&#35; TODO: chjnjel &#35;&#125;
-&#123;&#35;{% block javascripts %}&#35;&#125;
-    &#123;&#35;<script type="text/javascript" src="{{ asset("/bundles/nxtcaruser/js/jquery-1.11.1.min.js") }}"></script>&#35;&#125;
-&#123;&#35;{% endblock %}&#35;&#125;
-&#123;&#35;>>>>>>> 8e49b7d64324360403ed9adabbc9edf0dcc039d8&#35;&#125;
-#}
-=======
 {# TODO: chjnjel #}
 {#{% block javascripts %}#}
     {#<script type="text/javascript" src="{{ asset("/bundles/nxtcaruser/js/jquery-1.11.1.min.js") }}"></script>#}
 {#{% endblock %}#}
->>>>>>> f27c3f83b4730637411b0f7aff0c2d339fb5ce05
