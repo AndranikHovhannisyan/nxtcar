@@ -1,5 +1,6 @@
 /web/bundles/
 /web/app
+/web/uploads/
 .idea/
 /app/bootstrap.php.cache
 /app/cache/*
