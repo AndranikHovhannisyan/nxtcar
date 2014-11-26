@@ -5,6 +5,7 @@ require.config({
     urlArgs: 'v='+(new Date()).getTime(),
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
+        'jquery-ui': '/app/bower_components/jquery-ui/jquery-ui.min',
         'bootstrap': '/app/bower_components/bootstrap/dist/js/bootstrap.min',
         'angular': '/app/bower_components/angular/angular.min',
         'angular-resource': '/app/bower_components/angular-resource/angular-resource.min',
@@ -37,6 +38,7 @@ require.config({
         'jquery': {
             exports: "$"
         },
+        'jquery-ui': [],
         'angular-animate': ['angular'],
         'angular-resource': ['angular'],
         'nanoscroller': ['jquery','angular'],
@@ -54,7 +56,7 @@ require.config({
         'userController': ['angular','user'],
         'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'CarController': ['car'],
-        'ride': ['ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'ride': ['jquery-ui','ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'RideController': ['ride'],
         'google-map': ['ride']
     },
