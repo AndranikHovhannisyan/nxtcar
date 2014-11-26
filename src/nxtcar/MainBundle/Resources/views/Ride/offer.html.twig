@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_offer.css") }}">
 {% endblock %}
 
-{% block AngularController %}{% endblock %}
+{% block AngularController %}ng-controller="RideController"{% endblock %}
 
 {% block content %}
         <div class="publication-container">
@@ -45,9 +45,13 @@
                             <section class="stages-container clearfix">
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
                                 <div class="div-input">
-                                    <input type="text" class="input remove-input "  placeholder="Add cities on your route"  >
-                                    <a class="close tip" href="#" title="Remove this stopover">×</a>
-                                    <a class="close move-span  tip" href="#" title="Remove this stopover"></a>
+                                    <ul ui-sortable ng-model="tests">
+                                        <li data-ng-repeat="test in tests">
+                                            <input type="text" class="input remove-input" placeholder="Add cities on your route">
+                                            <a class="close tip" href="#" title="Remove this stopover">×</a>
+                                            <a class="close move-span tip" href="#" title="Remove this stopover"></a>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 <div class="stage-add" >

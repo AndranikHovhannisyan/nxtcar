@@ -1,4 +1,6 @@
-
+li {
+    list-style: none;
+}
 .content{
     padding: 22px;
 }

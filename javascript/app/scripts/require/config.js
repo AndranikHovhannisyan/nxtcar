@@ -13,6 +13,7 @@ require.config({
         'nanoscroller': '/app/bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.min',
         'angular-strap': '/app/bower_components/angular-strap/dist/angular-strap.min',
         'angular-strap-tpl': '/app/bower_components/angular-strap/dist/angular-strap.tpl.min',
+        'ui.sortable': '/app/bower_components/angular-ui-sortable/sortable.min',
         /*-------------------------------------------------------------------------------------*/
         'Interpolation': '/app/scripts/Interpolation/Interpolation',
         'Facebook': '/app/scripts/Facebook/Facebook',
@@ -24,6 +25,7 @@ require.config({
         'car': '/bundles/nxtcarmain/js/angular/car',
         'CarController': '/bundles/nxtcarmain/js/angular/controllers/CarController',
         'ride': '/bundles/nxtcarmain/js/angular/ride',
+        'RideController': '/bundles/nxtcarmain/js/angular/controllers/RideController',
         'google-map': '/bundles/nxtcarmain/js/angular/directives/google-map'
 
     },
@@ -41,6 +43,7 @@ require.config({
         'angular-strap': ['angular'],
         'angular-strap-tpl': ['angular'],
         'bootstrap': ['angular'],
+        'ui.sortable': ['angular','jquery'],
         //------------------------------------------------------------------//
         'Facebook': ['angular'],
         'Interpolation': ['angular'],
@@ -51,7 +54,8 @@ require.config({
         'userController': ['angular','user'],
         'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'CarController': ['car'],
-        'ride': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'ride': ['ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'RideController': ['ride'],
         'google-map': ['ride']
     },
     waitSeconds: 7

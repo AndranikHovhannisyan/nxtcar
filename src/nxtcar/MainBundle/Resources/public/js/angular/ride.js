@@ -6,11 +6,12 @@ define([],function(){
         'Facebook',
         'ngResource',
         'Interpolation',
+        'ui.sortable',
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("RideManager",function($resource){
         return $resource('/api/ride/:where/:what',{},{
 
         });
-    })
+    });
 })
