@@ -92,7 +92,7 @@
                                     <option value="" selected="selected">11</option>
                                     <option value="0">00</option>
                                 </select> :
-                                <select  class="time-select">
+                                <select class="time-select">
                                     <option value="" selected="selected"></option>
                                     <option value="0">00</option>
                                 </select>
@@ -104,6 +104,7 @@
                 <div class="col-md-4">
                     <div>
                         <p>Route itinerary</p>
+                        <google-map style="width:342px;height:385px;display:block"></google-map>
                     </div>
                 </div>
             </div>
@@ -111,5 +112,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}
