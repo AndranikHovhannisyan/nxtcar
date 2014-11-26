@@ -9,8 +9,8 @@
 {% block content %}
         <div class="publication-container">
             <h3>Offer a ride on your next long journey</h3>
+            <span class="my-schedule"><b {#class="b-my-schedule"#}>My schedule</b></span>
             <div class="my-schedule-1">
-                <span class="my-schedule">My schedule</span>
                 <span class="span-1">1</span>
             </div>
 
@@ -18,12 +18,12 @@
                 <div class="col-md-8">
                     <fieldset class="main-block">
                         <div class="header-main-block">
-                            <h3>Type of trip</h3>
+                            <p>Type of trip</p>
                         </div>
                         <div class="radios">
                             <label  class="radio radio-left float-left">
                                 <input type="radio" name="radio" checked="checked">
-                                One-time trip
+                                 One-time trip
                             </label>
                             <label  class="radio label-right float-right">
                                 <input class="" type="radio" name="radio" >
@@ -37,25 +37,21 @@
 
                     <fieldset class="main-block">
                         <div class="header-main-block">
-                            <h3>Exact route</h3>
+                            <p>Exact route</p>
                         </div>
 
                         <section class="main-block-content">
-                            <input type="text"  placeholder="Your departure point (address, city, station...)" class=" input from tip " >
+                            <input type="text" class=" input from tip "  placeholder="Your departure point (address, city, station...)" class=" input from tip " >
                             <p class="helper">Example: Canary Wharf, London</p>
-                            <input type="text"  placeholder="Your arrival point (address, city, station...)" class="to tip input" >
-
+                            <input type="text" class="to tip input" placeholder="Your arrival point (address, city, station...)"  >
 
 
                             <section class="stages-container clearfix">
-                                <div class="alert alert-warning hide" id="alert_stopover_order" style="display: none;">
-                                    <p>The cities you listed appear to be in the wrong order. Do you want us to automatically reorder them?</p>
-                                    <a id="sort_stopovers">Automatically reorder cities</a>
-                                </div>
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
                                 <div class="div-input">
-                                    <input type="text"  placeholder="Add cities on your route" class="input remove-input " >
+                                    <input type="text" class="input remove-input "  placeholder="Add cities on your route"  >
                                     <a class="close  tip" href="#" title="Remove this stopover">×</a>
+                                    <a class="close move-span  tip" href="#" title="Remove this stopover"></a>
                                 </div>
 
                                 <div class="stage-add" >
@@ -75,14 +71,15 @@
                     <fieldset class="main-block">
 
                         <div class="header-main-block clearfix">
-                            <div class="simple-round-container">
-                                <label  class="checkbox">
+                            <p class="date-and-time">Date and time</p>
+
+                            <div class="">
+                                <label  class="label-round-trip">
                                     <input type="checkbox"  class="trip-mode simple-round-choice"  checked="checked">
                                     Round trip
                                 </label>
 
                             </div>
-                            <h3>Date and time</h3>
                         </div>
 
                         <section id="publication-unique" class="main-block-content" style="display: block;">
@@ -90,7 +87,7 @@
                                 <label  class=" control-label">Departure date:</label>
                                 <div  class="departure-date">
                                     <div class="input-date">
-                                        <input type="text"  placeholder="DD/MM/YYYY" class="input date-picker hasDatepicker">
+                                        <input type="text" class="input date-picker " placeholder="DD/MM/YYYY" >
                                     </div>
                                     <select  class="time-select">
                                         <option value="" selected="selected"></option>
@@ -105,10 +102,10 @@
 
                                 <label  class=" control-label">Return date:</label><br>
                                 <div class="input-date">
-                                    <input type="text"  placeholder="DD/MM/YYYY" class="input date-picker hasDatepicker">
+                                    <input type="text" class="input date-picker hasDatepicker" placeholder="DD/MM/YYYY" >
                                 </div>
                                 <select  class="time-select">
-                                    <option value="" selected="selected"></option>
+                                    <option value="" selected="selected">11</option>
                                     <option value="0">00</option>
                                 </select> :
                                 <select  class="time-select">

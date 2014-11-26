@@ -16,7 +16,7 @@
 
 .user-profil-content{
     background-color: #F1F1E9;
-    padding: 19px 0px 10px 0px;
+    padding: 19px 10px 10px 15px;
 }
 .form-text{
     font-size: 13px;
@@ -96,14 +96,16 @@ a:hover{
     margin: 0;
 }
 .p-accepted{
-    background: url('/bundles/nxtcarmain/images/photo-accepted.png') no-repeat 0px 53%;
+    background: url('/bundles/nxtcarmain/images/photo-accepted.png') no-repeat 0px 80%;
     color: #68be57;
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 24px;
+    margin-left: 10px;
 }
 .p-refused{
-    background: url('/bundles/nxtcarmain/images/photo-refused.png') no-repeat 0px 53%;
+    background: url('/bundles/nxtcarmain/images/photo-refused.png') no-repeat 0px 80%;
     color: #c93634;
-    padding: 10px 0 0 20px;
+    padding: 10px 0 0 24px;
+    margin-left: 10px;
 }
 .accepte-refused div{
     padding: 0 60px;
