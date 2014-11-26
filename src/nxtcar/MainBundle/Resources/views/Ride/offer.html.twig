@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_offer.css") }}">
 {% endblock %}
 
+{% block AngularController %}{% endblock %}
 
 {% block content %}
         <div class="publication-container">
@@ -26,31 +27,26 @@
                                  One-time trip
                             </label>
                             <label  class="radio label-right float-right">
-                                <input class="" type="radio" name="radio" >
+                                <input type="radio" name="radio">
                                 Recurring trip
                             </label>
                         </div>
                     </fieldset>
-
-
-
-
                     <fieldset class="main-block">
                         <div class="header-main-block">
                             <p>Exact route</p>
                         </div>
 
                         <section class="main-block-content">
-                            <input type="text" class=" input from tip "  placeholder="Your departure point (address, city, station...)" class=" input from tip " >
+                            <input type="text" class="input from tip"  placeholder="Your departure point (address, city, station...)" class="input from tip">
                             <p class="helper">Example: Canary Wharf, London</p>
                             <input type="text" class="to tip input" placeholder="Your arrival point (address, city, station...)"  >
-
 
                             <section class="stages-container clearfix">
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
                                 <div class="div-input">
                                     <input type="text" class="input remove-input "  placeholder="Add cities on your route"  >
-                                    <a class="close  tip" href="#" title="Remove this stopover">×</a>
+                                    <a class="close tip" href="#" title="Remove this stopover">×</a>
                                     <a class="close move-span  tip" href="#" title="Remove this stopover"></a>
                                 </div>
 
@@ -58,30 +54,19 @@
                                     <a class="plus-button tip">+</a>
                                     Add more cities on your route
                                 </div>
-
-
                             </section>
                         </section>
                     </fieldset>
-
-
-
-
-
                     <fieldset class="main-block">
-
                         <div class="header-main-block clearfix">
                             <p class="date-and-time">Date and time</p>
-
                             <div class="">
                                 <label  class="label-round-trip">
                                     <input type="checkbox"  class="trip-mode simple-round-choice"  checked="checked">
                                     Round trip
                                 </label>
-
                             </div>
                         </div>
-
                         <section id="publication-unique" class="main-block-content" style="display: block;">
                             <section class="date-time">
                                 <label  class=" control-label">Departure date:</label>
@@ -99,7 +84,6 @@
                                     </select>
                                 </div>
                                 <br>
-
                                 <label  class=" control-label">Return date:</label><br>
                                 <div class="input-date">
                                     <input type="text" class="input date-picker hasDatepicker" placeholder="DD/MM/YYYY" >
@@ -114,10 +98,8 @@
                                 </select>
                             </section>
                         </section>
-
-
                     </fieldset>
-
+                    <a href="javascript:void(0)">Continue</a>
                 </div>
                 <div class="col-md-4">
                     <div>
@@ -126,10 +108,8 @@
                 </div>
             </div>
         </div>
+{% endblock %}
 
-
-
-
-
-
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}
