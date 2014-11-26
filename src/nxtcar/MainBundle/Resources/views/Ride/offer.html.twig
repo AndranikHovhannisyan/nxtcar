@@ -46,16 +46,16 @@
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
                                 <div class="div-input">
                                     <ul ui-sortable ng-model="cities">
-                                        <li data-ng-repeat="city in cities">
-                                            <input type="text" class="input remove-input" placeholder="Add cities on your route">
-                                            <a class="close tip" href="javascript:void(0)" title="Remove this stopover">×</a>
+                                        <li data-ng-repeat="(k,city) in cities">
+                                            <input type="text" class="input remove-input" data-ng-model="city.name" placeholder="Add cities on your route">
+                                            <a class="close tip" href="javascript:void(0)" data-ng-click="removeCity(k)" title="Remove this stopover">×</a>
                                             <a class="close move-span tip" href="javascript:void(0)" title="Remove this stopover"></a>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div class="stage-add" >
-                                    <a class="plus-button tip">+</a>
+                                <div class="stage-add" data-ng-click="cities.push({name: ''});">
+                                    <a href="javascript:void(0)" class="plus-button tip">+</a>
                                     Add more cities on your route
                                 </div>
                             </section>
