@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
@@ -100,5 +101,16 @@ class MainController extends Controller
         }
 
         return array('form' => $form->createView(), 'photo' => $user->getPhoto());
+    }
+
+
+    /**
+     * @Route("/login/check-facebook", name="check_facebook")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function checkFacebookAction(Request $request)
+    {
+        var_dump($request->query);
+        return new Response()   ;
     }
 }

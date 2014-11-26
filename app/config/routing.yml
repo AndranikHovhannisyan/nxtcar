@@ -46,3 +46,22 @@ fos_comment_api:
     resource: "@FOSCommentBundle/Resources/config/routing.yml"
     prefix: /api
     defaults: { _format: html }
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login/facebook
+
+main_bundle:
+    resource: "@nxtcarMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_bundle:
+    resource: "@nxtcarUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+facebook_login:
+    pattern: /login/check-facebook
