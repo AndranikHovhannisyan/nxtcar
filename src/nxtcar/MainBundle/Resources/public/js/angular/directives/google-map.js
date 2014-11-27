@@ -21,25 +21,37 @@ define([],function(){
                     return function linkFn(scope,el){
                         scope.places = [];
                         scope.directionService = new google.maps.DirectionsService();
+                        scope.directionsDisplay = new google.maps.DirectionsRenderer();
 
                         scope.$watch('places',function(d){
                             if(angular.isUndefined(d) || d.length < 2){
                                 return;
                             }
                             var request = {
-                                origin: d[0],
-                                destination: d[d.length-1],
-                                waypoints: d,
-                                optimizeWaypoints: true,
+                                origin: d[0].formatted_name,
+                                destination: d[d.length-1].formatted_name,
                                 travelMode: google.maps.TravelMode.DRIVING
                             };
-                            console.log(request,d);
+                            if(d.length > 2){
+                                var waypoints = [];
+                                for(var i = 1; i < d.length-1; i++){
+                                    waypoints.push({
+                                        location: d[i].formatted_name,
+                                        stopover: true});
+                                }
+                                request.waypoints = waypoints;
+                                request.optimizeWaypoints = true;
+                            }
                             scope.directionService.route(request,function(response,status){
                                 console.log(response,status);
+                                if (status == google.maps.DirectionsStatus.OK) {
+                                    scope.directionsDisplay.setDirections(response);
+                                }
                             });
                         },true);
 
                         scope.map = Initialize(el[0],5);
+                        scope.directionsDisplay.setMap(scope.map);
                     }
                 }
             }
@@ -57,8 +69,8 @@ define([],function(){
                 },
                 compile: function(){
                     return function(scope,el){
-
                         scope.autocomplete = new google.maps.places.Autocomplete(el[0],{types: ['(cities)']});
+
                         google.maps.event.addListener(scope.autocomplete, 'place_changed', function(){
                             var place = scope.autocomplete.getPlace();
                             if(angular.isUndefined(place)){
@@ -107,6 +119,7 @@ define([],function(){
                                     break;
                                 default:
                             }
+                            scope.$apply();
                         });
                     }
                 }
