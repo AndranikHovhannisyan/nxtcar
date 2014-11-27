@@ -38,9 +38,9 @@
                         </div>
 
                         <section class="main-block-content">
-                            <input type="text" class="input from tip"  placeholder="Your departure point (address, city, station...)" class="input from tip">
+                            <input type="text" class="input from tip" google-places-autocomplete placeholder="Your departure point (address, city, station...)" class="input from tip">
                             <p class="helper">Example: Canary Wharf, London</p>
-                            <input type="text" class="to tip input" placeholder="Your arrival point (address, city, station...)"  >
+                            <input type="text" class="to tip input" google-places-autocomplete placeholder="Your arrival point (address, city, station...)"  >
 
                             <section class="stages-container clearfix">
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
@@ -108,7 +108,7 @@
                 <div class="col-md-4">
                     <div>
                         <p>Route itinerary</p>
-                        <google-map style="width:342px;height:385px;display:block"></google-map>
+                        <google-map places="places" style="width:342px;height:385px;display:block"></google-map>
                     </div>
                 </div>
             </div>
@@ -116,6 +116,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}

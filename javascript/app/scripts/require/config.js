@@ -2,7 +2,7 @@
 
 require.config({
     basUrl: "",
-    urlArgs: 'v='+(new Date()).getTime(),
+    //urlArgs: 'v='+(new Date()).getTime(),
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
         'jquery-ui': '/app/bower_components/jquery-ui/jquery-ui.min',
