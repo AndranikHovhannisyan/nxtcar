@@ -27,6 +27,7 @@ define([],function(){
                             if(angular.isUndefined(d) || d.length < 2){
                                 return;
                             }
+                            console.log(d);
                             var request = {
                                 origin: d[0].formatted_name,
                                 destination: d[d.length-1].formatted_name,
@@ -108,7 +109,8 @@ define([],function(){
                                         }
                                     }
                                     else {
-                                        if(scope.places[scope.places.length-1].placeType === LAST_PLACE){
+                                        if( angular.isDefined(scope.places[scope.places.length-1]) &&
+                                            scope.places[scope.places.length-1].placeType === LAST_PLACE){
                                             index = scope.places.length-1;
                                         }
                                         else {
