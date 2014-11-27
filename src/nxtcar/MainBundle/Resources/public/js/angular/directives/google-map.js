@@ -20,6 +20,24 @@ define([],function(){
                 compile: function compileFn(){
                     return function linkFn(scope,el){
                         scope.places = [];
+                        scope.directionService = new google.maps.DirectionsService();
+
+                        scope.$watch('places',function(d){
+                            if(angular.isUndefined(d) || d.length < 2){
+                                return;
+                            }
+                            var request = {
+                                origin: d[0],
+                                destination: d[d.length-1],
+                                waypoints: d,
+                                optimizeWaypoints: true,
+                                travelMode: google.maps.TravelMode.DRIVING
+                            };
+                            console.log(request,d);
+                            scope.directionService.route(request,function(response,status){
+                                console.log(response,status);
+                            });
+                        },true);
 
                         scope.map = Initialize(el[0],5);
                     }
@@ -51,27 +69,44 @@ define([],function(){
                                 address_components: place.address_components,
                                 location: place.geometry.location,
                                 default_icon: place.icon,
-                                city_name: place.name
+                                city_name: place.name,
+                                placeType: scope.placeType,
+                                stopover: true
                             }
                             switch (scope.placeType){
                                 case FIRST_PLACE:
-                                    scope.places[0] = angular.copy(scope.place);
+                                    if(scope.places.length && scope.places[0].placeType !== FIRST_PLACE){
+                                        scope.places.splice(0,0,scope.place);
+                                    }
+                                    else {
+                                        scope.places[0] = angular.copy(scope.place);
+                                    }
                                     break;
                                 case LAST_PLACE:
                                     var index;
                                     if(scope.places.length === 1){
-                                        index = 1;
+                                        if(scope.places[0].placeType === LAST_PLACE){
+                                            index = 0;
+                                        }
+                                        else {
+                                            index = 1;
+                                        }
                                     }
                                     else {
-                                        index = scope.places.length-1;
+                                        if(scope.places[scope.places.length-1].placeType === LAST_PLACE){
+                                            index = scope.places.length-1;
+                                        }
+                                        else {
+                                            index = scope.places.length;
+                                        }
                                     }
                                     scope.places[index] = angular.copy(scope.place);
                                     break;
                                 case MIDDLE_PLACE:
+                                    scope.places.splice(1,0,scope.place);
                                     break;
                                 default:
                             }
-                            console.log(scope);
                         });
                     }
                 }

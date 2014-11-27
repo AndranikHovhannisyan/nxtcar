@@ -61,7 +61,13 @@
                                 <div class="div-input">
                                     <ul ui-sortable ng-model="cities">
                                         <li data-ng-repeat="(k,city) in cities">
-                                            <input type="text" class="input remove-input" data-ng-model="city.name" placeholder="Add cities on your route">
+                                            <input type="text"
+                                               google-places-autocomplete
+                                               place-type="3"
+                                               places="places"
+                                               map="map"
+                                               class="input remove-input"
+                                               placeholder="Add cities on your route">
                                             <a class="close tip" href="javascript:void(0)" data-ng-click="removeCity(k)" title="Remove this stopover">×</a>
                                             <a class="close move-span tip" href="javascript:void(0)" title="Remove this stopover"></a>
                                         </li>
