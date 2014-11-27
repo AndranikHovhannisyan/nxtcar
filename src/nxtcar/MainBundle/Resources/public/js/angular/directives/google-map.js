@@ -34,16 +34,19 @@ define([],function(){
                             };
                             if(d.length > 2){
                                 var waypoints = [];
+                                var filter = []
                                 for(var i = 1; i < d.length-1; i++){
-                                    waypoints.push({
-                                        location: d[i].formatted_name,
-                                        stopover: true});
+                                    if(filter.indexOf(d[i].formatted_name) === -1){
+                                        waypoints.push({
+                                            location: d[i].formatted_name,
+                                            stopover: true});
+                                        filter.push(d[i].formatted_name);
+                                    }
                                 }
                                 request.waypoints = waypoints;
                                 request.optimizeWaypoints = true;
                             }
                             scope.directionService.route(request,function(response,status){
-                                console.log(response,status);
                                 if (status == google.maps.DirectionsStatus.OK) {
                                     scope.directionsDisplay.setDirections(response);
                                 }
