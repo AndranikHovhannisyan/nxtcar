@@ -1,5 +1,87 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/show.css") }}">
 
+{% endblock %}
 {% block content %}
-    user view page
+
+    <div class="row ">
+        <div class="col-xs-4 span4">
+            <div class="main-column-block">
+                <p class="main-column-title">Member verification</p>
+
+                <ul class=" list-unstyled   margin-bottom ul-email">
+                    <li class="img-email tip" title="">
+                        <span class="checked">
+                            Email verified
+								</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-column-block">
+                <h3 class="main-column-title">Member activity</h3>
+                <ul class=" list-unstyled main-column-list verification-list margin-bottom unstyled">
+                    <li class="img-from tip">
+                        <span class="span" >
+                            One ride offered
+								</span>
+                    </li>
+                    <li class="img-clock tip">
+                        <span class="span">
+                            Last online: Today - 19:50
+								</span>
+                    </li>
+
+                    <li class="	img-calendar tip" title="">
+                        <span class="span">
+                            Member since: 11 November 2014
+								</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main-column-block">
+                <h3 class="main-column-title">Your car</h3>
+                <div class="div-img-car">
+                    <img class="img-car" src="../img/car.png">
+                </div>
+                <div class="car-stars">
+                    <span >Mercedes 408</span>
+                    <img src="../img/car-star.png">
+                    <img src="../img/car-star.png">
+                </div>
+                <p>Colour: black</p>
+                <p>Comfort: Normal</p>
+            </div>
+        </div>
+        <div class="col-xs-8 user-information">
+
+            <div>
+                <div class="user-man-img">
+                    <img src="../img/user-man.png">
+                </div>
+
+                <div class="user">
+                    <h3>Andranik H <span>(24 years old) </span> <a><i class=" bbc-icon2-flag"></i></a></h3>
+                    <p>Average rating: No ratings yet!</p><br>
+                    <p>My preferences</p><br>
+                    <p>I am</p>
+                </div>
+            </div>
+            <div class="span8 dashboard-notifications-messages">
+                <div class="">
+                    <h3 class="h3-sorry">Sorry! I haven't given a mini bio yet</h3>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
 {% endblock %}

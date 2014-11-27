@@ -1,0 +1,113 @@
+
+.dashboard-content{
+    padding: 15px 40px;
+}
+.span4{
+    border: 1px solid #C2C2C2;
+    border-radius:3px ;
+}
+.main-column-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #414141;
+    margin-top: 16px;
+}
+.display-block{
+    display: block;
+}
+ul{
+    display: block;
+    padding: 0 0 15px 0px;
+    border-bottom: 1px solid #C2C2C2;
+}
+.blue{
+    color: #0ca9fa;
+}
+.span,
+.checked {
+    display: block;
+    padding: 10px 0px 10px 24px;
+}
+
+.checked{
+    background:url("../img/verification-checked.png") no-repeat 100% 50%;
+}
+.img-email{
+    background:url("../img/sprite-icons.png") no-repeat 0% 15%;
+}
+.img-from{
+    background:url("../img/sprite-icons.png") no-repeat 0% 49%;
+}
+.img-clock{
+    background:url("../img/sprite-icons.png") no-repeat 0% 84.4%;
+}
+.img-calendar{
+    background:url("../img/sprite-icons.png") no-repeat 0% 102%;
+}
+.div-img-car{
+    padding: 2px;
+    border: 1px solid #ddd;
+    display: inline-block;
+}
+.img-car{
+    border: 1px solid #ddd;
+}
+.car-stars{
+    padding: 14px 0px ;
+    font-weight: 600;
+    color: #555;
+}
+.car-stars img{
+    margin-top: -4px;
+}
+.user-information{
+    padding-top: 15px;
+}
+.user-man-img{
+    padding: 8px 8px 30px 8px;
+    box-shadow: 1px 2px 4px #C5C5C5;
+    display: inline-block;
+    float: left;
+    margin-right: 22px;
+}
+.user h3 span{
+    font-size: 19px;
+    color: #555;
+}
+.user p{
+    font-size: 17px;
+    color: #555;
+    margin: 0;
+}
+[class^="bbc-icon2-"]:before, [class*=" bbc-icon2-"]:before {
+    width: 1em;
+    line-height: 1em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+.bbc-icon2-flag:before {
+    content: "\f107";
+}
+[class^="bbc-icon2-"]:before,
+[class*=" bbc-icon2-"]:before {
+    font-family: "bbc-icons";
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    font-weight: normal;
+    font-style: normal;
+    speak: none;
+    text-decoration: inherit;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.h3-sorry{
+    background-color: #E5F3FF;
+    border: 1px solid #E5F3FF;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 2px 0;
+}
