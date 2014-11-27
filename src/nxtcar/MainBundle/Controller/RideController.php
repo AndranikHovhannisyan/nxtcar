@@ -23,10 +23,19 @@ class RideController extends Controller
     }
 
     /**
-     * @Route("/ride/offer", name="ride_offer")
-     * @Template("nxtcarMainBundle:Ride:offer.html.twig")
+     * @Route("/ride/offer1", name="ride_offer1")
+     * @Template("nxtcarMainBundle:Ride:offer1.html.twig")
      */
-    public function offerAction()
+    public function offer1Action()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/ride/offer2", name="ride_offer2")
+     * @Template("nxtcarMainBundle:Ride:offer2.html.twig")
+     */
+    public function offer2Action()
     {
         return array();
     }

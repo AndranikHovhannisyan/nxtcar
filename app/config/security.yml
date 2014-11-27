@@ -43,7 +43,6 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_provider: form.csrf_provider
                 login_path: /login
                 check_path: /login_check
             oauth:
@@ -69,8 +68,7 @@ security:
                 path: /
                 domain: ~ # Defaults to the current domain from $_SERVER
 
-
-
+# TODO Must be deleted
 #            pattern:             .*
 #            context:             user
 #            form_login:

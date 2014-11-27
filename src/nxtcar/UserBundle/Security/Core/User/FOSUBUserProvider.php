@@ -47,23 +47,6 @@ class FOSUBUserProvider extends BaseClass
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        var_dump($response->getUsername());
-        var_dump($response->getNickname());
-        var_dump($response->getRealName());
-        var_dump($response->getResponse());
-        var_dump($response->getProfilePicture());
-        var_dump($response->getResponse()['first_name']);
-        var_dump($response->getResponse()['last_name']);
-        var_dump($response->getResponse()['gender']);
-        var_dump($response->getResponse()['email']);
-
-        $fbid = $response->getResponse()['id'];
-        $user_fb = "https://graph.facebook.com/" .$fbid;
-        $picture = $user_fb."/picture?width=260&height=260";
-
-        var_dump($picture);
-//        var_dump($response);
-        var_dump($response); exit;
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
         //when the user is registrating
@@ -78,10 +61,26 @@ class FOSUBUserProvider extends BaseClass
             $user->$setter_token($response->getAccessToken());
             //I have set all requested data with the user's username
             //modify here with relevant data
-            $user->setUsername($username);
-            $user->setEmail($username);
+
+            //photo
+
+            $response->getResponse()['picture']['data']['url'];
+
+            $fbid = $response->getResponse()['id'];
+            $user_fb = "https://graph.facebook.com/" .$fbid;
+            $picture = $user_fb."/picture?width=260&height=260";
+            //end photo
+
+
+            $user->setUsername($response->getResponse()['email']);
+            $user->setEmail($response->getResponse()['email']);
             $user->setPassword($username);
+            $user->setFirstname($response->getResponse()['first_name']);
+            $user->setLastname($response->getResponse()['last_name']);
+            $user->setGender(substr($response->getResponse()['gender'], 0, 1));
+
             $user->setEnabled(true);
+
             $this->userManager->updateUser($user);
             return $user;
         }
