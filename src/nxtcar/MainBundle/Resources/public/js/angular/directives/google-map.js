@@ -14,7 +14,8 @@ define([],function(){
             return {
                 restrict: 'EA',
                 scope: {
-                    places: '='
+                    places: '=',
+                    map: '='
                 },
                 compile: function compileFn(){
                     return function linkFn(scope,el){
@@ -34,14 +35,43 @@ define([],function(){
                 scope: {
                     map: '=',
                     places: '=',
-                    type: '='
+                    placeType: '='
                 },
                 compile: function(){
-                    return function(scope,el,attrs){
+                    return function(scope,el){
+
                         scope.autocomplete = new google.maps.places.Autocomplete(el[0],{types: ['(cities)']});
                         google.maps.event.addListener(scope.autocomplete, 'place_changed', function(){
                             var place = scope.autocomplete.getPlace();
-                            console.log(place);
+                            if(angular.isUndefined(place)){
+                                return;
+                            }
+                            scope.place = {
+                                formatted_name: place.formatted_address,
+                                address_components: place.address_components,
+                                location: place.geometry.location,
+                                default_icon: place.icon,
+                                city_name: place.name
+                            }
+                            switch (scope.placeType){
+                                case FIRST_PLACE:
+                                    scope.places[0] = angular.copy(scope.place);
+                                    break;
+                                case LAST_PLACE:
+                                    var index;
+                                    if(scope.places.length === 1){
+                                        index = 1;
+                                    }
+                                    else {
+                                        index = scope.places.length-1;
+                                    }
+                                    scope.places[index] = angular.copy(scope.place);
+                                    break;
+                                case MIDDLE_PLACE:
+                                    break;
+                                default:
+                            }
+                            console.log(scope);
                         });
                     }
                 }

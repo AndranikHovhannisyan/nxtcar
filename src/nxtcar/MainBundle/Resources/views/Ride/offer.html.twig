@@ -38,9 +38,23 @@
                         </div>
 
                         <section class="main-block-content">
-                            <input type="text" class="input from tip" google-places-autocomplete placeholder="Your departure point (address, city, station...)" class="input from tip">
+                            <input type="text"
+                               class="input from tip"
+                               google-places-autocomplete
+                               place-type="1"
+                               places="places"
+                               map="map"
+                               placeholder="Your departure point (address, city, station...)">
+
                             <p class="helper">Example: Canary Wharf, London</p>
-                            <input type="text" class="to tip input" google-places-autocomplete placeholder="Your arrival point (address, city, station...)"  >
+
+                            <input type="text"
+                               class="to tip input"
+                               google-places-autocomplete
+                               place-type="2"
+                               places="places"
+                               map="map"
+                               placeholder="Your arrival point (address, city, station...)"  >
 
                             <section class="stages-container clearfix">
                                 <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
@@ -108,7 +122,7 @@
                 <div class="col-md-4">
                     <div>
                         <p>Route itinerary</p>
-                        <google-map places="places" style="width:342px;height:385px;display:block"></google-map>
+                        <google-map places="places" map="map" style="width:342px;height:385px;display:block"></google-map>
                     </div>
                 </div>
             </div>
