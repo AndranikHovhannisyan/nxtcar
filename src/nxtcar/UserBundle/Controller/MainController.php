@@ -102,15 +102,4 @@ class MainController extends Controller
 
         return array('form' => $form->createView(), 'photo' => $user->getPhoto());
     }
-
-
-    /**
-     * @Route("/login/check-facebook", name="check_facebook")
-     * @Secure(roles="ROLE_USER")
-     */
-    public function checkFacebookAction(Request $request)
-    {
-        var_dump($request->query);
-        return new Response()   ;
-    }
 }
