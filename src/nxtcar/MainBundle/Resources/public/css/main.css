@@ -69,11 +69,10 @@ ul {
     color: #3B3B3B;
     font-size: 15px;
 }
-.header-vertica-lLine{
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*border-right: 1px solid #9E9E9E;*/
-    /*padding: 0px 6px;*/
+.vertica-lLine{
+
+    border-right: 1px solid #9E9E9E;
+
 }
 .caret{
     border-top: 4px solid #000;
@@ -217,44 +216,87 @@ header .background{
 /*----------end------------*/
 /*-------------------------*/
 .form-inline{
-    margin: 8px 0px 0px 22px;
-    width: 70%;
-    display: -webkit-flex; /* Safari */
-    display: flex;
+margin: 8px 0px 0px 22px;
+width: 70%;
+display: -webkit-flex; /* Safari */
+display: flex;
 }
 .form-inline>div{
-    -webkit-flex: 1;  /* Safari 6.1+ */
-    -ms-flex: 1;  /* IE 10 */
-    flex: 1;
+-webkit-flex: 1;  /* Safari 6.1+ */
+-ms-flex: 1;  /* IE 10 */
+flex: 1;
 }
 .form-control{
-    height: 30px;
-    width: 95% !important;
-    background-color: #fff;
-    border-left: 0px !important;
-    padding: 5px 2px;
-    box-shadow:  inset 0px 0px 0px 0px;
-    box-shadow: 2px 1px 1px 0px #9A9A9A;
+height: 30px;
+width: 95% !important;
+background-color: #fff;
+border-left: 0px !important;
+padding: 5px 2px;
+box-shadow:  inset 0px 0px 0px 0px;
+box-shadow: 2px 1px 1px 0px #9A9A9A;
 }
 .input-group,.input-group input{
-    height: 35px;
+height: 35px;
 }
 .input-group-addon{
-    background-color: #fff;
-    border-right: 0px !important;
-    padding: 4px;
-    box-shadow: 2px 1px 1px 0px #9A9A9A;
+background-color: #fff;
+border-right: 0px !important;
+padding: 4px;
+box-shadow: 2px 1px 1px 0px #9A9A9A;
 }
 .btn-default{
-    background-color: #FFB516;
-    width: 89px;
-    height: 35px;
-    padding-top: 4px;
-    border-radius: 2px;
-    box-shadow: 1px 1px 2px 1px #7B7979;
-    color: #fff;
-    font-weight: bold;
+background-color: #FFB516;
+width: 89px;
+height: 35px;
+padding-top: 4px;
+border-radius: 2px;
+box-shadow: 1px 1px 2px 1px #7B7979;
+color: #fff;
+font-weight: bold;
 }
+
+
+
+
+
+/*******coneten******/
+.content{
+    padding: 22px;
+}
+.content-header{
+    font-size: 22px;
+    color: #686868;
+}
+a.content-header:hover{
+    color: #686868;
+}
+.video-tutorial{
+    background: url("/bundles/nxtcarmain/images/home-new-video.png") no-repeat 50% 50%;
+    width: 100%;
+    height: 135px;
+    cursor: pointer;
+}
+.home-video-play{
+    background: url("/bundles/nxtcarmain/images/home-video-play.png") no-repeat 40% 70%;
+    width: 100%;
+    height: 100%;
+}
+
+/*******coneten end******/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /****** footer   ******/
 footer {
     background-color: #BBE5FB;
@@ -293,9 +335,10 @@ footer {
     padding: 10px 0px 10px 23px;
 }
 .footer-content a{
-    color: #4A4A4A;
-    font-size: 11px;
-    text-shadow: 1px 1px 1px #C7C7C7;
+    color: #484848;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: 1px 1px 1px #D6D0DC7;
 }
 
 .img-rounded {
