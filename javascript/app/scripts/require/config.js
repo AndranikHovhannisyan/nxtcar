@@ -6,6 +6,7 @@ require.config({
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
         'jquery-ui': '/app/bower_components/jquery-ui/jquery-ui.min',
+        'jquery-datepicker': '/app/bower_components/jquery-ui/ui/datepicker',
         'bootstrap': '/app/bower_components/bootstrap/dist/js/bootstrap.min',
         'angular': '/app/bower_components/angular/angular.min',
         'angular-resource': '/app/bower_components/angular-resource/angular-resource.min',
@@ -38,7 +39,8 @@ require.config({
         'jquery': {
             exports: "$"
         },
-        'jquery-ui': [],
+        'jquery-ui': ['jquery'],
+        'jquery-datepicker': ['jquery'],
         'angular-animate': ['angular'],
         'angular-resource': ['angular'],
         'nanoscroller': ['jquery','angular'],

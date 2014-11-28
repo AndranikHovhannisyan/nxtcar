@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_offer.css") }}">
+    <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
 {% endblock %}
 
 {% block AngularController %}ng-controller="RideController"{% endblock %}
@@ -23,11 +24,11 @@
                         </div>
                         <div class="radios">
                             <label  class="radio radio-left float-left">
-                                <input type="radio" name="radio" checked="checked">
+                                <input type="radio" data-ng-model="Ride.trip" value="0" name="radio" checked="checked">
                                  One-time trip
                             </label>
                             <label  class="radio label-right float-right">
-                                <input type="radio" name="radio">
+                                <input type="radio" data-ng-model="Ride.trip" value="1" name="radio">
                                 Recurring trip
                             </label>
                         </div>
@@ -47,7 +48,6 @@
                                placeholder="Your departure point (address, city, station...)">
 
                             <p class="helper">Example: Canary Wharf, London</p>
-
                             <input type="text"
                                class="to tip input"
                                google-places-autocomplete
@@ -86,7 +86,7 @@
                             <p class="date-and-time">Date and time</p>
                             <div class="">
                                 <label  class="label-round-trip">
-                                    <input type="checkbox"  class="trip-mode simple-round-choice"  checked="checked">
+                                    <input type="checkbox" data-ng-model="Ride.Round" class="trip-mode simple-round-choice" checked="checked">
                                     Round trip
                                 </label>
                             </div>
@@ -96,7 +96,7 @@
                                 <label  class=" control-label">Departure date:</label>
                                 <div  class="departure-date">
                                     <div class="input-date">
-                                        <input type="text" class="input date-picker " placeholder="DD/MM/YYYY" >
+                                        <input type="text" datepicker class="input date-picker" placeholder="DD/MM/YYYY" >
                                     </div>
                                     <select  class="time-select">
                                         <option value="" selected="selected"></option>

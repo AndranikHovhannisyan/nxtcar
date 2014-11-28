@@ -91,7 +91,8 @@ define([],function(){
                             }
                             switch (scope.placeType){
                                 case FIRST_PLACE:
-                                    if(scope.places.length && scope.places[0].placeType !== FIRST_PLACE){
+                                    if((scope.places.length && scope.places[0].placeType !== FIRST_PLACE)
+                                        || angular.isUndefined(scope.places[0].placeType)){
                                         scope.places.splice(0,0,scope.place);
                                     }
                                     else {
@@ -109,7 +110,7 @@ define([],function(){
                                         }
                                     }
                                     else {
-                                        if( angular.isDefined(scope.places[scope.places.length-1]) &&
+                                        if(angular.isDefined(scope.places[scope.places.length-1]) &&
                                             scope.places[scope.places.length-1].placeType === LAST_PLACE){
                                             index = scope.places.length-1;
                                         }

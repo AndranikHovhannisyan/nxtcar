@@ -13,5 +13,22 @@ define([],function(){
         return $resource('/api/ride/:where/:what',{},{
 
         });
+    })
+    .directive("datepicker",function(){
+        return {
+            restrict: "A",
+            scope: true,
+            compile: function compileFn(){
+                return function linkFn(scope,el){
+                    el.datepicker({
+                        dateFormat: 'dd/mm/yy',
+                        onSelect: function(date){
+                            scope.ngModel = date;
+                            scope.$apply();
+                        }
+                    });
+                }
+            }
+        }
     });
 })
