@@ -96,7 +96,7 @@
                                 <label  class=" control-label">Departure date:</label>
                                 <div  class="departure-date">
                                     <div class="input-date">
-                                        <input type="text" datepicker class="input date-picker" placeholder="DD/MM/YYYY" >
+                                        <input type="text" datepicker data-ng-model="dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
                                     </div>
                                     <select  class="time-select">
                                         <option value="" selected="selected"></option>
@@ -110,7 +110,7 @@
                                 <br>
                                 <label  class=" control-label">Return date:</label><br>
                                 <div class="input-date">
-                                    <input type="text" class="input date-picker hasDatepicker" placeholder="DD/MM/YYYY" >
+                                    <input type="text" class="input date-picker" datepicker data-ng-model="dateTo" placeholder="DD/MM/YYYY"/>
                                 </div>
                                 <select  class="time-select">
                                     <option value="" selected="selected">11</option>
