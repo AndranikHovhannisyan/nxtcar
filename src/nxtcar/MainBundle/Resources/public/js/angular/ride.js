@@ -17,7 +17,9 @@ define([],function(){
     .directive("datepicker",function(){
         return {
             restrict: "A",
-            scope: true,
+            scope: {
+                ngModel: '='
+            },
             compile: function compileFn(){
                 return function linkFn(scope,el){
                     el.datepicker({

@@ -43,7 +43,7 @@
                                class="input from tip"
                                google-places-autocomplete
                                place-type="1"
-                               places="places"
+                               places="Ride.places"
                                map="map"
                                placeholder="Your departure point (address, city, station...)">
 
@@ -52,7 +52,7 @@
                                class="to tip input"
                                google-places-autocomplete
                                place-type="2"
-                               places="places"
+                               places="Ride.places"
                                map="map"
                                placeholder="Your arrival point (address, city, station...)"  >
 
@@ -64,7 +64,7 @@
                                             <input type="text"
                                                google-places-autocomplete
                                                place-type="3"
-                                               places="places"
+                                               places="Ride.places"
                                                map="map"
                                                class="input remove-input"
                                                placeholder="Add cities on your route">
@@ -96,39 +96,38 @@
                                 <label  class=" control-label">Departure date:</label>
                                 <div  class="departure-date">
                                     <div class="input-date">
-                                        <input type="text" datepicker data-ng-model="Ride.dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
+                                        <input type="text" datepicker ng-model="Ride.dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
                                     </div>
-                                    <select  class="time-select">
-                                        <option value="" selected="selected"></option>
-                                        <option value="0">00</option>
+                                    <select class="time-select" data-ng-model="Ride.departure.hour">
+                                        <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
                                     </select>:
-                                    <select  class="time-select">
-                                        <option value="" selected="selected"></option>
-                                        <option value="0">00</option>
+                                    <select class="time-select" data-ng-model="Ride.departure.minute">
+                                        <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                     </select>
                                 </div>
                                 <br>
                                 <label  class=" control-label">Return date:</label><br>
                                 <div class="input-date">
-                                    <input type="text" class="input date-picker" datepicker data-ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
+                                    <input type="text" class="input date-picker" datepicker ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
                                 </div>
-                                <select  class="time-select">
-                                    <option value="" selected="selected">11</option>
-                                    <option value="0">00</option>
+                                <select class="time-select" data-ng-model="Ride.return.hour">
+                                    <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
                                 </select> :
-                                <select class="time-select">
-                                    <option value="" selected="selected"></option>
-                                    <option value="0">00</option>
+                                <select class="time-select" data-ng-model="Ride.return.minute">
+                                    <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                 </select>
                             </section>
                         </section>
                     </fieldset>
-                    <a href="javascript:void(0)">Continue</a>
+                    <form action="#" method="POST">
+                        <button type="submit">Continue</button>
+                        <input type="hidden" name="ride" value="[[ Ride ]]"/>
+                    </form>
                 </div>
                 <div class="col-md-4">
                     <div>
                         <p>Route itinerary</p>
-                        <google-map places="places" map="map" style="width:342px;height:385px;display:block"></google-map>
+                        <google-map places="Ride.places" map="map" style="width:342px;height:385px;display:block"></google-map>
                     </div>
                 </div>
             </div>

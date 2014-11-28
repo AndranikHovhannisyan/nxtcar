@@ -82,9 +82,7 @@ define([],function(){
                             }
                             scope.place = {
                                 formatted_name: place.formatted_address,
-                                address_components: place.address_components,
                                 location: place.geometry.location,
-                                default_icon: place.icon,
                                 city_name: place.name,
                                 placeType: scope.placeType,
                                 stopover: true
@@ -92,7 +90,7 @@ define([],function(){
                             switch (scope.placeType){
                                 case FIRST_PLACE:
                                     if((scope.places.length && scope.places[0].placeType !== FIRST_PLACE)
-                                        || angular.isUndefined(scope.places[0].placeType)){
+                                        || (scope.places.length && angular.isUndefined(scope.places[0].placeType))){
                                         scope.places.splice(0,0,scope.place);
                                     }
                                     else {
