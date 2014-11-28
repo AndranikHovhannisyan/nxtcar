@@ -30,4 +30,10 @@ class Comment extends BaseComment
      * @ORM\ManyToOne(targetEntity="Thread")
      */
     protected $thread;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    protected $author;
 }
