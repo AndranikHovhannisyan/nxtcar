@@ -170,6 +170,9 @@ label {
 .recurring .ui-datepicker {
     display: inline-block !important;
 }
+.recurring .ui-datepicker td {
+    padding: 0 !important;
+}
 
 .recurring .blue-day a {
     background: #c5f0ff;
