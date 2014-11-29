@@ -21,7 +21,7 @@ define([],function(){
                 ngModel: '='
             },
             compile: function compileFn(){
-                return function linkFn(scope,el){
+                return function linkFn(scope,el,attrs){
                     el.datepicker({
                         dateFormat: 'dd/mm/yy',
                         onSelect: function(date){
