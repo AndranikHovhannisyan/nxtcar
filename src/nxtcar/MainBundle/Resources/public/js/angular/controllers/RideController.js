@@ -26,12 +26,16 @@ define([],function(){
                 }
                 angular.element('.currency').html(d.currency);
             },true);
-            /*-----------------------------*/
+            /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){
                 if(angular.isUndefined(index) || !angular.isNumber(index)) {
                     return;
                 }
                 $scope.cities.splice(index,1);
             }
+
+            $scope.$watch('[outWeek,returnWeek]',function(d){
+                console.log(d);
+            },true)
         });
 })
