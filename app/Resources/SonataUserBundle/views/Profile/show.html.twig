@@ -42,32 +42,35 @@
                 </ul>
             </div>
 
-            <div class="main-column-block">
-                <h3 class="main-column-title">Your car</h3>
-                <div class="div-img-car">
-                    <img src="{{ asset("/bundles/nxtcarmain/images/car.png") }}" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
+            {% if user.car is not empty %}
+                <div class="main-column-block">
+                    <h3 class="main-column-title">Your car</h3>
+                    <div class="div-img-car">
+                        <img src="{{ asset("/bundles/nxtcarmain/images/car.png") }}" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
+                    </div>
+                    <div class="car-stars">
+
+                        <span>{{ user.car.first.model.brand.title }} {{ user.car.first.model.title }}</span>
+
+                        {% for i in 1..(user.car.first.comfort + 1) %}
+                            <img src="{{ asset("/bundles/nxtcarmain/images/star-car.png") }}" width="15" height="15" >
+                        {% endfor %}
+                    </div>
+
+                    {% if user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_BASIC') %}
+                        {% set comfort = 'Basic' %}
+                    {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_NORMAL') %}
+                        {% set comfort = 'Normal' %}
+                    {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_COMFORTABLE') %}
+                        {% set comfort = 'Comfortable' %}
+                    {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_LUXURY') %}
+                        {% set comfort = 'Luxury' %}
+                    {% endif %}
+
+                    <p>Colour: {{ user.car.first.color.title }}</p>
+                    <p>Comfort: {{ comfort }}</p>
                 </div>
-                <div class="car-stars">
-                    <span>{{ user.car.first.model.brand.title }} {{ user.car.first.model.title }}</span>
-
-                    {% for i in 1..(user.car.first.comfort + 1) %}
-                        <img src="{{ asset("/bundles/nxtcarmain/images/star-car.png") }}" width="15" height="15" >
-                    {% endfor %}
-                </div>
-
-                {% if user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_BASIC') %}
-                    {% set comfort = 'Basic' %}
-                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_NORMAL') %}
-                    {% set comfort = 'Normal' %}
-                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_COMFORTABLE') %}
-                    {% set comfort = 'Comfortable' %}
-                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_LUXURY') %}
-                    {% set comfort = 'Luxury' %}
-                {% endif %}
-
-                <p>Colour: {{ user.car.first.color.title }}</p>
-                <p>Comfort: {{ comfort }}</p>
-            </div>
+            {% endif %}
         </div>
         <div class="col-xs-8 user-information">
 
