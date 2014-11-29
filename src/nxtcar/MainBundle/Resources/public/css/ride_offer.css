@@ -167,8 +167,24 @@ label {
 .left-block {
     width: 60% !important;
 }
+.recurring .ui-datepicker {
+    display: inline-block !important;
+}
 
-
+.recurring .blue-day a {
+    background: #c5f0ff;
+}
+.recurring .green-day a {
+    background: #adde71;
+}
+.recurring .blue-green-day a {
+    background: linear-gradient(-40deg,#c5f0ff 43%, #adde71 50%);
+}
+.recurring .blue-day a,.recurring .blue-green-day a,.recurring .green-day a {
+    box-shadow: inset 1px 1px 2px rgb(190, 190, 190);
+    -webkit-box-shadow: inset 1px 1px 2px rgb(190, 190, 190);
+    -moz-box-shadow: inset 1px 1px 2px rgb(190, 190, 190);
+}
 
 
 

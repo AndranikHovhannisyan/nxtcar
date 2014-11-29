@@ -33,9 +33,5 @@ define([],function(){
                 }
                 $scope.cities.splice(index,1);
             }
-
-            $scope.$watch('[outWeek,returnWeek]',function(d){
-                console.log(d);
-            },true)
         });
 })

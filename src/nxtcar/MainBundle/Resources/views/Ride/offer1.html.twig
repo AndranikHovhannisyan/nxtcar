@@ -121,15 +121,33 @@
 
                                 <div data-ng-show="Ride.trip==1" class="ng-hide">
                                     <div>
-                                        <label class="control-label" data-ng-if="Ride.Round">Outbound days</label>
+                                        <label class="control-label">Outbound days</label>
                                         <div class="btn-group" data-toggle="buttons-checkbox">
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Mon']=!outWeek['Mon']">Mon</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Tue']=!outWeek['Tue']">Tue</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Wed']=!outWeek['Wed']">Wed</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Thu']=!outWeek['Thu']">Thu</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Fri']=!outWeek['Fri']">Fri</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Sat']=!outWeek['Sat']">Sat</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['Sun']=!outWeek['Sun']">Sun</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['1']=!outWeek['1']">Mon</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['2']=!outWeek['2']">Tue</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['3']=!outWeek['3']">Wed</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['4']=!outWeek['4']">Thu</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['5']=!outWeek['5']">Fri</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['6']=!outWeek['6']">Sat</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="outWeek['0']=!outWeek['0']">Sun</button>
+                                        </div>
+                                        <select class="time-select" data-ng-model="Ride.outboundRecurring.hour">
+                                            <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
+                                        </select> :
+                                        <select class="time-select" data-ng-model="Ride.outboundRecurring.minute">
+                                            <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="control-label">Return days</label>
+                                        <div class="btn-group" data-toggle="buttons-checkbox">
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['1']=!returnWeek['1']">Mon</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['2']=!returnWeek['2']">Tue</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['3']=!returnWeek['3']">Wed</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['4']=!returnWeek['4']">Thu</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['5']=!returnWeek['5']">Fri</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['6']=!returnWeek['6']">Sat</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['0']=!returnWeek['0']">Sun</button>
                                         </div>
                                         <select class="time-select" data-ng-model="Ride.returnRecurring.hour">
                                             <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
@@ -138,32 +156,15 @@
                                             <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <label class="control-label" data-ng-if="Ride.Round">Return days</label>
-                                        <div class="btn-group" data-toggle="buttons-checkbox">
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Mon']=!returnWeek['Mon']">Mon</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Tue']=!returnWeek['Tue']">Tue</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Wed']=!returnWeek['Wed']">Wed</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Thu']=!returnWeek['Thu']">Thu</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Fri']=!returnWeek['Fri']">Fri</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Sat']=!returnWeek['Sat']">Sat</button>
-                                            <button type="button" class="btn btn-primary" data-ng-click="returnWeek['Sun']=!returnWeek['Sun']">Sun</button>
+                                    <div class="recurring">
+                                        <div class="input-date">
+                                            Starting from:
+                                            <input type="text" datepicker ng-model="Ride.dateRecurringFrom" class="input date-picker" ng-init="Ride.dateRecurringFrom='{{ "now" | date("d/m/Y") }}'" placeholder="DD/MM/YYYY"/>
+                                            Until:
+                                            <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="DD/MM/YYYY"/>
                                         </div>
-                                        <select class="time-select" data-ng-model="Ride.returnRecurring.hour">
-                                            <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
-                                        </select> :
-                                        <select class="time-select" data-ng-model="Ride.returnRecurring.minute">
-                                            <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
-                                        </select>
-                                    </div>
-                                    <div>
                                         <div>
-                                            <div class="input-date">
-                                                Starting from:
-                                                <input type="text" datepicker ng-model="Ride.dateRecurringFrom" class="input date-picker" ng-init="Ride.dateRecurringFrom='{{ "now" | date("d/m/YY") }}'" placeholder="DD/MM/YYYY"/>
-                                                Until:
-                                                <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="DD/MM/YYYY"/>
-                                            </div>
+                                            <div alt-datepicker out-week="outWeek" return-week="returnWeek"></div>
                                         </div>
                                     </div>
                                 </div>
