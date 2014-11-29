@@ -93,8 +93,8 @@
                         </div>
                         <section id="publication-unique" class="main-block-content" style="display: block;">
                             <section class="date-time">
-                                <label  class=" control-label">Departure date:</label>
-                                <div  class="departure-date">
+                                <label class="control-label">Departure date:</label>
+                                <div class="departure-date">
                                     <div class="input-date">
                                         <input type="text" datepicker ng-model="Ride.dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
                                     </div>
@@ -106,16 +106,16 @@
                                     </select>
                                 </div>
                                 <br>
-                                <label  class=" control-label">Return date:</label><br>
-                                <div class="input-date">
+                                <label class="control-label" data-ng-if="Ride.Round">Return date:</label><br>
+                                <div class="input-date" data-ng-if="Ride.Round">
                                     <input type="text" class="input date-picker" datepicker ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
+                                    <select class="time-select" data-ng-model="Ride.return.hour">
+                                        <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
+                                    </select> :
+                                    <select class="time-select" data-ng-model="Ride.return.minute">
+                                        <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
+                                    </select>
                                 </div>
-                                <select class="time-select" data-ng-model="Ride.return.hour">
-                                    <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
-                                </select> :
-                                <select class="time-select" data-ng-model="Ride.return.minute">
-                                    <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
-                                </select>
                             </section>
                         </section>
                     </fieldset>
