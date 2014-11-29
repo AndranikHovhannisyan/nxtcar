@@ -36,8 +36,8 @@
 
                     <li class="	img-calendar tip" title="">
                         <span class="span">
-                            Member since: 11 November 2014
-								</span>
+                            Member since: {{ app.user.createdAt.date|date('d M Y') }}
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -45,38 +45,95 @@
             <div class="main-column-block">
                 <h3 class="main-column-title">Your car</h3>
                 <div class="div-img-car">
-                    <img class="img-car" src="../img/car.png">
+                    <img src="{{ asset("/bundles/nxtcarmain/images/car.png") }}" width="148" height="108" style="width:148px; height:108px" class="user-vehicle">
                 </div>
                 <div class="car-stars">
-                    <span >Mercedes 408</span>
-                    <img src="../img/car-star.png">
-                    <img src="../img/car-star.png">
+                    <span>{{ user.car.first.model.brand.title }} {{ user.car.first.model.title }}</span>
+
+                    {% for i in 1..(user.car.first.comfort + 1) %}
+                        <img src="{{ asset("/bundles/nxtcarmain/images/star-car.png") }}" width="15" height="15" >
+                    {% endfor %}
                 </div>
-                <p>Colour: black</p>
-                <p>Comfort: Normal</p>
+
+                {% if user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_BASIC') %}
+                    {% set comfort = 'Basic' %}
+                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_NORMAL') %}
+                    {% set comfort = 'Normal' %}
+                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_COMFORTABLE') %}
+                    {% set comfort = 'Comfortable' %}
+                {% elseif user.car.first.comfort == constant('nxtcar\\MainBundle\\Entity\\Car::COMFORT_LUXURY') %}
+                    {% set comfort = 'Luxury' %}
+                {% endif %}
+
+                <p>Colour: {{ user.car.first.color.title }}</p>
+                <p>Comfort: {{ comfort }}</p>
             </div>
         </div>
         <div class="col-xs-8 user-information">
 
             <div>
+
+                {% if app.user is not null and app.user.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+                {% else %}
+                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                {% endif %}
+
                 <div class="user-man-img">
-                    <img src="../img/user-man.png">
+                    <img src="{{ photo }}" width="144" height="144">
                 </div>
 
                 <div class="user">
-                    <h3>Andranik H <span>(24 years old) </span> <a><i class=" bbc-icon2-flag"></i></a></h3>
+                    <h3>
+                        {{ app.user.displayedAs }}
+                        <span>({{ ("now" | date("Y")) - user.yearOfBirth }} years old) </span> <a><i class=" bbc-icon2-flag"></i></a>
+                    </h3>
                     <p>Average rating: No ratings yet!</p><br>
                     <p>My preferences</p><br>
-                    <p>I am</p>
+                    <p>
+                        I am
+                        {% if user.chattiness == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}">
+                        {% elseif user.chattiness == 1 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-blabla-large.png') }}">
+                        {% elseif user.chattiness == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-blablabla-large.png') }}">
+                        {% endif %}
+
+
+                        {% if user.music == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
+                        {% elseif user.music == 1 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-maybe-large.png') }}">
+                        {% elseif user.music == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}">
+                        {% endif %}
+
+
+                        {% if user.smoking == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}">
+                        {% elseif user.smoking == 1 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-maybe-large.png') }}">
+                        {% elseif user.smoking == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}">
+                        {% endif %}
+
+
+                        {% if user.pets == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}">
+                        {% elseif user.pets == 1 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-maybe-large.png') }}">
+                        {% elseif user.pets == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}">
+                        {% endif %}
+
+                    </p>
                 </div>
             </div>
             <div class="span8 dashboard-notifications-messages">
                 <div class="">
                     <h3 class="h3-sorry">Sorry! I haven't given a mini bio yet</h3>
                 </div>
-
-
-
 
             </div>
         </div>

@@ -8,4 +8,31 @@
 
 {% block content %}
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
+
+    <div>
+
+        {% if app.user is not null and app.user.photo is not null %}
+            {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+        {% else %}
+            {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+        {% endif %}
+
+        {% for question in questions %}
+
+            <div class="col-md-2">
+                <img src="{{ photo }}" width="70" height="70">
+            </div>
+
+            <div>
+                {{ question.body }}
+                <br>
+                {{ question.createdAt.date|date('D d M Y h:i') }}
+            </div>
+
+            <br><br>
+
+        {% endfor %}
+
+    </div>
+
 {% endblock %}
