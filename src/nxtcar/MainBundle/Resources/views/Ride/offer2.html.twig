@@ -1,5 +1,177 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_offer.css") }}">
+    <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
+{% endblock %}
+
+{% block AngularController %}ng-controller="RideController"{% endblock %}
+
 {% block content %}
-    ghdghdghdghdgh
+
+
+
+
+
+    <div class="publication-container">
+        <h3>Offer a ride on your next long journey</h3>
+        <span class="my-schedule"><b {#class="b-my-schedule"#}>My schedule</b></span>
+        <div class="my-schedule-1">
+            <span class="span-1">1</span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 left-block">
+                <fieldset class="main-block">
+                    <div class="header-main-block">
+                        <p>Price per passenger</p>
+                    </div>
+                    <div class="">
+                        <ul class="form-to-price">
+                            <li >
+                                <div class="marker-1 marker"></div>
+                                <span class="from-to ">From → to</span>
+									<span class="price">
+										<span class="add-on">£</span>
+										<input type="text" class="number" value="222">
+										<span class="add-sub-bt">
+											<button class="btn-plus"></button><!--<br>-->
+											<button class="btn-minus"></button>
+										</span>
+									</span>
+                            </li>
+                            <li class="">
+                                <div class="marker-2 marker"></div>
+                                <span class="from-to ">From → to</span>
+									<span class="price">
+										<span class="add-on">£</span>
+										<input type="text" class="number" value="222">
+										<span class="add-sub-bt">
+											<button class="btn-plus"></button>
+											<button class="btn-minus"></button>
+										</span>
+									</span>
+                            </li>
+                            <li>
+                                <span class="from-to ">From → to</span>
+									<span class="price">
+										<span class="add-on ">£</span>
+										<div  class="number" >222</div><!--
+										<input type="text" class="number" value="222">-->
+
+									</span>
+                                <br>
+                                <small class="price-normally ">(price normally asked: £208)</small>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </fieldset>
+                <fieldset class="main-block">
+                    <div class="header-main-block">
+                        <p>Exact route</p>
+                    </div>
+
+                    <section class="main-block-content">
+                        <input type="text"
+                               class="input from tip"
+                               google-places-autocomplete
+                               place-type="1"
+                               places="Ride.places"
+                               map="map"
+                               placeholder="Your departure point (address, city, station...)">
+
+                        <p class="helper">Example: Canary Wharf, London</p>
+                        <input type="text"
+                               class="to tip input"
+                               google-places-autocomplete
+                               place-type="2"
+                               places="Ride.places"
+                               map="map"
+                               placeholder="Your arrival point (address, city, station...)"  >
+
+                        <section class="stages-container clearfix">
+                            <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
+                            <div class="div-input">
+                                <ul ui-sortable ng-model="cities">
+                                    <li data-ng-repeat="(k,city) in cities">
+                                        <input type="text"
+                                               google-places-autocomplete
+                                               place-type="3"
+                                               places="Ride.places"
+                                               map="map"
+                                               class="input remove-input"
+                                               placeholder="Add cities on your route">
+                                        <a class="close tip" href="javascript:void(0)" data-ng-click="removeCity(k)" title="Remove this stopover">×</a>
+                                        <a class="close move-span tip" href="javascript:void(0)" title="Remove this stopover"></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="stage-add" data-ng-click="cities.push({name: ''});">
+                                <a href="javascript:void(0)" class="plus-button tip">+</a>
+                                Add more cities on your route
+                            </div>
+                        </section>
+                    </section>
+                </fieldset>
+                <fieldset class="main-block">
+                    <div class="header-main-block clearfix">
+                        <p class="date-and-time">Date and time</p>
+                        <div class="">
+                            <label  class="label-round-trip">
+                                <input type="checkbox" data-ng-model="Ride.Round" ng-init="Ride.Round=true" class="trip-mode simple-round-choice" checked="checked">
+                                Round trip
+                            </label>
+                        </div>
+                    </div>
+                    <section id="publication-unique" class="main-block-content" style="display: block;">
+                        <section class="date-time">
+                            <label  class=" control-label">Departure date:</label>
+                            <div  class="departure-date">
+                                <div class="input-date">
+                                    <input type="text" datepicker ng-model="Ride.dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
+                                </div>
+                                <select class="time-select" data-ng-model="Ride.departure.hour">
+                                    <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
+                                </select>:
+                                <select class="time-select" data-ng-model="Ride.departure.minute">
+                                    <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
+                                </select>
+                            </div>
+                            <br>
+                            <label  class=" control-label">Return date:</label><br>
+                            <div class="input-date">
+                                <input type="text" class="input date-picker" datepicker ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
+                            </div>
+                            <select class="time-select" data-ng-model="Ride.return.hour">
+                                <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
+                            </select> :
+                            <select class="time-select" data-ng-model="Ride.return.minute">
+                                <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
+                            </select>
+                        </section>
+                    </section>
+                </fieldset>
+                <form action="#" method="POST">
+                    <button type="submit">Continue</button>
+                    <input type="hidden" name="ride" value="[[ Ride ]]"/>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <p>Route itinerary</p>
+                    <google-map places="Ride.places" map="map" style="width:342px;height:385px;display:block"></google-map>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}
