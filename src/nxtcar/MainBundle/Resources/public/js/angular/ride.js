@@ -39,7 +39,8 @@ define([],function(){
             scope: {
                 ngModel: '=',
                 outWeek: "=",
-                returnWeek: "="
+                returnWeek: "=",
+                tripWeek: "="
             },
             compile: function compileFn(){
                 return function linkFn(scope,el,attrs){
@@ -54,12 +55,16 @@ define([],function(){
                         }
                     });
 
-                    scope.$watch('[outWeek,returnWeek]',function(d){
-                        if(angular.isUndefined(d[0]) && angular.isUndefined(d[1])){
+                    scope.$watch('[outWeek,returnWeek,tripWeek]',function(d){
+                        if(angular.isUndefined(d[0]) && angular.isUndefined(d[1]) && angular.isUndefined(d[2])){
                             return;
                         }
                         el.datepicker("option","beforeShowDay",function(date){
                             var className = '';
+                            if(angular.isDefined(d[2]) && d[2][date.getDay()]){
+                                className = 'green-day';
+                                return [true,className,null];
+                            }
                             if(angular.isDefined(d[0]) && d[0][date.getDay()]){
                                 className = 'blue-day';
                             }

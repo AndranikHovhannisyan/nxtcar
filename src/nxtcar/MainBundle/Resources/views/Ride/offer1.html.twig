@@ -107,8 +107,8 @@
                                         </select>
                                     </div>
                                     <br>
-                                    <label class="control-label" data-ng-if="Ride.Round">Return date:</label><br>
-                                    <div class="input-date" data-ng-if="Ride.Round">
+                                    <label class="control-label" data-ng-show="Ride.Round">Return date:</label><br>
+                                    <div class="input-date" data-ng-show="Ride.Round">
                                         <input type="text" class="input date-picker" datepicker ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
                                         <select class="time-select" data-ng-model="Ride.return.hour">
                                             <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div data-ng-show="Ride.trip==1" class="ng-hide">
-                                    <div>
+                                    <div data-ng-show="Ride.Round">
                                         <label class="control-label">Outbound days</label>
                                         <div class="btn-group" data-toggle="buttons-checkbox">
                                             <button type="button" class="btn btn-primary" data-ng-click="outWeek['1']=!outWeek['1']">Mon</button>
@@ -138,7 +138,7 @@
                                             <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                         </select>
                                     </div>
-                                    <div>
+                                    <div data-ng-show="Ride.Round">
                                         <label class="control-label">Return days</label>
                                         <div class="btn-group" data-toggle="buttons-checkbox">
                                             <button type="button" class="btn btn-primary" data-ng-click="returnWeek['1']=!returnWeek['1']">Mon</button>
@@ -156,6 +156,24 @@
                                             <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                         </select>
                                     </div>
+                                    <div data-ng-show="!Ride.Round">
+                                        <label class="control-label">Trip days</label>
+                                        <div class="btn-group" data-toggle="buttons-checkbox">
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['1']=!tripWeek['1']">Mon</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['2']=!tripWeek['2']">Tue</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['3']=!tripWeek['3']">Wed</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['4']=!tripWeek['4']">Thu</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['5']=!tripWeek['5']">Fri</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['6']=!tripWeek['6']">Sat</button>
+                                            <button type="button" class="btn btn-primary" data-ng-click="tripWeek['0']=!tripWeek['0']">Sun</button>
+                                        </div>
+                                        <select class="time-select" data-ng-model="Ride.tripRecurring.hour">
+                                            <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
+                                        </select> :
+                                        <select class="time-select" data-ng-model="Ride.tripRecurring.minute">
+                                            <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
+                                        </select>
+                                    </div>
                                     <div class="recurring">
                                         <div class="input-date">
                                             Starting from:
@@ -164,7 +182,7 @@
                                             <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="DD/MM/YYYY"/>
                                         </div>
                                         <div>
-                                            <div alt-datepicker out-week="outWeek" return-week="returnWeek"></div>
+                                            <div alt-datepicker out-week="outWeek" return-week="returnWeek" trip-week="tripWeek"></div>
                                         </div>
                                     </div>
                                 </div>
