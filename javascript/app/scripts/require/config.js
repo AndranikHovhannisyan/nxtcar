@@ -2,7 +2,7 @@
 
 require.config({
     basUrl: "",
-    //urlArgs: 'v='+(new Date()).getTime(),
+    urlArgs: 'v='+(new Date()).getTime(),
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
         'jquery-ui': '/app/bower_components/jquery-ui/jquery-ui.min',
@@ -46,7 +46,7 @@ require.config({
         'nanoscroller': ['jquery','angular'],
         'angular-strap': ['angular'],
         'angular-strap-tpl': ['angular'],
-        'bootstrap': ['angular'],
+        'bootstrap': ['jquery'],
         'ui.sortable': ['angular','jquery'],
         //------------------------------------------------------------------//
         'Facebook': ['angular'],

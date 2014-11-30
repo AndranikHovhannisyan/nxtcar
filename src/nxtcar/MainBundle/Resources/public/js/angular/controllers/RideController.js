@@ -19,6 +19,12 @@ define([],function(){
                 }
             }
 
+            $scope.$watch('Ride.Round',function(){
+                angular.element(".date-time .btn-group button").removeClass("active");
+                $scope.Ride.tripWeek=[];
+                $scope.Ride.outWeek=[];
+                $scope.Ride.returnWeek=[];
+            },false)
             /*-----------------------------*/
             $scope.$watch('choosenCountry',function(d){
                 if(angular.isUndefined(d)){
@@ -26,7 +32,7 @@ define([],function(){
                 }
                 angular.element('.currency').html(d.currency);
             },true);
-            /*-----------------------------*/
+            /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){
                 if(angular.isUndefined(index) || !angular.isNumber(index)) {
                     return;

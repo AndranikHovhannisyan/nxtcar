@@ -37,6 +37,14 @@ class ProfileController extends Controller
      */
     public function messageAction($status)
     {
-        return array('status' => $status);
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        $questions = null;
+        if ($status == 'questions_answers') {
+            $questions = $em->getRepository('nxtcarUserBundle:Comment')->findByAuthor($user);
+        }
+
+        return array('questions' => $questions, 'status' => $status);
     }
 }
