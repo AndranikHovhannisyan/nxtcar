@@ -19,11 +19,11 @@ define([],function(){
                 }
             }
 
-            $scope.$watch('Ride.Round',function(d){
+            $scope.$watch('Ride.Round',function(){
                 angular.element(".date-time .btn-group button").removeClass("active");
-                $scope.tripWeek=[];
-                $scope.outWeek=[];
-                $scope.returnWeek=[];
+                $scope.Ride.tripWeek=[];
+                $scope.Ride.outWeek=[];
+                $scope.Ride.returnWeek=[];
             },false)
             /*-----------------------------*/
             $scope.$watch('choosenCountry',function(d){
