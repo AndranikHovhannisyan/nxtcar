@@ -92,7 +92,29 @@
                         <span>({{ ("now" | date("Y")) - user.yearOfBirth }} years old) </span> <a><i class=" bbc-icon2-flag"></i></a>
                     </h3>
                     <p>Average rating: No ratings yet!</p><br>
-                    <p>My preferences</p><br>
+                    <p>
+                        My preferences
+
+                        {% if user.music == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
+                        {% elseif user.music == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}">
+                        {% endif %}
+
+                        {% if user.smoking == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}">
+                        {% elseif user.smoking == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}">
+                        {% endif %}
+
+                        {% if user.pets == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}">
+                        {% elseif user.pets == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}">
+                        {% endif %}
+
+                    </p>
+                    <br>
                     <p>
                         I am
                         {% if user.chattiness == 0 %}
@@ -102,34 +124,6 @@
                         {% elseif user.chattiness == 2 %}
                             <img src="{{ asset('bundles/nxtcaruser/images/pref-blablabla-large.png') }}">
                         {% endif %}
-
-
-                        {% if user.music == 0 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
-                        {% elseif user.music == 1 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-maybe-large.png') }}">
-                        {% elseif user.music == 2 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}">
-                        {% endif %}
-
-
-                        {% if user.smoking == 0 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}">
-                        {% elseif user.smoking == 1 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-maybe-large.png') }}">
-                        {% elseif user.smoking == 2 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}">
-                        {% endif %}
-
-
-                        {% if user.pets == 0 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}">
-                        {% elseif user.pets == 1 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-maybe-large.png') }}">
-                        {% elseif user.pets == 2 %}
-                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}">
-                        {% endif %}
-
                     </p>
                 </div>
             </div>
