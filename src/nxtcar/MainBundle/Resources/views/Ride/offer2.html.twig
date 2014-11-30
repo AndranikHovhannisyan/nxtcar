@@ -54,7 +54,7 @@
 										</span>
 									</span>
                             </li>
-                            <li>
+                            <li class="last">
                                 <span class="from-to ">From → to</span>
 									<span class="price">
 										<span class="add-on ">£</span>
@@ -70,51 +70,59 @@
                     </div>
 
                 </fieldset>
+
+
+
+
                 <fieldset class="main-block">
-                    <div class="header-main-block">
-                        <p>Exact route</p>
+
+                    <div class="">
+                        <ul class=" number-of-seats-offered">
+                            <li >
+                                <span class="">Number of seats offered:</span>
+									<span class="price1 number-span">
+										<input type="text" class="number" value="222">
+                                        <span class="add-sub-bt">
+											<button class="btn-plus"></button>
+											<button class="btn-minus"></button>
+										</span>
+									</span>
+                            </li>
+
+
+                        </ul>
+
                     </div>
 
+                </fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <fieldset class="main-block">
+                    <div class="header-main-block">
+                        <h3>Further details</h3>
+                    </div>
+
+
+
                     <section class="main-block-content">
-                        <input type="text"
-                               class="input from tip"
-                               google-places-autocomplete
-                               place-type="1"
-                               places="Ride.places"
-                               map="map"
-                               placeholder="Your departure point (address, city, station...)">
+                        <textarea  class="tip" rows="5"  placeholder="Provide extra information about your ride. More details about the departure/arrival point, what music you listen to, why you are travelling or anything else your passengers should know."></textarea>
 
-                        <p class="helper">Example: Canary Wharf, London</p>
-                        <input type="text"
-                               class="to tip input"
-                               google-places-autocomplete
-                               place-type="2"
-                               places="Ride.places"
-                               map="map"
-                               placeholder="Your arrival point (address, city, station...)"  >
-
-                        <section class="stages-container clearfix">
-                            <p  class=" control-label">Now enter the main cities you will drive through: this is key to connecting you and your passengers</p>
-                            <div class="div-input">
-                                <ul ui-sortable ng-model="cities">
-                                    <li data-ng-repeat="(k,city) in cities">
-                                        <input type="text"
-                                               google-places-autocomplete
-                                               place-type="3"
-                                               places="Ride.places"
-                                               map="map"
-                                               class="input remove-input"
-                                               placeholder="Add cities on your route">
-                                        <a class="close tip" href="javascript:void(0)" data-ng-click="removeCity(k)" title="Remove this stopover">×</a>
-                                        <a class="close move-span tip" href="javascript:void(0)" title="Remove this stopover"></a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="stage-add" data-ng-click="cities.push({name: ''});">
-                                <a href="javascript:void(0)" class="plus-button tip">+</a>
-                                Add more cities on your route
-                            </div>
+                        <p class="helper1">
+                            Your contact details (mobile number &amp; email) already appear in your profile, please do not add them here!
+                            (<a href="#" >See our rules</a>)
+                        </p>
                         </section>
                     </section>
                 </fieldset>

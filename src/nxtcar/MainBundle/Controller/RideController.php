@@ -41,11 +41,30 @@ class RideController extends Controller
         return array();
     }
 
+
     /**
-     * @Route("/ride/{rideId}", name="ride_show")
+     * @Route("/ride/{rideId}", name="ride")
+     * @Template("nxtcarMainBundle:Ride:ride.html.twig")
+     */
+    public function rideAction($rideId, Request $request)
+    {
+
+    }
+
+    /**
+     * @Route("/ride_search_result", name="ride_search")
+     * @Template("nxtcarMainBundle:Ride:ride_search.html.twig")
+     */
+    public function offerSearchAction(Request $request)
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/ride_comment/{rideId}", name="ride_comment")
      * @Template()
      */
-    public function publicMessagesAction($rideId, Request $request)
+    public function offerCommentsAction($rideId, Request $request)
     {
         $id = 'ride_' . $rideId;
         $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
@@ -78,48 +97,10 @@ class RideController extends Controller
 
         $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
 
-        return $this->render('nxtcarMainBundle:Ride:ride.html.twig', array(
+        return $this->render('nxtcarMainBundle:Ride:ride_comment.html.twig', array(
             'comments' => $comments,
             'thread' => $thread,
             'form' => $form->createView()
         ));
-    }
-
-    /**
-     * @param $id
-     * @return mixed
-     * @throws NotFoundHttpException
-     * @Route("/ride/comment/save/{id}", name="ride_comment_save")
-     * @Template()
-     */
-    public function newThreadCommentsAction($id)
-    {
-        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
-        if (!$thread) {
-            throw new NotFoundHttpException(sprintf('Thread with identifier of "%s" does not exist', $id));
-        }
-
-        $comment = $this->container->get('fos_comment.manager.comment')->createComment($thread);
-
-//        $parent = $this->getValidCommentParent($thread, $this->getRequest()->query->get('parentId'));
-
-        $form = $this->container->get('fos_comment.form_factory.comment')->createForm();
-        $form->setData($comment);
-
-        return $this->redirect($this->generateUrl('ride_show', array('id' => 1)));
-
-//
-//
-//        $view = View::create()
-//            ->setData(array(
-//                'form' => $form->createView(),
-//                'first' => 0 === $thread->getNumComments(),
-//                'thread' => $thread,
-//                'parent' => $parent,
-//                'id' => $id,
-//            ))
-//            ->setTemplate(new TemplateReference('FOSCommentBundle', 'Thread', 'comment_new'));
-//
-//        return $this->getViewHandler()->handle($view);
     }
 }

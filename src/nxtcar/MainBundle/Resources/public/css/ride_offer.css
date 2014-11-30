@@ -190,3 +190,208 @@ label {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.my-schedule-1{
+    border-bottom: 2px solid #0ca9fa;
+    display: initial;
+}
+.my-schedule{
+
+}
+.span-1{
+    border: 2px solid #0ca9fa;
+    border-radius: 50%;
+    padding: 0px 0px 0px 5px;
+    margin: -1.4% 0 0 8.35%;
+    display: block;
+    width: 23px;
+    height: 23px;
+}
+.main-block{
+    background: #f1f1e9;
+    margin-bottom: 18px;
+    border: 1px solid #dfdfcd;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+h3,.span3{
+    margin: 0px !important;
+    display: flex !important;
+}
+.header-main-block{
+    border-bottom: 1px solid #d1d1d1;
+    line-height: 39px;
+    padding: 0 0 0 17px;
+    border-bottom: 1px solid #ccc;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+    font-size: 20px;
+    background-color: #fafafa;
+}
+.price{
+    float: right;
+}
+.div-from-to{
+    /*padding: 20px;*/
+    float: left;
+}
+
+.div-price{
+    float: right;
+}
+.form-to-price{
+    padding: 0px;
+    list-style: none;
+}
+.form-to-price li{
+    font-size: 17px;
+    margin:  15px;
+
+}
+.form-to-price .last{
+    padding-top:22px;
+    border-top: 1px solid #C8C8C8;
+    font-weight: 600;
+    line-height: 12px;
+}
+.marker{
+    width: 20px;
+    height: 25px;
+    float: left;
+    background-image:url("/bundles/nxtcarmain/images/markers.png") ;
+}
+.marker-1{
+    background-position:  0 315px;
+}
+.marker-2{
+
+    background-position: 0 390px;
+}
+.tip{
+    width: 100%;
+}
+.helper{
+    background: transparent url("/bundles/nxtcarmain/images/information-inset.png")  no-repeat 0 0;
+    font-size: 13px;
+    margin-bottom: 28px;
+    color: #444;
+    line-height: 18px;
+    text-indent: 22px;
+}
+.add-sub-bt{
+    float: right;
+    margin: 0 5px;
+}
+.btn-plus,
+.btn-minus{
+    height: 16px;
+    width: 16px;
+    border: 0;
+    display: block;
+}
+
+.btn-plus{
+    background:  url("/bundles/nxtcarmain/images/btn-plus.png") no-repeat 0 0;
+}
+.btn-minus{
+    background:  url("/bundles/nxtcarmain/images/btn-minus.png") no-repeat 0 0;
+}
+ .number-span,
+.price{
+    color: #68be57;
+    font-size: 18px;
+}
+.number{
+    width: 60px;
+    padding: 2px 4px;
+    text-align: right;
+    border: 1px solid #C8C8C8;
+    border-top-right-radius:4px ;
+    border-bottom-right-radius:4px ;
+    box-shadow: inset 0px 2px 3px -1px #E0E0E0;
+}
+.add-on{
+    padding: 4px 6px 5px ;
+    margin-right: -6px;
+    background-color:#fff;
+    border: 1px solid #C8C8C8;
+    border-top-left-radius:4px ;
+    border-bottom-left-radius:4px ;
+}
+
+.last .price{
+    color: #c93634;
+    margin-right: 22px;
+}
+.number-span{
+    float: right;
+}
+.number-span .number{
+    border-radius: 4px;
+    color: #000;
+}
+.last .number{
+
+    float: right;
+    cursor: no-drop;
+    margin-top: -9px;
+    padding: 4px 4px;
+    background-color: #eee;
+    box-shadow: 0 0  0;
+    line-height: normal;
+}
+.last .add-on{
+    margin: -1px ;
+    background-color: #eee;
+}
+.price-normally{
+    font-weight: 200;
+    font-size: 13px;
+    color: #989898;
+}
+.number-of-seats-offered{
+    padding: 12px 10px 5px 10px;
+    font-size: 23px;
+}

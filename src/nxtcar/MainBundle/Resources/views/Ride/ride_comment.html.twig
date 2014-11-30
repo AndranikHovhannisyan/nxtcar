@@ -1,0 +1,66 @@
+{% extends "nxtcarMainBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <div id="fos_comment_thread" data-thread="{{ thread.id }}">
+
+        <br>
+        <h3>Public questions {{ thread.numComments }}</h3>
+
+        {% if thread.numComments != 0 %}
+            {% for i in (thread.numComments - 1)..0 %}
+                {% set commentinfo = comments[i] %}
+
+                {# TODO: Id of comment author #}
+                {#{{ commentinfo.comment.author.id }}#}
+
+                {% if commentinfo.comment.author is not null and commentinfo.comment.author.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ commentinfo.comment.author.photo.webpath %}
+                {% else %}
+                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                {% endif %}
+
+                <div class="col-md-2">
+                    <img src="{{ photo }}" width="70" height="70">
+                </div>
+
+                <div>
+                    {% if commentinfo.comment.author is not null %}
+                        {{ commentinfo.comment.author.displayedAs }}
+                    {% else %}
+                        Anonymous
+                    {% endif %}
+                    <br>
+
+                    {{ commentinfo.comment.body }}
+                    <br>
+                    {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
+
+                </div>
+                <br><br><br>
+            {% endfor %}
+        {% endif %}
+
+        {% if app.user is not null and app.user.photo is not null %}
+            {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+        {% else %}
+            {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+        {% endif %}
+
+        <div class="col-md-2">
+            <img src="{{ photo }}" width="70" height="70">
+        </div>
+
+        <div>
+            <form action="#" method="POST">
+                {{ form_widget(form.body) }}
+                <br>
+                <label>type a comment</label>
+                <input type="submit" name="submit"/>
+                {{ form_widget(form._token) }}
+            </form>
+        </div>
+
+    </div>
+
+{% endblock content %}
