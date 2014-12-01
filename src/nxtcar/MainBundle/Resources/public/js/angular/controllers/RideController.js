@@ -24,6 +24,19 @@ define([],function(){
                 $scope.places = json;
             }
 
+            /*--------------------------------------*/
+            $scope.$watch('Ride.prices',function(d){
+                if(angular.isUndefined(d)){
+                    return;
+                }
+                $scope.Ride.WholePrices = 0;
+                angular.forEach(d,function(v){
+                    if(angular.isNumber(parseFloat(v))){
+                        $scope.Ride.WholePrices += parseFloat(v);
+                    }
+                })
+            },true)
+            /*--------------------------------------*/
             $scope.$watch('Ride.Round',function(d){
                 if(angular.isUndefined(d)){
                     return;
