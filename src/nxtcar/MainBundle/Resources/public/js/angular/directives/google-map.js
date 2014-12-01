@@ -123,7 +123,13 @@ define([],function(){
                                     scope.places[index] = angular.copy(scope.place);
                                     break;
                                 case MIDDLE_PLACE:
-                                    scope.places.splice(1,0,scope.place);
+                                    if(scope.places.length < 3){
+                                        scope.places.splice(1,0,scope.place);
+                                    }
+                                    else {
+                                        var index = scope.places.length-1;
+                                        scope.places.splice(index,0,scope.place);
+                                    }
                                     break;
                                 default:
                             }
