@@ -20,8 +20,8 @@ define([],function(){
             }
 
             $scope.initRide = function(json){
-                console.log(json);
                 $scope.places = json;
+                console.log($scope);
             }
 
             /*--------------------------------------*/
