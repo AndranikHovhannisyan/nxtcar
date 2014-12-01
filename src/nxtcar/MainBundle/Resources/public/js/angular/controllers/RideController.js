@@ -38,7 +38,7 @@ define([],function(){
                 if(angular.isUndefined(d)){
                     return;
                 }
-                angular.element('.currency').html(d.currency);
+                //angular.element('.currency').html(d.currency);
             },true);
             /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){

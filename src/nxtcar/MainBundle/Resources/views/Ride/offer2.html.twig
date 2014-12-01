@@ -29,7 +29,7 @@
                                 <div class="marker-1 marker"></div>
                                 <span class="from-to"><span data-ng-bind="places[k].formatted_name"></span> → <span data-ng-bind="places[k+1].formatted_name"></span></span>
                                 <span class="price">
-                                    <span class="add-on">£</span>
+                                    <span class="add-on" currency="choosenCountry.currency"></span>
                                     <input type="text" class="number" value="222">
                                     <span class="add-sub-bt">
                                         <button class="btn-plus"></button><!--<br>-->
@@ -40,8 +40,8 @@
                             <li class="last">
                                 <span class="from-to"><span data-ng-bind="places[0].formatted_name"></span> → <span data-ng-bind="places[places.length-1].formatted_name"></span></span>
 									<span class="price">
-										<span class="add-on ">£</span>
-										<div  class="number" >222</div><!--
+										<span class="add-on currency">£</span>
+										<div  class="number">222</div><!--
 										<input type="text" class="number" value="222">-->
 									</span>
                                 <br>

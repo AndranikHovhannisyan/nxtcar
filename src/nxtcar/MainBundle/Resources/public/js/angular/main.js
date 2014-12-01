@@ -7,4 +7,23 @@ define([],function(){
         'Interpolation',
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
-})
+    })
+    .directive("currency",function(){
+        return {
+            restrict: 'A',
+            scope: {
+                currency: '='
+            },
+            compile: function(){
+                return function(scope,el){
+                    scope.$watch('currency',function(d){
+                        if(angular.isUndefined(d)){
+                            return;
+                        }
+                        console.log(d,'dd');
+                        el.html(d);
+                    },true)
+                }
+            }
+        }
+    })
