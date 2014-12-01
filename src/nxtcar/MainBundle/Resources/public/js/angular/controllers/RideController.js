@@ -21,6 +21,7 @@ define([],function(){
 
             $scope.initRide = function(json){
                 console.log(json);
+                $scope.places = json;
             }
 
             $scope.$watch('Ride.Round',function(d){
