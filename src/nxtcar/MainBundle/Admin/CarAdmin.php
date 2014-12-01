@@ -80,4 +80,14 @@ class CarAdmin extends Admin
             ->add('numberOfSets')
         ;
     }
+
+    /**
+     * @param mixed $object
+     */
+    public function prePersist($object)
+    {
+        $container = $this->getConfigurationPool()->getContainer();
+        $user = $container->get('security.context')->getToken()->getUser();
+        $object->setUser($user);
+    }
 }

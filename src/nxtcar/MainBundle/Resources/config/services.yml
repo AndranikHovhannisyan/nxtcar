@@ -21,7 +21,7 @@ services:
         class: nxtcar\MainBundle\Admin\CarModelAdmin
         arguments: [~, nxtcar\MainBundle\Entity\CarModel, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: CarModel}
+            - {name: sonata.admin, manager_type: orm, show_in_dashboard: false}
 
     nxtcar_main.admin.car_color:
         class: nxtcar\MainBundle\Admin\CarColorAdmin

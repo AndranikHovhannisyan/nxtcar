@@ -39,7 +39,7 @@ class CarModel extends CarProperty
 
     public function __toString()
     {
-        return ($this->title) ? $this->brand->getTitle() . '_' . $this->title : '';
+        return ($this->brand) ? $this->brand->getTitle() . '_' . $this->title : '';
     }
 
     /**
