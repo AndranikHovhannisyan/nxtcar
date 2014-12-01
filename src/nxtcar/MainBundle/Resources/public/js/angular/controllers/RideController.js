@@ -19,7 +19,15 @@ define([],function(){
                 }
             }
 
-            $scope.$watch('Ride.Round',function(){
+            $scope.initRide = function(json){
+                console.log(json);
+                $scope.places = json;
+            }
+
+            $scope.$watch('Ride.Round',function(d){
+                if(angular.isUndefined(d)){
+                    return;
+                }
                 angular.element(".date-time .btn-group button").removeClass("active");
                 $scope.Ride.tripWeek=[];
                 $scope.Ride.outWeek=[];

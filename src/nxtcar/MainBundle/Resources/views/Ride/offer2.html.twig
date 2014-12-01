@@ -10,12 +10,7 @@
 {% block AngularController %}ng-controller="RideController"{% endblock %}
 
 {% block content %}
-
-
-
-
-
-    <div class="publication-container">
+    <div class="publication-container" ng-init="initRide({{ places | json_encode }})">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -28,34 +23,22 @@
                     <div class="header-main-block">
                         <p>Price per passenger</p>
                     </div>
-                    <div class="">
+                    <div>
                         <ul class="form-to-price">
-                            <li >
+                            <li data-ng-repeat="(k,v) in places | limitTo:places.length-1">
                                 <div class="marker-1 marker"></div>
-                                <span class="from-to ">From → to</span>
-									<span class="price">
-										<span class="add-on">£</span>
-										<input type="text" class="number" value="222">
-										<span class="add-sub-bt">
-											<button class="btn-plus"></button><!--<br>-->
-											<button class="btn-minus"></button>
-										</span>
-									</span>
-                            </li>
-                            <li class="">
-                                <div class="marker-2 marker"></div>
-                                <span class="from-to ">From → to</span>
-									<span class="price">
-										<span class="add-on">£</span>
-										<input type="text" class="number" value="222">
-										<span class="add-sub-bt">
-											<button class="btn-plus"></button>
-											<button class="btn-minus"></button>
-										</span>
-									</span>
+                                <span class="from-to"><span data-ng-bind="places[k].formatted_name"></span> → <span data-ng-bind="places[k+1].formatted_name"></span></span>
+                                <span class="price">
+                                    <span class="add-on">£</span>
+                                    <input type="text" class="number" value="222">
+                                    <span class="add-sub-bt">
+                                        <button class="btn-plus"></button><!--<br>-->
+                                        <button class="btn-minus"></button>
+                                    </span>
+                                </span>
                             </li>
                             <li class="last">
-                                <span class="from-to ">From → to</span>
+                                <span class="from-to"><span data-ng-bind="places[0].formatted_name"></span> → <span data-ng-bind="places[places.length-1].formatted_name"></span></span>
 									<span class="price">
 										<span class="add-on ">£</span>
 										<div  class="number" >222</div><!--

@@ -38,12 +38,15 @@ class RideController extends Controller
      */
     public function offer2Action()
     {
-        return array();
+        $ride = json_decode($this->getRequest()->get('ride'),true);
+        //var_dump($ride);exit;
+        return array('ride'=>$ride,'places'=>$ride['places']);
     }
 
 
     /**
-     * @Route("/ride/{rideId}", name="ride")
+     * es vonc a ches nkatel?
+     * @Route("/ride/iii/{rideId}", name="ride")
      * @Template("nxtcarMainBundle:Ride:ride.html.twig")
      */
     public function rideAction($rideId, Request $request)

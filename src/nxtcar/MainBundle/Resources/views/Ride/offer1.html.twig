@@ -109,7 +109,7 @@
                                     <br>
 
                                     <label class="control-label" data-ng-show="Ride.Round">Return date:</label><br>
-                                    <div class="departure-date">
+                                    <div class="departure-date" data-ng-show="Ride.Round">
                                         <div class="input-date">
                                             <input type="text" class="input date-picker" datepicker ng-model="Ride.dateTo" placeholder="DD/MM/YYYY"/>
                                         </div>
@@ -231,7 +231,7 @@
                             </section>
                         </section>
                     </fieldset>
-                    <form action="#" method="POST">
+                    <form action="{{ path("ride_offer2") }}" method="POST">
                         <button type="submit">Continue</button>
                         <input type="hidden" name="ride" value="[[ Ride ]]"/>
                     </form>
