@@ -15,7 +15,8 @@ define([],function(){
                 restrict: 'EA',
                 scope: {
                     places: '=',
-                    map: '='
+                    map: '=',
+                    distance: '='
                 },
                 compile: function compileFn(){
                     return function linkFn(scope,el){
@@ -27,7 +28,10 @@ define([],function(){
                             if(angular.isUndefined(d) || d.length < 2){
                                 return;
                             }
-                            console.log(d);
+
+                            var distance = google.maps.geometry.spherical.computeDistanceBetween (d[0].location,d[d.length-1].location,9500000);
+                            console.log(d,distance);
+                            scope.distance = distance;
                             var request = {
                                 origin: d[0].formatted_name,
                                 destination: d[d.length-1].formatted_name,
