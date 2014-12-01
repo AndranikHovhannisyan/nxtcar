@@ -10,12 +10,7 @@
 {% block AngularController %}ng-controller="RideController"{% endblock %}
 
 {% block content %}
-
-
-
-
-
-    <div class="publication-container">
+    <div class="publication-container" ng-init="initRide({{ ride }})">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">

@@ -38,12 +38,14 @@ class RideController extends Controller
      */
     public function offer2Action()
     {
-        return array();
+        $ride = $this->getRequest()->get('ride');
+        return array('ride'=>$ride);
     }
 
 
     /**
-     * @Route("/ride/{rideId}", name="ride")
+     * es vonc a ches nkatel?
+     * @Route("/ride/iii/{rideId}", name="ride")
      * @Template("nxtcarMainBundle:Ride:ride.html.twig")
      */
     public function rideAction($rideId, Request $request)
