@@ -19,8 +19,11 @@ define([],function(){
                 }
             }
 
-            $scope.initRide = function(json){
-                $scope.places = json;
+            $scope.initRide = function(places,departure){
+                $scope.places = places;
+                $scope.departure = departure;
+                var dt = $scope.departure.dateFrom.split("/");
+                $scope.dp = (new Date(dt[2],dt[1]-1,dt[0])).toDateString();
                 $timeout(function(){
                     $scope.Ride.distance = 0;
                     angular.forEach($scope.places,function(v,k){
@@ -29,7 +32,7 @@ define([],function(){
                         }
                     });
                     console.log($scope);
-                },1000);
+                },2000);
             }
 
             /*--------------------------------------*/

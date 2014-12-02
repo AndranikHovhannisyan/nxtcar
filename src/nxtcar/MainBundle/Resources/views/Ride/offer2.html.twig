@@ -10,7 +10,7 @@
 {% block AngularController %}ng-controller="RideController"{% endblock %}
 
 {% block content %}
-    <div class="publication-container" ng-init="initRide({{ places | json_encode }})">
+    <div class="publication-container" ng-init="initRide({{ places | json_encode }},{{ departure | json_encode }})">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -27,18 +27,18 @@
                         <ul class="form-to-price" data-ng-init="Ride.prices={};Ride.WholePrices=0">
                             <li data-ng-repeat="(k,v) in places | limitTo:places.length-1">
                                 <div class="marker-1 marker"></div>
-                                <span class="from-to"><span data-ng-bind="places[k].formatted_name"></span> → <span data-ng-bind="places[k+1].formatted_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="places[k].city_name"></span> → <span data-ng-bind="places[k+1].city_name"></span></span>
                                 <span class="price">
                                     <span class="add-on" currency="choosenCountry.currency"></span>
-                                    <input type="text" class="number" data-ng-model="Ride.prices[v.formatted_name]" ng-init="Ride.prices[v.formatted_name]=0">
+                                    <input type="text" class="number" data-ng-model="Ride.prices[v.city_name]" ng-init="Ride.prices[v.city_name]=0">
                                     <span class="add-sub-bt">
-                                        <button class="btn-plus" data-ng-click="Ride.prices[v.formatted_name]=Ride.prices[v.formatted_name]+1"></button><!--<br>-->
-                                        <button class="btn-minus" data-ng-click="Ride.prices[v.formatted_name]=Ride.prices[v.formatted_name]-1"></button>
+                                        <button class="btn-plus" data-ng-click="Ride.prices[v.city_name]=Ride.prices[v.city_name]+1"></button><!--<br>-->
+                                        <button class="btn-minus" data-ng-click="Ride.prices[v.city_name]=Ride.prices[v.city_name]-1"></button>
                                     </span>
                                 </span>
                             </li>
                             <li class="last">
-                                <span class="from-to"><span data-ng-bind="places[0].formatted_name"></span> → <span data-ng-bind="places[places.length-1].formatted_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="places[0].city_name"></span> → <span data-ng-bind="places[places.length-1].city_name"></span></span>
 									<span class="price">
 										<span class="add-on" currency="choosenCountry.currency"></span>
 										<div class="number" data-ng-bind="Ride.WholePrices"></div><!--
@@ -54,9 +54,9 @@
                     <div class="">
                         <ul class=" number-of-seats-offered">
                             <li>
-                                <span class="">Number of seats offered:</span>
+                                <span>Number of seats offered:</span>
                                 <span class="price1 number-span">
-                                    <input type="text" class="number" data-ng-model="Ride.seatsNumber">
+                                    <input type="text" class="number" data-ng-model="Ride.seatsNumber" ng-init="Ride.seatsNumber=0">
                                     <span class="add-sub-bt">
                                         <button class="btn-plus" data-ng-click="Ride.seatsNumber=Ride.seatsNumber+1"></button>
                                         <button class="btn-minus" data-ng-click="Ride.seatsNumber=Ride.seatsNumber-1"></button>
@@ -77,39 +77,39 @@
                             Your contact details (mobile number &amp; email) already appear in your profile, please do not add them here!
                             (<a href="#" >See our rules</a>)
                         </div>
-                        <div class="form-horizontal "   method="POST">
+                        <div class="form-horizontal" method="POST">
                             <div class="form-group">
-                                <label for="yor-car" class="col-sm-4  ">Yor car </label>
+                                <label for="yor-car" class="col-sm-4">Yor car </label>
                                 <div class="col-sm-6">
-                                    <select id="yor-car"   class="yor-car form-control">
-                                        <option value=" ">Yor car 1</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control">
+                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="yor-car" class="col-sm-4  ">Maximum luggage size:</label>
+                                <label for="yor-car" class="col-sm-4">Maximum luggage size:</label>
                                 <div class="col-sm-3">
-                                    <select id="yor-car"   class="yor-car form-control">
-                                        <option value=" ">11111</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control">
+                                        <option>11111</option><option value="f">Yor car 2</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="yor-car" class="col-sm-4  ">I will leave:</label>
+                                <label for="yor-car" class="col-sm-4">I will leave:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car"   class="yor-car form-control">
-                                        <option value=" ">Yor car 1</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control">
+                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="yor-car" class="col-sm-4  ">I can make a detour:</label>
+                                <label for="yor-car" class="col-sm-4">I can make a detour:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car"   class="yor-car form-control">
-                                        <option value=" ">Yor car 1</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control">
+                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
                                     </select>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
 
                     <div class="row">
                         <div class="col-xs-6">Departure:</div>
-                        <div class="col-xs-6">Saturday 27 December - 12:00</div>
+                        <div class="col-xs-6">[[ dp ]] - 12:00</div>
                     </div>
 
                     <div class="row">

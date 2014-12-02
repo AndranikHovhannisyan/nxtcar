@@ -40,7 +40,7 @@ class RideController extends Controller
     {
         $ride = json_decode($this->getRequest()->get('ride'),true);
         //var_dump($ride);exit;
-        return array('ride'=>$ride,'places'=>$ride['places']);
+        return array('ride'=>$ride,'places'=>$ride['places'],'departure'=>$ride['departure']);
     }
 
 
