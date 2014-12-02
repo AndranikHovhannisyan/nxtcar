@@ -1,5 +1,66 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_search.css") }}">
+{% endblock %}
+
 {% block content %}
-    hjfghfghf
+    <div class="row">
+        <div class="col-md-3 date" >
+            <b>Date</b>
+            <input type="text" placeholder="dd/mm/yyyy">
+        </div>
+        <div class="col-md-9">
+            <div class="user-search-header ">89  rides from London to Paris, France
+                <div class="rearrange-by">
+                    <span class="">Rearrange by</span>
+                    <a class=" order-price">£</a>
+                    <a class=" order-date "></a>
+
+                </div>
+            </div>
+            <a class="a-user-info">
+                <div class="row">
+                    <div class="col-md-3 user-info-image">
+                        <img class="user-image" src="/bundles/nxtcarmain/images/user-man-driver-72.png">
+
+                            <div class="user-info">
+                                <b class="username">Valentin</b>
+                                <p>27 years old</p>
+                                <p>Ambassador</p>
+                            </div>
+                        <br>
+                        <p  class="ratings">
+                            <i class="bbc-icon-star yellow-star" aria-hidden="true"></i>
+                            <b>4.9 </b> - 36 ratings
+                        </p>
+                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                    </div>
+                    <div class="col-md-6 day-form→to" >
+                       <p class="day">Today - 15:00</p>
+                       <p class="form→to">form<span> → </span>to</p>
+                       <p class="from">Form</p>
+                       <p class="to">To</p>
+                       <p>Car: <b>car</b>
+                        <img src="{{ asset('/bundles/nxtcarmain/images/star-car.png') }} ">
+                        <img src="{{ asset('/bundles/nxtcarmain/images/star-car.png') }} ">
+                        <img src="{{ asset('/bundles/nxtcarmain/images/star-car.png') }} ">
+                       </p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="£-block">
+                            <p class="£">£28</p>
+                            <p class="">per passenger</p>
+                        </div>
+                        <p class="availability">Full</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
 {% endblock %}

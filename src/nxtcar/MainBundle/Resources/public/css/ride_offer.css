@@ -192,10 +192,10 @@ label {
 
 
 /*date*/
-.btn-group>.btn {
+.days-btn {
     border-radius: 0;
 }
-.btn {
+.days-btn{
     padding: 4px 6px;
     font-size: 11px;
     min-width: 32px;
@@ -229,7 +229,7 @@ label {
     margin-bottom: 7px;
 }
 
-.btn:hover {
+.days-btn:hover {
     color: #333;
     border: 1px solid  rgba(0,0,0,.15);
     text-decoration: none;
@@ -240,6 +240,12 @@ label {
     -o-transition: background-position .1s linear;
     transition: background-position .1s linear
 
+}
+.ui-sortable {
+    background-color:  #f1f1e9  ;
+}
+.ui-sortable>li{
+    margin-bottom: 7px;
 }
 form button{
     float: right;
