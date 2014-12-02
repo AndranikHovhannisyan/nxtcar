@@ -2,7 +2,7 @@
 
 define([],function(){
     return angular.module('Ride')
-        .controller('RideController',function($scope,countries){
+        .controller('RideController',function($scope,countries,$timeout){
             $scope.cities = [{name: ""}];
             $scope.minutes = ['00','10','20','30','40','50'];
             $scope.hours = [];
@@ -21,7 +21,15 @@ define([],function(){
 
             $scope.initRide = function(json){
                 $scope.places = json;
-                console.log($scope);
+                $timeout(function(){
+                    $scope.Ride.distance = 0;
+                    angular.forEach($scope.places,function(v,k){
+                        if(k < $scope.places.length-1){
+                            $scope.Ride.distance+=google.maps.geometry.spherical.computeDistanceBetween($scope.places[k].location,$scope.places[k+1].location,9500000)/1000;
+                        }
+                    });
+                    console.log($scope);
+                },1000);
             }
 
             /*--------------------------------------*/
@@ -42,9 +50,9 @@ define([],function(){
                     return;
                 }
                 angular.element(".date-time .btn-group button").removeClass("active");
-                $scope.Ride.tripWeek=[];
-                $scope.Ride.outWeek=[];
-                $scope.Ride.returnWeek=[];
+                $scope.Ride.tripWeek = [];
+                $scope.Ride.outWeek = [];
+                $scope.Ride.returnWeek = [];
             },false)
             /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){
