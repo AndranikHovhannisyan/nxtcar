@@ -15,7 +15,8 @@ define([],function(){
                 restrict: 'EA',
                 scope: {
                     places: '=',
-                    map: '='
+                    map: '=',
+                    distance: '='
                 },
                 compile: function compileFn(){
                     return function linkFn(scope,el){
@@ -27,7 +28,10 @@ define([],function(){
                             if(angular.isUndefined(d) || d.length < 2){
                                 return;
                             }
-                            console.log(d);
+
+                            var distance = google.maps.geometry.spherical.computeDistanceBetween (d[0].location,d[d.length-1].location,9500000);
+                            console.log(d,distance);
+                            scope.distance = distance;
                             var request = {
                                 origin: d[0].formatted_name,
                                 destination: d[d.length-1].formatted_name,
@@ -119,7 +123,13 @@ define([],function(){
                                     scope.places[index] = angular.copy(scope.place);
                                     break;
                                 case MIDDLE_PLACE:
-                                    scope.places.splice(1,0,scope.place);
+                                    if(scope.places.length < 3){
+                                        scope.places.splice(1,0,scope.place);
+                                    }
+                                    else {
+                                        var index = scope.places.length-1;
+                                        scope.places.splice(index,0,scope.place);
+                                    }
                                     break;
                                 default:
                             }

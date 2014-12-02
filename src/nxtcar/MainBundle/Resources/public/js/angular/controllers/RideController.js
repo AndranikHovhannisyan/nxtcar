@@ -20,10 +20,23 @@ define([],function(){
             }
 
             $scope.initRide = function(json){
-                console.log(json);
                 $scope.places = json;
+                console.log($scope);
             }
 
+            /*--------------------------------------*/
+            $scope.$watch('Ride.prices',function(d){
+                if(angular.isUndefined(d)){
+                    return;
+                }
+                $scope.Ride.WholePrices = 0;
+                angular.forEach(d,function(v){
+                    if(angular.isNumber(parseFloat(v))){
+                        $scope.Ride.WholePrices += parseFloat(v);
+                    }
+                })
+            },true)
+            /*--------------------------------------*/
             $scope.$watch('Ride.Round',function(d){
                 if(angular.isUndefined(d)){
                     return;
@@ -33,13 +46,6 @@ define([],function(){
                 $scope.Ride.outWeek=[];
                 $scope.Ride.returnWeek=[];
             },false)
-            /*-----------------------------*/
-            $scope.$watch('choosenCountry',function(d){
-                if(angular.isUndefined(d)){
-                    return;
-                }
-                angular.element('.currency').html(d.currency);
-            },true);
             /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){
                 if(angular.isUndefined(index) || !angular.isNumber(index)) {
