@@ -1,0 +1,78 @@
+.from-to-header{
+    height: 61px;
+}
+.main-block{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.main-block ul{
+    list-style-type:none;
+    padding: 0 30px;
+}
+.main-block ul li{
+    border-bottom: 1px solid #F3F3F3;
+}
+li .col-md-4,
+li .col-md-8{
+    padding: 8px 0;
+}
+.li-left{
+    color: #999;
+}
+.li-right{
+    font-weight: bold;
+}
+.ride-from{
+    background: url("/bundles/nxtcarmain/images/search-from.png") no-repeat 0 50%;
+}
+.ride-to{
+    background: url("/bundles/nxtcarmain/images/search-to.png") no-repeat 0 50%;
+}
+.ride-from,
+.ride-to{
+    padding-left: 20px !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.ride-from:hover,
+.ride-to:hover{
+    text-decoration: none;
+}
+.main-block-header{
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: #fafafa;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding:  5px 0 5px 15px;
+}
+.show-map{
+    display: block;
+    float: right;
+    font-size: 13px;
+    border-left: 1px solid #ccc;
+    padding: 12px 15px 10px 17px;
+    margin-top: -5px;
+}
+
+.block-content{
+    background-color: #E4F3FE;
+    border: 0;
+    border-radius: 3px;
+    margin: 15px;
+    padding: 10px;
+    font-size: 13px;
+}
+.block-content h4{
+    font-weight: bold;
+    font-size: 17px;
+}
+.block-content>.row{
+    margin: 10px 0;
+}
+.block-content-left{
+    color: #777;
+}
+.text-right{
+    margin-right: 40px;
+}

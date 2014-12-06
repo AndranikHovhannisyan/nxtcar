@@ -3,6 +3,11 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_search.css") }}">
+    <style>
+        svg{
+            margin-top: 1px;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -32,7 +37,9 @@
                             </div>
                         <br>
                         <p  class="ratings">
-                            <i class="bbc-icon-star yellow-star" aria-hidden="true"></i>
+                            <svg height="15" width="23" >
+                                <polygon points="10,0 5,14 17,5 3,5 15,14" style="fill:#ffc543;stroke:#ffc543;stroke-width:0;fill-rule:nonzero;" />
+                            </svg>
                             <b>4.9 </b> - 36 ratings
                         </p>
                         <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">

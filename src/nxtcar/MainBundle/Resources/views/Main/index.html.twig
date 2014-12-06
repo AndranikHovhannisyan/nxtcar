@@ -15,19 +15,19 @@
         <form class="form-inline" role="form">
             <div class="form-group">
                 <div class="input-group">
-                    <div class="input-group-addon"><img src="{{ asset("bundles/nxtcarmain/images/markergreen.jpg") }}" width="18px" height="px"></div>
-                    <input class="form-control" type="text" placeholder="From">
+                   {# <div class="input-group-addon"><img src="{{ asset("bundles/nxtcarmain/images/markergreen.jpg") }}" width="18px" height="px"></div>
+                   #} <input class="form-control from" type="text" placeholder="From">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <div class="input-group-addon"><img src="{{ asset("bundles/nxtcarmain/images/markerred.png") }}" width="11px" height="17px"></div>
-                    <input class="form-control" type="text" placeholder="To">
+                  {#  <div class="input-group-addon"><img src="{{ asset("bundles/nxtcarmain/images/markerred.png") }}" width="11px" height="17px"></div>
+                   #} <input class="form-control to" type="text" placeholder="To">
                 </div>
             </div>
             <button type="submit" class="btn btn-default">Saerch</button>
         </form>
-        <small><small>Discover our most popular car share departures: London, Manchester, Nottingham...</small></small>
+        {#<small><small>#}<a class="header-small-text">Discover our most popular car share departures: London, Manchester, Nottingham...</a> {#</small></small>#}
     </div>
 {% endblock %}
 
