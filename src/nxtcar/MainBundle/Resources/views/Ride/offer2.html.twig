@@ -11,8 +11,7 @@
 
 {% block content %}
 
-    {{ data }}
-    <div class="publication-container" ng-init="initRide('','')">
+    <div class="publication-container" ng-init="initRide('{{ ride }}','')">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -27,9 +26,9 @@
                     </div>
                     <div>
                         <ul class="form-to-price" data-ng-init="Ride.prices={};Ride.WholePrices=0;Ride.page=2">
-                            <li data-ng-repeat="(k,v) in places | limitTo:places.length-1">
+                            <li data-ng-repeat="(k,v) in Ride.places">
                                 <div class="marker-1 marker"></div>
-                                <span class="from-to"><span data-ng-bind="places[k].city_name"></span> → <span data-ng-bind="places[k+1].city_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="Ride.places[k].city_name"></span> → <span data-ng-bind="Ride.places[k+1].city_name"></span></span>
                                 <span class="price">
                                     <span class="add-on" currency="choosenCountry.currency"></span>
                                     <input type="text" class="number" data-ng-model="Ride.prices[v.city_name]" ng-init="Ride.prices[v.city_name]=0">
@@ -40,7 +39,7 @@
                                 </span>
                             </li>
                             <li class="last">
-                                <span class="from-to"><span data-ng-bind="places[0].city_name"></span> → <span data-ng-bind="places[places.length-1].city_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="Ride.places[0].city_name"></span> → <span data-ng-bind="Ride.places[places.length-1].city_name"></span></span>
 									<span class="price">
 										<span class="add-on" currency="choosenCountry.currency"></span>
 										<div class="number" data-ng-bind="Ride.WholePrices"></div><!--

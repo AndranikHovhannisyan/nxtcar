@@ -19,19 +19,17 @@ define([],function(){
                 }
             }
 
-            $scope.initRide = function(places,departure){
-                $scope.places = places;
-                $scope.departure = departure;
-                var dt = $scope.departure.dateFrom.split("/");
+            $scope.initRide = function(ride){
+                $scope.Ride = angular.fromJson(ride);
+                var dt = $scope.Ride.departure.dateFrom.split("/");
                 $scope.dp = (new Date(dt[2],dt[1]-1,dt[0])).toDateString();
                 $timeout(function(){
                     $scope.Ride.distance = 0;
-                    angular.forEach($scope.places,function(v,k){
-                        if(k < $scope.places.length-1){
-                            $scope.Ride.distance+=google.maps.geometry.spherical.computeDistanceBetween($scope.places[k].location,$scope.places[k+1].location,9500000)/1000;
+                    angular.forEach($scope.Ride.places,function(v,k){
+                        if(k < $scope.Ride.places.length-1){
+                            $scope.Ride.distance+=google.maps.geometry.spherical.computeDistanceBetween($scope.Ride.places[k].location,$scope.Ride.places[k+1].location,9500000)/1000;
                         }
                     });
-                    console.log($scope);
                 },2000);
             }
 
