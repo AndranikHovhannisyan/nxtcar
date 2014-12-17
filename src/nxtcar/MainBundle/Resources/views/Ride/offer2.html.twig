@@ -24,7 +24,7 @@
                         <p>Price per passenger</p>
                     </div>
                     <div>
-                        <ul class="form-to-price" data-ng-init="Ride.prices={};Ride.WholePrices=0">
+                        <ul class="form-to-price" data-ng-init="Ride.prices={};Ride.WholePrices=0;Ride.page=2">
                             <li data-ng-repeat="(k,v) in places | limitTo:places.length-1">
                                 <div class="marker-1 marker"></div>
                                 <span class="from-to"><span data-ng-bind="places[k].city_name"></span> → <span data-ng-bind="places[k+1].city_name"></span></span>

@@ -106,7 +106,7 @@
         {% block bottomHeader %}{% endblock %}
     </header>
     <!-- end  header -->
-    <div class="content">{% block content %}{% endblock %}</div>
+    <div class="content" ng-init="basePath = '{{ app.debug ? 'app_dev.php':'app.php' }}'">{% block content %}{% endblock %}</div>
 
 {% block footer %}
     <!-- footer -->
