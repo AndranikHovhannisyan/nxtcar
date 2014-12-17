@@ -37,9 +37,9 @@ class RideTown
     protected $town;
 
     /**
-     * @ORM\Column(name="position", type="integer", nullable=false)
+     * @ORM\Column(name="position_in_ride", type="integer", nullable=false)
      */
-    protected $position;
+    protected $positionInRide;
 
     /**
      * @ORM\Column(name="busy_places", type="integer")
