@@ -30,6 +30,7 @@ require.config({
         'RideController': '/bundles/nxtcarmain/js/angular/controllers/RideController',
         'google-map': '/bundles/nxtcarmain/js/angular/directives/google-map',
         'find': '/bundles/nxtcarmain/js/angular/find',
+        'google-autocomplete': '/bundles/nxtcarmain/js/angular/directives/google-autocomplete'
 
     },
     shim: {
@@ -62,7 +63,8 @@ require.config({
         'ride': ['jquery-ui','ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'RideController': ['ride'],
         'google-map': ['ride'],
-        'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource']
+        'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'google-autocomplete': ['find']
     },
     waitSeconds: 7
 });
