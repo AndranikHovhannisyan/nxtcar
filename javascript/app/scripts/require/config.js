@@ -28,7 +28,9 @@ require.config({
         'CarController': '/bundles/nxtcarmain/js/angular/controllers/CarController',
         'ride': '/bundles/nxtcarmain/js/angular/ride',
         'RideController': '/bundles/nxtcarmain/js/angular/controllers/RideController',
-        'google-map': '/bundles/nxtcarmain/js/angular/directives/google-map'
+        'google-map': '/bundles/nxtcarmain/js/angular/directives/google-map',
+        'find': '/bundles/nxtcarmain/js/angular/find',
+        'google-autocomplete': '/bundles/nxtcarmain/js/angular/directives/google-autocomplete'
 
     },
     shim: {
@@ -60,7 +62,9 @@ require.config({
         'CarController': ['car'],
         'ride': ['jquery-ui','ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'RideController': ['ride'],
-        'google-map': ['ride']
+        'google-map': ['ride'],
+        'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'google-autocomplete': ['find']
     },
     waitSeconds: 7
 });

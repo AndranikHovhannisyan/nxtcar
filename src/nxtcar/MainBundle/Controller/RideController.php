@@ -44,9 +44,9 @@ class RideController extends Controller
      */
     public function offer2Action()
     {
-        $ride = json_decode($this->getRequest()->get('ride'),true);
-        //var_dump($ride);exit;
-        return array('ride'=>$ride,'places'=>$ride['places'],'departure'=>$ride['departure']);
+        $ride = $this->getRequest()->get('ride');
+
+        return array('ride'=>$ride);
     }
 
 

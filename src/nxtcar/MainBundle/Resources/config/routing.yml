@@ -18,6 +18,11 @@ ride:
     type:     annotation
     prefix:   /
 
+FAQ:
+    resource: "@nxtcarMainBundle/Controller/FAQController.php"
+    type:     annotation
+    prefix:   /
+
 car_rests:
     type:     rest
     resource: nxtcar\MainBundle\Controller\Rest\RestCarController

@@ -20,7 +20,6 @@ define([],function(){
                 },
                 compile: function compileFn(){
                     return function linkFn(scope,el){
-                        scope.places = [];
                         scope.directionService = new google.maps.DirectionsService();
                         scope.directionsDisplay = new google.maps.DirectionsRenderer();
 

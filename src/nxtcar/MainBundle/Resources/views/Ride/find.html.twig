@@ -10,22 +10,22 @@
         <h2>
             Find a ride
         </h2>
-        <form id="search-form" class="form-inline" action="/search">
-            <input type="text"   title="From" placeholder="From" class="search-from" >
-
+        <form id="search-form" class="form-inline" action="/{{ app.debug ? 'app_dev.php':'app.php' }}/search" prevent-default>
+            <input type="text" title="From" placeholder="From" class="search-from" google-autocomplete place="Ride.from">
 
             <button type="button" class="btn reverse tip">
-                <img src="/bundles/nxtcarmain/images/reverse2.png" width="18" height="16" alt="Switch">
+                <img src="{{ asset('bundles/nxtcarmain/images/reverse2.png') }}" width="18" height="16" alt="Switch">
             </button>
-
-            <input type="text"  title="To" placeholder="To" class="search-to" >
-
+            <input type="text" title="To" placeholder="To" class="search-to" google-autocomplete place="Ride.to">
+            <input type="hidden" name="ride" value="[[Ride]]"/>
             <input type="submit" class="search-btn btn btn-large" value="Find">
         </form>
     </div>
+    <img src="{{ asset('bundles/nxtcarmain/images/no-search.jpg') }}" {#width="18" height="16" #}alt="Switch">
 
-    <img src="/bundles/nxtcarmain/images/no-search.jpg" {#width="18" height="16" #}alt="Switch">
+{% endblock %}
 
-
-
+{% block javascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/findRunner.js") }}"></script>
 {% endblock %}

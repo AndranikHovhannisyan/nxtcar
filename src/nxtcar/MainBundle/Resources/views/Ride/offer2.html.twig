@@ -11,8 +11,7 @@
 
 {% block content %}
 
-    {{ data }}
-    <div class="publication-container" ng-init="initRide('','')">
+    <div class="publication-container" ng-init="initRide('{{ ride }}','')">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -27,9 +26,9 @@
                     </div>
                     <div>
                         <ul class="form-to-price" data-ng-init="Ride.prices={};Ride.WholePrices=0;Ride.page=2">
-                            <li data-ng-repeat="(k,v) in places | limitTo:places.length-1">
+                            <li data-ng-repeat="(k,v) in Ride.places">
                                 <div class="marker-1 marker"></div>
-                                <span class="from-to"><span data-ng-bind="places[k].city_name"></span> → <span data-ng-bind="places[k+1].city_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="Ride.places[k].city_name"></span> → <span data-ng-bind="Ride.places[k+1].city_name"></span></span>
                                 <span class="price">
                                     <span class="add-on" currency="choosenCountry.currency"></span>
                                     <input type="text" class="number" data-ng-model="Ride.prices[v.city_name]" ng-init="Ride.prices[v.city_name]=0">
@@ -40,7 +39,7 @@
                                 </span>
                             </li>
                             <li class="last">
-                                <span class="from-to"><span data-ng-bind="places[0].city_name"></span> → <span data-ng-bind="places[places.length-1].city_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="Ride.places[0].city_name"></span> → <span data-ng-bind="Ride.places[places.length-1].city_name"></span></span>
 									<span class="price">
 										<span class="add-on" currency="choosenCountry.currency"></span>
 										<div class="number" data-ng-bind="Ride.WholePrices"></div><!--
@@ -73,27 +72,33 @@
                         <p>Further details</p>
                     </div>
                     <section class="main-block-content">
-                        <textarea  class="textarea-tip" rows="5"  placeholder="Provide extra information about your ride. More details about the departure/arrival point, what music you listen to, why you are travelling or anything else your passengers should know."></textarea>
+                        <textarea class="textarea-tip"
+                          rows="5"
+                          data-ng-model="Ride.details"
+                          placeholder="Provide extra information about your ride. More details about the departure/arrival point, what music you listen to, why you are travelling or anything else your passengers should know.">
+                        </textarea>
 
                         <div class="helper1">
                             Your contact details (mobile number &amp; email) already appear in your profile, please do not add them here!
                             (<a href="#" >See our rules</a>)
                         </div>
                         <div class="form-horizontal" method="POST">
-                            <div class="form-group">
-                                <label for="yor-car" class="col-sm-4">Yor car </label>
-                                <div class="col-sm-6">
-                                    <select id="yor-car" class="yor-car form-control">
-                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
-                                    </select>
-                                </div>
-                            </div>
+                            {#<div class="form-group">#}
+                                {#<label for="yor-car" class="col-sm-4">Yor car </label>#}
+                                {#<div class="col-sm-6">#}
+                                    {#<select id="yor-car" class="yor-car form-control">#}
+                                        {#<option>Yor car 1</option><option value="f">Yor car 2</option>#}
+                                    {#</select>#}
+                                {#</div>#}
+                            {#</div>#}
 
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">Maximum luggage size:</label>
                                 <div class="col-sm-3">
-                                    <select id="yor-car" class="yor-car form-control">
-                                        <option>11111</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.luggageSize" data-ng-init="Ride.luggageSize='medium'">
+                                        <option value="small">Small</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="large">Large</option>
                                     </select>
                                 </div>
                             </div>
@@ -101,8 +106,12 @@
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">I will leave:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car" class="yor-car form-control">
-                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.leavingTime" data-ng-init="Ride.leavingTime='ON_TIME'">
+                                        <option value="ON_TIME">Right on time</option>
+                                        <option value="FIFTEEN_MINUTES">In a 15 minute window</option>
+                                        <option value="THIRTY_MINUTES">In a 30 minute window</option>
+                                        <option value="ONE_HOUR">In a 1 hour window</option>
+                                        <option value="TWO_HOURS">In a 2 hour window</option>
                                     </select>
                                 </div>
                             </div>
@@ -110,8 +119,11 @@
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">I can make a detour:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car" class="yor-car form-control">
-                                        <option>Yor car 1</option><option value="f">Yor car 2</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.detour" data-ng-init="Ride.detour='FIFTEEN_MINUTES'">
+                                        <option value="NONE">None</option>
+                                        <option value="FIFTEEN_MINUTES">15 minute detour, max.</option>
+                                        <option value="THIRTY_MINUTES">30 minute detour, max.</option>
+                                        <option value="WHATEVER_IT_TAKES">Anything is fine</option>
                                     </select>
                                 </div>
                             </div>
@@ -119,13 +131,12 @@
                     </section>
                 </fieldset>
                 <fieldset class="main-block">
-
                     <section id="publication-unique" class="main-block-content" >
-                        <label><input type="checkbox" class="">
+                        <label>
+                            <input type="checkbox" data-ng-model="Ride.licence">
                             I hereby certify that I hold a driving licence and valid car insurance (
                             <a {#target="_blank"#} href="#">See our ToS</a>
                             )
-
                         </label>
                     </section>
                 </fieldset>
@@ -160,8 +171,6 @@
                         <div class="col-xs-6">CO2 emissions:</div>
                         <div class="col-xs-6">156 Kg</div>
                     </div>
-
-
                 </div>
             </div>
         </div>

@@ -1,0 +1,49 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andranik
+ * Date: 12/20/14
+ * Time: 6:29 PM
+ */
+namespace nxtcar\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class FAQCategory
+ * @package nxtcar\MainBundle\Entity
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="faq_category")
+ */
+class FAQCategory
+{
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     */
+    protected $title;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FAQCategory", mappedBy="parentCategory")
+     */
+    protected $subCategories;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="FAQCategory", inversedBy="subCategories")
+     * @ORM\JoinColumn(name="parent_category", referencedColumnName="id")
+     */
+    protected $parentCategory;
+
+    /**
+     * @ORm\OneToMany(targetEntity="FAQQuestion", mappedBy="category")
+     */
+    protected $questions;
+
+}
