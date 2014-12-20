@@ -42,6 +42,14 @@ class FAQQuestion
     protected $category;
 
     /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->question;
+    }
+
+    /**
      * Get id
      *
      * @return integer 

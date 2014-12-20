@@ -1,6 +1,24 @@
 {% extends 'nxtcarMainBundle::layout.html.twig' %}
 
 {% block content %}
-    {{ question.question }} <br /><br />
+
+    <h1>Frequently Asked Questions</h1>
+
+    {% set curCat = question.category.parentCategory %}
+    {% set header = question.category.title %}
+    {% for i in 1..1 if curCat is not null %}
+        {% set header = "<a href=\"" ~ path('category', {'id': curCat.id}) ~ "\" >" ~ curCat.title ~ "</a> /" ~ header  %}
+        {% set curCat = curCat.parentCategory %}
+    {% endfor %}
+
+    {% if curCat is not null %}
+        {% set header = "... / " ~ header  %}
+    {% endif %}
+
+    {% set header = "<a href=\"" ~ path('category') ~ "\">FAQ</a> / " ~ header  %}
+
+    {{ header|raw }}
+
+    <h3>{{ question.question }}</h3>
     <p> {{ question.answer }} </p>
 {% endblock %}
