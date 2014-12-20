@@ -24,4 +24,33 @@ class OneTime extends RideDate
      */
     protected $id;
 
+    /**
+     * @ORM\Column(name="out_date", type="date", nullable=false)
+     */
+    protected $outDate;
+
+    /**
+     * @ORM\Column(name="out_hour", type="integer", nullable=false)
+     */
+    protected $outHour;
+
+    /**
+     * @ORM\Column(name="out_minute", type="integer", nullable=false)
+     */
+    protected $outMinute;
+
+    /**
+     * @ORM\Column(name="in_date", type="date", nullable=true)
+     */
+    protected $inDate;
+
+    /**
+     * @ORM\Column(name="in_hour", type="integer", nullable=true)
+     */
+    protected $inHour;
+
+    /**
+     * @ORM\Column(name="in_minute", type="integer", nullable=true)
+     */
+    protected $inMinute;
 }

@@ -2,20 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: andranik
- * Date: 12/2/14
- * Time: 1:25 AM
+ * Date: 12/20/14
+ * Time: 1:26 AM
  */
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class CarType
+ * Class WeekDay
  * @package nxtcar\MainBundle\Entity
  *
  * @ORM\Entity
  */
-class Recurring extends RideDate
+class WeekDay
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -25,12 +25,12 @@ class Recurring extends RideDate
     protected $id;
 
     /**
-     * @ORM\Column(name="start_date", type="date", nullable=false)
+     * @ORM\Column(name="name", type="string", length=50, nullable=true)
      */
-    protected $startDate;
+    protected $name;
 
     /**
-     * @ORM\Column(name="end_date", type="date", nullable=true)
+     * @ORM\Column(name="index", type="integer", nullable=true)
      */
-    protected $endDate;
+    protected $index;
 }
