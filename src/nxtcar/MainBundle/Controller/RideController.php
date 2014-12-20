@@ -24,7 +24,7 @@ class RideController extends Controller
     }
 
     /**
-     * @Route("/ride/offer1", name="ride_offer1")
+     * @Route("/ride/offer", name="ride_offer")
      * @Template()
      */
     public function offer1Action(Request $request)
@@ -32,23 +32,11 @@ class RideController extends Controller
         $obj = json_decode($request->get('ride'));
         if (isset($obj->page) && $obj->page == 1) {
             return $this->render('nxtcarMainBundle:Ride:offer2.html.twig',
-                array('data' => $request->get('ride')));
+                array('ride' => $request->get('ride')));
         }
 
         return $this->render('nxtcarMainBundle:Ride:offer1.html.twig');
     }
-
-    /**
-     * @Route("/ride/offer2", name="ride_offer2")
-     * @Template("nxtcarMainBundle:Ride:offer2.html.twig")
-     */
-    public function offer2Action()
-    {
-        $ride = $this->getRequest()->get('ride');
-
-        return array('ride'=>$ride);
-    }
-
 
     /**
      * es vonc a ches nkatel?
