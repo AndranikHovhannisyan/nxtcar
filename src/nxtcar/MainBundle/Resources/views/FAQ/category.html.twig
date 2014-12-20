@@ -1,0 +1,51 @@
+{% extends 'nxtcarMainBundle::layout.html.twig' %}
+
+{% block content %}
+
+    {% if categories is null %}
+
+        {% set curCat = category.parentCategory %}
+        {% set header = category.title %}
+        {% for i in 1..1 if curCat is not null %}
+            {% set header = "<a href=\"" ~ path('category', {'id': curCat.id}) ~ "\" >" ~ curCat.title ~ "</a> /" ~ header  %}
+            {% set curCat = curCat.parentCategory %}
+        {% endfor %}
+
+        {% if curCat is not null %}
+            {% set header = "... / " ~ header  %}
+        {% endif %}
+
+        {% set header = "<a href=\"" ~ path('category') ~ "\">FAQ</a> / " ~ header  %}
+
+        {{ header|raw }}
+
+        <h3>{{ category.title }}</h3>
+
+        {# Sub categories #}
+        {% for subs in category.subCategories %}
+            <a href="{{ path('category', {'id': subs.id}) }}">{{ subs.title }}</a> <br />
+        {% endfor %}
+
+        {# Questions #}
+        {% for question in category.questions %}
+            <a href="{{ path('question', {'id': question.id}) }}">{{ question.question }}</a> <br />
+        {% endfor %}
+
+    {% else %}
+
+        {% for category in categories %}
+            <h4><a href="{{ path('category', {'id': category.id}) }}">{{ category.title }}</a></h4>
+
+            {# Sub categories #}
+            {% for subs in category.subCategories %}
+                <a href="{{ path('category', {'id': subs.id}) }}">{{ subs.title }}</a> <br />
+            {% endfor %}
+
+            {# Questions #}
+            {% for question in category.questions %}
+                <a href="{{ path('question', {'id': question.id}) }}">{{ question.question }}</a> <br />
+            {% endfor %}
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}
