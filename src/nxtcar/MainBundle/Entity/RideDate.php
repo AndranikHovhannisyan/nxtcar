@@ -13,10 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CarType
  * @package nxtcar\MainBundle\Entity
  *
- * @Entity
- * @InheritanceType("JOINED")
- * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"one_time" = "OneTime", "recurring" = "Recurring"})
+ * @ORM\Entity
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"one_time" = "OneTime", "recurring" = "Recurring"})
  */
 class RideDate
 {

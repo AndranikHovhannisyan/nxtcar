@@ -25,7 +25,7 @@ class Ride
     protected $id;
 
     /**
-     * @ORM\OnwToMany(targetEntity="RideTown", mappedBy="ride")
+     * @ORM\OneToMany(targetEntity="RideTown", mappedBy="ride")
      */
     protected $rideTown;
 

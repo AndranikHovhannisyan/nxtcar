@@ -34,3 +34,21 @@ services:
         arguments: [~, nxtcar\MainBundle\Entity\CarBrand, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: CarBrand}
+
+    nxtcar_main.admin.faq_category:
+        class: nxtcar\MainBundle\Admin\FAQCategoryAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\FAQCategory, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: FAQCategory}
+
+    nxtcar_main.admin.faq_sub_category:
+        class: nxtcar\MainBundle\Admin\FAQSubCategoryAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\FAQCategory, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm,  show_in_dashboard: false}
+
+    nxtcar_main.admin.faq_question:
+        class: nxtcar\MainBundle\Admin\FAQQuestionAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\FAQQuestion, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: FAQQuestion}
