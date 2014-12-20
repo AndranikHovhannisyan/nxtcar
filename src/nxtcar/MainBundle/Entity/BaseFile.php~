@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Entity
  * @ORM\Table(name="base_file")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"photo" = "nxtcar\UserBundle\Entity\Photo"})
  */
 class BaseFile
 {
@@ -29,19 +33,18 @@ class BaseFile
 
     /**
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank
      */
-    public $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    protected $path;
 
     /**
      * @Assert\File(maxSize="6000000")
      */
-    private $file;
+    protected $file;
 
     /**
      * Sets file.
@@ -117,15 +120,70 @@ class BaseFile
     }
 
     /**
-     * @ORM\PostRemove()
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return BaseFile
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return BaseFile
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+
+    /**
+     * @ORM\PreRemove()
      */
     public function removeUpload()
     {
         $file = $this->getAbsolutePath();
-        if ($file) {
+        if (is_file($file)) {
             unlink($file);
         }
     }
 }
-
-

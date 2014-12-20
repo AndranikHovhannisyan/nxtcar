@@ -1,0 +1,25 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andranik
+ * Date: 12/21/14
+ * Time: 1:58 AM
+ */
+namespace nxtcar\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class OutWeek
+ * @package nxtcar\MainBundle\Entity
+ *
+ * @ORM\Entity
+ */
+class OutWeek extends InOutWeek
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="outDates")
+     * @ORm\JoinColumn(name="recurring_id", referencedColumnName="id")
+     */
+    protected $recurring;
+}

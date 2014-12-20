@@ -38,4 +38,59 @@ class RideDate
      */
     protected $ride;
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set isRound
+     *
+     * @param boolean $isRound
+     * @return RideDate
+     */
+    public function setIsRound($isRound)
+    {
+        $this->isRound = $isRound;
+
+        return $this;
+    }
+
+    /**
+     * Get isRound
+     *
+     * @return boolean 
+     */
+    public function getIsRound()
+    {
+        return $this->isRound;
+    }
+
+    /**
+     * Set ride
+     *
+     * @param \nxtcar\MainBundle\Entity\Ride $ride
+     * @return RideDate
+     */
+    public function setRide(\nxtcar\MainBundle\Entity\Ride $ride = null)
+    {
+        $this->ride = $ride;
+
+        return $this;
+    }
+
+    /**
+     * Get ride
+     *
+     * @return \nxtcar\MainBundle\Entity\Ride 
+     */
+    public function getRide()
+    {
+        return $this->ride;
+    }
 }

@@ -10,15 +10,15 @@ namespace nxtcar\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class OutWeek
+ * Class InWeek
  * @package nxtcar\MainBundle\Entity
  *
  * @ORM\Entity
  */
-class OutWeek extends InOutWeek
+class InWeek extends InOutWeek
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="outDates")
+     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="inDates")
      * @ORm\JoinColumn(name="recurring_id", referencedColumnName="id")
      */
     protected $recurring;
@@ -57,7 +57,7 @@ class OutWeek extends InOutWeek
      * Set hour
      *
      * @param integer $hour
-     * @return OutWeek
+     * @return InWeek
      */
     public function setHour($hour)
     {
@@ -80,7 +80,7 @@ class OutWeek extends InOutWeek
      * Set minute
      *
      * @param integer $minute
-     * @return OutWeek
+     * @return InWeek
      */
     public function setMinute($minute)
     {
@@ -103,7 +103,7 @@ class OutWeek extends InOutWeek
      * Set recurring
      *
      * @param \nxtcar\MainBundle\Entity\Recurring $recurring
-     * @return OutWeek
+     * @return InWeek
      */
     public function setRecurring(\nxtcar\MainBundle\Entity\Recurring $recurring = null)
     {
@@ -126,7 +126,7 @@ class OutWeek extends InOutWeek
      * Set weekDay
      *
      * @param \nxtcar\MainBundle\Entity\WeekDay $weekDay
-     * @return OutWeek
+     * @return InWeek
      */
     public function setWeekDay(\nxtcar\MainBundle\Entity\WeekDay $weekDay = null)
     {

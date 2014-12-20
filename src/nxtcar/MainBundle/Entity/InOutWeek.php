@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: andranik
- * Date: 12/21/14
- * Time: 1:58 AM
+ * Date: 12/20/14
+ * Time: 1:32 AM
  */
 namespace nxtcar\MainBundle\Entity;
 
@@ -14,32 +14,33 @@ use Doctrine\ORM\Mapping as ORM;
  * @package nxtcar\MainBundle\Entity
  *
  * @ORM\Entity
+ * @ORM\Table(name="in_out_week")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"out_week" = "OutWeek", "in_week" = "InWeek"})
  */
-class OutWeek extends InOutWeek
+class InOutWeek
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="outDates")
-     * @ORm\JoinColumn(name="recurring_id", referencedColumnName="id")
-     */
-    protected $recurring;
-
-    /**
-     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @var integer
+     * @ORM\Column(name="hour", type="integer", nullable=false)
      */
     protected $hour;
 
     /**
-     * @var integer
+     * @ORm\Column(name="minute", type="integer"), nullable=false
      */
-    protected $minute;
+    protected $minute = 0;
 
     /**
-     * @var \nxtcar\MainBundle\Entity\WeekDay
+     * @ORM\ManyToOne(targetEntity="WeekDay")
+     * @ORm\JoinColumn(name="week_day_id", referencedColumnName="id")
      */
     protected $weekDay;
 
@@ -57,7 +58,7 @@ class OutWeek extends InOutWeek
      * Set hour
      *
      * @param integer $hour
-     * @return OutWeek
+     * @return InOutWeek
      */
     public function setHour($hour)
     {
@@ -80,7 +81,7 @@ class OutWeek extends InOutWeek
      * Set minute
      *
      * @param integer $minute
-     * @return OutWeek
+     * @return InOutWeek
      */
     public function setMinute($minute)
     {
@@ -100,33 +101,10 @@ class OutWeek extends InOutWeek
     }
 
     /**
-     * Set recurring
-     *
-     * @param \nxtcar\MainBundle\Entity\Recurring $recurring
-     * @return OutWeek
-     */
-    public function setRecurring(\nxtcar\MainBundle\Entity\Recurring $recurring = null)
-    {
-        $this->recurring = $recurring;
-
-        return $this;
-    }
-
-    /**
-     * Get recurring
-     *
-     * @return \nxtcar\MainBundle\Entity\Recurring 
-     */
-    public function getRecurring()
-    {
-        return $this->recurring;
-    }
-
-    /**
      * Set weekDay
      *
      * @param \nxtcar\MainBundle\Entity\WeekDay $weekDay
-     * @return OutWeek
+     * @return InOutWeek
      */
     public function setWeekDay(\nxtcar\MainBundle\Entity\WeekDay $weekDay = null)
     {

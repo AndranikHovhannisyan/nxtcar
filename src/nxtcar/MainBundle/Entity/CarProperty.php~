@@ -34,6 +34,14 @@ class CarProperty
     protected $title;
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return ($this->title) ? $this->title : '';
+    }
+
+    /**
      * Get id
      *
      * @return integer 

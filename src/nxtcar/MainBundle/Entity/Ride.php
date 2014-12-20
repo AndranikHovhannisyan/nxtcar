@@ -44,4 +44,124 @@ class Ride
      * @ORM\OneToOne(targetEntity="RideDate", mappedBy="ride")
      */
     protected $rideDate;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rideTown = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set allPlaces
+     *
+     * @param integer $allPlaces
+     * @return Ride
+     */
+    public function setAllPlaces($allPlaces)
+    {
+        $this->allPlaces = $allPlaces;
+
+        return $this;
+    }
+
+    /**
+     * Get allPlaces
+     *
+     * @return integer 
+     */
+    public function getAllPlaces()
+    {
+        return $this->allPlaces;
+    }
+
+    /**
+     * Add rideTown
+     *
+     * @param \nxtcar\MainBundle\Entity\RideTown $rideTown
+     * @return Ride
+     */
+    public function addRideTown(\nxtcar\MainBundle\Entity\RideTown $rideTown)
+    {
+        $this->rideTown[] = $rideTown;
+
+        return $this;
+    }
+
+    /**
+     * Remove rideTown
+     *
+     * @param \nxtcar\MainBundle\Entity\RideTown $rideTown
+     */
+    public function removeRideTown(\nxtcar\MainBundle\Entity\RideTown $rideTown)
+    {
+        $this->rideTown->removeElement($rideTown);
+    }
+
+    /**
+     * Get rideTown
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRideTown()
+    {
+        return $this->rideTown;
+    }
+
+    /**
+     * Set driver
+     *
+     * @param \nxtcar\UserBundle\Entity\User $driver
+     * @return Ride
+     */
+    public function setDriver(\nxtcar\UserBundle\Entity\User $driver = null)
+    {
+        $this->driver = $driver;
+
+        return $this;
+    }
+
+    /**
+     * Get driver
+     *
+     * @return \nxtcar\UserBundle\Entity\User 
+     */
+    public function getDriver()
+    {
+        return $this->driver;
+    }
+
+    /**
+     * Set rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     * @return Ride
+     */
+    public function setRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate = null)
+    {
+        $this->rideDate = $rideDate;
+
+        return $this;
+    }
+
+    /**
+     * Get rideDate
+     *
+     * @return \nxtcar\MainBundle\Entity\RideDate 
+     */
+    public function getRideDate()
+    {
+        return $this->rideDate;
+    }
 }

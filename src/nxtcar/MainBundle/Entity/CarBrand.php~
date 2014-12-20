@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
 class CarBrand extends CarProperty
 {
     /**
-     * @ORM\OneToMany(targetEntity="CarModel", mappedBy="brand")
+     * @ORM\OneToMany(targetEntity="CarModel", mappedBy="brand", cascade={"persist"})
      */
     protected $models;
 
