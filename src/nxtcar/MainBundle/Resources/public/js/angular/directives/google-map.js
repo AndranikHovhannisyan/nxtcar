@@ -93,6 +93,7 @@ define([],function(){
                                         scope.places.splice(0,0,scope.place);
                                     }
                                     else {
+                                        scope.place.index = 0;
                                         scope.places[0] = angular.copy(scope.place);
                                     }
                                     break;
@@ -115,14 +116,17 @@ define([],function(){
                                             index = scope.places.length;
                                         }
                                     }
+                                    scope.place.index = index;
                                     scope.places[index] = angular.copy(scope.place);
                                     break;
                                 case MIDDLE_PLACE:
                                     if(scope.places.length < 3){
+                                        scope.place.index = 1;
                                         scope.places.splice(1,0,scope.place);
                                     }
                                     else {
                                         var index = scope.places.length-1;
+                                        scope.place.index = index;
                                         scope.places.splice(index,0,scope.place);
                                     }
                                     break;
