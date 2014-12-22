@@ -286,30 +286,11 @@ header .background{
 
 
 
-/*******coneten******/
+
 .content{
     padding: 22px;
 }
-.content-header{
-    font-size: 22px;
-    color: #686868;
-}
-a.content-header:hover{
-    color: #686868;
-}
-.video-tutorial{
-    background: url("/bundles/nxtcarmain/images/home-new-video.png") no-repeat 50% 50%;
-    width: 100%;
-    height: 135px;
-    cursor: pointer;
-}
-.home-video-play{
-    background: url("/bundles/nxtcarmain/images/home-video-play.png") no-repeat 40% 70%;
-    width: 100%;
-    height: 100%;
-}
 
-/*******coneten end******/
 
 
 

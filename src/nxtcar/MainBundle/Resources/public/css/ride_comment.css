@@ -1,0 +1,151 @@
+
+.public-questions{
+
+    margin: 0 0 10px 0;
+    padding: 5px 20px ;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+.trip-qa .msg-photo-container {
+    display: block;
+    position: relative;
+}
+
+.trip-qa .pull-left.msg-photo-container:before {
+    border-top: 0px solid rgba(0,0,0,0);
+    border-bottom: 17px solid rgba(0,0,0,0);
+    border-right: 13px solid #ccc;
+    top: 22px;
+    right: -1px;
+    z-index: 1;
+}
+.trip-qa .pull-left.msg-photo-container:before,
+.trip-qa .pull-left.msg-photo-container:after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+.trip-qa .pull-left.msg-photo-container:after {
+    border-top: 0px solid rgba(0,0,0,0);
+    border-bottom: 14px solid rgba(0,0,0,0);
+    border-right: 11px solid #f9f9f9;
+    top: 23px;
+    z-index: 2;
+    right: -1px;
+}
+.trip-qa .msg-photo-container img {
+    border: 1px solid #e6e6e6;
+    padding: 2px;
+    margin-right: 17px;
+}
+
+.trip-qa .msg-comment .msg-date {
+    color: #666;
+    font-style: italic;
+    text-align: right;
+}
+
+.trip-qa .msg-comment {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 12px;
+    overflow: hidden;
+    zoom: 1;
+}
+.alert-flag {
+    color: #ff9802;
+}
+.bbc-icon2-flag:before {
+    content: "\f10d";
+}
+.margin-bottom {
+    margin-bottom: 17px !important;
+}
+
+.trip-my-qa .msg-photo-container {
+    display: block;
+    position: relative;
+}
+.pull-right {
+    float: right;
+}
+
+
+.trip-my-qa .pull-right.msg-photo-container:before {
+    border-top: 0px solid rgba(0,0,0,0);
+    border-bottom: 17px solid rgba(0,0,0,0);
+    border-left: 13px solid #bfebf0;
+    top: 22px;
+    left: -1px;
+    z-index: 1;
+}
+.trip-my-qa .pull-right.msg-photo-container:before,
+.trip-my-qa .pull-right.msg-photo-container:after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+}
+
+.trip-my-qa .pull-right.msg-photo-container:after {
+    border-top: 0px solid rgba(0,0,0,0);
+    border-bottom: 14px solid rgba(0,0,0,0);
+    border-left: 11px solid #cff4fa;
+    top: 23px;
+    z-index: 2;
+    left: -1px;
+}
+.trip-my-qa .msg-photo-container img {
+    border: 1px solid #e6e6e6;
+    padding: 2px;
+    margin-left: 17px;
+}
+.trip-my-qa .msg-comment {
+    background: #cff4fa;
+    border: 1px solid #bfebf0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 12px;
+    overflow: hidden;
+    zoom: 1;
+}
+.trip-my-qa .msg-comment .msg-date {
+    color: #666;
+    font-style: italic;
+    text-align: right;
+}
+
+
+.msg-textarea{
+    width: 100%;
+    max-width: 100%;
+    height: 100px;
+    box-shadow: inset 0px 2px 7px -5px #000;
+   /* -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;*/
+}
+.msg-submit{
+    float: right;
+}
