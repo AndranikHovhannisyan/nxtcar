@@ -31,15 +31,15 @@
                                 <span class="from-to"><span data-ng-bind="Ride.places[k].city_name"></span> → <span data-ng-bind="Ride.places[k+1].city_name"></span></span>
                                 <span class="price">
                                     <span class="add-on" currency="choosenCountry.currency"></span>
-                                    <input type="text" class="number" data-ng-model="Ride.places[k].priceToNearesCity" ng-init="Ride.places[k].priceToNearesCity=0">
+                                    <input type="text" class="number" data-ng-model="Ride.places[k].priceToNearestCity" ng-init="Ride.places[k].priceToNearestCity=0">
                                     <span class="add-sub-bt">
-                                        <button class="btn-plus" data-ng-click="Ride.places[k].priceToNearesCity=Ride.places[k].priceToNearesCity+1"></button><!--<br>-->
-                                        <button class="btn-minus" data-ng-click="Ride.places[k].priceToNearesCity=Ride.places[k].priceToNearesCity-1"></button>
+                                        <button class="btn-plus" data-ng-click="Ride.places[k].priceToNearestCity=Ride.places[k].priceToNearestCity+1"></button><!--<br>-->
+                                        <button class="btn-minus" data-ng-click="Ride.places[k].priceToNearestCity=Ride.places[k].priceToNearestCity-1"></button>
                                     </span>
                                 </span>
                             </li>
                             <li class="last">
-                                <span class="from-to"><span data-ng-bind="Ride.places[0].city_name"></span> → <span data-ng-bind="Ride.places[places.length-1].city_name"></span></span>
+                                <span class="from-to"><span data-ng-bind="Ride.places[0].city_name"></span> → <span data-ng-bind="Ride.places[Ride.places.length-1].city_name"></span></span>
 									<span class="price">
 										<span class="add-on" currency="choosenCountry.currency"></span>
 										<div class="number" data-ng-bind="Ride.WholePrices"></div><!--

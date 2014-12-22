@@ -34,14 +34,14 @@ define([],function(){
             }
 
             /*--------------------------------------*/
-            $scope.$watch('Ride.prices',function(d){
+            $scope.$watch('Ride.places',function(d){
                 if(angular.isUndefined(d)){
                     return;
                 }
                 $scope.Ride.WholePrices = 0;
                 angular.forEach(d,function(v){
-                    if(angular.isNumber(parseFloat(v))){
-                        $scope.Ride.WholePrices += parseFloat(v);
+                    if(angular.isDefined(v.priceToNearestCity) && angular.isNumber(parseFloat(v.priceToNearestCity))){
+                        $scope.Ride.WholePrices += parseFloat(v.priceToNearestCity);
                     }
                 })
             },true)
