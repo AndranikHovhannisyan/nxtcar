@@ -35,14 +35,14 @@ class Town
     protected $fullName;
 
     /**
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="k", type="float")
      */
-    protected $longitude;
+    protected $k;
 
     /**
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="d", type="float")
      */
-    protected $latitude;
+    protected $d;
 
     /**
      * @ORM\OneToMany(targetEntity="RideTown", mappedBy="town")
@@ -113,52 +113,6 @@ class Town
     }
 
     /**
-     * Set longitude
-     *
-     * @param float $longitude
-     * @return Town
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return float 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param float $latitude
-     * @return Town
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return float 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
      * Add rideTown
      *
      * @param \nxtcar\MainBundle\Entity\RideTown $rideTown
@@ -189,5 +143,51 @@ class Town
     public function getRideTown()
     {
         return $this->rideTown;
+    }
+
+    /**
+     * Set k
+     *
+     * @param float $k
+     * @return Town
+     */
+    public function setK($k)
+    {
+        $this->k = $k;
+
+        return $this;
+    }
+
+    /**
+     * Get k
+     *
+     * @return float 
+     */
+    public function getK()
+    {
+        return $this->k;
+    }
+
+    /**
+     * Set d
+     *
+     * @param float $d
+     * @return Town
+     */
+    public function setD($d)
+    {
+        $this->d = $d;
+
+        return $this;
+    }
+
+    /**
+     * Get d
+     *
+     * @return float 
+     */
+    public function getD()
+    {
+        return $this->d;
     }
 }

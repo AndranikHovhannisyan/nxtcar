@@ -35,17 +35,113 @@ class Town
     protected $fullName;
 
     /**
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="k", type="float")
      */
-    protected $longitude;
+    protected $k;
 
     /**
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="d", type="float")
      */
-    protected $latitude;
+    protected $d;
 
     /**
      * @ORM\OneToMany(targetEntity="RideTown", mappedBy="town")
      */
     protected $rideTown;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rideTown = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Town
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set fullName
+     *
+     * @param string $fullName
+     * @return Town
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
+     * Get fullName
+     *
+     * @return string 
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Add rideTown
+     *
+     * @param \nxtcar\MainBundle\Entity\RideTown $rideTown
+     * @return Town
+     */
+    public function addRideTown(\nxtcar\MainBundle\Entity\RideTown $rideTown)
+    {
+        $this->rideTown[] = $rideTown;
+
+        return $this;
+    }
+
+    /**
+     * Remove rideTown
+     *
+     * @param \nxtcar\MainBundle\Entity\RideTown $rideTown
+     */
+    public function removeRideTown(\nxtcar\MainBundle\Entity\RideTown $rideTown)
+    {
+        $this->rideTown->removeElement($rideTown);
+    }
+
+    /**
+     * Get rideTown
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRideTown()
+    {
+        return $this->rideTown;
+    }
 }

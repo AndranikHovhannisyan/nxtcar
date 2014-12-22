@@ -43,4 +43,83 @@ class InOutWeek
      * @ORm\JoinColumn(name="week_day_id", referencedColumnName="id")
      */
     protected $weekDay;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set hour
+     *
+     * @param integer $hour
+     * @return InOutWeek
+     */
+    public function setHour($hour)
+    {
+        $this->hour = $hour;
+
+        return $this;
+    }
+
+    /**
+     * Get hour
+     *
+     * @return integer 
+     */
+    public function getHour()
+    {
+        return $this->hour;
+    }
+
+    /**
+     * Set minute
+     *
+     * @param integer $minute
+     * @return InOutWeek
+     */
+    public function setMinute($minute)
+    {
+        $this->minute = $minute;
+
+        return $this;
+    }
+
+    /**
+     * Get minute
+     *
+     * @return integer 
+     */
+    public function getMinute()
+    {
+        return $this->minute;
+    }
+
+    /**
+     * Set weekDay
+     *
+     * @param \nxtcar\MainBundle\Entity\WeekDay $weekDay
+     * @return InOutWeek
+     */
+    public function setWeekDay(\nxtcar\MainBundle\Entity\WeekDay $weekDay = null)
+    {
+        $this->weekDay = $weekDay;
+
+        return $this;
+    }
+
+    /**
+     * Get weekDay
+     *
+     * @return \nxtcar\MainBundle\Entity\WeekDay 
+     */
+    public function getWeekDay()
+    {
+        return $this->weekDay;
+    }
 }

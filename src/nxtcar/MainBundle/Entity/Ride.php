@@ -46,6 +46,26 @@ class Ride
     protected $rideDate;
 
     /**
+     * @ORM\Column(name="luggage_size", type="smallint", nullable=false)
+     */
+    protected $luggageSize;
+
+    /**
+     * @ORM\Column(name="leaving_time", type="smallint", nullable=false)
+     */
+    protected $leavingTime;
+
+    /**
+     * @ORM\Column(name="detour", type="smallint", nullable=true)
+     */
+    protected $detour;
+
+    /**
+     * @ORM\Column(name="detail", type="string", length=2000, nullable=true)
+     */
+    protected $detail;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -163,5 +183,97 @@ class Ride
     public function getRideDate()
     {
         return $this->rideDate;
+    }
+
+    /**
+     * Set luggageSize
+     *
+     * @param integer $luggageSize
+     * @return Ride
+     */
+    public function setLuggageSize($luggageSize)
+    {
+        $this->luggageSize = $luggageSize;
+
+        return $this;
+    }
+
+    /**
+     * Get luggageSize
+     *
+     * @return integer 
+     */
+    public function getLuggageSize()
+    {
+        return $this->luggageSize;
+    }
+
+    /**
+     * Set leavingTime
+     *
+     * @param integer $leavingTime
+     * @return Ride
+     */
+    public function setLeavingTime($leavingTime)
+    {
+        $this->leavingTime = $leavingTime;
+
+        return $this;
+    }
+
+    /**
+     * Get leavingTime
+     *
+     * @return integer 
+     */
+    public function getLeavingTime()
+    {
+        return $this->leavingTime;
+    }
+
+    /**
+     * Set detour
+     *
+     * @param integer $detour
+     * @return Ride
+     */
+    public function setDetour($detour)
+    {
+        $this->detour = $detour;
+
+        return $this;
+    }
+
+    /**
+     * Get detour
+     *
+     * @return integer 
+     */
+    public function getDetour()
+    {
+        return $this->detour;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     * @return Ride
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string 
+     */
+    public function getDetail()
+    {
+        return $this->detail;
     }
 }
