@@ -61,6 +61,7 @@ define([],function(){
                     return;
                 }
                 $scope.cities.splice(index,1);
+                $scope.Ride.places[$scope.Ride.places.length-1].index--;
             }
         });
 })

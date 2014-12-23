@@ -129,6 +129,7 @@ define([],function(){
                                         scope.place.index = index;
                                         scope.places.splice(index,0,scope.place);
                                     }
+                                    scope.places[scope.places.length-1].index++;
                                     break;
                                 default:
                             }
