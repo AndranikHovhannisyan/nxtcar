@@ -49,6 +49,7 @@ class RideController extends Controller
             throw new HttpException(Codes::HTTP_BAD_REQUEST, 'page field missing');
         }
 
+        $em = $this->getDoctrine()->getManager();
 
         $ride = new Ride();
         $ride->setAllPlaces($obj->seatsNumber);
@@ -75,19 +76,13 @@ class RideController extends Controller
                 $oneTime->setInHour($obj->return->hour);
                 $oneTime->setInMinute($obj->return->minute);
             }
+
+            $em->persist($oneTime);
         }
         else
         {
 
         }
-
-
-
-
-
-
-
-        $em = $this->getDoctrine()->getManager();
 
         foreach($obj->places as $place)
         {
@@ -98,6 +93,8 @@ class RideController extends Controller
                 $town->setName($place->city_name);
                 $town->setD($place->location->D);
                 $town->setK($place->location->k);
+
+                $em->persist($town);
             }
 
             $rideTown = new RideTown();
@@ -108,7 +105,12 @@ class RideController extends Controller
                 $rideTown->setPriceToNearest($place->priceToNearestCity);
             }
             $rideTown->setPositionInRide($place->index);
+
+            $em->persist($rideTown);
         }
+
+        $em->persist($ride);
+        $em->flush();
 
         return new Response('ssss');
     }

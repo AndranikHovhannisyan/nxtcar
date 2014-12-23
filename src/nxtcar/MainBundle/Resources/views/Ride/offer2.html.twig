@@ -95,10 +95,10 @@
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">Maximum luggage size:</label>
                                 <div class="col-sm-3">
-                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.luggageSize" data-ng-init="Ride.luggageSize='medium'">
-                                        <option value="small">Small</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="large">Large</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.luggageSize" data-ng-init="Ride.luggageSize='{{ constant('nxtcar\\MainBundle\\Entity\\Ride::SMALL') }}'">
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::SMALL') }}">Small</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::MEDIUM') }}">Medium</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::LARGE') }}">Large</option>
                                     </select>
                                 </div>
                             </div>
@@ -106,12 +106,12 @@
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">I will leave:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.leavingTime" data-ng-init="Ride.leavingTime='ON_TIME'">
-                                        <option value="ON_TIME">Right on time</option>
-                                        <option value="FIFTEEN_MINUTES">In a 15 minute window</option>
-                                        <option value="THIRTY_MINUTES">In a 30 minute window</option>
-                                        <option value="ONE_HOUR">In a 1 hour window</option>
-                                        <option value="TWO_HOURS">In a 2 hour window</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.leavingTime" data-ng-init="Ride.leavingTime='{{ constant('nxtcar\\MainBundle\\Entity\\Ride::ON_TIME') }}'">
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::ON_TIME') }}">Right on time</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::MIN15') }}">In a 15 minute window</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::MIN30') }}">In a 30 minute window</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::HOUR1') }}">In a 1 hour window</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::HOUR2') }}">In a 2 hour window</option>
                                     </select>
                                 </div>
                             </div>
@@ -119,11 +119,11 @@
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">I can make a detour:</label>
                                 <div class="col-sm-5">
-                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.detour" data-ng-init="Ride.detour='FIFTEEN_MINUTES'">
-                                        <option value="NONE">None</option>
-                                        <option value="FIFTEEN_MINUTES">15 minute detour, max.</option>
-                                        <option value="THIRTY_MINUTES">30 minute detour, max.</option>
-                                        <option value="WHATEVER_IT_TAKES">Anything is fine</option>
+                                    <select id="yor-car" class="yor-car form-control" data-ng-model="Ride.detour" data-ng-init="Ride.detour='{{ constant('nxtcar\\MainBundle\\Entity\\Ride::DET_MIN15') }}'">
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::NONE') }}">None</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::DET_MIN15') }}">15 minute detour, max.</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::DET_MIN30') }}">30 minute detour, max.</option>
+                                        <option value="{{ constant('nxtcar\\MainBundle\\Entity\\Ride::DET_FINE') }}">Anything is fine</option>
                                     </select>
                                 </div>
                             </div>
