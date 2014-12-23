@@ -17,6 +17,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ride
 {
+    //Luggage options
+    const SMALL  = 0;
+    const MEDIUM = 1;
+    const LARGE  = 2;
+
+    //Leave options
+    const ON_TIME = 3;
+    const MIN15 = 3;
+    const MIN30 = 4;
+    const HOUR1 = 5;
+    const HOUR2 = 6;
+
+    //Detour options
+    const NONE     = 7;
+    const DET_MIN15 = 8;
+    const DET_MIN30 = 9;
+    const DET_FINE  = 10;
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id

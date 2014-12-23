@@ -47,7 +47,7 @@ class RideTown
     protected $busyPlaces;
 
     /**
-     * @ORM\Column(name="price_to_nearest", type="integer")
+     * @ORM\Column(name="price_to_nearest", type="integer",  nullable=true)
      */
     protected $priceToNearest;
 
