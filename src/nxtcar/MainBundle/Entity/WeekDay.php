@@ -27,10 +27,10 @@ class WeekDay
     /**
      * @ORM\Column(name="name", type="string", length=50, nullable=true)
      */
-    protected $name;
+    protected $name = 'default';
 
     /**
-     * @ORM\Column(name="index", type="integer", nullable=true)
+     * @ORM\Column(name="week_index", type="integer", nullable=true)
      */
     protected $index;
 

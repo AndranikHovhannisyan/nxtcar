@@ -8,10 +8,14 @@
 namespace nxtcar\MainBundle\Controller;
 
 use FOS\RestBundle\Util\Codes;
+use nxtcar\MainBundle\Entity\InWeek;
 use nxtcar\MainBundle\Entity\OneTime;
+use nxtcar\MainBundle\Entity\OutWeek;
+use nxtcar\MainBundle\Entity\Recurring;
 use nxtcar\MainBundle\Entity\Ride;
 use nxtcar\MainBundle\Entity\RideTown;
 use nxtcar\MainBundle\Entity\Town;
+use nxtcar\MainBundle\Entity\WeekDay;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -52,6 +56,7 @@ class RideController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $ride = new Ride();
+        $ride->setDriver($this->getUser());
         $ride->setAllPlaces($obj->seatsNumber);
         $ride->setDriver($this->getUser());
         $ride->setLuggageSize($obj->luggageSize);
@@ -67,12 +72,12 @@ class RideController extends Controller
             $oneTime = new OneTime();
             $oneTime->setIsRound($obj->Round);
             $oneTime->setRide($ride);
-            $oneTime->setOutDate($obj->departure->dateFrom);
+            $oneTime->setOutDate(new \datetime($obj->departure->dateFrom));
             $oneTime->setOutHour($obj->departure->hour);
             $oneTime->setOutMinute($obj->departure->minute);
 
             if ($oneTime->getIsRound()) {
-                $oneTime->setInDate($obj->return->dateTo);
+                $oneTime->setInDate(new \datetime($obj->return->dateTo));
                 $oneTime->setInHour($obj->return->hour);
                 $oneTime->setInMinute($obj->return->minute);
             }
@@ -81,7 +86,47 @@ class RideController extends Controller
         }
         else
         {
+            $recurring = new Recurring();
+            $recurring->setIsRound($obj->Round);
+            $recurring->setRide($ride);
+            $recurring->setStartDate(new \datetime($obj->dateRecurringFrom));
+            $recurring->setEndDate(new \datetime($obj->dateRecurringTo));
+            for ($i = 0; $i <= 6; $i++)
+            {
+                if ((isset($obj->outWeek[$i]) && $obj->outWeek[$i]) || (isset($obj->returnWeek[$i]) && $obj->returnWeek[$i])) {
+                    $weekDay = $em->getRepository('nxtcarMainBundle:WeekDay')->findBy(array('index' => $i));
+                    if (!$weekDay) {
+                        $weekDay = new WeekDay();
+                        $weekDay->setIndex($i);
+                        $em->persist($weekDay);
+                    }
+                    else {
+                        $weekDay = $weekDay[0];
+                    }
 
+                    if (isset($obj->outWeek[$i]) && $obj->outWeek[$i]) {
+                        $outWeek = new OutWeek();
+                        $outWeek->setWeekDay($weekDay);
+                        $outWeek->setHour($obj->outboundRecurring->hour);
+                        $outWeek->setMinute($obj->outboundRecurring->minute);
+                        $outWeek->setRecurring($recurring);
+
+                        $em->persist($outWeek);
+                    }
+
+                    if ($recurring->getIsRound() && isset($obj->returnWeek[$i]) && $obj->returnWeek[$i]) {
+                        $inWeek = new InWeek();
+                        $inWeek->setWeekDay($weekDay);
+                        $inWeek->setHour($obj->returnRecurring->hour);
+                        $inWeek->setMinute($obj->returnRecurring->minute);
+                        $inWeek->setRecurring($recurring);
+
+                        $em->persist($inWeek);
+                    }
+                }
+            }
+
+            $em->persist($recurring);
         }
 
         foreach($obj->places as $place)
@@ -95,6 +140,9 @@ class RideController extends Controller
                 $town->setK($place->location->k);
 
                 $em->persist($town);
+            }
+            else {
+                $town = $town[0];
             }
 
             $rideTown = new RideTown();
