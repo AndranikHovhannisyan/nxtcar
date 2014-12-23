@@ -41,7 +41,7 @@ define([],function(){
             compile: function compileFn(){
                 return function linkFn(scope,el){
                     el.datepicker({
-                        dateFormat: 'dd/mm/yy',
+                        dateFormat: 'yy-mm-dd',
                         onSelect: function(date){
                             scope.ngModel = date;
                             scope.$apply();

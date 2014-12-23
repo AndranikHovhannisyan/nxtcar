@@ -97,7 +97,7 @@
                                     <label class="control-label">Departure date:</label>
                                     <div class="departure-date">
                                         <div class="input-date">
-                                            <input type="text" datepicker ng-model="Ride.departure.dateFrom" class="input date-picker" placeholder="DD/MM/YYYY"/>
+                                            <input type="text" datepicker ng-model="Ride.departure.dateFrom" class="input date-picker" placeholder="YYYY/MM/DD"/>
                                         </div>
                                         <select class="time-select" data-ng-model="Ride.departure.hour">
                                             <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
@@ -111,7 +111,7 @@
                                     <label class="control-label" data-ng-show="Ride.Round">Return date:</label><br>
                                     <div class="departure-date" data-ng-show="Ride.Round">
                                         <div class="input-date">
-                                            <input type="text" class="input date-picker" datepicker ng-model="Ride.return.dateTo" placeholder="DD/MM/YYYY"/>
+                                            <input type="text" class="input date-picker" datepicker ng-model="Ride.return.dateTo" placeholder="YYYY/MM/DD"/>
                                         </div>
                                         <select class="time-select" data-ng-model="Ride.return.hour">
                                             <option data-ng-repeat="hour in hours" value="[[ hour ]]" data-ng-bind="hour"></option>
@@ -219,9 +219,9 @@
                                     <div class="recurring">
                                         <div class="input-date">
                                             Starting from:
-                                            <input type="text" datepicker ng-model="Ride.dateRecurringFrom" class="input date-picker" ng-init="Ride.dateRecurringFrom='{{ "now" | date("d/m/Y") }}'" placeholder="DD/MM/YYYY"/>
+                                            <input type="text" datepicker ng-model="Ride.dateRecurringFrom" class="input date-picker" ng-init="Ride.dateRecurringFrom='{{ "now" | date("d/m/Y") }}'" placeholder="YYYY/MM/DD"/>
                                             Until:
-                                            <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="DD/MM/YYYY"/>
+                                            <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="YYYY/MM/DD"/>
                                         </div>
                                         <div>
                                             <div alt-datepicker out-week="Ride.outWeek" return-week="Ride.returnWeek" trip-week="Ride.tripWeek"></div>
