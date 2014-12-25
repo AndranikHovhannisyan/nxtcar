@@ -58,8 +58,7 @@ class RideController extends Controller
         $ride = new Ride();
         $ride->setDriver($this->getUser());
         $ride->setAllPlaces($obj->seatsNumber);
-        $ride->setDriver($this->getUser());
-        $ride->setLuggageSize($obj->luggageSize);
+         $ride->setLuggageSize($obj->luggageSize);
         $ride->setLeavingTime($obj->leavingTime);
         $ride->setDetour($obj->detour);
         if (isset($obj->details)) {
