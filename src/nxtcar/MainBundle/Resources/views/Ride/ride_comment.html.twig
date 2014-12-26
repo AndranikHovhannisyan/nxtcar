@@ -5,143 +5,112 @@
 {% endblock %}
 {% block content %}
 
+    {% if thread.numComments != 0 %}
+        {% for i in (thread.numComments - 1)..0 %}
+            {% set commentinfo = comments[i] %}
 
+            {% if commentinfo.comment.author is not null and commentinfo.comment.author.photo is not null %}
+                {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ commentinfo.comment.author.photo.webpath %}
+            {% else %}
+                {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+            {% endif %}
 
+            {% if commentinfo.comment.author.id != driverId %}
 
-        <div class="margin-bottom">
-            <div class=" trip-qa ">
-                <div class="pull-left msg-photo-container">
-                    <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
-                        <img class="tip" alt="Ismael B (29 ans)" src="http://du7dtrj7qz5as.cloudfront.net/v-1418824734/images/icons/user-man-72.png" width="72" height="72" style="width: 72px; height: 72px">
-                    </a>
-                </div>
-                <div class="msg-comment">
-                    <h4><strong>Ismael B :</strong></h4>
-                    <p>"Bonsoir Gautier pourais savoir si val-d'esère es en italie"</p>
-                    <p class="msg-date clearfix">
-                        Jeudi 11 décembre à 21h55
-                        <span class="pull-right">
-                            <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
-                                <i class="alert-flag bbc-icon2-flag"></i>
+                <div class="margin-bottom">
+                    <div class=" trip-qa ">
+                        <div class="pull-left msg-photo-container">
+                            <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
+                                <img class="tip" alt="Ismael B (29 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
                             </a>
-                        </span>
-                    </p>
+                        </div>
+                        <div class="msg-comment">
+                            <h4>
+                                <strong>
+
+                                    {% if commentinfo.comment.author is not null %}
+                                        {{ commentinfo.comment.author.displayedAs }}
+                                    {% else %}
+                                        Anonymous
+                                    {% endif %}
+
+                                </strong>
+                            </h4>
+                            <p>"{{ commentinfo.comment.body }}"</p>
+                            <p class="msg-date clearfix">
+                                {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
+                                <span class="pull-right">
+                                    <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
+                                        <i class="alert-flag bbc-icon2-flag"></i>
+                                    </a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="margin-bottom">
-            <div class=" trip-my-qa ">
-                <div class="pull-right msg-photo-container">
-                    <a href="/membre/profil/HlglAV4lcNfv_sOc-DS4Iw"><img class="tip" alt="Gautier T (26 ans)" src="http://d36sxr42ddoar8.cloudfront.net/cache/7605516.jpg/72_72.png?AWSAccessKeyId=AKIAJDKWAOMUQGA4454Q&amp;Expires=1440874359&amp;Signature=BjEp7lwCYM8r37bmVdeBl8VaxEs%3D" width="72" height="72" style="width: 72px; height: 72px"></a>
+            {% else %}
+
+                <div class="margin-bottom">
+                    <div class=" trip-my-qa ">
+                        <div class="pull-right msg-photo-container">
+                            <a href="/membre/profil/HlglAV4lcNfv_sOc-DS4Iw"><img class="tip" alt="Gautier T (26 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px"></a>
+                        </div>
+                        <div class="msg-comment">
+                            <h4>
+                                <strong>
+
+                                    {% if commentinfo.comment.author is not null %}
+                                        {{ commentinfo.comment.author.displayedAs }}
+                                    {% else %}
+                                        Anonymous
+                                    {% endif %}
+
+                                </strong>
+                            </h4>
+                            <p>"{{ commentinfo.comment.body }}"</p>
+                            <p class="msg-date clearfix">
+                                {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
+                                <span class="pull-right">
+                                    <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
+                                        <i class="alert-flag bbc-icon2-flag"></i>
+                                    </a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="msg-comment">
-                    <h4><strong>Gautier T :</strong></h4>
-                    <p>"Val d'isère est en France, code postal 73150"</p>
-                    <p class="msg-date clearfix">
-                        Jeudi 11 décembre à 22h03
-                        <span class="pull-right">
-                            <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
-                                <i class="alert-flag bbc-icon2-flag"></i>
-                            </a>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
+
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
 
 
-
-
-
+    {% if app.user is not null and app.user.photo is not null %}
+        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+    {% else %}
+        {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+    {% endif %}
 
     <div class="margin-bottom">
         <div class=" trip-qa ">
             <div class="pull-left msg-photo-container">
                 <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
-                    <img class="tip" alt="Ismael B (29 ans)" src="http://du7dtrj7qz5as.cloudfront.net/v-1418824734/images/icons/user-man-72.png" width="72" height="72" style="width: 72px; height: 72px">
+                    <img class="tip" alt="Ismael B (29 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
                 </a>
             </div>
             <div class="msg-comment">
                 <form action="#" method="POST">
-                    <textarea class="msg-textarea" id="form_body" name="form[body]" required="required">aper chkaracs gtnem esi blabla-um, ete inchvor css pakas @lni mihat link kuxarkes facebook-in lav </textarea>
+                    {{ form_widget(form.body, {"attr" : {class: "msg-textarea", id: "form_body", name: "form[body]", required: "required"} }) }}
                     <br>
                     <label>type a comment</label>
 
                     <input  class="msg-submit" type="submit" name="submit">
+                    {{ form_widget(form._token) }}
                 </form>
             </div>
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-    <div id="fos_comment_thread" data-thread="{{ thread.id }}">
-
-        <br>
-        <h4 class="public-questions">Public questions {{ thread.numComments }}</h4>
-
-        {% if thread.numComments != 0 %}
-            {% for i in (thread.numComments - 1)..0 %}
-                {% set commentinfo = comments[i] %}
-
-                {# TODO: Id of comment author #}
-                {#{{ commentinfo.comment.author.id }}#}
-
-                {% if commentinfo.comment.author is not null and commentinfo.comment.author.photo is not null %}
-                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ commentinfo.comment.author.photo.webpath %}
-                {% else %}
-                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
-                {% endif %}
-
-                <div class="col-md-2">
-                    <img src="{{ photo }}" width="70" height="70">
-                </div>
-
-                <div>
-                    {% if commentinfo.comment.author is not null %}
-                        {{ commentinfo.comment.author.displayedAs }}
-                    {% else %}
-                        Anonymous
-                    {% endif %}
-                    <br>
-
-                    {{ commentinfo.comment.body }}
-                    <br>
-                    {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
-
-                </div>
-                <br><br><br>
-            {% endfor %}
-        {% endif %}
-
-        {% if app.user is not null and app.user.photo is not null %}
-            {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
-        {% else %}
-            {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
-        {% endif %}
-
-        <div class="col-md-2">
-            <img src="{{ photo }}" width="70" height="70">
-        </div>
-
-        <div>
-            <form action="#" method="POST">
-                {{ form_widget(form.body) }}
-                <br>
-                <label>type a comment</label>
-                <input type="submit" name="submit"/>
-                {{ form_widget(form._token) }}
-            </form>
-        </div>
-
     </div>
 
 {% endblock content %}

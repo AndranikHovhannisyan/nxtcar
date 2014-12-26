@@ -187,6 +187,9 @@ class RideController extends Controller
      */
     public function offerCommentsAction($rideId, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $ride = $em->getRepository('nxtcarMainBundle:Ride')->find($rideId);
+
         $id = 'ride_' . $rideId;
         $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
         if (null === $thread) {
@@ -219,9 +222,10 @@ class RideController extends Controller
         $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
 
         return $this->render('nxtcarMainBundle:Ride:ride_comment.html.twig', array(
-            'comments' => $comments,
-            'thread' => $thread,
-            'form' => $form->createView()
+            'driverId'  => $ride->getDriver()->getId(),
+            'comments'  => $comments,
+            'thread'    => $thread,
+            'form'      => $form->createView()
         ));
     }
 }
