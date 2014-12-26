@@ -164,12 +164,15 @@ class RideController extends Controller
 
     /**
      * es vonc a ches nkatel?
-     * @Route("/ride/iii/{rideId}", name="ride")
+     * @Route("/ride/{rideId}", name="ride", requirements={"rideId" = "\d+"})
      * @Template("nxtcarMainBundle:Ride:ride.html.twig")
      */
     public function rideAction($rideId, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $ride = $em->getRepository('nxtcarMainBundle:Ride')->find($rideId);
 
+        return $this->render("nxtcarMainBundle:Ride:ride.html.twig", array('ride' => $ride));
     }
 
     /**

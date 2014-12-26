@@ -1,11 +1,15 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
 {% block stylesheets %}
-    {{ parent() }}{#
+    {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride.css") }}">
 {% endblock %}
 
 {% block content %}
+
+    {{ dump(ride) }}
+
+
     <a href="#" class="back"> ← Back to search results</a>
     <svg class="from-to-header" width="100%">
         <polygon points="0,0 1000,0 1000,50 90,50 80,60 70,50 0,50"
@@ -33,7 +37,7 @@
                         </li>
                         <li class="row">
                             <div class="col-md-4 li-left">Departure date</div>
-                            <div class="col-md-8 li-right">Today</div>
+                            <div class="col-md-8 li-right">{{ ride. }}</div>
                         </li>
                         <li class="row">
                             <div class="col-md-4 li-left">Departure time</div>
