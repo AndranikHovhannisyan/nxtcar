@@ -42,12 +42,17 @@ class RideTown
     protected $positionInRide;
 
     /**
-     * @ORM\Column(name="busy_places", type="integer")
+     * @ORM\Column(name="busy_places_go", type="integer")
      */
-    protected $busyPlaces;
+    protected $busyPlacesGo;
 
     /**
-     * @ORM\Column(name="price_to_nearest", type="integer")
+     * @ORM\Column(name="busy_places_return", type="integer")
+     */
+    protected $busyPlacesReturn;
+
+    /**
+     * @ORM\Column(name="price_to_nearest", type="integer",  nullable=true)
      */
     protected $priceToNearest;
 
@@ -82,29 +87,6 @@ class RideTown
     public function getPositionInRide()
     {
         return $this->positionInRide;
-    }
-
-    /**
-     * Set busyPlaces
-     *
-     * @param integer $busyPlaces
-     * @return RideTown
-     */
-    public function setBusyPlaces($busyPlaces)
-    {
-        $this->busyPlaces = $busyPlaces;
-
-        return $this;
-    }
-
-    /**
-     * Get busyPlaces
-     *
-     * @return integer 
-     */
-    public function getBusyPlaces()
-    {
-        return $this->busyPlaces;
     }
 
     /**

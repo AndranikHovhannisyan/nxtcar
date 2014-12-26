@@ -42,9 +42,14 @@ class RideTown
     protected $positionInRide;
 
     /**
-     * @ORM\Column(name="busy_places", type="integer")
+     * @ORM\Column(name="busy_places_go", type="integer")
      */
-    protected $busyPlaces;
+    protected $busyPlacesGo;
+
+    /**
+     * @ORM\Column(name="busy_places_return", type="integer")
+     */
+    protected $busyPlacesReturn;
 
     /**
      * @ORM\Column(name="price_to_nearest", type="integer",  nullable=true)
@@ -82,29 +87,6 @@ class RideTown
     public function getPositionInRide()
     {
         return $this->positionInRide;
-    }
-
-    /**
-     * Set busyPlaces
-     *
-     * @param integer $busyPlaces
-     * @return RideTown
-     */
-    public function setBusyPlaces($busyPlaces)
-    {
-        $this->busyPlaces = $busyPlaces;
-
-        return $this;
-    }
-
-    /**
-     * Get busyPlaces
-     *
-     * @return integer 
-     */
-    public function getBusyPlaces()
-    {
-        return $this->busyPlaces;
     }
 
     /**
@@ -174,5 +156,51 @@ class RideTown
     public function getTown()
     {
         return $this->town;
+    }
+
+    /**
+     * Set busyPlacesGo
+     *
+     * @param integer $busyPlacesGo
+     * @return RideTown
+     */
+    public function setBusyPlacesGo($busyPlacesGo)
+    {
+        $this->busyPlacesGo = $busyPlacesGo;
+
+        return $this;
+    }
+
+    /**
+     * Get busyPlacesGo
+     *
+     * @return integer 
+     */
+    public function getBusyPlacesGo()
+    {
+        return $this->busyPlacesGo;
+    }
+
+    /**
+     * Set busyPlacesReturn
+     *
+     * @param integer $busyPlacesReturn
+     * @return RideTown
+     */
+    public function setBusyPlacesReturn($busyPlacesReturn)
+    {
+        $this->busyPlacesReturn = $busyPlacesReturn;
+
+        return $this;
+    }
+
+    /**
+     * Get busyPlacesReturn
+     *
+     * @return integer 
+     */
+    public function getBusyPlacesReturn()
+    {
+        return $this->busyPlacesReturn;
     }
 }

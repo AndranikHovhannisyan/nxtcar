@@ -13,10 +13,28 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CarType
  * @package nxtcar\MainBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="nxtcar\MainBundle\Entity\Repository\RideRepository")
  */
 class Ride
 {
+    //Luggage options
+    const SMALL  = 0;
+    const MEDIUM = 1;
+    const LARGE  = 2;
+
+    //Leave options
+    const ON_TIME = 3;
+    const MIN15 = 3;
+    const MIN30 = 4;
+    const HOUR1 = 5;
+    const HOUR2 = 6;
+
+    //Detour options
+    const NONE     = 7;
+    const DET_MIN15 = 8;
+    const DET_MIN30 = 9;
+    const DET_FINE  = 10;
+
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -64,6 +82,12 @@ class Ride
      * @ORM\Column(name="detail", type="string", length=2000, nullable=true)
      */
     protected $detail;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Car")
+     * @ORm\JoinColumn(name="car_id", referencedColumnName="id")
+     */
+    protected $car;
 
     /**
      * Constructor
@@ -183,5 +207,97 @@ class Ride
     public function getRideDate()
     {
         return $this->rideDate;
+    }
+
+    /**
+     * Set luggageSize
+     *
+     * @param integer $luggageSize
+     * @return Ride
+     */
+    public function setLuggageSize($luggageSize)
+    {
+        $this->luggageSize = $luggageSize;
+
+        return $this;
+    }
+
+    /**
+     * Get luggageSize
+     *
+     * @return integer 
+     */
+    public function getLuggageSize()
+    {
+        return $this->luggageSize;
+    }
+
+    /**
+     * Set leavingTime
+     *
+     * @param integer $leavingTime
+     * @return Ride
+     */
+    public function setLeavingTime($leavingTime)
+    {
+        $this->leavingTime = $leavingTime;
+
+        return $this;
+    }
+
+    /**
+     * Get leavingTime
+     *
+     * @return integer 
+     */
+    public function getLeavingTime()
+    {
+        return $this->leavingTime;
+    }
+
+    /**
+     * Set detour
+     *
+     * @param integer $detour
+     * @return Ride
+     */
+    public function setDetour($detour)
+    {
+        $this->detour = $detour;
+
+        return $this;
+    }
+
+    /**
+     * Get detour
+     *
+     * @return integer 
+     */
+    public function getDetour()
+    {
+        return $this->detour;
+    }
+
+    /**
+     * Set detail
+     *
+     * @param string $detail
+     * @return Ride
+     */
+    public function setDetail($detail)
+    {
+        $this->detail = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Get detail
+     *
+     * @return string 
+     */
+    public function getDetail()
+    {
+        return $this->detail;
     }
 }

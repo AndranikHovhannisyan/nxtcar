@@ -31,7 +31,9 @@ class RideController extends Controller
      */
     public function findAction()
     {
-        return array();
+        $em = $this->getDoctrine()->getmanager();
+        $result = $em->getRepository('nxtcarMainBundle:Ride')->findRide('Париж', 'Лондон');
+        var_dump($result); exit;
     }
 
     /**
@@ -56,9 +58,13 @@ class RideController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $ride = new Ride();
+        if (!$this->getUser()) {
+            throw new HttpException(Codes::HTTP_FORBIDDEN, "user doesn't authenticated");
+        }
+
         $ride->setDriver($this->getUser());
         $ride->setAllPlaces($obj->seatsNumber);
-         $ride->setLuggageSize($obj->luggageSize);
+        $ride->setLuggageSize($obj->luggageSize);
         $ride->setLeavingTime($obj->leavingTime);
         $ride->setDetour($obj->detour);
         if (isset($obj->details)) {
@@ -145,7 +151,8 @@ class RideController extends Controller
             }
 
             $rideTown = new RideTown();
-            $rideTown->setBusyPlaces(0);
+            $rideTown->setBusyPlacesGo(0);
+            $rideTown->setBusyPlacesReturn(0);
             $rideTown->setRide($ride);
             $rideTown->setTown($town);
             if (isset($place->priceToNearestCity)) {

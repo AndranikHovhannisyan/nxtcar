@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class CarType
  * @package nxtcar\MainBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="nxtcar\MainBundle\Entity\Repository\RideRepository")
  */
 class Ride
 {
