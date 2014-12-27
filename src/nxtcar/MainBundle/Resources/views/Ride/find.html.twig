@@ -10,7 +10,7 @@
         <h2>
             Find a ride
         </h2>
-        <form id="search-form" class="form-inline" action="/{{ app.debug ? 'app_dev.php':'app.php' }}/search" prevent-default>
+        <form method="POST" id="search-form" class="form-inline" action="{{ path('ride_find') }}" prevent-default>
             <input type="text" title="From" placeholder="From" class="search-from" google-autocomplete place="Ride.from">
 
             <button type="button" class="btn reverse tip">

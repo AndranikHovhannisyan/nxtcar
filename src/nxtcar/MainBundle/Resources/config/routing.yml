@@ -26,3 +26,7 @@ FAQ:
 car_rests:
     type:     rest
     resource: nxtcar\MainBundle\Controller\Rest\RestCarController
+
+ride_rests:
+    type:     rest
+    resource: nxtcar\MainBundle\Controller\Rest\RestRideController

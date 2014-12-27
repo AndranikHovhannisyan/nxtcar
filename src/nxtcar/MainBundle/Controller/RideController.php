@@ -27,13 +27,22 @@ class RideController extends Controller
 {
     /**
      * @Route("/ride/find", name="ride_find")
-     * @Template("nxtcarMainBundle:Ride:find.html.twig")
+     * @Template()
      */
-    public function findAction()
+    public function findAction(Request $request)
     {
-        $em = $this->getDoctrine()->getmanager();
-        $result = $em->getRepository('nxtcarMainBundle:Ride')->findRide('Париж', 'Лондон');
-        var_dump($result); exit;
+        $obj = json_decode($request->get('ride'));
+
+        if ($obj && isset($obj->from) && isset($obj->to)) {
+            return $this->render("nxtcarMainBundle:Ride:ride_search.html.twig",
+                array(
+                    'from' => $obj->from->city_name,
+                    'to' => $obj->to->city_name,
+                )
+            );
+        }
+
+        return $this->render("nxtcarMainBundle:Ride:find.html.twig");
     }
 
     /**

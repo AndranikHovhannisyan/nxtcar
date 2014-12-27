@@ -12,10 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class RideRepository extends EntityRepository
 {
-    public function findRide($from, $to)
+    public function findRide($from, $to, $isRecurring = false, $date = null, $timeFrom = null, $timeTo = null)
     {
-        return $this->getEntityManager()
-            ->createQuery("SELECT mainRide
+        $rideIds = $this->getEntityManager()
+            ->createQuery("SELECT mainRide.id
                            FROM nxtcarMainBundle:Ride mainRide
                            JOIN mainRide.rideTown rideTown1
                            JOIN mainRide.rideTown rideTown2
@@ -52,32 +52,41 @@ class RideRepository extends EntityRepository
             ->setParameter('townTo', $to)
             ->getResult();
 
+        $rideIds = array_map(function($element){return $element["id"];}, $rideIds);
 
-        return $this->getEntityManager()
-            ->createQuery("SELECT rideTown1
-                           FROM nxtcarMainBundle:RideTown rideTown1
-                           JOIN rideTown1.ride mainRide
-                           JOIN mainRide.rideDate rideDate
-                           JOIN nxtcarMainBundle:RideTown rideTown2
-                           WITH rideTown1.ride = rideTown2.ride
-                           JOIN rideTown1.town town1
-                           JOIN rideTown2.town town2
-                           WHERE
-                           town1.name LIKE :townFrom AND
-                           town2.name LIKE :townTo AND
-                           (
-                               rideTown1.positionInRide < rideTown2.positionInRide
-                               AND NOT EXISTS (SELECT rideTown3
-                                               FROM nxtcarMainBundle:RideTown rideTown3
-                                               JOIN rideTown3.ride ride
-                                               WHERE rideTown3.positionInRide >= rideTown1.positionInRide
-                                               AND rideTown3.positionInRide < rideTown2.positionInRide
-                                               AND rideTown3.busyPlaces = ride.allPlaces
-                                               AND ride = rideTown2.ride)
-                           )
-                           ")
-            ->setParameter('townFrom', $from)
-            ->setParameter('townTo', $to)
-            ->getResult();
+        $query =  $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('ride, rideTown, town, rideDate')
+            ->from('nxtcarMainBundle:Ride', 'ride')
+            ->join('ride.rideTown', 'rideTown')
+            ->join('rideTown.town', 'town')
+            ->join('ride.rideDate', 'rideDate')
+            ->where('ride.id IN (:rideIds)');
+
+        if ($isRecurring) {
+            $query->andWhere('rideDate INSTANCE OF nxtcarMainBundle:Recurring');
+        }
+        else {
+            $query->andWhere('rideDate INSTANCE OF nxtcarMainBundle:OneTime');
+
+            if ($timeFrom || $timeTo || $date) {
+                $query->join('nxtcarMainBundle:OneTime', 'oneTime with oneTime.id = rideDate.id');
+
+                if ($date) {
+                    $query->andWhere("oneTime.outDate >= $date");
+                }
+                if ($timeFrom) {
+                    $query->andWhere("oneTime.outHour >= $timeFrom");
+                }
+                if ($timeTo) {
+                    $query->andWhere("oneTime.outHour <= $timeTo");
+                }
+            }
+        }
+
+        return $query
+                ->setParameter('rideIds', $rideIds)
+                ->getQuery()
+                ->getResult();
     }
 }
