@@ -6,13 +6,35 @@ define([],function(){
         'Facebook',
         'ngResource',
         'Interpolation',
-        'ui.sortable',
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("RideManager",function($resource){
         return $resource('/api/ride/:where/:what',{},{
             search: {method: 'POST',isArray: false}
         });
+    })
+    .directive('dbSlider',function(){
+        return {
+            restrict: 'EA',
+            scope: {
+                callback: '&'
+            },
+            compile: function(){
+                return function(scope,el){
+                    el.jRange({
+                        from: 0,
+                        to: 100,
+                        step: 1,
+                        scale: [0,25,50,75,100],
+                        format: '%s',
+                        width: 200,
+                        showLabels: true,
+                        isRange : true,
+                        onstatechange: scope.callback
+                    })
+                }
+            }
+        }
     })
     .directive("currency",function(){
         return {

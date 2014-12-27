@@ -16,6 +16,7 @@ require.config({
         'angular-strap': '/app/bower_components/angular-strap/dist/angular-strap.min',
         'angular-strap-tpl': '/app/bower_components/angular-strap/dist/angular-strap.tpl.min',
         'ui.sortable': '/app/bower_components/angular-ui-sortable/sortable.min',
+        'jRange': '/app/scripts/jRange-master/jquery.range-min',
         /*-------------------------------------------------------------------------------------*/
         'Interpolation': '/app/scripts/Interpolation/Interpolation',
         'Facebook': '/app/scripts/Facebook/Facebook',
@@ -50,6 +51,7 @@ require.config({
         'angular-strap-tpl': ['angular'],
         'bootstrap': ['jquery'],
         'ui.sortable': ['angular','jquery'],
+        'jRange': ['jquery'],
         //------------------------------------------------------------------//
         'Facebook': ['angular'],
         'Interpolation': ['angular'],
@@ -60,7 +62,7 @@ require.config({
         'userController': ['angular','user'],
         'car': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'CarController': ['car'],
-        'ride': ['jquery-ui','ui.sortable','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
+        'ride': ['jquery-ui','jRange','Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'RideController': ['ride'],
         'google-map': ['ride'],
         'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],

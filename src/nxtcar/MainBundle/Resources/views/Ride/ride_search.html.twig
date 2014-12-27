@@ -4,6 +4,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_search.css") }}">
     <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('app/scripts/jRange-master/jquery.range.css') }}">
     <style>
         svg{
             margin-top: 1px;
@@ -18,6 +19,11 @@
         <div class="col-md-3 date" >
             <b>Date</b>
             <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="Rides.date">
+            <br/>
+            <br/>
+            <br/>
+            <div db-slider callback="sliderCallback(data)"></div>
+            <br/>
         </div>
         <div class="col-md-9">
             <div class="user-search-header ">89  rides from London to Paris, France

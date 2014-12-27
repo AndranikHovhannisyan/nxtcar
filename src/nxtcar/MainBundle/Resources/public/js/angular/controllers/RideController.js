@@ -72,5 +72,9 @@ define([],function(){
         .controller('RideSearchController',function($scope,countries,RideManager){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
+
+            $scope.sliderCallback = function(data){
+                console.log(data);
+            }
         });
 })
