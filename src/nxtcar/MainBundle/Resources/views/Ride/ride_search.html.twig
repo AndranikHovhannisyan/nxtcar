@@ -30,19 +30,20 @@
             <br/>
         </div>
         <div class="col-md-9">
-            <div class="user-search-header ">89  rides from London to Paris, France
+            <div class="user-search-header ">
+                <span ng-bind="Rides.length"></span> rides from {{ from }} to {{ to }}
                 <div class="rearrange-by">
                     <span class="">Rearrange by</span>
                     <a class=" order-price">£</a>
                     <a class=" order-date "></a>
                 </div>
             </div>
-            <a class="a-user-info">
+            <a class="a-user-info" data-ng-repeat="ride in Rides">
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
                         <div class="user-info">
-                            <b class="username">Valentin</b>
+                            <b class="username" data-ng-bind="ride.driver.username"></b>
                             <p>27 years old</p>
                             <p>Ambassador</p>
                         </div>
@@ -53,14 +54,34 @@
                             </svg>
                             <b>4.9 </b> - 36 ratings
                         </p>
-                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
-                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
-                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
-                        <img class="img-bla" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                        <span>
+                            <img class="img-bla ng-hide" ng-show="ride.driver.chattiness==0" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.chattiness==1" src="{{ asset('bundles/nxtcaruser/images/pref-blabla-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.chattiness==2" src="{{ asset('bundles/nxtcaruser/images/pref-blablabla-large.png') }}" width="30px">
+                        </span>
+                        <span>
+                            <img class="img-bla ng-hide" ng-show="ride.driver.smoking==0" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.smoking==1" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-maybe-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.smoking==2" src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}" width="30px">
+                        </span>
+                        <span>
+                            <img class="img-bla ng-hide" ng-show="ride.driver.pets==0" src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.pets==1" src="{{ asset('bundles/nxtcaruser/images/pref-pet-maybe-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.pets==2" src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}" width="30px">
+                        </span>
+                        <span>
+                            <img class="img-bla ng-hide" ng-show="ride.driver.music==0" src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.music==1" src="{{ asset('bundles/nxtcaruser/images/pref-music-maybe-large.png') }}" width="30px">
+                            <img class="img-bla ng-hide" ng-show="ride.driver.music==2" src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}" width="30px">
+                        </span>
                     </div>
                     <div class="col-md-6 day-form→to" >
                        <p class="day">Today - 15:00</p>
-                       <p class="form→to">form<span> → </span>to</p>
+                       <p class="form→to">
+                           <span data-ng-bind="ride.ride_town[0].town.full_name"></span>
+                           <span> → </span>
+                           <span data-ng-bind="ride.ride_town[ride.ride_town.length-1].town.full_name"></span>
+                       </p>
                        <p class="from">Form</p>
                        <p class="to">To</p>
                        <p>Car: <b>car</b>
