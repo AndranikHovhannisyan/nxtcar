@@ -68,11 +68,13 @@ define([],function(){
                 scope: {
                     map: '=',
                     places: '=',
-                    placeType: '='
+                    placeType: '=',
+                    key: '='
                 },
                 compile: function(){
                     return function(scope,el){
                         scope.autocomplete = new google.maps.places.Autocomplete(el[0],{types: ['(cities)']});
+                        scope.count = 0;
 
                         google.maps.event.addListener(scope.autocomplete, 'place_changed', function(){
                             var place = scope.autocomplete.getPlace();

@@ -2,7 +2,7 @@
 
 define([],function(){
     return angular.module('Ride')
-        .controller('RideController',function($scope,countries,$timeout){
+        .controller('RideController',function($scope,countries){
             $scope.cities = [{name: ""}];
             $scope.minutes = ['00','10','20','30','40','50'];
             $scope.hours = [];
@@ -18,6 +18,18 @@ define([],function(){
                     $scope.hours.push(''+i);
                 }
             }
+
+            /*
+             *
+             */
+            $scope.$watchCollection('Ride.places',function(d){
+                if(angular.isUndefined(d) || !d.length){
+                    return;
+                }
+                angular.forEach(d,function(v,k){
+                    v.array_key = k;
+                })
+            });
             /*--------------------------------------*/
             $scope.$watch('Ride.Round',function(d){
                 if(angular.isUndefined(d)){
