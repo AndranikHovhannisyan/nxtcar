@@ -28,13 +28,15 @@ class RestRideController extends FOSRestController
     {
         $obj = json_decode($request->getContent());
         $em = $this->getDoctrine()->getmanager();
+        $time = explode(',', $this->getField($obj, 'time'));
+
         return $em->getRepository('nxtcarMainBundle:Ride')
             ->findRide($this->getField($obj, 'from'),
                        $this->getField($obj, 'to'),
                        $this->getField($obj, 'isRecurring'),
                        $this->getField($obj, 'date'),
-                       $this->getField($obj, 'timeFrom'),
-                       $this->getField($obj, 'timeTo')
+                       $time[0],
+                       $time[1]
             );
     }
 
