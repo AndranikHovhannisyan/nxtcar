@@ -19,14 +19,14 @@
     {{ from }}<br/>
     {{ to }}<br/>
 
-    <div class="row">
+    <div class="row" data-ng-init="post.from='{{ from }}';post.to='{{ to }}'">
         <div class="col-md-3 date" >
             <b>Date</b>
-            <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="Rides.date">
+            <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="post.date">
             <br/>
             <br/>
             <br/>
-            <input type="hidden" db-slider callback="sliderCallback(data)" value="25,75"/>
+            <input type="hidden" class="db-slider" db-slider callback="sliderCallback(data)" value="5,15"/>
             <br/>
         </div>
         <div class="col-md-9">

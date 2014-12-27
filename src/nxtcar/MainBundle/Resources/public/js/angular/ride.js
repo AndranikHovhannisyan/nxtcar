@@ -9,8 +9,8 @@ define([],function(){
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("RideManager",function($resource){
-        return $resource('/api/ride/:where/:what',{},{
-            search: {method: 'POST',isArray: false}
+        return $resource('/app_dev.php/api/rides/:where/:what',{},{
+            search: {method: 'POST',isArray: true,params: {where: 'finds'}}
         });
     })
     .directive('dbSlider',function(){
@@ -23,9 +23,9 @@ define([],function(){
                 return function(scope,el){
                     el.jRange({
                         from: 0,
-                        to: 100,
+                        to: 20,
                         step: 1,
-                        scale: [0,25,50,75,100],
+                        scale: [0,5,10,15,20],
                         format: '%s',
                         width: 200,
                         showLabels: true,

@@ -73,8 +73,24 @@ define([],function(){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
 
+            $scope.updateRideList = function(){
+                var post = {
+                    time: angular.element('.db-slider').val(),
+                    from: $scope.post.from,
+                    to: $scope.post.to,
+                    date: $scope.post.date
+                }
+                RideManager.search({},post,function(data){
+                    $scope.Rides = data;
+                });
+            }
+
+            $scope.$watch('Rides.date',function(){
+                $scope.updateRideList();
+            },true);
+
             $scope.sliderCallback = function(){
-                console.log('slided');
+                $scope.updateRideList();
             }
         });
 })
