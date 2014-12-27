@@ -129,7 +129,12 @@ define([],function(){
                                     else {
                                         var index = scope.places.length-1;
                                         scope.place.index = index;
-                                        scope.places.splice(index,0,scope.place);
+                                        if(scope.key+2 >= scope.places.length){
+                                            scope.places.splice(index,0,scope.place);
+                                        }
+                                        else {
+                                            scope.places[scope.key+1] = scope.place;
+                                        }
                                     }
                                     scope.places[scope.places.length-1].index++;
                                     break;
