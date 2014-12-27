@@ -72,11 +72,11 @@
 .theme-green .back-bar .selected-bar {
   border-radius: 2px;
   background-color: #a1fad0;
-  background-image: -moz-linear-gradient(top, #bdfade, #76fabc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#bdfade), to(#76fabc));
-  background-image: -webkit-linear-gradient(top, #bdfade, #76fabc);
-  background-image: -o-linear-gradient(top, #bdfade, #76fabc);
-  background-image: linear-gradient(to bottom, #bdfade, #76fabc);
+  background-image: -moz-linear-gradient(top, #A8D6FF, #3FA4FF);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#A8D6FF), to(#3FA4FF));
+  background-image: -webkit-linear-gradient(top, #A8D6FF, #3FA4FF);
+  background-image: -o-linear-gradient(top, #A8D6FF, #3FA4FF);
+  background-image: linear-gradient(to bottom, #A8D6FF, #3FA4FF);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbdfade', endColorstr='#ff76fabc', GradientType=0);
 }
