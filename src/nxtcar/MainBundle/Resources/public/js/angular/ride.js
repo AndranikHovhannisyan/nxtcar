@@ -11,7 +11,7 @@ define([],function(){
         'ngAnimate'])
     .service("RideManager",function($resource){
         return $resource('/api/ride/:where/:what',{},{
-
+            search: {method: 'POST',isArray: false}
         });
     })
     .directive("currency",function(){

@@ -3,6 +3,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_search.css") }}">
+    <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
     <style>
         svg{
             margin-top: 1px;
@@ -16,7 +17,7 @@
     <div class="row">
         <div class="col-md-3 date" >
             <b>Date</b>
-            <input type="text" placeholder="dd/mm/yyyy">
+            <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="Rides.date">
         </div>
         <div class="col-md-9">
             <div class="user-search-header ">89  rides from London to Paris, France
@@ -24,21 +25,19 @@
                     <span class="">Rearrange by</span>
                     <a class=" order-price">£</a>
                     <a class=" order-date "></a>
-
                 </div>
             </div>
             <a class="a-user-info">
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
-
-                            <div class="user-info">
-                                <b class="username">Valentin</b>
-                                <p>27 years old</p>
-                                <p>Ambassador</p>
-                            </div>
+                        <div class="user-info">
+                            <b class="username">Valentin</b>
+                            <p>27 years old</p>
+                            <p>Ambassador</p>
+                        </div>
                         <br>
-                        <p  class="ratings">
+                        <p class="ratings">
                             <svg height="15" width="23" >
                                 <polygon points="10,0 5,14 17,5 3,5 15,14" style="fill:#ffc543;stroke:#ffc543;stroke-width:0;fill-rule:nonzero;" />
                             </svg>
@@ -69,7 +68,6 @@
                     </div>
                 </div>
             </a>
-
         </div>
     </div>
 {% endblock %}

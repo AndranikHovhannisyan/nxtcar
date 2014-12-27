@@ -69,7 +69,7 @@ define([],function(){
                 })
             },true)
         })
-        .controller('RideSearchController',function($scope,countries){
+        .controller('RideSearchController',function($scope,countries,RideManager){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
         });
