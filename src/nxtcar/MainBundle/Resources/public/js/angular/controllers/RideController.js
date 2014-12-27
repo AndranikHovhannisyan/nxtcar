@@ -68,5 +68,9 @@ define([],function(){
                     }
                 })
             },true)
+        })
+        .controller('RideSearchController',function($scope,countries){
+            $scope.countries = angular.copy(countries);
+            $scope.choosenCountry = $scope.countries.gb;
         });
 })
