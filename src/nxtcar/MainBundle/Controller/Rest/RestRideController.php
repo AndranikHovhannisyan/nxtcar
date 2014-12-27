@@ -22,6 +22,7 @@ class RestRideController extends FOSRestController
     /**
      * @param Request $request
      * @return mixed
+     * @Rest\View
      */
     public function postFindAction(Request $request)
     {
