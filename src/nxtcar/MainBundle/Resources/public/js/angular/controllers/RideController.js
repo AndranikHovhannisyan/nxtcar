@@ -73,8 +73,8 @@ define([],function(){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
 
-            $scope.sliderCallback = function(data){
-                console.log(data);
+            $scope.sliderCallback = function(){
+                console.log('slided');
             }
         });
 })
