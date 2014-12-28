@@ -34,8 +34,8 @@
                 <span ng-bind="Rides.length"></span> rides from {{ from }} to {{ to }}
                 <div class="rearrange-by">
                     <span class="">Rearrange by</span>
-                    <a class=" order-price">£</a>
-                    <a class=" order-date "></a>
+                    <a class="order-price">£</a>
+                    <a class="order-date "></a>
                 </div>
             </div>
             <a class="a-user-info" data-ng-repeat="ride in Rides">
@@ -78,13 +78,17 @@
                     <div class="col-md-6 day-form→to" >
                        <p class="day">Today - 15:00</p>
                        <p class="form→to">
-                           <span data-ng-bind="ride.ride_town[0].town.full_name"></span>
-                           <span> → </span>
-                           <span data-ng-bind="ride.ride_town[ride.ride_town.length-1].town.full_name"></span>
+                           <span data-ng-repeat="(key,twn) in ride.ride_town">
+                               <i ng-show="key">→</i> [[ ride.ride_town[key].town.full_name ]]
+                           </span>
                        </p>
                        <p class="from">Form</p>
                        <p class="to">To</p>
-                       <p>Car: <b>car</b>
+                       <p>Car:
+                           <b> [[ ride.driver.car[0].type.title ]]
+                               [[ ride.driver.car[0].model.discr ]]
+                               [[ ride.driver.car[0].model.brand.title ]]
+                           </b>
                         <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
                         <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
                         <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
