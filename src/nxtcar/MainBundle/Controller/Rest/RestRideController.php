@@ -47,4 +47,12 @@ class RestRideController extends FOSRestController
         }
         return null;
     }
+
+    /**
+     * @Rest\View
+     */
+    public function getIsLoginAction()
+    {
+        return !is_null($this->getUser());
+    }
 }
