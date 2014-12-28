@@ -25,12 +25,15 @@
             <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="post.date">
             <br/>
             <br/>
+            <span><input type="checkbox" class="requring" ng-model="post.requring"/>  <b>Requring</b></span>
             <br/>
-            <input type="hidden" class="db-slider" db-slider callback="sliderCallback(data)" value="5,15"/>
+            <br/>
+            <br/>
+            <input type="hidden" class="db-slider" db-slider callback="sliderCallback(data)" value="0,20"/>
             <br/>
         </div>
         <div class="col-md-9">
-            <div class="user-search-header ">
+            <div class="user-search-header">
                 <span ng-bind="Rides.length"></span> rides from {{ from }} to {{ to }}
                 <div class="rearrange-by">
                     <span class="">Rearrange by</span>
@@ -38,7 +41,7 @@
                     <a class="order-date "></a>
                 </div>
             </div>
-            <a class="a-user-info" data-ng-repeat="ride in Rides">
+            <a class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
