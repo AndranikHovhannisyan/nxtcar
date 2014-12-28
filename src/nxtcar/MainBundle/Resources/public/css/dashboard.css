@@ -73,12 +73,6 @@ ul {
     background-color: #ffeb00;
 }
 
-
-
-
-
-
-
 .content{
     padding: 22px;
 }
@@ -169,7 +163,7 @@ li {
 .blabla{
     width: 26px;
     height: 27px;
-    background:url("../img/sprite-prefs.png") no-repeat 0px -50px;
+    background:url("/bundles/nxtcarmain/images/sprite-prefs.png") no-repeat 0px -50px;
 }
 .display-block{
     display: block;
@@ -187,22 +181,22 @@ li {
 .checked {
     display: block;
     padding: 10px 0px 10px 24px;
-    background:url("../img/verification-no-check.png") no-repeat 100% 50%;
+    background:url("/bundles/nxtcarmain/images/verification-no-check.png") no-repeat 100% 50%;
 }
 .checked{
-    background:url("../img/verification-checked.png") no-repeat 100% 50%;
+    background:url("/bundles/nxtcarmain/images/verification-checked.png") no-repeat 100% 50%;
 }
 .img-phone{
-    background:url("../img/sprite-icons.png") no-repeat 0% -2%;
+    background:url("/bundles/nxtcarmain/images/sprite-icons.png") no-repeat 0% -2%;
 }
 .img-email{
-    background:url("../img/sprite-icons.png") no-repeat 0% 15%;
+    background:url("/bundles/nxtcarmain/images/sprite-icons.png") no-repeat 0% 15%;
 }
 .img-facebook{
-    background:url("../img/sprite-icons.png") no-repeat 0% 33%;
+    background:url("/bundles/nxtcarmain/images/sprite-icons.png") no-repeat 0% 33%;
 }
 .img-calendar{
-    background:url("../img/sprite-icons.png") no-repeat 0% 102%;
+    background:url("/bundles/nxtcarmain/images/sprite-icons.png") no-repeat 0% 102%;
     padding: 10px 0px 10px 24px;
     margin-bottom: 20px;
     color: #5e5e5e	;
