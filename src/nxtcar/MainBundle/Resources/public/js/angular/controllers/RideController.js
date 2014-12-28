@@ -37,7 +37,7 @@ define([],function(){
                 $scope.Ride.places[$scope.Ride.places.length-1].index--;
             }
         })
-        .controller("RideController2",function($scope,countries,$timeout){
+        .controller("RideController2",function($scope,countries,$timeout,RideManager,$window){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
 
@@ -58,8 +58,20 @@ define([],function(){
             }
             /*--------------------------------------*/
             $scope.submitForm = function($event){
-                console.log($event);
-                $event.preventDefault();
+                var ps = RideManager.checkUser({},function(data){
+                    $scope.isLogged = data.user;
+                    if(!$scope.isLogged){
+                        $window.open('/'+$scope.basePath+'/login','_blank');
+                    }
+                });
+                if(!$scope.isLogged){
+                    $event.preventDefault();
+                }
+                ps.$promise.then(function(){
+                    if($scope.isLogged){
+                        angular.element('.promise-form').submit();
+                    }
+                });
             }
             /*--------------------------------------*/
             $scope.$watch('Ride.places',function(d){

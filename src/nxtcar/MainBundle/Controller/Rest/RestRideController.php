@@ -53,6 +53,6 @@ class RestRideController extends FOSRestController
      */
     public function cgetIsLoginAction()
     {
-        return !is_null($this->getUser());
+        return array('user'=>!is_null($this->getUser()));
     }
 }
