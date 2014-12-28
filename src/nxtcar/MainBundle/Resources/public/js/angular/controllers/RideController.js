@@ -57,6 +57,11 @@ define([],function(){
                 },2000);
             }
             /*--------------------------------------*/
+            $scope.submitForm = function($event){
+                console.log($event);
+                $event.preventDefault();
+            }
+            /*--------------------------------------*/
             $scope.$watch('Ride.places',function(d){
                 if(angular.isUndefined(d)){
                     return;

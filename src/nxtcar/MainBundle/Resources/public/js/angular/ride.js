@@ -9,8 +9,9 @@ define([],function(){
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("RideManager",function($resource){
-        return $resource('/app_dev.php/api/rides/:where/:what',{},{
-            search: {method: 'POST',isArray: true,params: {where: 'finds'}}
+        return $resource('/app_dev.php/api/rides/:where/:what/:param',{},{
+            search: {method: 'POST',isArray: true,params: {where: 'finds'}},
+            checkUser: {method: 'GET',isArray:false,params: {where: 'ride',what: 'is',param: 'login'}}
         });
     })
     .directive('dbSlider',function(){

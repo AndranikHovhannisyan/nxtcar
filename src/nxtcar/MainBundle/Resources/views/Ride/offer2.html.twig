@@ -11,7 +11,7 @@
 
 {% block content %}
 
-    <div class="publication-container" ng-init="initRide('{{ ride }}','')">
+    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -140,7 +140,7 @@
                         </label>
                     </section>
                 </fieldset>
-                <form action="#" method="POST">
+                <form action="#" method="POST" ng-click="submitForm($event)">
                     <button type="submit">Publish offer</button>
                     <input type="hidden" name="ride" value="[[ Ride ]]"/>
                 </form>
