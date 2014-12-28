@@ -83,6 +83,32 @@ class Ride
      */
     protected $detail;
 
+    protected $price;
+
+    protected $freePlaces;
+
+    /**
+     * @param $price
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @param $freePlaces
+     * @return $this
+     */
+    public function setFreePlaces($freePlaces)
+    {
+        $this->freePlaces = $freePlaces;
+
+        return $this;
+    }
+
     /**
      * Constructor
      */
