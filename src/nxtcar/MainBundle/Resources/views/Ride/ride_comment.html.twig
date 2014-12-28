@@ -101,7 +101,7 @@
                 </a>
             </div>
             <div class="msg-comment">
-                <form action="#" method="POST">
+                <form action="{{ path('ride_comment') }}" method="POST">
                     {{ form_widget(form.body, {"attr" : {class: "msg-textarea", id: "form_body", name: "form[body]", required: "required"} }) }}
                     <br>
                     <label>type a comment</label>

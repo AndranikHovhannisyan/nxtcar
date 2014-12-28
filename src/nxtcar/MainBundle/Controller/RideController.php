@@ -188,7 +188,45 @@ class RideController extends Controller
         $em = $this->getDoctrine()->getManager();
         $ride = $em->getRepository('nxtcarMainBundle:Ride')->find($rideId);
 
-        return $this->render("nxtcarMainBundle:Ride:ride.html.twig", array('ride' => $ride));
+
+        $id = 'ride_' . $rideId;
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
+
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comment = $this->container->get('fos_comment.manager.comment')->createComment($thread);
+
+        $form = $this->createFormBuilder($comment)
+            ->setAction('#')
+            ->add('body')
+            ->add('submit', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            $manager = $this->container->get('fos_comment.manager.comment');
+            $manager->saveComment($comment);
+
+            return $this->redirect($this->generateUrl('ride', array('rideId' => $rideId)));
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
+
+        return $this->render('nxtcarMainBundle:Ride:ride.html.twig', array(
+            'ride' => $ride,
+            'driverId'  => $ride->getDriver()->getId(),
+            'comments'  => $comments,
+            'thread'    => $thread,
+            'form'      => $form->createView()
+        ));
     }
 
     /**
