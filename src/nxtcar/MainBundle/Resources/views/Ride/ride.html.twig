@@ -7,42 +7,75 @@
 
 {% block content %}
 
-    {{ dump(ride) }}
+    {#<a href="#" class="back"> ← Back to search results</a>#}
+    {#<svg class="from-to-header" width="100%">#}
+        {#<polygon points="0,0 1000,0 1000,50 90,50 80,60 70,50 0,50"#}
+                 {#style="fill:#0ca9fa;stroke:#0ca9fa;stroke-width:1;" />#}
+        {#<text fill="#ffffff" font-size="24" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" x="15" y="30">#}
+            {#Barking → Paris: Jethro T is offering a ride for £25#}
+        {#</text>#}
+    {#</svg>#}
 
-
-    <a href="#" class="back"> ← Back to search results</a>
-    <svg class="from-to-header" width="100%">
-        <polygon points="0,0 1000,0 1000,50 90,50 80,60 70,50 0,50"
-                 style="fill:#0ca9fa;stroke:#0ca9fa;stroke-width:1;" />
-        <text fill="#ffffff" font-size="24" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" x="15" y="30">
-            Barking → Paris: Jethro T is offering a ride for £25
-        </text>
-    </svg>
     <div class="row">
         <div class="col-md-8">
             <div class="main-block">
 
-                <h3 class="main-block-header">London → Paris → Barcelona
-                    <a class="show-map" href="#"> Show map</a>
+                <h3 class="main-block-header">
+                    {{ ride.rideTown.first.town.name }}
+                    {% for rideTown in ride.rideTown if rideTown != ride.rideTown.first %}
+                        → {{ rideTown.town.name }}
+                    {% endfor %}
+                    {#<a class="show-map" href="#"> Show map</a>#}
                 </h3>
                 <div class="main-content">
                     <ul class=" ">
                         <li class="row">
                             <div class="col-md-4 li-left">Pick-up point</div>
-                            <div class="col-md-8 li-right ride-from">Marlborough</div>
+                            <div class="col-md-8 li-right ride-from">{{ ride.rideTown.first.town.fullName }}</div>
                         </li>
                         <li class="row">
                             <div class="col-md-4 li-left">Drop off point</div>
-                            <div class="col-md-8 li-right ride-to">Morzine, France</div>
+                            <div class="col-md-8 li-right ride-to">{{ ride.rideTown.last.town.fullName }}</div>
                         </li>
-                        <li class="row">
-                            <div class="col-md-4 li-left">Departure date</div>
-                            <div class="col-md-8 li-right">sd</div>
-                        </li>
-                        <li class="row">
-                            <div class="col-md-4 li-left">Departure time</div>
-                            <div class="col-md-8 li-right">07:30</div>
-                        </li>
+
+                        {% if ride.rideDate.startDate is defined %}
+
+                            <li class="row">
+                                <div class="col-md-4 li-left">Out days</div>
+                                <div class="col-md-8 li-right">
+
+                                    {{ ride.rideDate.outDates.first.weekDay.name }}
+                                    {% for weekday in ride.rideDate.outDates if weekday != ride.rideDate.outDates.first %}
+                                        , {{ weekday.weekDay.name }}
+                                    {% endfor %}
+                                    {{ ride.rideDate.outDates.first.hour }}:{{ ride.rideDate.outDates.first.minute }}
+                                </div>
+                            </li>
+                            <li class="row">
+                                <div class="col-md-4 li-left">Return days</div>
+                                <div class="col-md-8 li-right">
+
+                                    {{ ride.rideDate.inDates.first.weekDay.name }}
+                                    {% for weekday in ride.rideDate.inDates if weekday != ride.rideDate.inDates.first %}
+                                        , {{ weekday.weekDay.name }}
+                                    {% endfor %}
+                                    {{ ride.rideDate.inDates.first.hour }}:{{ ride.rideDate.inDates.first.minute }}
+                                </div>
+                            </li>
+
+                        {% else %}
+                            <li class="row">
+                                <div class="col-md-4 li-left">Departure date</div>
+                                <div class="col-md-8 li-right">{{ ride.rideDate.outDate.date | date('D d M Y') }}</div>
+                            </li>
+                            <li class="row">
+                                <div class="col-md-4 li-left">Departure time</div>
+                                <div class="col-md-8 li-right">{{ ride.rideDate.outHour }}:{{ ride.rideDate.outMinute }}</div>
+                            </li>
+                        {% endif %}
+
+
+
                     </ul>
                 </div>
                 <div class="block-content">
@@ -51,17 +84,51 @@
                         <div class="col-md-4 block-content-left">
                             Detour
                         </div>
-                        <div class="col-md-8">Max. 15 min. detour
+                        <div class="col-md-8">
+
+                            {% if (ride.detour == constant('nxtcar\\MainBundle\\Entity\\Ride::NONE')) %}
+                                None
+                            {% elseif  (ride.detour == constant('nxtcar\\MainBundle\\Entity\\Ride::DET_MIN15')) %}
+                                15 minute detour, max.
+                            {% elseif  (ride.detour == constant('nxtcar\\MainBundle\\Entity\\Ride::DET_MIN30')) %}
+                                30 minute detour, max.
+                            {% elseif  (ride.detour == constant('nxtcar\\MainBundle\\Entity\\Ride::DET_FINE')) %}
+                                Anything is fine
+                            {% endif %}
+
                             <img src="/bundles/nxtcarmain/images/question-mark.png" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 block-content-left">Schedule flexibility</div>
-                        <div class="col-md-8">Departure right on time</div>
+                        <div class="col-md-8">
+                            Departure
+                            {% if (ride.leavingTime == constant('nxtcar\\MainBundle\\Entity\\Ride::ON_TIME')) %}
+                                right on time
+                            {% elseif  (ride.leavingTime == constant('nxtcar\\MainBundle\\Entity\\Ride::MIN15')) %}
+                                in a 15 minute window
+                            {% elseif  (ride.leavingTime == constant('nxtcar\\MainBundle\\Entity\\Ride::MIN30')) %}
+                                in a 30 minute window
+                            {% elseif  (ride.leavingTime == constant('nxtcar\\MainBundle\\Entity\\Ride::HOUR1')) %}
+                                in a 1 hour window
+                            {% elseif  (ride.leavingTime == constant('nxtcar\\MainBundle\\Entity\\Ride::HOUR2')) %}
+                                in a 2 hour window
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 block-content-left">Luggage size</div>
-                        <div class="col-md-8"> Medium (travel bag)</div>
+
+                        <div class="col-md-8">
+                            {% if (ride.luggageSize == constant('nxtcar\\MainBundle\\Entity\\Ride::SMALL')) %}
+                                Small
+                            {% elseif  (ride.luggageSize == constant('nxtcar\\MainBundle\\Entity\\Ride::MEDIUM')) %}
+                                Medium
+                            {% elseif  (ride.luggageSize == constant('nxtcar\\MainBundle\\Entity\\Ride::LARGE')) %}
+                                Large
+                            {% endif %}
+                            (travel bag)
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 block-content-left">Car</div>
