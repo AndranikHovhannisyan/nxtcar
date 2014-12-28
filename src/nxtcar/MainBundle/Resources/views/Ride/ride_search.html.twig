@@ -41,7 +41,7 @@
                     <a class="order-date "></a>
                 </div>
             </div>
-            <a href="{{ path('ride') }}" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
+            <a href="/[[basePath]]/ride/[[ride.id]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
