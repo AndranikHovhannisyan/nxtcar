@@ -14,8 +14,8 @@ class RideRepository extends EntityRepository
 {
     public function findRide($from, $to, $isRecurring = false, $date = null, $timeFrom = null, $timeTo = null)
     {
-        $rideIds = $this->getEntityManager()
-            ->createQuery("SELECT mainRide.id
+        $resultIds = $this->getEntityManager()
+            ->createQuery("SELECT mainRide.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo
                            FROM nxtcarMainBundle:Ride mainRide
                            JOIN mainRide.rideTown rideTown1
                            JOIN mainRide.rideTown rideTown2
@@ -52,7 +52,7 @@ class RideRepository extends EntityRepository
             ->setParameter('townTo', $to)
             ->getResult();
 
-        $rideIds = array_map(function($element){return $element["id"];}, $rideIds);
+        $rideIds = array_map(function($element){return $element["id"];}, $resultIds);
 
         $query =  $this->getEntityManager()
             ->createQueryBuilder()
@@ -84,9 +84,42 @@ class RideRepository extends EntityRepository
             }
         }
 
-        return $query
+        $rides = $query
                 ->setParameter('rideIds', $rideIds)
                 ->getQuery()
                 ->getResult();
+
+        foreach($resultIds as $resultId)
+        {
+            if ($resultId['rideTownFrom'] < $resultId['rideTownTo']) {
+                $prices = $this->getEntityManager()
+                    ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesGo)) as freePlaces
+                                   FROM nxtcarMainBundle:RideTown rideTown
+                                   JOIN rideTown.ride ride
+                                   WHERE ride.id = {$resultId['id']}
+                                   AND rideTown.positionInRide >= {$resultId['rideTownFrom']}
+                                   AND rideTown.positionInRide < {$resultId['rideTownTo']}")
+                    ->getSingleResult();
+            }
+            else {
+                $prices = $this->getEntityManager()
+                    ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesReturn)) as freePlaces
+                                   FROM nxtcarMainBundle:RideTown rideTown
+                                   JOIN rideTown.ride ride
+                                   WHERE ride.id = {$resultId['id']}
+                                   AND rideTown.positionInRide < {$resultId['rideTownFrom']}
+                                   AND rideTown.positionInRide >= {$resultId['rideTownTo']}")
+                    ->getSingleResult();
+            }
+
+            foreach($rides as $ride) {
+                if ($ride->getId() == $resultId['id']) {
+                    $ride->setPrice($prices['price']);
+                    $ride->setFreePlaces($prices['freePlaces']);
+                }
+            }
+        }
+
+        return $rides;
     }
 }
