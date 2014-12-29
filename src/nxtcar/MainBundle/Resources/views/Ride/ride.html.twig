@@ -83,6 +83,12 @@
                     <h4>Trip details</h4>
                     <div class="row">
                         <div class="col-md-4 block-content-left">
+                            Details
+                        </div>
+                        <div class="col-md-8 block-content-left">
+                            {{ ride.detail }}
+                        </div>
+                        <div class="col-md-4 block-content-left">
                             Detour
                         </div>
                         <div class="col-md-8">
@@ -143,7 +149,66 @@
                 <p class="text-right">Offer published: 04/12/2014 - Seen 6 times</p>
             </div>
         </div>
-        <div class="col-md-4">aaaaaaaaaaa</div>
+        <div class="col-md-4">
+
+            <div>
+
+                {% set user = ride.driver %}
+
+                {% if app.user is not null and app.user.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+                {% else %}
+                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                {% endif %}
+
+                <div class="user-man-img">
+                    <img src="{{ photo }}" width="144" height="144">
+                </div>
+
+                <div class="user">
+                    <h3>
+                        {{ app.user.displayedAs }}
+                        <span>({{ ("now" | date("Y")) - user.yearOfBirth }} years old) </span>
+                        {#<a><i class=" bbc-icon2-flag"></i></a>#}
+                    </h3>
+                    <p>Average rating: No ratings yet!</p><br>
+                    <p>
+                        My preferences
+
+                        {% if user.music == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
+                        {% elseif user.music == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-music-yes-large.png') }}">
+                        {% endif %}
+
+                        {% if user.smoking == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-no-large.png') }}">
+                        {% elseif user.smoking == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-smoking-yes-large.png') }}">
+                        {% endif %}
+
+                        {% if user.pets == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-no-large.png') }}">
+                        {% elseif user.pets == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-pet-yes-large.png') }}">
+                        {% endif %}
+
+                    </p>
+                    <br>
+                    <p>
+                        I am
+                        {% if user.chattiness == 0 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}">
+                        {% elseif user.chattiness == 1 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-blabla-large.png') }}">
+                        {% elseif user.chattiness == 2 %}
+                            <img src="{{ asset('bundles/nxtcaruser/images/pref-blablabla-large.png') }}">
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 

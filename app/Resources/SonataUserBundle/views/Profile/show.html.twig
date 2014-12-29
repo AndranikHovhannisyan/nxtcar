@@ -28,11 +28,11 @@
                             One ride offered
 								</span>
                     </li>
-                    <li class="img-clock tip">
-                        <span class="span">
-                            Last online: Today - 19:50
-								</span>
-                    </li>
+                    {#<li class="img-clock tip">#}
+                        {#<span class="span">#}
+                            {#Last online: Today - 19:50#}
+								{#</span>#}
+                    {#</li>#}
 
                     <li class="	img-calendar tip" title="">
                         <span class="span">
@@ -129,9 +129,14 @@
             </div>
             <div class="span8 dashboard-notifications-messages">
                 <div class="">
-                    <h3 class="h3-sorry">Sorry! I haven't given a mini bio yet</h3>
+                    <h3 class="h3-sorry">
+                        {% if user.biography is empty %}
+                            Sorry! I haven't given a mini bio yet
+                        {% else %}
+                            {{ user.biography }}
+                        {% endif %}
+                    </h3>
                 </div>
-
             </div>
         </div>
     </div>

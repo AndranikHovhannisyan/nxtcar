@@ -175,7 +175,7 @@ class RideController extends Controller
         $em->persist($ride);
         $em->flush();
 
-        return new Response('ssss');
+        return $this->redirect($this->generateUrl('homepage'));
     }
 
     /**
