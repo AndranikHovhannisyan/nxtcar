@@ -60,7 +60,7 @@ class EditFormType extends AbstractType
             ->add('showPhoneNumber', null, array('required' => false))
             ->add('yearOfBirth', 'choice', array(
                 'empty_value' => 'Birth year',
-                'choices' => $array, 'required' => false,
+                'choices' => $array, 'required' => true,
             ))
             ->add('biography', 'textarea',  array('required' => false))
         ;
