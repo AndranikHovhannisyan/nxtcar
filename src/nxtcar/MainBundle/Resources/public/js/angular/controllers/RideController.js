@@ -102,7 +102,7 @@ define([],function(){
                 });
             }
 
-            $scope.$watch('Rides.date',function(){
+            $scope.$watch('post.date',function(){
                 $scope.updateRideList();
             },true);
 

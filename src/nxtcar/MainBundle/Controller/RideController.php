@@ -22,6 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class RideController extends Controller
 {
@@ -48,6 +49,7 @@ class RideController extends Controller
     /**
      * @Route("/ride/offer", name="ride_offer")
      * @Template()
+     * @Secure(roles="ROLE_USER")
      */
     public function offerAction(Request $request)
     {
