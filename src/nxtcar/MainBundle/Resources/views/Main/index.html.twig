@@ -36,8 +36,6 @@
 {% endblock %}
 
 {% block content %}
-
-
     <div class="row homepage-features">
         <div class="col-xs-6 col-md-4 text-center vertica-lLine">
             <a href="#" class="content-header">Watch How it Works</a>
@@ -76,5 +74,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/mainRunner.js") }}"></script>
 {% endblock %}

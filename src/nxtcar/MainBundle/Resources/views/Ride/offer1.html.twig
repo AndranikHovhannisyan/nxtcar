@@ -74,7 +74,6 @@
                                         </li>
                                     </ul>
                                 </div>
-
                                 <div class="stage-add" data-ng-click="cities.push({name: ''});">
                                     <a href="javascript:void(0)" class="plus-button tip">+</a>
                                     Add more cities on your route
@@ -108,7 +107,6 @@
                                         </select>
                                     </div>
                                     <br>
-
                                     <label class="control-label" data-ng-show="Ride.Round">Return date:</label><br>
                                     <div class="departure-date" data-ng-show="Ride.Round">
                                         <div class="input-date">
@@ -122,7 +120,6 @@
                                         </select>
                                     </div>
                                     <br>
-
                                     {# Haz esi es em koment darcr e ete mi ban en chlni mi hat indz kases lav
 
                                     <label class="control-label" data-ng-show="Ride.Round">Return date:</label><br>
@@ -136,10 +133,8 @@
                                         </select>
                                     </div>#}
                                 </div>
-
                                 <div data-ng-show="Ride.trip==1" class="ng-hide">
                                     <div data-ng-show="Ride.Round">
-
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label class="control-label">Outbound days</label>
@@ -162,9 +157,7 @@
                                                     <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
                                                 </select>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div data-ng-show="Ride.Round">
                                         <div class="row">
@@ -190,7 +183,6 @@
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div data-ng-show="!Ride.Round">
                                         <div class="row">
@@ -213,9 +205,9 @@
                                                 </select> :
                                                 <select class="time-select" data-ng-model="Ride.tripRecurring.minute">
                                                     <option data-ng-repeat="minute in minutes" value="[[ minute ]]" data-ng-bind="minute"></option>
-                                                </select></div>
+                                                </select>
+                                            </div>
                                         </div>
-
                                     </div>
                                     <div class="recurring">
                                         <div class="input-date">
