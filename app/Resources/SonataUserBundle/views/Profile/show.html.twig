@@ -1,4 +1,4 @@
-{% extends 'nxtcarMainBundle:Dashboard:profileBase.html.twig' %}
+{% extends 'nxtcarMainBundle::layout.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcaruser/css/show.css") }}">
@@ -15,7 +15,7 @@
                     <li class="img-email tip" title="">
                         <span class="checked">
                             Email verified
-								</span>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -36,7 +36,7 @@
 
                     <li class="	img-calendar tip" title="">
                         <span class="span">
-                            Member since: {{ app.user.createdAt.date|date('d M Y') }}
+                            Member since: {{ user.createdAt.date|date('d M Y') }}
                         </span>
                     </li>
                 </ul>
@@ -76,8 +76,8 @@
 
             <div>
 
-                {% if app.user is not null and app.user.photo is not null %}
-                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+                {% if user is not null and user.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ user.photo.webpath %}
                 {% else %}
                     {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
                 {% endif %}
@@ -88,7 +88,7 @@
 
                 <div class="user">
                     <h3>
-                        {{ app.user.displayedAs }}
+                        {{ user.displayedAs }}
                         <span>({{ ("now" | date("Y")) - user.yearOfBirth }} years old) </span> <a><i class=" bbc-icon2-flag"></i></a>
                     </h3>
                     <p>Average rating: No ratings yet!</p><br>
@@ -140,7 +140,6 @@
             </div>
         </div>
     </div>
-
 
 
 {% endblock %}

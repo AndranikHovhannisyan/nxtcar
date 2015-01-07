@@ -16,7 +16,7 @@
         <h1 >Find a ride</h1>
         <p>Choose from thousands of rides offered by drivers across the UK, averydey.</p>
         <!-- form -->
-        <form class="form-inline" role="form" action="{{ path("ride_find") }}" prevent-default>
+        <form class="form-inline" role="form" action="{{ path("ride_find") }}" method="POST" prevent-default>
             <div class="form-group">
                 <div class="input-group">
                     <input class="form-control from" type="text" placeholder="From" google-autocomplete place="Ride.from">

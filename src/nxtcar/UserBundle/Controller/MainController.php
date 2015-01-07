@@ -11,6 +11,7 @@ namespace nxtcar\UserBundle\Controller;
 use FOS\RestBundle\Util\Codes;
 use nxtcar\UserBundle\Entity\Photo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sonata\UserBundle\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,5 +102,18 @@ class MainController extends Controller
         }
 
         return array('form' => $form->createView(), 'photo' => $user->getPhoto());
+    }
+
+    /**
+     * @Route("/profile/{userId}", name="user_profile", requirements={"userId" = "\d+"})
+     * @Template("SonataUserBundle:Profile:show.html.twig")
+     * @Secure(roles="ROLE_USER")
+     */
+    public function profileAction($userId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('nxtcarUserBundle:User')->find($userId);
+
+        return array('user' => $user);
     }
 }
