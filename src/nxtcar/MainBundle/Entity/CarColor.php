@@ -9,6 +9,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarColor
@@ -21,11 +22,13 @@ class CarColor extends CarProperty
 
     /**
      * @var integer
+     * @Groups({"carColor"})
      */
     protected $id;
 
     /**
      * @var string
+     * @Groups({"carColor"})
      */
     protected $title;
 

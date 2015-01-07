@@ -43,17 +43,18 @@
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
                         <div class="user-info">
-                            <b class="username" data-ng-bind="ride.driver.username"></b>
-                            <p>27 years old</p>
-                            <p>Ambassador</p>
+                            <b class="username" data-ng-bind="ride.driver.displayed_as"></b>
+                            <p>[[ {{ ("now" | date("Y"))}} -  ride.driver.year_of_birth]] years old</p>
+                            {#<p>Ambassador</p>#}
+                            <br/>
                         </div>
                         <br>
-                        <p class="ratings">
-                            <svg height="15" width="23" >
-                                <polygon points="10,0 5,14 17,5 3,5 15,14" style="fill:#ffc543;stroke:#ffc543;stroke-width:0;fill-rule:nonzero;" />
-                            </svg>
-                            <b>4.9 </b> - 36 ratings
-                        </p>
+                        {#<p class="ratings">#}
+                            {#<svg height="15" width="23" >#}
+                                {#<polygon points="10,0 5,14 17,5 3,5 15,14" style="fill:#ffc543;stroke:#ffc543;stroke-width:0;fill-rule:nonzero;" />#}
+                            {#</svg>#}
+                            {#<b>4.9 </b> - 36 ratings#}
+                        {#</p>#}
                         <span>
                             <img class="img-bla ng-hide" ng-show="ride.driver.chattiness==0" src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}" width="30px">
                             <img class="img-bla ng-hide" ng-show="ride.driver.chattiness==1" src="{{ asset('bundles/nxtcaruser/images/pref-blabla-large.png') }}" width="30px">
@@ -84,15 +85,15 @@
                        </p>
                        <p class="from" data-ng-if="ride.ride_date.out_date">[[ride.ride_date.out_date | date:'fullDate']] [[ ride.ride_date.out_hour ]]:[[ ride.ride_date.out_minute]]</p>
                        <p class="to" data-ng-if="ride.ride_date.in_date">[[ride.ride_date.in_date | date:'fullDate']] [[ ride.ride_date.in_hour ]]:[[ ride.ride_date.in_minute]]</p>
-                       <p>Car:
-                           <b> [[ ride.driver.car[0].type.title ]]
-                               [[ ride.driver.car[0].model.discr ]]
-                               [[ ride.driver.car[0].model.brand.title ]]
-                           </b>
-                        <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
-                        <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
-                        <img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">
-                       </p>
+                       {#<p>Car:#}
+                           {#<b> [[ ride.driver.car[0].type.title ]]#}
+                               {#[[ ride.driver.car[0].model.discr ]]#}
+                               {#[[ ride.driver.car[0].model.brand.title ]]#}
+                           {#</b>#}
+                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
+                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
+                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
+                       {#</p>#}
                     </div>
                     <div class="col-md-3">
                         <div class="£-block">

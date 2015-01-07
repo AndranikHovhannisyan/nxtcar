@@ -15,6 +15,7 @@ use Sonata\UserBundle\Model\UserInterface;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class User
@@ -31,12 +32,14 @@ class User extends BaseUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"user"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="year_of_birth", type="integer", nullable=true)
      * @Assert\NotBlank(message="Please choose the year of your birth", groups={"Registration", "Profile"})
+     * @Groups({"user"})
      */
     protected $yearOfBirth;
 
@@ -49,6 +52,7 @@ class User extends BaseUser
      *     maxMessage="The name is too long.",
      *     groups={"Registration", "Profile"}
      * )
+     * @Groups({"user"})
      */
     protected $firstname;
 
@@ -61,11 +65,13 @@ class User extends BaseUser
      *     maxMessage="The last name is too long.",
      *     groups={"Registration", "Profile"}
      * )
+     * @Groups({"user"})
      */
     protected $lastname;
 
     /**
      * @Assert\NotBlank(message="Please choose your gender", groups={"Registration", "Profile"})
+     * @Groups({"user"})
      */
     protected $gender = UserInterface::GENDER_UNKNOWN;
 
@@ -75,6 +81,7 @@ class User extends BaseUser
      *     checkMX = true,
      *     groups={"Registration", "Profile"}
      * )
+     * @Groups({"user"})
      */
     protected $email;
 
@@ -86,16 +93,19 @@ class User extends BaseUser
     /**
      * @ORM\Column(name="displayed_as", type="string", length=20, nullable=true)
      * @Assert\NotBlank(message="Please choose your name for display", groups={"Registration", "Profile"})
+     * @Groups({"user"})
      */
     protected $displayedAs;
 
     /**
      * @ORM\Column(name="show_phone_number", type="boolean", nullable=false)
+     * @Groups({"user"})
      */
     protected $showPhoneNumber = false;
 
     /**
      * @ORM\OneToMany(targetEntity="nxtcar\MainBundle\Entity\Car", mappedBy="user")
+     * @Groups({"user_car"})
      */
     protected $car;
 
@@ -111,6 +121,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="Photo", mappedBy="user")
+     * @Groups({"user_photo"})
      */
     protected $photo;
 
@@ -122,21 +133,25 @@ class User extends BaseUser
 
     /**
      * @ORM\Column(name="chattiness", type="smallint", nullable=false)
+     * @Groups({"user"})
      */
     protected $chattiness = self::PREFERENCES_MEDIUM;
 
     /**
      * @ORM\Column(name="music", type="smallint", nullable=false)
+     * @Groups({"user"})
      */
     protected $music = self::PREFERENCES_MEDIUM;
 
     /**
      * @ORM\Column(name="smoking", type="smallint", nullable=false)
+     * @Groups({"user"})
      */
     protected $smoking = self::PREFERENCES_MEDIUM;
 
     /**
      * @ORM\Column(name="pets", type="smallint", nullable=false)
+     * @Groups({"user"})
      */
     protected $pets = self::PREFERENCES_MEDIUM;
 

@@ -73,7 +73,7 @@ class RideRepository extends EntityRepository
                 $query->join('nxtcarMainBundle:OneTime', 'oneTime with oneTime.id = rideDate.id');
 
                 if ($date) {
-                    $query->andWhere("oneTime.outDate >= $date");
+                    $query->andWhere("oneTime.outDate = '$date' ");
                 }
                 if ($timeFrom) {
                     $query->andWhere("oneTime.outHour >= $timeFrom");
@@ -88,6 +88,7 @@ class RideRepository extends EntityRepository
                 ->setParameter('rideIds', $rideIds)
                 ->getQuery()
                 ->getResult();
+
 
         foreach($resultIds as $resultId)
         {

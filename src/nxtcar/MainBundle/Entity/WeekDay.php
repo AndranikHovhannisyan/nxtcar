@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class WeekDay
@@ -21,16 +22,19 @@ class WeekDay
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"weekDay"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=50, nullable=true)
+     * @Groups({"weekDay"})
      */
     protected $name = 'default';
 
     /**
      * @ORM\Column(name="week_index", type="integer", nullable=true)
+     * @Groups({"weekDay"})
      */
     protected $index;
 

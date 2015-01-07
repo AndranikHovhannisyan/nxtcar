@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -21,36 +22,43 @@ class Recurring extends RideDate
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"recurring"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="start_date", type="date", nullable=false)
+     * @Groups({"recurring"})
      */
     protected $startDate;
 
     /**
      * @ORM\Column(name="end_date", type="date", nullable=true)
+     * @Groups({"recurring"})
      */
     protected $endDate;
 
     /**
      * @ORM\OneToMany(targetEntity="OutWeek", mappedBy="recurring")
+     * @Groups({"recurring_outWeek"})
      */
     protected $outDates;
 
     /**
      * @ORM\OneToMany(targetEntity="InWeek", mappedBy="recurring")
+     * @Groups({"recurring_inWeek"})
      */
     protected $inDates;
 
     /**
      * @var boolean
+     * @Groups({"recurring"})
      */
     protected $isRound;
 
     /**
      * @var \nxtcar\MainBundle\Entity\Ride
+     * @Groups({"recurring_ride"})
      */
     protected $ride;
 

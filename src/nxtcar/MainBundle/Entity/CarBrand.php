@@ -9,6 +9,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarBrand
@@ -20,16 +21,19 @@ class CarBrand extends CarProperty
 {
     /**
      * @ORM\OneToMany(targetEntity="CarModel", mappedBy="brand", cascade={"persist"})
+     * @Groups({"brand_model"})
      */
     protected $models;
 
     /**
      * @var integer
+     * @Groups({"brand"})
      */
     protected $id;
 
     /**
      * @var string
+     * @Groups({"brand"})
      */
     protected $title;
 

@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -21,33 +22,40 @@ class Town
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"town"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=50, nullable=false)
+     * @Groups({"town"})
      */
     protected $name;
 
     /**
      * @ORM\Column(name="full_name", type="string", length=100)
+     * @Groups({"town"})
      */
     protected $fullName;
 
     /**
      * @ORM\Column(name="k", type="float")
+     * @Groups({"town"})
      */
     protected $k;
 
     /**
      * @ORM\Column(name="d", type="float")
+     * @Groups({"town"})
      */
     protected $d;
 
     /**
      * @ORM\OneToMany(targetEntity="RideTown", mappedBy="town")
+     * @Groups({"town_rideTown"})
      */
     protected $rideTown;
+
     /**
      * Constructor
      */

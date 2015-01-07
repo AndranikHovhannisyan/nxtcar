@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -24,17 +25,20 @@ class RideDate
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"rideDate"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="is_round", type="boolean", nullable=false)
+     * @Groups({"rideDate"})
      */
     protected $isRound = false;
 
     /**
      * @ORM\OneToOne(targetEntity="Ride", inversedBy="rideDate")
      * @ORM\JoinColumn(name="ride_id", referencedColumnName="id")
+     * @Groups({"rideDate_ride"})
      */
     protected $ride;
 

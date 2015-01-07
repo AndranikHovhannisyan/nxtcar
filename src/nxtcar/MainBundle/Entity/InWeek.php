@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class InWeek
@@ -18,28 +19,33 @@ use Doctrine\ORM\Mapping as ORM;
 class InWeek extends InOutWeek
 {
     /**
+     * @var integer
+     * @Groups({"inWeek"})
+     */
+    protected $id;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="inDates")
      * @ORm\JoinColumn(name="recurring_id", referencedColumnName="id")
+     * @Groups({"inWeek_recurring"})
      */
     protected $recurring;
 
     /**
      * @var integer
-     */
-    protected $id;
-
-    /**
-     * @var integer
+     * @Groups({"inWeek"})
      */
     protected $hour;
 
     /**
      * @var integer
+     * @Groups({"inWeek"})
      */
     protected $minute;
 
     /**
      * @var \nxtcar\MainBundle\Entity\WeekDay
+     * @Groups({"inWeek_weekDay"})
      */
     protected $weekDay;
 

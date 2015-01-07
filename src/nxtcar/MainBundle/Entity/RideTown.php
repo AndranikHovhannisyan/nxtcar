@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -21,38 +22,45 @@ class RideTown
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"rideTown"})
      */
     protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Ride", inversedBy="rideTown")
      * @ORM\JoinColumn(name="ride_id", referencedColumnName="id")
+     * @Groups({"rideTown_ride"})
      */
     protected $ride;
 
     /**
      * @ORM\ManyToOne(targetEntity="Town", inversedBy="rideTown")
      * @ORM\JoinColumn(name="town_id", referencedColumnName="id")
+     * @Groups({"rideTown_town"})
      */
     protected $town;
 
     /**
      * @ORM\Column(name="position_in_ride", type="integer", nullable=false)
+     * @Groups({"rideTown"})
      */
     protected $positionInRide;
 
     /**
      * @ORM\Column(name="busy_places_go", type="integer")
+     * @Groups({"rideTown"})
      */
     protected $busyPlacesGo;
 
     /**
      * @ORM\Column(name="busy_places_return", type="integer")
+     * @Groups({"rideTown"})
      */
     protected $busyPlacesReturn;
 
     /**
      * @ORM\Column(name="price_to_nearest", type="integer",  nullable=true)
+     * @Groups({"rideTown"})
      */
     protected $priceToNearest;
 

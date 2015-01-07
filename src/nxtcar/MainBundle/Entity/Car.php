@@ -9,6 +9,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class Car
@@ -28,40 +29,47 @@ class Car
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"car"})
      */
     protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="CarModel")
      * @ORM\JoinColumn(name="model_id", referencedColumnName="id")
+     * @Groups({"car_model"})
      */
     protected $model;
 
     /**
      * @ORM\Column(name="comfort", type="smallint")
+     * @Groups({"car"})
      */
     protected $comfort;
 
     /**
      * @ORM\Column(name="number_of_sets", type="smallint")
+     * @Groups({"car"})
      */
     protected $numberOfSets;
 
     /**
      * @ORM\ManyToOne(targetEntity="CarColor")
      * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
+     * @Groups({"car_color"})
      */
     protected $color;
 
     /**
      * @ORM\ManyToOne(targetEntity="CarType")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     * @Groups({"car_type"})
      */
     protected $type;
 
     /**
      * @ORM\ManyToOne(targetEntity="nxtcar\UserBundle\Entity\User", inversedBy="car")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Groups({"car_driver"})
      */
     protected $user;
 

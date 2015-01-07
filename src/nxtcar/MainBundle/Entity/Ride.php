@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -39,52 +40,67 @@ class Ride
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"ride"})
      */
     protected $id;
 
     /**
      * @ORM\OneToMany(targetEntity="RideTown", mappedBy="ride")
+     * @Groups({"ride_rideTown"})
      */
     protected $rideTown;
 
     /**
      * @ORM\ManyToOne(targetEntity="nxtcar\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="driver_id", referencedColumnName="id")
+     * @Groups({"ride_driver"})
      */
     protected $driver;
 
     /**
      * @ORM\Column(name="all_places", type="integer")
+     * @Groups({"ride"})
      */
     protected $allPlaces;
 
     /**
      * @ORM\OneToOne(targetEntity="RideDate", mappedBy="ride")
+     * @Groups({"ride_date"})
      */
     protected $rideDate;
 
     /**
      * @ORM\Column(name="luggage_size", type="smallint", nullable=false)
+     * @Groups({"ride"})
      */
     protected $luggageSize;
 
     /**
      * @ORM\Column(name="leaving_time", type="smallint", nullable=false)
+     * @Groups({"ride"})
      */
     protected $leavingTime;
 
     /**
      * @ORM\Column(name="detour", type="smallint", nullable=true)
+     * @Groups({"ride"})
      */
     protected $detour;
 
     /**
      * @ORM\Column(name="detail", type="string", length=2000, nullable=true)
+     * @Groups({"ride"})
      */
     protected $detail;
 
+    /**
+     * @Groups({"ride"})
+     */
     protected $price;
 
+    /**
+     * @Groups({"ride"})
+     */
     protected $freePlaces;
 
     /**

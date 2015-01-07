@@ -10,6 +10,7 @@ namespace nxtcar\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use nxtcar\MainBundle\Entity\BaseFile;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class Photo
@@ -22,21 +23,25 @@ class Photo extends BaseFile
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="photo")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Groups({"photo_user"})
      */
     protected $user;
 
     /**
      * @var integer
+     * @Groups({"photo"})
      */
     protected $id;
 
     /**
      * @var string
+     * @Groups({"photo"})
      */
     protected $name;
 
     /**
      * @var string
+     * @Groups({"photo"})
      */
     protected $path;
 

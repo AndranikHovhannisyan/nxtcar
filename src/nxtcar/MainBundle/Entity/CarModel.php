@@ -22,6 +22,7 @@ class CarModel extends CarProperty
     /**
      * @ORM\ManyToOne(targetEntity="CarBrand", inversedBy="models")
      * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+     * @Groups({"model_brand"})
      */
     protected $brand;
 
