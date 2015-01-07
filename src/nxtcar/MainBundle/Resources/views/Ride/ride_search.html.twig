@@ -34,8 +34,8 @@
                 <span ng-bind="Rides.length"></span> rides from {{ from }} to {{ to }}
                 <div class="rearrange-by">
                     <span>Rearrange by</span>
-                    <button class="order-price" ng-click="post.sort=1">£</button>
-                    <button class="order-date"  ng-click="post.sort=0"></button>
+                    <button class="order-price" ng-click="post.sort=1;updateRideList()">£</button>
+                    <button class="order-date"  ng-click="post.sort=0;updateRideList()"></button>
                 </div>
             </div>
             <a href="/[[basePath]]/ride/[[ride.id]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>

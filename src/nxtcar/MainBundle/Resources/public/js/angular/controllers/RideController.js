@@ -91,13 +91,9 @@ define([],function(){
             $scope.choosenCountry = $scope.countries.gb;
 
             $scope.updateRideList = function(){
-                var post = {
-                    time: angular.element('.db-slider').val(),
-                    from: $scope.post.from,
-                    to: $scope.post.to,
-                    date: $scope.post.date
-                }
-                RideManager.search({},post,function(data){
+                $scope.post.time = angular.element('.db-slider').val();
+
+                RideManager.search({},$scope.post,function(data){
                     $scope.Rides = data;
                 });
             }
