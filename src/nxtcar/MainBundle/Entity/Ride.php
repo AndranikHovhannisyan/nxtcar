@@ -51,7 +51,7 @@ class Ride
     protected $rideTown;
 
     /**
-     * @ORM\ManyToOne(targetEntity="nxtcar\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="nxtcar\UserBundle\Entity\User", inversedBy="rides")
      * @ORM\JoinColumn(name="driver_id", referencedColumnName="id")
      * @Groups({"ride_driver"})
      */

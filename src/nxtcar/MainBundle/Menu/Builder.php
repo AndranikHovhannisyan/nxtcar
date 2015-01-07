@@ -27,7 +27,7 @@ class Builder extends ContainerAware
 
         $menu->setChildrenAttribute('class', 'list-inline user-profil-menue');
         $menu->addChild('Dashboard', array('route' => 'dashboard'));
-        $menu->addChild('Rides offered', array('route' => 'homepage'));
+        $menu->addChild('Rides offered', array('route' => 'ride_offered'));
         $menu->addChild('Messages', array('route' => 'messages', 'routeParameters' => array('status' => 'received')));
         $menu->addChild('Ratings', array('route' => 'homepage'));
         $menu->addChild('Profile', array('route' => 'sonata_user_profile_edit'));

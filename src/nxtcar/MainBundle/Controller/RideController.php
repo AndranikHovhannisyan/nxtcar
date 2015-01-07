@@ -82,7 +82,6 @@ class RideController extends Controller
             $ride->setDetail($obj->details);
         }
 
-
         if ($obj->trip == 0)
         {
             $oneTime = new OneTime();
@@ -237,5 +236,19 @@ class RideController extends Controller
     public function offerSearchAction(Request $request)
     {
         return array();
+    }
+
+    /**
+     * @Route("/rides_offered", name="ride_offered")
+     * @Template("nxtcarMainBundle:Ride:rides_offered.html.twig")
+     */
+    public function offeredAction(Request $request)
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            throw new HttpException(Codes::HTTP_FORBIDDEN, "user doesn't found");
+        }
+
+        return array('rides' => $user->getRides());
     }
 }

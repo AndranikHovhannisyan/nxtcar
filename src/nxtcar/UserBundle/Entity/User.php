@@ -120,6 +120,11 @@ class User extends BaseUser
     protected $inMessages;
 
     /**
+     * @ORM\OneToMany(targetEntity="nxtcar\MainBundle\Entity\Ride", mappedBy="driver")
+     */
+    protected $rides;
+
+    /**
      * @ORM\OneToOne(targetEntity="Photo", mappedBy="user")
      * @Groups({"user_photo"})
      */
@@ -130,6 +135,7 @@ class User extends BaseUser
     const PREFERENCES_LOW       = 0;
     const PREFERENCES_MEDIUM    = 1;
     const PREFERENCES_HIGH      = 2;
+
 
     /**
      * @ORM\Column(name="chattiness", type="smallint", nullable=false)
@@ -298,6 +304,7 @@ class User extends BaseUser
         $this->car = new \Doctrine\Common\Collections\ArrayCollection();
         $this->outMessages = new \Doctrine\Common\Collections\ArrayCollection();
         $this->inMessages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rides = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -525,5 +532,38 @@ class User extends BaseUser
     public function getFacebookAccessToken()
     {
         return $this->facebook_access_token;
+    }
+
+    /**
+     * Add ride
+     *
+     * @param \nxtcar\MainBundle\Entity\Ride $ride
+     * @return User
+     */
+    public function addRide(\nxtcar\MainBundle\Entity\Ride $ride)
+    {
+        $this->rides[] = $ride;
+
+        return $this;
+    }
+
+    /**
+     * Remove outMessages
+     *
+     * @param \nxtcar\MainBundle\Entity\Ride $ride
+     */
+    public function removeRide(\nxtcar\MainBundle\Entity\Ride $ride)
+    {
+        $this->rides->removeElement($ride);
+    }
+
+    /**
+     * Get outMessages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRides()
+    {
+        return $this->rides;
     }
 }
