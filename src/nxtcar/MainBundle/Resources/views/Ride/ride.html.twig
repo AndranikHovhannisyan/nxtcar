@@ -137,16 +137,17 @@
                             (travel bag)
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 block-content-left">Car</div>
-                        <div class="col-md-8">
-                            <img src="/bundles/nxtcarmain/images/star-car.png" />
-                            <img src="/bundles/nxtcarmain/images/star-car.png" />
-                            Volvo V40
-                        </div>
-                    </div>
+                    {#<div class="row">#}
+                        {#<div class="col-md-4 block-content-left">Car</div>#}
+                        {#<div class="col-md-8">#}
+                            {#<img src="/bundles/nxtcarmain/images/star-car.png" />#}
+                            {#<img src="/bundles/nxtcarmain/images/star-car.png" />#}
+                            {#Volvo V40#}
+                        {#</div>#}
+                    {#</div>#}
                 </div>
-                <p class="text-right">Offer published: 04/12/2014 - Seen 6 times</p>
+                {# TODO: will save and then show #}
+                {#<p class="text-right">Offer published: 04/12/2014 - Seen 6 times</p>#}
             </div>
         </div>
         <div class="col-md-4">
@@ -155,8 +156,8 @@
 
                 {% set user = ride.driver %}
 
-                {% if app.user is not null and app.user.photo is not null %}
-                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+                {% if ride.driver is not null and ride.driver.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ ride.driver.photo.webpath %}
                 {% else %}
                     {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
                 {% endif %}
@@ -167,7 +168,7 @@
 
                 <div class="user">
                     <h3>
-                        {{ app.user.displayedAs }}
+                        {{ ride.driver.displayedAs }}
                         <span>({{ ("now" | date("Y")) - user.yearOfBirth }} years old) </span>
                         {#<a><i class=" bbc-icon2-flag"></i></a>#}
                     </h3>
@@ -211,7 +212,8 @@
         </div>
     </div>
 
-
+    <br/>
+    <br/>
     {% if thread.numComments != 0 %}
         {% for i in (thread.numComments - 1)..0 %}
             {% set commentinfo = comments[i] %}
@@ -222,7 +224,7 @@
                 {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
             {% endif %}
 
-            {% if commentinfo.comment.author.id != driverId %}
+            {% if commentinfo.comment.author is null or commentinfo.comment.author.id != driverId %}
 
                 <div class="margin-bottom">
                     <div class=" trip-qa ">
@@ -294,8 +296,8 @@
     {% endif %}
 
 
-    {% if app.user is not null and app.user.photo is not null %}
-        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+    {% if ride.driver is not null and ride.driver.photo is not null %}
+        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ ride.driver.photo.webpath %}
     {% else %}
         {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
     {% endif %}

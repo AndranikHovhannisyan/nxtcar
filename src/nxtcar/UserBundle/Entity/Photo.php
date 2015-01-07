@@ -11,6 +11,7 @@ namespace nxtcar\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use nxtcar\MainBundle\Entity\BaseFile;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Class Photo
@@ -44,6 +45,16 @@ class Photo extends BaseFile
      * @Groups({"photo"})
      */
     protected $path;
+
+    /**
+     * @return null|string|void
+     * @VirtualProperty
+     * @Groups({"photo"})
+     */
+    public function getWebPath()
+    {
+        return parent::getWebPath();
+    }
 
     /**
      * Get id

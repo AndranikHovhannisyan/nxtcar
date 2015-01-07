@@ -23,7 +23,7 @@ class RestRideController extends FOSRestController
      * @param Request $request
      * @return mixed
      * @Rest\View(serializerGroups={"ride", "ride_rideTown", "rideTown", "rideTown_town",
-     *                              "town", "ride_driver", "user", "ride_date",
+     *                              "town", "ride_driver", "user", "user_photo", "photo", "ride_date",
      *                              "recurring", "recurring_outWeek", "recurring_inWeek",
      *                              "inWeek", "inWeek_weekDay", "outWeek", "outWeek_weekDay", "weekDay",
      *                              "oneTime"

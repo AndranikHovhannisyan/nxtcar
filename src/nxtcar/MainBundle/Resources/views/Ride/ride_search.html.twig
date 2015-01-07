@@ -41,7 +41,8 @@
             <a href="/[[basePath]]/ride/[[ride.id]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
                 <div class="row">
                     <div class="col-md-3 user-info-image">
-                        <img class="user-image" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}">
+                        <img class="user-image" ng-if="ride.driver.photo!=null" src="{{ app.request.getSchemeAndHttpHost() }}/[[ ride.driver.photo.web_path ]]" width="72" height="72" >
+                        <img class="user-image" ng-if="ride.driver.photo==null" src="{{ asset('bundles/nxtcarmain/images/user-man-driver-72.png') }}" width="72" height="72" >
                         <div class="user-info">
                             <b class="username" data-ng-bind="ride.driver.displayed_as"></b>
                             <p>[[ {{ ("now" | date("Y"))}} -  ride.driver.year_of_birth]] years old</p>
