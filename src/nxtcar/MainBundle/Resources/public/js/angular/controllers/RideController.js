@@ -101,9 +101,5 @@ define([],function(){
             $scope.$watch('post.date',function(){
                 $scope.updateRideList();
             },true);
-
-            $scope.sliderCallback = function(){
-                $scope.updateRideList();
-            }
         });
 })
