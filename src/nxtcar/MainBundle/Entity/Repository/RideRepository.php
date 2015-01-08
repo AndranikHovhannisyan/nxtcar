@@ -150,8 +150,13 @@ class RideRepository extends EntityRepository
         return $rides;
     }
 
-    public function findOfferedRides($userId)
+    public function findOfferedRides($userId, $isPast = false)
     {
+        $isNot = '';
+        if ($isPast) {
+            $isNot = 'NOT';
+        }
+
         $rides = $this->getEntityManager()
             ->createQuery("SELECT ride, rideTown, town, rideDate
                            FROM nxtcarMainBundle:Ride ride
@@ -159,7 +164,28 @@ class RideRepository extends EntityRepository
                            JOIN rideTown.town town
                            JOIN ride.rideDate rideDate
                            JOIN ride.driver driver
-                           WHERE driver.id = $userId")
+
+                           LEFT JOIN nxtcarMainBundle:Recurring recurring
+                           WITH recurring.id = rideDate.id
+                           LEFT JOIN nxtcarMainBundle:OneTime oneTime
+                           WITH oneTime.id = rideDate.id
+
+                           WHERE driver.id = $userId
+                           AND $isNot
+                           ((
+                               rideDate INSTANCE OF nxtcarMainBundle:OneTime
+                               AND
+                               (
+                                   oneTime.outDate >= CURRENT_DATE()
+                                   OR (oneTime.inDate IS NOT NULL AND oneTime.inDate >= CURRENT_DATE())
+                               )
+                           )
+                           OR
+                           (
+                               rideDate INSTANCE OF nxtcarMainBundle:Recurring
+                               AND recurring.endDate >= CURRENT_DATE()
+                           ))
+                           ")
             ->getResult();
 
         $rideSums = $this->getEntityManager()
@@ -167,7 +193,28 @@ class RideRepository extends EntityRepository
                            FROM nxtcarMainBundle:Ride ride
                            JOIN ride.rideTown rideTown
                            JOIN ride.driver driver
+
+                           JOIN ride.rideDate rideDate
+                           LEFT JOIN nxtcarMainBundle:Recurring recurring
+                           WITH recurring.id = rideDate.id
+                           LEFT JOIN nxtcarMainBundle:OneTime oneTime
+                           WITH oneTime.id = rideDate.id
+
                            WHERE driver.id = $userId
+                           AND $isNot
+                           ((
+                               rideDate INSTANCE OF nxtcarMainBundle:OneTime
+                               AND
+                               (
+                                   oneTime.outDate >= CURRENT_DATE()
+                                   OR (oneTime.inDate IS NOT NULL AND oneTime.inDate >= CURRENT_DATE())
+                               )
+                           )
+                           OR
+                           (
+                               rideDate INSTANCE OF nxtcarMainBundle:Recurring
+                               AND recurring.endDate >= CURRENT_DATE()
+                           ))
                            GROUP BY ride")
             ->getResult();
 

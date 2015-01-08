@@ -8,4 +8,62 @@
 
 {% block content %}
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Rides offered']) }}
+
+    {% for ride in rides %}
+
+        <h4>{{ ride.rideTown.first.town.name }} → {{ ride.rideTown.last.town.name }}</h4>
+
+
+        Stopover points:
+        {{ ride.rideTown.first.town.name }}
+        {% for rideTown in ride.rideTown if rideTown != ride.rideTown.first %}
+            → {{ rideTown.town.name }}
+        {% endfor %}
+
+        <br/>
+        {{ ride.freePlaces }} seats left £{{ ride.price }} per passenger
+
+        <br/>
+
+        {% if ride.rideDate.startDate is defined %}
+            <div class="col-md-4 li-left">Out days</div>
+            <div class="col-md-8 li-right">
+
+                {{ ride.rideDate.outDates.first.weekDay.name }}
+                {% for weekday in ride.rideDate.outDates if weekday != ride.rideDate.outDates.first %}
+                    , {{ weekday.weekDay.name }}
+                {% endfor %}
+                {{ ride.rideDate.outDates.first.hour }}:{{ ride.rideDate.outDates.first.minute }}
+            </div>
+            <div class="col-md-4 li-left">Return days</div>
+            <div class="col-md-8 li-right">
+
+                {{ ride.rideDate.inDates.first.weekDay.name }}
+                {% for weekday in ride.rideDate.inDates if weekday != ride.rideDate.inDates.first %}
+                    , {{ weekday.weekDay.name }}
+                {% endfor %}
+                {{ ride.rideDate.inDates.first.hour }}:{{ ride.rideDate.inDates.first.minute }}
+            </div>
+
+            Start Date: {{ ride.rideDate.startDate | date('d M Y') }} <br/>
+            End Date: {{ ride.rideDate.endDate | date('d M Y') }}
+
+        {% else %}
+            <div class="col-md-4 li-left">Departure date</div>
+            <div class="col-md-8 li-right">
+                {{ ride.rideDate.outDate.date | date('D d M Y') }} - {{ ride.rideDate.outHour }}:{{ ride.rideDate.outMinute }}
+            </div>
+
+            {% if ride.rideDate.inDate is not null %}
+                <div class="col-md-4 li-left">Return date</div>
+                <div class="col-md-8 li-right">
+                    {{ ride.rideDate.inDate.date | date('D d M Y') }} - {{ ride.rideDate.inHour }}:{{ ride.rideDate.inMinute }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <br/>
+        <br/>
+
+    {% endfor %}
 {% endblock %}

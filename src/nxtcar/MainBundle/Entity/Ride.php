@@ -115,6 +115,14 @@ class Ride
     }
 
     /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
      * @param $freePlaces
      * @return $this
      */
@@ -123,6 +131,14 @@ class Ride
         $this->freePlaces = $freePlaces;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFreePlaces()
+    {
+        return $this->freePlaces;
     }
 
     /**

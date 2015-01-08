@@ -242,16 +242,21 @@ class RideController extends Controller
      * @Route("/rides_offered/{status}", name="ride_offered", requirements={"status" = "past|upcoming"})
      * @Template("nxtcarMainBundle:Ride:rides_offered.html.twig")
      */
-    public function offeredAction(Request $request)
+    public function offeredAction($status)
     {
         $user = $this->getUser();
         if (!$user) {
             throw new HttpException(Codes::HTTP_FORBIDDEN, "user doesn't found");
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->getRepository('nxtcarMainBundle:Ride')->findOfferedRides($this->getUser()->getId());
+        $isPast = false;
+        if ($status == 'past') {
+            $isPast = true;
+        }
 
-        return array('rides' => $user->getRides());
+        $em = $this->getDoctrine()->getManager();
+        $rides = $em->getRepository('nxtcarMainBundle:Ride')->findOfferedRides($this->getUser()->getId(), $isPast);
+
+        return array('rides' => $rides);
     }
 }
