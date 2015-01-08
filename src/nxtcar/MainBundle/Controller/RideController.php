@@ -239,7 +239,7 @@ class RideController extends Controller
     }
 
     /**
-     * @Route("/rides_offered", name="ride_offered")
+     * @Route("/rides_offered/{status}", name="ride_offered", requirements={"status" = "past|upcoming"})
      * @Template("nxtcarMainBundle:Ride:rides_offered.html.twig")
      */
     public function offeredAction(Request $request)
@@ -248,6 +248,9 @@ class RideController extends Controller
         if (!$user) {
             throw new HttpException(Codes::HTTP_FORBIDDEN, "user doesn't found");
         }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('nxtcarMainBundle:Ride')->findOfferedRides($this->getUser()->getId());
 
         return array('rides' => $user->getRides());
     }

@@ -22,6 +22,12 @@ class RideRepository extends EntityRepository
                            JOIN mainRide.rideDate rideDate
                            JOIN rideTown1.town town1
                            JOIN rideTown2.town town2
+
+                           LEFT JOIN nxtcarMainBundle:Recurring recurring
+                           WITH recurring.id = rideDate.id
+                           LEFT JOIN nxtcarMainBundle:OneTime oneTime
+                           WITH oneTime.id = rideDate.id
+
                            WHERE
                            town1.name LIKE :townFrom AND
                            town2.name LIKE :townTo AND
@@ -46,6 +52,26 @@ class RideRepository extends EntityRepository
                                                AND rideTown4.positionInRide <= rideTown1.positionInRide
                                                AND rideTown4.busyPlacesReturn = ride2.allPlaces
                                                AND ride2 = rideTown2.ride)
+                           ))
+                           AND
+                           ((
+                               rideDate INSTANCE OF nxtcarMainBundle:Recurring
+                               AND recurring.endDate >= CURRENT_DATE()
+                           )
+                           OR
+                           (
+                               rideDate INSTANCE OF nxtcarMainBundle:OneTime
+                               AND
+                               ((
+                                   rideTown1.positionInRide < rideTown2.positionInRide
+                                   AND oneTime.outDate >= CURRENT_DATE()
+                               )
+                               OR
+                               (
+                                   rideTown1.positionInRide > rideTown2.positionInRide
+                                   AND rideDate.isRound = true
+                                   AND oneTime.inDate >= CURRENT_DATE()
+                               ))
                            ))
                            ")
             ->setParameter('townFrom', $from)
@@ -117,6 +143,40 @@ class RideRepository extends EntityRepository
                 if ($ride->getId() == $resultId['id']) {
                     $ride->setPrice($prices['price']);
                     $ride->setFreePlaces($prices['freePlaces']);
+                }
+            }
+        }
+
+        return $rides;
+    }
+
+    public function findOfferedRides($userId)
+    {
+        $rides = $this->getEntityManager()
+            ->createQuery("SELECT ride, rideTown, town, rideDate
+                           FROM nxtcarMainBundle:Ride ride
+                           JOIN ride.rideTown rideTown
+                           JOIN rideTown.town town
+                           JOIN ride.rideDate rideDate
+                           JOIN ride.driver driver
+                           WHERE driver.id = $userId")
+            ->getResult();
+
+        $rideSums = $this->getEntityManager()
+            ->createQuery("SELECT ride.id, SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesGo)) as freePlaces
+                           FROM nxtcarMainBundle:Ride ride
+                           JOIN ride.rideTown rideTown
+                           JOIN ride.driver driver
+                           WHERE driver.id = $userId
+                           GROUP BY ride")
+            ->getResult();
+
+        foreach($rides as $ride) {
+            foreach($rideSums as $rideSum) {
+                if ($rideSum['id'] == $ride->getId()) {
+                    $ride->setPrice($rideSum['price']);
+                    $ride->setFreePlaces($rideSum['freePlaces']);
+                    break;
                 }
             }
         }

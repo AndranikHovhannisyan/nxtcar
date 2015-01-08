@@ -27,7 +27,7 @@ class Builder extends ContainerAware
 
         $menu->setChildrenAttribute('class', 'list-inline user-profil-menue');
         $menu->addChild('Dashboard', array('route' => 'dashboard'));
-        $menu->addChild('Rides offered', array('route' => 'ride_offered'));
+        $menu->addChild('Rides offered', array('route' => 'ride_offered', 'routeParameters' => array('status' => 'upcoming')));
         $menu->addChild('Messages', array('route' => 'messages', 'routeParameters' => array('status' => 'received')));
         $menu->addChild('Ratings', array('route' => 'homepage'));
         $menu->addChild('Profile', array('route' => 'sonata_user_profile_edit'));
@@ -35,6 +35,11 @@ class Builder extends ContainerAware
         $menu['Messages']->setChildrenAttribute('class', 'ul-message');
         $menu['Messages']->addChild('Public questions', array('route' => 'messages', 'routeParameters' => array('status' => 'questions_answers')));
         $menu['Messages']->addChild('Private messages', array('route' => 'messages', 'routeParameters' => array('status' => 'received')));
+
+        $menu['Rides offered']->setChildrenAttribute('class', 'ul-message');
+        $menu['Rides offered']->addChild('Upcoming rides',  array('route' => 'ride_offered', 'routeParameters' => array('status' => 'upcoming')));
+        $menu['Rides offered']->addChild('Past rides', array('route' => 'ride_offered', 'routeParameters' => array('status' => 'past')));
+
 
         $menu['Profile']->setChildrenAttribute('class', 'list-unstyled profile-information');
         $menu['Profile']->addChild('Personal information', array('route' => 'sonata_user_profile_edit'));
