@@ -78,7 +78,7 @@
                         </span>
                     </div>
                     <div class="col-md-6 day-form→to" >
-                       <p class="day">[[ ride.out_date | date:'fullDate' ]] - [[ ride.ride_date.out_hour ]]:[[ ride.ride_date.out_minute ]]</p>
+                       <p class="day">[[ ride.out_date | date:'medium' ]]</p>
                        <p class="form→to">
                            <span data-ng-repeat="(key,twn) in ride.ride_town">
                                <i ng-show="key">→</i> [[ ride.ride_town[key].town.full_name ]]

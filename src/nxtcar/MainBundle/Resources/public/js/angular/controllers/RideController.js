@@ -96,7 +96,7 @@ define([],function(){
                 $scope.post.time = angular.element('.db-slider').val();
 
                 RideManager.search({},$scope.post,function(data){
-                    $scope.Rides = data;
+                    $scope.Rides = data.rides;
                 });
             }
 
