@@ -256,15 +256,14 @@ form button{
     border-bottom: 2px solid #0479b6;
     padding: 6px 14px;
     font-size: 18px;
-
 }
 
 form button:hover{
     background-color: #048acf;
 }
 
-button .active{
-
+form button[type='submit'][disabled='disabled']{
+    background-color: #adadad !important;
 }
 
 

@@ -222,7 +222,12 @@
                         </section>
                     </fieldset>
                     <form action="{{ path("ride_offer") }}" method="POST">
-                        <button type="submit">Continue</button>
+                        <button type="submit"
+                            disabled="disabled"
+                            ng-disabled="Ride.places.length<2||
+                            (Ride.Round && (!Ride.departure.dateFrom||!Ride.return.dateTo||!Ride.departure.hour||!Ride.departure.minute||!Ride.return.hour||!Ride.return.minute))||
+                            (!Ride.Round && (!Ride.departure.dateFrom||!Ride.departure.hour||!Ride.departure.minute))">Continue
+                        </button>
                         <input type="hidden" name="ride" value="[[ Ride ]]"/>
                     </form>
                 </div>
