@@ -94,7 +94,7 @@ define([],function(){
             $scope.post = {page: 1};
 
             $scope.definePage = function(dir){
-                if(!dir && $scope.post.page){
+                if(!dir && $scope.post.page > 1){
                     $scope.post.page--;
                 }
                 if(dir && $scope.post.page < Math.ceil($scope.ridesCount/10)){
