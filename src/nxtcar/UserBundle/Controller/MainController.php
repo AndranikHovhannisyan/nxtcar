@@ -93,7 +93,9 @@ class MainController extends Controller
             $photo->upload();
 
             $lastPhoto = $em->getRepository('nxtcarUserBundle:Photo')->findByUser($user);
-            $em->remove($lastPhoto[0]);
+            if (count($lastPhoto)) {
+                $em->remove($lastPhoto[0]);
+            }
             $photo->setUser($user);
             $user->setPhoto($photo);
 
@@ -107,7 +109,6 @@ class MainController extends Controller
     /**
      * @Route("/profile/{userId}", name="user_profile", requirements={"userId" = "\d+"})
      * @Template("SonataUserBundle:Profile:show.html.twig")
-     * @Secure(roles="ROLE_USER")
      */
     public function profileAction($userId)
     {
