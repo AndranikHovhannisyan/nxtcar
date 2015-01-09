@@ -91,11 +91,24 @@ define([],function(){
             $scope.choosenCountry = $scope.countries.gb;
             $scope.sort1 = 1;
             $scope.sort2 = 2;
+            $scope.post = {page: 1};
+
+            $scope.definePage = function(dir){
+                if(!dir && $scope.post.page){
+                    $scope.post.page--;
+                }
+                if(dir && $scope.post.page < Math.ceil($scope.ridesCount/10)){
+                    $scope.post.page++;
+                }
+
+                $scope.updateRideList();
+            }
 
             $scope.updateRideList = function(){
                 $scope.post.time = angular.element('.db-slider').val();
 
                 RideManager.search({},$scope.post,function(data){
+                    $scope.ridesCount = data.count;
                     $scope.Rides = data.rides;
                 });
             }
