@@ -86,15 +86,6 @@
                        </p>
                        <p class="from" data-ng-if="ride.ride_date.out_date">[[ride.ride_date.out_date | date:'fullDate']] [[ ride.ride_date.out_hour ]]:[[ ride.ride_date.out_minute]]</p>
                        <p class="to" data-ng-if="ride.ride_date.in_date">[[ride.ride_date.in_date | date:'fullDate']] [[ ride.ride_date.in_hour ]]:[[ ride.ride_date.in_minute]]</p>
-                       {#<p>Car:#}
-                           {#<b> [[ ride.driver.car[0].type.title ]]#}
-                               {#[[ ride.driver.car[0].model.discr ]]#}
-                               {#[[ ride.driver.car[0].model.brand.title ]]#}
-                           {#</b>#}
-                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
-                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
-                        {#<img src="{{ asset('bundles/nxtcarmain/images/star-car.png') }} ">#}
-                       {#</p>#}
                     </div>
                     <div class="col-md-3">
                         <div class="£-block">
@@ -105,6 +96,12 @@
                     </div>
                 </div>
             </a>
+            <nav ng-show="Rides.length" class="ng-hide">
+                <ul class="pager">
+                    <li><a href="javascript:void(0)">Previous</a></li>
+                    <li><a href="javascript:void(0)">Next</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 {% endblock %}
