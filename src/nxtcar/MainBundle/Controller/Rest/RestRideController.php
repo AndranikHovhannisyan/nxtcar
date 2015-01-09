@@ -10,7 +10,9 @@ namespace nxtcar\MainBundle\Controller\Rest;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Util\Codes;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * @Rest\RouteResource("Ride")
@@ -28,12 +30,19 @@ class RestRideController extends FOSRestController
      *                              "inWeek", "inWeek_weekDay", "outWeek", "outWeek_weekDay", "weekDay",
      *                              "oneTime"
      * })
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function postFindAction(Request $request)
     {
         $obj = json_decode($request->getContent());
         $em = $this->getDoctrine()->getmanager();
         $time = explode(',', $this->getField($obj, 'time'));
+
+        if (is_null($this->getField($obj, 'from')) ||
+            is_null($this->getField($obj, 'to'))   ||
+            is_null($this->getField($obj, 'page'))) {
+            throw new HttpException(Codes::HTTP_BAD_REQUEST);
+        }
 
         $rides = $em->getRepository('nxtcarMainBundle:Ride')
             ->findRide($this->getField($obj, 'from'),
@@ -43,6 +52,13 @@ class RestRideController extends FOSRestController
                        $time[0],
                        $time[1]
             );
+
+        if ($this->getField($obj, 'isRecurring')) {
+            return array(
+                'rides' => array_slice($rides, ($this->getField($obj, 'page') - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
+                'count' => count($rides)
+            );
+        }
 
         if (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::PRICE_ASC) {
             usort($rides, function($a, $b) {
@@ -66,16 +82,22 @@ class RestRideController extends FOSRestController
         }
 
         return array(
-            'rides' => $rides,
+            'rides' => array_slice($rides, ($this->getField($obj, 'page') - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
             'count' => count($rides)
         );
     }
 
-    const PRICE_ASC     = 1;
+    const PAGE_COUNT    =  10;
+    const PRICE_ASC     =  1;
     const PRICE_DESC    = -1;
-    const DATE_ASC      = 2;
+    const DATE_ASC      =  2;
     const DATE_DESC     = -2;
 
+    /**
+     * @param $parent
+     * @param $child
+     * @return null
+     */
     private function getField($parent, $child)
     {
         if (isset($parent->$child)) {
