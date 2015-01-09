@@ -183,5 +183,6 @@
 
 .disabled,.disabled:hover {
     color: gray;
+    background-color: white;
     text-decoration: none;
 }

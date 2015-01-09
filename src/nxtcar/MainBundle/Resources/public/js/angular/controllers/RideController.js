@@ -96,12 +96,15 @@ define([],function(){
             $scope.definePage = function(dir){
                 if(!dir && $scope.post.page > 1){
                     $scope.post.page--;
-                }
-                if(dir && $scope.post.page < $scope.pagesLimit){
-                    $scope.post.page++;
+                    $scope.updateRideList();
+                    return;
                 }
 
-                $scope.updateRideList();
+                if(dir && $scope.post.page < $scope.pagesLimit){
+                    $scope.post.page++;
+                    $scope.updateRideList();
+                    return;
+                }
             }
 
             $scope.updateRideList = function(){
