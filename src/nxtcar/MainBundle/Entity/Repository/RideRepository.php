@@ -143,7 +143,7 @@ class RideRepository extends EntityRepository
                     ->getSingleResult();
 
                 if ($mainRide->getRideDate() instanceof OneTime) {
-                    $dateTime = new \datetime($mainRide->getRideDate()->getOutDate() . ' ' .
+                    $dateTime = new \datetime($mainRide->getRideDate()->getOutDate()->format('Y-m-d') . ' ' .
                         $mainRide->getRideDate()->getOutHour() . ':' . $mainRide->getRideDate()->getOutMinute());
 
                     $mainRide->setOutDate($dateTime);
