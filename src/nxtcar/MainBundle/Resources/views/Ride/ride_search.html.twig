@@ -98,8 +98,8 @@
             </a>
             <nav ng-show="Rides.length" class="ng-hide">
                 <ul class="pager">
-                    <li><a href="javascript:void(0)" ng-click="definePage(0)">Previous</a></li>
-                    <li><a href="javascript:void(0)" ng-click="definePage(1)">Next</a></li>
+                    <li><a href="javascript:void(0)" ng-class="{disabled: post.page==1}" ng-click="definePage(0)">Previous</a></li>
+                    <li><a href="javascript:void(0)" ng-class="{disabled: post.page==pagesLimit}" test="[[pagesLimit]]" ng-click="definePage(1)">Next</a></li>
                 </ul>
             </nav>
         </div>

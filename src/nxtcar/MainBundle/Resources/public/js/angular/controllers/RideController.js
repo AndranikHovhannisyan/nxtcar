@@ -97,7 +97,7 @@ define([],function(){
                 if(!dir && $scope.post.page > 1){
                     $scope.post.page--;
                 }
-                if(dir && $scope.post.page < Math.ceil($scope.ridesCount/10)){
+                if(dir && $scope.post.page < $scope.pagesLimit){
                     $scope.post.page++;
                 }
 
@@ -108,7 +108,7 @@ define([],function(){
                 $scope.post.time = angular.element('.db-slider').val();
 
                 RideManager.search({},$scope.post,function(data){
-                    $scope.ridesCount = data.count;
+                    $scope.pagesLimit = Math.ceil(data.count/10);
                     $scope.Rides = data.rides;
                 });
             }

@@ -180,3 +180,8 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
+
+.disabled,.disabled:hover {
+    color: gray;
+    text-decoration: none;
+}
