@@ -65,6 +65,7 @@ define([],function(){
                 return function linkFn(scope,el){
                     el.datepicker({
                         dateFormat: 'yy-mm-dd',
+                        minDate: new Date(),
                         onSelect: function(date){
                             scope.ngModel = date;
                             scope.$apply();
