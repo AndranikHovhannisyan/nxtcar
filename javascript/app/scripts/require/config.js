@@ -68,5 +68,5 @@ require.config({
         'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'google-autocomplete': ['find']
     },
-    waitSeconds: 7
+    waitSeconds: 200
 });
