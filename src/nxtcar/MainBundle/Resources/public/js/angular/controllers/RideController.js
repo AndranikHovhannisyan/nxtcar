@@ -89,6 +89,8 @@ define([],function(){
         .controller('RideSearchController',function($scope,countries,RideManager){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
+            $scope.sort1 = 1;
+            $scope.sort2 = 2;
 
             $scope.updateRideList = function(){
                 $scope.post.time = angular.element('.db-slider').val();
