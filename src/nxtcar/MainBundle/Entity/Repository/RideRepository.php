@@ -3,6 +3,7 @@
 namespace nxtcar\MainBundle\Entity\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use nxtcar\MainBundle\Entity\OneTime;
 
 /**
  * RideRepository
@@ -118,6 +119,19 @@ class RideRepository extends EntityRepository
 
         foreach($resultIds as $resultId)
         {
+            $mainRide = null;
+            foreach($rides as $ride) {
+                if ($ride->getId() == $resultId['id']) {
+                    $mainRide = $ride;
+                    break;
+                }
+            }
+
+            if (is_null($mainRide)) {
+                continue;
+            }
+
+
             if ($resultId['rideTownFrom'] < $resultId['rideTownTo']) {
                 $prices = $this->getEntityManager()
                     ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesGo)) as freePlaces
@@ -127,6 +141,13 @@ class RideRepository extends EntityRepository
                                    AND rideTown.positionInRide >= {$resultId['rideTownFrom']}
                                    AND rideTown.positionInRide < {$resultId['rideTownTo']}")
                     ->getSingleResult();
+
+                if ($mainRide->getRideDate() instanceof OneTime) {
+                    $dateTime = new \datetime($mainRide->getRideDate()->getOutDate() . ' ' .
+                        $mainRide->getRideDate()->getOutHour() . ':' . $mainRide->getRideDate()->getOutMinute());
+
+                    $mainRide->setOutDate($dateTime);
+                }
             }
             else {
                 $prices = $this->getEntityManager()
@@ -137,19 +158,28 @@ class RideRepository extends EntityRepository
                                    AND rideTown.positionInRide < {$resultId['rideTownFrom']}
                                    AND rideTown.positionInRide >= {$resultId['rideTownTo']}")
                     ->getSingleResult();
-            }
 
-            foreach($rides as $ride) {
-                if ($ride->getId() == $resultId['id']) {
-                    $ride->setPrice($prices['price']);
-                    $ride->setFreePlaces($prices['freePlaces']);
+
+                if ($mainRide->getRideDate() instanceof OneTime) {
+                    $dateTime = new \datetime($mainRide->getRideDate()->getInDate()->format('Y-m-d') . ' ' .
+                        $mainRide->getRideDate()->getInHour() . ':' . $mainRide->getRideDate()->getInMinute());
+
+                    $mainRide->setOutDate($dateTime);
                 }
             }
+
+            $mainRide->setPrice($prices['price']);
+            $mainRide->setFreePlaces($prices['freePlaces']);
         }
 
         return $rides;
     }
 
+    /**
+     * @param $userId
+     * @param bool $isPast
+     * @return array
+     */
     public function findOfferedRides($userId, $isPast = false)
     {
         $isNot = '';

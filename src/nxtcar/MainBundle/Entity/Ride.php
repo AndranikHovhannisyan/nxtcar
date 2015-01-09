@@ -104,6 +104,30 @@ class Ride
     protected $freePlaces;
 
     /**
+     * @Groups({"ride"})
+     */
+    protected $outDate;
+
+    /**
+     * @return mixed
+     */
+    public function getOutDate()
+    {
+        return $this->outDate;
+    }
+
+    /**
+     * @param $outDate
+     * @return $this
+     */
+    public function setOutDate($outDate)
+    {
+        $this->outDate = $outDate;
+
+        return $this;
+    }
+
+    /**
      * @param $price
      * @return $this
      */

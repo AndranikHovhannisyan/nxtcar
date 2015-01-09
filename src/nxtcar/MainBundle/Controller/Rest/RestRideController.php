@@ -35,7 +35,7 @@ class RestRideController extends FOSRestController
         $em = $this->getDoctrine()->getmanager();
         $time = explode(',', $this->getField($obj, 'time'));
 
-        return $em->getRepository('nxtcarMainBundle:Ride')
+        $rides = $em->getRepository('nxtcarMainBundle:Ride')
             ->findRide($this->getField($obj, 'from'),
                        $this->getField($obj, 'to'),
                        $this->getField($obj, 'isRecurring'),
@@ -43,7 +43,35 @@ class RestRideController extends FOSRestController
                        $time[0],
                        $time[1]
             );
+
+        if (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::PRICE_ASC) {
+            usort($rides, function($a, $b) {
+                return $a->getPrice() > $b->getPrice();
+            });
+        }
+        elseif (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::PRICE_DESC) {
+            usort($rides, function($a, $b) {
+                return $a->getPrice() < $b->getPrice();
+            });
+        }
+        elseif (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::DATE_ASC) {
+            usort($rides, function($a, $b) {
+                return $a->getOutDate() < $b->getOutDate();
+            });
+        }
+        elseif (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::DATE_DESC) {
+            usort($rides, function($a, $b) {
+                return $a->getOutDate() > $b->getOutDate();
+            });
+        }
+
+        return $rides;
     }
+
+    const PRICE_ASC     = 1;
+    const PRICE_DESC    = -1;
+    const DATE_ASC      = 2;
+    const DATE_DESC     = -2;
 
     private function getField($parent, $child)
     {
