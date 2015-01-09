@@ -65,7 +65,10 @@ class RestRideController extends FOSRestController
             });
         }
 
-        return $rides;
+        return array(
+            'rides' => $rides,
+            'count' => count($rides)
+        );
     }
 
     const PRICE_ASC     = 1;
