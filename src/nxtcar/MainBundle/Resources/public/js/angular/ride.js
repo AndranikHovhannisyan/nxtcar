@@ -59,18 +59,27 @@ define([],function(){
         return {
             restrict: "A",
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                minDate: '='
             },
             compile: function compileFn(){
                 return function linkFn(scope,el){
+                    var minDate = scope.minDate ? scope.minDate: new Date();
                     el.datepicker({
                         dateFormat: 'yy-mm-dd',
-                        minDate: new Date(),
+                        minDate: minDate,
                         onSelect: function(date){
                             scope.ngModel = date;
                             scope.$apply();
                         }
                     });
+
+                    scope.$watch('minDate',function(d){
+                        if(angular.isUndefined(d)){
+                            return;
+                        }
+                        el.datepicker( "option", "minDate", scope.minDate );
+                    },false);
                 }
             }
         }
