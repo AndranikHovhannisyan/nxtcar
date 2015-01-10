@@ -39,8 +39,7 @@ class RestRideController extends FOSRestController
         $time = explode(',', $this->getField($obj, 'time'));
 
         if (is_null($this->getField($obj, 'from')) ||
-            is_null($this->getField($obj, 'to'))   ||
-            is_null($this->getField($obj, 'page'))) {
+            is_null($this->getField($obj, 'to'))) {
             throw new HttpException(Codes::HTTP_BAD_REQUEST);
         }
 
@@ -53,9 +52,11 @@ class RestRideController extends FOSRestController
                        $time[1]
             );
 
+        $page = $this->getField($obj, 'page')  ? $this->getField($obj, 'page')  : 1;
+
         if ($this->getField($obj, 'isRecurring')) {
             return array(
-                'rides' => array_slice($rides, ($this->getField($obj, 'page') - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
+                'rides' => array_slice($rides, ($page - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
                 'count' => count($rides)
             );
         }
@@ -82,7 +83,7 @@ class RestRideController extends FOSRestController
         }
 
         return array(
-            'rides' => array_slice($rides, ($this->getField($obj, 'page') - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
+            'rides' => array_slice($rides, ($page - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
             'count' => count($rides)
         );
     }

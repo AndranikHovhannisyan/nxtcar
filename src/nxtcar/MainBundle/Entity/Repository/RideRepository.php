@@ -15,6 +15,31 @@ class RideRepository extends EntityRepository
 {
     public function findRide($from, $to, $isRecurring = false, $date = null, $timeFrom = null, $timeTo = null)
     {
+        if (!$isRecurring && ($timeFrom || $timeTo || $date)) {
+
+            if ($date) {
+                $dateOutQueryCondition = "AND oneTime.outDate = '$date' ";
+                $dateInQueryCondition  = "AND oneTime.inDate = '$date' ";
+            }
+            else {
+                $dateOutQueryCondition = "AND oneTime.outDate >= CURRENT_DATE() ";
+                $dateInQueryCondition  = "AND oneTime.inDate >= CURRENT_DATE() ";
+            }
+
+            $fromOutQueryCondition = '';
+            $fromInQueryCondition  = '';
+            $toOutQueryCondition = '';
+            $toInQueryCondition  = '';
+            if ($timeFrom) {
+                $fromOutQueryCondition = "AND oneTime.outHour >= $timeFrom";
+                $fromInQueryCondition  = "AND oneTime.inHour >= $timeFrom";
+            }
+            if ($timeTo) {
+                $toOutQueryCondition = "AND oneTime.outHour <= $timeTo";
+                $toInQueryCondition  = "AND oneTime.inHour <= $timeTo";
+            }
+        }
+
         $resultIds = $this->getEntityManager()
             ->createQuery("SELECT mainRide.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo
                            FROM nxtcarMainBundle:Ride mainRide
@@ -65,13 +90,17 @@ class RideRepository extends EntityRepository
                                AND
                                ((
                                    rideTown1.positionInRide < rideTown2.positionInRide
-                                   AND oneTime.outDate >= CURRENT_DATE()
+                                   $dateOutQueryCondition
+                                   $fromOutQueryCondition
+                                   $toOutQueryCondition
                                )
                                OR
                                (
                                    rideTown1.positionInRide > rideTown2.positionInRide
                                    AND rideDate.isRound = true
-                                   AND oneTime.inDate >= CURRENT_DATE()
+                                   $dateInQueryCondition
+                                   $fromInQueryCondition
+                                   $toInQueryCondition
                                ))
                            ))
                            ")
@@ -95,20 +124,6 @@ class RideRepository extends EntityRepository
         }
         else {
             $query->andWhere('rideDate INSTANCE OF nxtcarMainBundle:OneTime');
-
-            if ($timeFrom || $timeTo || $date) {
-                $query->join('nxtcarMainBundle:OneTime', 'oneTime with oneTime.id = rideDate.id');
-
-                if ($date) {
-                    $query->andWhere("oneTime.outDate = '$date' ");
-                }
-                if ($timeFrom) {
-                    $query->andWhere("oneTime.outHour >= $timeFrom");
-                }
-                if ($timeTo) {
-                    $query->andWhere("oneTime.outHour <= $timeTo");
-                }
-            }
         }
 
         $rides = $query
