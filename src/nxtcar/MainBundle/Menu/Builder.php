@@ -29,7 +29,7 @@ class Builder extends ContainerAware
         $menu->addChild('Dashboard', array('route' => 'dashboard'));
         $menu->addChild('Rides offered', array('route' => 'ride_offered', 'routeParameters' => array('status' => 'upcoming')));
         $menu->addChild('Messages', array('route' => 'messages', 'routeParameters' => array('status' => 'received')));
-        $menu->addChild('Ratings', array('route' => 'homepage'));
+//        $menu->addChild('Ratings', array('route' => 'homepage'));
         $menu->addChild('Profile', array('route' => 'sonata_user_profile_edit'));
 
         $menu['Messages']->setChildrenAttribute('class', 'ul-message');

@@ -29,6 +29,7 @@
             <div class="col-md-4 li-left">Out days</div>
             <div class="col-md-8 li-right">
 
+                {#{{ dump(ride.rideDate.outDates) }}#}
                 {{ ride.rideDate.outDates.first.weekDay.name }}
                 {% for weekday in ride.rideDate.outDates if weekday != ride.rideDate.outDates.first %}
                     , {{ weekday.weekDay.name }}

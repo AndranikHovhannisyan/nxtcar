@@ -24,9 +24,9 @@ define([],function(){
                 return function(scope,el){
                     el.jRange({
                         from: 0,
-                        to: 20,
+                        to: 23,
                         step: 1,
-                        scale: [0,5,10,15,20],
+                        scale: [0,5,10,15,20,23],
                         format: '%s',
                         width: 200,
                         showLabels: true,

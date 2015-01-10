@@ -25,7 +25,7 @@
                 <form class="form-horizontal1" role="form1" action="{{ path("fos_user_security_check") }}" method="post">
                     <input type="text" class="form-mail" id="" name="_username" placeholder="Email"><br>
                     <input type="password" class="form-password" id="" name="_password" placeholder="Password">
-                    <div class="forgotten-password"><a href=""> I've forgotten my password</a></div>
+                    {#<div class="forgotten-password"><a href=""> I've forgotten my password</a></div>#}
 
                     <div class="checkbox">
                         <input type="checkbox" class="form-checkbox">
@@ -36,7 +36,7 @@
                     </div><br><br>
                     <hr><br>
                     <h6><b>Not a member yet? </b></h6>
-                    <div class="forgotten-password"><a href="">Sign-up in 30 seconds</a></div>
+                    <div class="forgotten-password"><a href="{{ path('fos_user_registration_register') }}">Sign-up in 30 seconds</a></div>
                 </form>
             </div>
         </div>

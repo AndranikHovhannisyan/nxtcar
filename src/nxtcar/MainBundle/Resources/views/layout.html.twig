@@ -67,19 +67,20 @@
                                     <span class='header-vertica-lLine'></span>
                                 </a>
                             </li>
-                            <li class="notifications">
-                                <span>1</span>
-                                <a href="#">
-                                    <span class='header-vertica-lLine'></span>
-                                </a>
-                            </li>
+                            {#<li class="notifications">#}
+                                {#<span>1</span>#}
+                                {#<a href="#">#}
+                                    {#<span class='header-vertica-lLine'></span>#}
+                                {#</a>#}
+                            {#</li>#}
                             <li>
                                 <a href="javascript:void(0)"
                                    data-template="/bundles/nxtcaruser/htmls/userDropDown.html"
                                    data-animation="am-flip-x"
                                    data-placement="bottom"
                                    bs-popover>
-                                    <img src="" width="18" height="18"/>
+                                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                                    <img src="{{ photo }}" width="18" height="18"/>
                                     {{ app.user.firstname }}
                                     <i class="caret"></i>
                                     <span class='header-vertica-lLine'></span>

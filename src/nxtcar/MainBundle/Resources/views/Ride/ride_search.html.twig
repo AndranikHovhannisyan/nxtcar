@@ -26,7 +26,7 @@
             <br/>
             <br/>
             <br/>
-            <input type="hidden" class="db-slider" db-slider callback="updateRideList()" value="0,20"/>
+            <input type="hidden" class="db-slider" db-slider callback="updateRideList()" value="0,23"/>
             <br/>
         </div>
         <div class="col-md-9">
@@ -78,14 +78,15 @@
                         </span>
                     </div>
                     <div class="col-md-6 day-form→to" >
-                       <p class="day">[[ ride.out_date | date:'medium' ]]</p>
-                       <p class="form→to">
-                           <span data-ng-repeat="(key,twn) in ride.ride_town">
-                               <i ng-show="key">→</i> [[ ride.ride_town[key].town.full_name ]]
-                           </span>
-                       </p>
-                       <p class="from" data-ng-if="ride.ride_date.out_date">[[ride.ride_date.out_date | date:'fullDate']] [[ ride.ride_date.out_hour ]]:[[ ride.ride_date.out_minute]]</p>
-                       <p class="to" data-ng-if="ride.ride_date.in_date">[[ride.ride_date.in_date | date:'fullDate']] [[ ride.ride_date.in_hour ]]:[[ ride.ride_date.in_minute]]</p>
+                        <p class="day">[[ ride.out_date | date: 'MMM d, y H:mm' ]]</p>
+                        <p class="form→to">
+                            <span data-ng-repeat="(key,twn) in ride.ride_town">
+                                <i ng-show="key">→</i> [[ ride.ride_town[key].town.full_name ]]
+                            </span>
+                        </p>
+
+                        <p class="from" data-ng-if="ride.ride_date.out_date">[[ride.ride_date.out_date | date:'fullDate']] [[ ride.ride_date.out_hour ]]:[[ ride.ride_date.out_minute]]<m data-ng-if="!ride.ride_date.out_minute">0</m></p>
+                        <p class="to" data-ng-if="ride.ride_date.in_date">[[ride.ride_date.in_date | date:'fullDate']] [[ ride.ride_date.in_hour ]]:[[ ride.ride_date.in_minute]]<m data-ng-if="!ride.ride_date.in_minute">0</m></p>
                     </div>
                     <div class="col-md-3">
                         <div class="£-block">
