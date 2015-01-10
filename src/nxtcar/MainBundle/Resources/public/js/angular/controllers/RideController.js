@@ -107,7 +107,7 @@ define([],function(){
                 });
             }
 
-            $scope.$watch('post.date',function(){
+            $scope.$watch('post.date+post.requring',function(){
                 $scope.updateRideList();
             },true);
         });
