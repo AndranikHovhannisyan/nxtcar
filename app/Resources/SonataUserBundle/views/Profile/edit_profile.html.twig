@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block sub_content %}
-
     <div>
         <div>
             <h3 class="user-profil-header"> Your personal information</h3>
@@ -96,4 +95,8 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcaruser/js/require/userRunner.js") }}"></script>
 {% endblock %}
