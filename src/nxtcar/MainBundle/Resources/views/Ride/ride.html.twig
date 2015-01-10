@@ -6,16 +6,9 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_comment.css") }}">
 {% endblock %}
 
-{% block content %}
+{% block AngularController %}ng-controller="RideController"{% endblock %}
 
-    {#<a href="#" class="back"> ← Back to search results</a>#}
-    {#<svg class="from-to-header" width="100%">#}
-        {#<polygon points="0,0 1000,0 1000,50 90,50 80,60 70,50 0,50"#}
-                 {#style="fill:#0ca9fa;stroke:#0ca9fa;stroke-width:1;" />#}
-        {#<text fill="#ffffff" font-size="24" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" x="15" y="30">#}
-            {#Barking → Paris: Jethro T is offering a ride for £25#}
-        {#</text>#}
-    {#</svg>#}
+{% block content %}
 
     <div class="row">
         <div class="col-md-8">
@@ -26,7 +19,6 @@
                     {% for rideTown in ride.rideTown if rideTown != ride.rideTown.first %}
                         → {{ rideTown.town.name }}
                     {% endfor %}
-                    {#<a class="show-map" href="#"> Show map</a>#}
                 </h3>
                 <div class="main-content">
                     <ul class=" ">
@@ -137,17 +129,7 @@
                             (travel bag)
                         </div>
                     </div>
-                    {#<div class="row">#}
-                        {#<div class="col-md-4 block-content-left">Car</div>#}
-                        {#<div class="col-md-8">#}
-                            {#<img src="/bundles/nxtcarmain/images/star-car.png" />#}
-                            {#<img src="/bundles/nxtcarmain/images/star-car.png" />#}
-                            {#Volvo V40#}
-                        {#</div>#}
-                    {#</div>#}
                 </div>
-                {# TODO: will save and then show #}
-                {#<p class="text-right">Offer published: 04/12/2014 - Seen 6 times</p>#}
             </div>
         </div>
         <a href="{{ path('user_profile', {'userId': ride.driver.id}) }}">
@@ -174,9 +156,7 @@
                             {#<a><i class=" bbc-icon2-flag"></i></a>#}
                         </h3>
                         <p>Average rating: No ratings yet!</p><br>
-                        <p>
-                            My preferences
-
+                        <p>My preferences
                             {% if user.music == 0 %}
                                 <img src="{{ asset('bundles/nxtcaruser/images/pref-music-no-large.png') }}">
                             {% elseif user.music == 2 %}
@@ -197,8 +177,7 @@
 
                         </p>
                         <br>
-                        <p>
-                            I am
+                        <p>I am
                             {% if user.chattiness == 0 %}
                                 <img src="{{ asset('bundles/nxtcaruser/images/pref-bla-large.png') }}">
                             {% elseif user.chattiness == 1 %}
@@ -324,4 +303,9 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}
