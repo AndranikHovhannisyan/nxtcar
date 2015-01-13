@@ -36,6 +36,15 @@ define([],function(){
                 $scope.cities.splice(index,1);
                 $scope.Ride.places[$scope.Ride.places.length-1].index--;
             }
+
+            /*----------------------------------------*/
+            $scope.$watch('Ride.dateRecurringFrom',function(d){
+                if(angular.isUndefined(d)){
+                    return;
+                }
+                var date = new Date(d);
+                $scope.dateRecurringMaxDate = new Date(date.getFullYear(),date.getMonth()+3,date.getDate());
+            },false)
         })
         .controller("RideController2",function($scope,countries,$timeout){
             $scope.countries = angular.copy(countries);

@@ -60,7 +60,8 @@ define([],function(){
             restrict: "A",
             scope: {
                 ngModel: '=',
-                minDate: '='
+                minDate: '=',
+                maxDate: '='
             },
             compile: function compileFn(){
                 return function linkFn(scope,el){
@@ -78,7 +79,14 @@ define([],function(){
                         if(angular.isUndefined(d)){
                             return;
                         }
-                        el.datepicker( "option", "minDate", scope.minDate );
+                        el.datepicker("option", "minDate", scope.minDate);
+                    },false);
+
+                    scope.$watch('maxDate',function(d){
+                        if(angular.isUndefined(d)){
+                            return;
+                        }
+                        el.datepicker("option", "maxDate", scope.maxDate);
                     },false);
                 }
             }
@@ -91,12 +99,15 @@ define([],function(){
                 ngModel: '=',
                 outWeek: "=",
                 returnWeek: "=",
-                tripWeek: "="
+                tripWeek: "=",
+                minDate: '=',
+                maxDate: '='
             },
             compile: function compileFn(){
                 return function linkFn(scope,el,attrs){
+                    var minDate = scope.minDate ? scope.minDate: new Date();
                     el.datepicker({
-                        minDate: 0,
+                        minDate: minDate,
                         dateFormat: 'dd/mm/yy',
                         onSelect: function(date){
                             if(angular.isDefined(attrs.ngModel)){
@@ -130,6 +141,21 @@ define([],function(){
                         });
                         el.datepicker('refresh');
                     },true);
+
+                    scope.$watch('minDate',function(d){
+                        if(angular.isUndefined(d)){
+                            return;
+                        }
+                        console.log(scope);
+                        el.datepicker("option", "minDate", scope.minDate);
+                    },false);
+
+                    scope.$watch('maxDate',function(d){
+                        if(angular.isUndefined(d)){
+                            return;
+                        }
+                        el.datepicker("option", "maxDate", scope.maxDate);
+                    },false);
                 }
             }
         }

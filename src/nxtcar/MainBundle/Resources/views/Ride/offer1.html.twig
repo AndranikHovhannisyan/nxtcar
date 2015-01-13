@@ -211,7 +211,7 @@
                                             Starting from:
                                             <input type="text" datepicker ng-model="Ride.dateRecurringFrom" class="input date-picker" ng-init="Ride.dateRecurringFrom='{{ "now" | date("Y-m-d") }}'" placeholder="YYYY-MM-DD"/>
                                             Until:
-                                            <input type="text" datepicker ng-model="Ride.dateRecurringTo" class="input date-picker" placeholder="YYYY-MM-DD"/>
+                                            <input type="text" datepicker ng-model="Ride.dateRecurringTo" min-date="Ride.dateRecurringFrom" max-date="dateRecurringMaxDate" class="input date-picker" placeholder="YYYY-MM-DD"/>
                                         </div>
                                         <div>
                                             <div alt-datepicker out-week="Ride.outWeek" return-week="Ride.returnWeek" trip-week="Ride.tripWeek"></div>
