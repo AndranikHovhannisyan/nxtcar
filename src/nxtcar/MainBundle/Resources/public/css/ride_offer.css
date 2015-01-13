@@ -441,3 +441,7 @@ form button[type='submit'][disabled='disabled']{
     color: rgb(86, 86, 86);
     margin-bottom: 40px;
 }
+
+.date-time .btn-primary:focus {
+    color: black;
+}
