@@ -225,8 +225,10 @@
                         <button type="submit"
                             disabled="disabled"
                             ng-disabled="Ride.places.length<2||
-                            (Ride.Round && (!Ride.departure.dateFrom||!Ride.return.dateTo||!Ride.departure.hour||!Ride.departure.minute||!Ride.return.hour||!Ride.return.minute))||
-                            (!Ride.Round && (!Ride.departure.dateFrom||!Ride.departure.hour||!Ride.departure.minute))">Continue
+                            (!Ride.trip && Ride.Round && (!Ride.departure.dateFrom||!Ride.return.dateTo||!Ride.departure.hour||!Ride.departure.minute||!Ride.return.hour||!Ride.return.minute))||
+                            (!Ride.trip && !Ride.Round && (!Ride.departure.dateFrom||!Ride.departure.hour||!Ride.departure.minute)) ||
+                            (Ride.trip && Ride.Round && (!Ride.dateRecurringFrom||!Ride.dateRecurringTo||!Ride.outWeek.length||!Ride.returnWeek.length||!Ride.outboundRecurring.hour||!Ride.outboundRecurring.minute||!Ride.returnRecurring.hour||!Ride.returnRecurring.minute)) ||
+                            (Ride.trip && !Ride.Round && (!Ride.dateRecurringFrom||!Ride.dateRecurringTo||!Ride.tripWeek.length||!Ride.tripRecurring.hour||!Ride.tripRecurring.minute))">Continue
                         </button>
                         <input type="hidden" name="ride" value="[[ Ride ]]"/>
                     </form>
