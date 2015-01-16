@@ -10,7 +10,7 @@
 
 {% block content %}
 
-    <div class="row">
+    <div class="row" ng-cloak>
         <div class="col-md-8">
             <div class="main-block">
 
@@ -186,7 +186,6 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </a>
     </div>
@@ -281,7 +280,7 @@
         {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
     {% endif %}
 
-    <div class="margin-bottom">
+    <div class="margin-bottom" ng-cloak>
         <div class=" trip-qa ">
             <div class="pull-left msg-photo-container">
                 <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">

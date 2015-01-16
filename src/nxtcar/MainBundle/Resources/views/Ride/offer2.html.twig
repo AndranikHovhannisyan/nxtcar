@@ -11,7 +11,7 @@
 
 {% block content %}
 
-    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'">
+    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'" ng-cloak>
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">
@@ -83,15 +83,6 @@
                             {#(<a href="#" >See our rules</a>)#}
                         </div>
                         <div class="form-horizontal" method="POST">
-                            {#<div class="form-group">#}
-                                {#<label for="yor-car" class="col-sm-4">Yor car </label>#}
-                                {#<div class="col-sm-6">#}
-                                    {#<select id="yor-car" class="yor-car form-control">#}
-                                        {#<option>Yor car 1</option><option value="f">Yor car 2</option>#}
-                                    {#</select>#}
-                                {#</div>#}
-                            {#</div>#}
-
                             <div class="form-group">
                                 <label for="yor-car" class="col-sm-4">Maximum luggage size:</label>
                                 <div class="col-sm-3">

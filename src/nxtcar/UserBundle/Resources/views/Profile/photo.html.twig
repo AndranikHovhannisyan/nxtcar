@@ -19,19 +19,11 @@
 
                 {% if photo is not null %}
                     {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ photo.webPath %}
-
                     <div class="col-md-2">
                         <img src="{{ photo }}" width="70" height="70">
                     </div>
                 {% endif %}
-
                 <div class="col-md-10">
-
-                    {# TODO: Yet we needn't for it #}
-                    {#<div class="your-photo">#}
-                        {#Your photo is being approved#}
-                    {#</div>#}
-
                     {{ form_widget(form.file) }}
                     <div class="upload-f">
                         <a>Upload my Facebook photo</a>
@@ -51,14 +43,11 @@
                         <p class="p-photo-accepted">
                             For more information on how to best pick your profile photo, please
                             <a>check our FAQ </a>
-
-                        </p >
+                        </p>
                         <p class="p-photo-accepted">Move and resize the square area to centre it on your face.</p>
                     </div>
                 </div>
-
             </div>
-
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
                     <input type="submit" class="submit btn btn-default" value="Save">
@@ -67,6 +56,4 @@
             {{ form_widget(form._token) }}
         </form>
     </div>
-
-
 {% endblock %}
