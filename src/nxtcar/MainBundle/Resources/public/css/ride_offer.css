@@ -267,17 +267,6 @@ form button[type='submit'][disabled='disabled']{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 .map{
     padding: 13px;
     border: 1px solid #DBDBDB;
@@ -290,24 +279,6 @@ form button[type='submit'][disabled='disabled']{
     box-shadow: 0 0 0;
     border-radius: 3px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .price{
@@ -440,6 +411,10 @@ form button[type='submit'][disabled='disabled']{
     background: url("/bundles/nxtcarmain/images/information-inset.png") no-repeat 0 0;
     color: rgb(86, 86, 86);
     margin-bottom: 40px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
 }
 
 .date-time .btn-primary:focus {
