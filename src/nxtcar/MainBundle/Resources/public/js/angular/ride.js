@@ -108,7 +108,7 @@ define([],function(){
                     var minDate = scope.minDate ? scope.minDate: new Date();
                     el.datepicker({
                         minDate: minDate,
-                        dateFormat: 'dd/mm/yy',
+                        dateFormat: 'yy-mm-dd',
                         onSelect: function(date){
                             if(angular.isDefined(attrs.ngModel)){
                                 scope.ngModel = date;

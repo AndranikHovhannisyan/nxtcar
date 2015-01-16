@@ -38,7 +38,7 @@ define([],function(){
             }
 
             /*----------------------------------------*/
-            $scope.$watch('Ride.dateRecurringFrom',function(d){
+            $scope.$watch('Ride.dateRecurringTo',function(d){
                 if(angular.isUndefined(d)){
                     return;
                 }
