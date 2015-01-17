@@ -130,6 +130,8 @@ class RideController extends Controller
             }
 
             $em->persist($oneTime);
+            //to generate URL
+            $ride->setMainRideDate($oneTime);
         }
         else
         {
@@ -188,6 +190,8 @@ class RideController extends Controller
             }
 
             $em->persist($recurring);
+            //to generate URL
+            $ride->setMainRideDate($recurring);
 
             if (count($recurring->getOutDates()) < count($recurring->getInDates())) {
                 throw new HttpException(Codes::HTTP_BAD_REQUEST, 'in dates is more than out dates');
@@ -248,7 +252,7 @@ class RideController extends Controller
         $em->persist($ride);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('homepage'));
+        return $this->redirect($this->generateUrl('ride', array('rideDateId' => $ride->getMainRideDate()->getid())));
     }
 
     /**

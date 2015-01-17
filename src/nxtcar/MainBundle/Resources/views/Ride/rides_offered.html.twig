@@ -11,6 +11,26 @@
 
     {% for ride in rides %}
 
+        {% set length = ride.rideDate | length %}
+        {% if length > 1 %}
+
+            {% set recurring = null %}
+
+            {% for tempRideDate in ride.rideDate %}
+                {% if tempRideDate.startDate is defined %}
+                    {% set recurring = tempRideDate %}
+                {% endif %}
+            {% endfor %}
+
+            <a href="{{ path('ride', {'rideDateId': recurring.id}) }}">
+
+        {% else %}
+
+            <a href="{{ path('ride', {'rideDateId': ride.rideDate.first.id}) }}">
+
+        {% endif %}
+
+
         <h4>{{ ride.rideTown.first.town.name }} → {{ ride.rideTown.last.town.name }}</h4>
 
 
@@ -25,19 +45,7 @@
 
         <br/>
 
-        {% set length = ride.rideDate | length %}
-        {% if length > 1 or (length == 1 and ride.rideDate.first.startDate is defined) %}
-
-            {% set recurring = null %}
-            {% if length == 1 and ride.rideDate.first.startDate is defined %}
-                {% set recurring = ride.rideDate %}
-            {% endif %}
-
-            {% for tempRideDate in ride.rideDate %}
-                {% if tempRideDate.startDate is defined %}
-                    {% set recurring = tempRideDate %}
-                {% endif %}
-            {% endfor %}
+        {% if length > 1 %}
 
             {% if recurring is not null %}
 
@@ -84,7 +92,9 @@
 
         {% endif %}
 
+        </a>
         <br/>
+        -------------------------------------------------------------------------------------------------------
         <br/>
 
     {% endfor %}

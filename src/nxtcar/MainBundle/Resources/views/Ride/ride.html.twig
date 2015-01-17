@@ -46,17 +46,20 @@
                                     {{ rideDate.outDates.first.hour }}:{{ rideDate.outDates.first.minute }}
                                 </div>
                             </li>
-                            <li class="row">
-                                <div class="col-md-4 li-left">Return days</div>
-                                <div class="col-md-8 li-right">
 
-                                    {{ rideDate.inDates.first.weekDay.name }}
-                                    {% for weekday in rideDate.inDates if weekday != rideDate.inDates.first %}
-                                        , {{ weekday.weekDay.name }}
-                                    {% endfor %}
-                                    {{ rideDate.inDates.first.hour }}:{{ rideDate.inDates.first.minute }}
-                                </div>
-                            </li>
+                            {% if rideDate.inDates | length > 0 %}
+                                <li class="row">
+                                    <div class="col-md-4 li-left">Return days</div>
+                                    <div class="col-md-8 li-right">
+
+                                        {{ rideDate.inDates.first.weekDay.name }}
+                                        {% for weekday in rideDate.inDates if weekday != rideDate.inDates.first %}
+                                            , {{ weekday.weekDay.name }}
+                                        {% endfor %}
+                                        {{ rideDate.inDates.first.hour }}:{{ rideDate.inDates.first.minute }}
+                                    </div>
+                                </li>
+                            {% endif %}
 
                         {% else %}
                             <li class="row">
