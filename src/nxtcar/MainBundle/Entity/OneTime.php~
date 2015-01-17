@@ -8,6 +8,7 @@
 namespace nxtcar\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Class CarType
@@ -21,48 +22,64 @@ class OneTime extends RideDate
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"oneTime"})
      */
     protected $id;
 
     /**
      * @ORM\Column(name="out_date", type="date", nullable=false)
+     * @Groups({"oneTime"})
      */
     protected $outDate;
 
     /**
      * @ORM\Column(name="out_hour", type="integer", nullable=false)
+     * @Groups({"oneTime"})
      */
     protected $outHour;
 
     /**
      * @ORM\Column(name="out_minute", type="integer", nullable=false)
+     * @Groups({"oneTime"})
      */
     protected $outMinute;
 
     /**
      * @ORM\Column(name="in_date", type="date", nullable=true)
+     * @Groups({"oneTime"})
      */
     protected $inDate;
 
     /**
      * @ORM\Column(name="in_hour", type="integer", nullable=true)
+     * @Groups({"oneTime"})
      */
     protected $inHour;
 
     /**
      * @ORM\Column(name="in_minute", type="integer", nullable=true)
+     * @Groups({"oneTime"})
      */
     protected $inMinute;
 
     /**
      * @var boolean
+     * @Groups({"oneTime"})
      */
     protected $isRound;
 
     /**
      * @var \nxtcar\MainBundle\Entity\Ride
+     * @Groups({"oneTime_ride"})
      */
     protected $ride;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="oneTime")
+     * @ORM\JoinColumn(name="recurring", referencedColumnName="id")
+     * @Groups({"oneTime_recurring"})
+     */
+    protected $recurring;
 
     /**
      * Get id

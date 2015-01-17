@@ -63,12 +63,19 @@ class Recurring extends RideDate
     protected $ride;
 
     /**
+     * @ORM\OneToMany(targetEntity="OneTime", mappedBy="recurring")
+     * @Groups({"recurring_oneTime"})
+     */
+    protected $oneTime;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->outDates = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->inDates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inDates  = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->oneTime  = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -237,5 +244,38 @@ class Recurring extends RideDate
     public function getRide()
     {
         return $this->ride;
+    }
+
+    /**
+     * Add oneTime
+     *
+     * @param \nxtcar\MainBundle\Entity\OneTime $oneTime
+     * @return Recurring
+     */
+    public function addOneTime(\nxtcar\MainBundle\Entity\OneTime $oneTime)
+    {
+        $this->oneTime[] = $oneTime;
+
+        return $this;
+    }
+
+    /**
+     * Remove oneTime
+     *
+     * @param \nxtcar\MainBundle\Entity\OneTime $oneTime
+     */
+    public function removeOneTime(\nxtcar\MainBundle\Entity\OneTime $oneTime)
+    {
+        $this->oneTime->removeElement($oneTime);
+    }
+
+    /**
+     * Get oneTime
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOneTime()
+    {
+        return $this->oneTime;
     }
 }

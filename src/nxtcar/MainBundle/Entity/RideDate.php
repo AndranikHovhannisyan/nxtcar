@@ -36,7 +36,7 @@ class RideDate
     protected $isRound = false;
 
     /**
-     * @ORM\OneToOne(targetEntity="Ride", inversedBy="rideDate")
+     * @ORM\ManyToOne(targetEntity="Ride", inversedBy="rideDate")
      * @ORM\JoinColumn(name="ride_id", referencedColumnName="id")
      * @Groups({"rideDate_ride"})
      */

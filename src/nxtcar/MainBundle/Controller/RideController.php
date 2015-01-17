@@ -66,13 +66,13 @@ class RideController extends Controller
             throw new HttpException(Codes::HTTP_BAD_REQUEST, 'page field missing');
         }
 
-        $em = $this->getDoctrine()->getManager();
-
-        $ride = new Ride();
         if (!$this->getUser()) {
             throw new HttpException(Codes::HTTP_FORBIDDEN, "user doesn't authenticated");
         }
 
+        $em = $this->getDoctrine()->getManager();
+        //create main ride in set it's fields
+        $ride = new Ride();
         $ride->setDriver($this->getUser());
         $ride->setAllPlaces($obj->seatsNumber);
         $ride->setLuggageSize($obj->luggageSize);
@@ -82,68 +82,7 @@ class RideController extends Controller
             $ride->setDetail($obj->details);
         }
 
-        if ($obj->trip == 0)
-        {
-            $oneTime = new OneTime();
-            $oneTime->setIsRound($obj->Round);
-            $oneTime->setRide($ride);
-            $oneTime->setOutDate(new \datetime($obj->departure->dateFrom));
-            $oneTime->setOutHour($obj->departure->hour);
-            $oneTime->setOutMinute($obj->departure->minute);
-
-            if ($oneTime->getIsRound()) {
-                $oneTime->setInDate(new \datetime($obj->return->dateTo));
-                $oneTime->setInHour($obj->return->hour);
-                $oneTime->setInMinute($obj->return->minute);
-            }
-
-            $em->persist($oneTime);
-        }
-        else
-        {
-            $recurring = new Recurring();
-            $recurring->setIsRound($obj->Round);
-            $recurring->setRide($ride);
-            $recurring->setStartDate(new \datetime($obj->dateRecurringFrom));
-            $recurring->setEndDate(new \datetime($obj->dateRecurringTo));
-            for ($i = 0; $i <= 6; $i++)
-            {
-                if ((isset($obj->outWeek[$i]) && $obj->outWeek[$i]) || (isset($obj->returnWeek[$i]) && $obj->returnWeek[$i])) {
-                    $weekDay = $em->getRepository('nxtcarMainBundle:WeekDay')->findBy(array('index' => $i));
-                    if (!$weekDay) {
-                        $weekDay = new WeekDay();
-                        $weekDay->setIndex($i);
-                        $em->persist($weekDay);
-                    }
-                    else {
-                        $weekDay = $weekDay[0];
-                    }
-
-                    if (isset($obj->outWeek[$i]) && $obj->outWeek[$i]) {
-                        $outWeek = new OutWeek();
-                        $outWeek->setWeekDay($weekDay);
-                        $outWeek->setHour($obj->outboundRecurring->hour);
-                        $outWeek->setMinute($obj->outboundRecurring->minute);
-                        $outWeek->setRecurring($recurring);
-
-                        $em->persist($outWeek);
-                    }
-
-                    if ($recurring->getIsRound() && isset($obj->returnWeek[$i]) && $obj->returnWeek[$i]) {
-                        $inWeek = new InWeek();
-                        $inWeek->setWeekDay($weekDay);
-                        $inWeek->setHour($obj->returnRecurring->hour);
-                        $inWeek->setMinute($obj->returnRecurring->minute);
-                        $inWeek->setRecurring($recurring);
-
-                        $em->persist($inWeek);
-                    }
-                }
-            }
-
-            $em->persist($recurring);
-        }
-
+        //set ride places
         foreach($obj->places as $place)
         {
             $town = $em->getRepository('nxtcarMainBundle:Town')->findBy(array('name' => $place->city_name));
@@ -173,6 +112,139 @@ class RideController extends Controller
             $em->persist($rideTown);
         }
 
+        //set ride dates
+        if ($obj->trip == 0)
+        {
+            //if ride isn't recurring
+            $oneTime = new OneTime();
+            $oneTime->setIsRound($obj->Round);
+            $oneTime->setRide($ride);
+            $oneTime->setOutDate(new \datetime($obj->departure->dateFrom));
+            $oneTime->setOutHour($obj->departure->hour);
+            $oneTime->setOutMinute($obj->departure->minute);
+
+            if ($oneTime->getIsRound()) {
+                $oneTime->setInDate(new \datetime($obj->return->dateTo));
+                $oneTime->setInHour($obj->return->hour);
+                $oneTime->setInMinute($obj->return->minute);
+            }
+
+            $em->persist($oneTime);
+        }
+        else
+        {
+            //if ride recurring
+            $recurring = new Recurring();
+            $recurring->setIsRound($obj->Round);
+            $recurring->setRide($ride);
+            $ride->addRideDate($recurring);
+            $recurring->setStartDate(new \datetime($obj->dateRecurringFrom));
+            $recurring->setEndDate(new \datetime($obj->dateRecurringTo));
+            for ($i = 0; $i <= 6; $i++)
+            {
+                if ((isset($obj->tripWeek[$i]) && $obj->tripWeek[$i]) ||
+                    (isset($obj->outWeek[$i]) && $obj->outWeek[$i]) ||
+                    (isset($obj->returnWeek[$i]) && $obj->returnWeek[$i]))
+                {
+                    $weekDay = $em->getRepository('nxtcarMainBundle:WeekDay')->findBy(array('index' => $i));
+                    if (!$weekDay) {
+                        $weekDay = new WeekDay();
+                        $weekDay->setIndex($i);
+                        $em->persist($weekDay);
+                    }
+                    else {
+                        $weekDay = $weekDay[0];
+                    }
+
+                    if (($recurring->getIsRound() && isset($obj->outWeek[$i]) && $obj->outWeek[$i]) ||
+                        (!$recurring->getIsRound() && isset($obj->tripWeek[$i]) && $obj->tripWeek[$i])) {
+                        $outWeek = new OutWeek();
+                        $outWeek->setWeekDay($weekDay);
+                        if ($recurring->getIsRound()) {
+                            $outWeek->setHour($obj->outboundRecurring->hour);
+                            $outWeek->setMinute($obj->outboundRecurring->minute);
+                        }
+                        else {
+                            $outWeek->setHour($obj->tripRecurring->hour);
+                            $outWeek->setMinute($obj->tripRecurring->minute);
+                        }
+                        $outWeek->setRecurring($recurring);
+
+                        $recurring->addOutDate($outWeek);
+                        $em->persist($outWeek);
+                    }
+
+                    if ($recurring->getIsRound() && isset($obj->returnWeek[$i]) && $obj->returnWeek[$i]) {
+                        $inWeek = new InWeek();
+                        $inWeek->setWeekDay($weekDay);
+                        $inWeek->setHour($obj->returnRecurring->hour);
+                        $inWeek->setMinute($obj->returnRecurring->minute);
+                        $inWeek->setRecurring($recurring);
+
+                        $recurring->addInDate($inWeek);
+                        $em->persist($inWeek);
+                    }
+                }
+            }
+
+            $em->persist($recurring);
+
+            if (count($recurring->getOutDates()) < count($recurring->getInDates())) {
+                throw new HttpException(Codes::HTTP_BAD_REQUEST, 'in dates is more than out dates');
+            }
+
+            $inIndex = 0;
+            $inDates = $recurring->getInDates();
+            foreach($recurring->getOutDates() as $outDate) {
+
+                $weekIndex = (int) $recurring->getStartDate()->format('w');
+                $dateDiffOut = $outDate->getWeekDay()->getIndex() - $weekIndex;
+                if ($dateDiffOut  < 0) {
+                    $dateDiffOut  = 7 + $dateDiffOut;
+                }
+                $serialDateOut = clone $recurring->getStartDate();
+                $serialDateOut->modify("+$dateDiffOut days");
+
+                //dates to return
+                $serialDateIn = new \datetime();
+                if (isset($inDates[$inIndex])) {
+                    $dateDiffIn = $inDates[$inIndex]->getWeekDay()->getIndex() - $weekIndex;
+                    if ($dateDiffIn  < 0) {
+                        $dateDiffIn  = 7 + $dateDiffIn;
+                    }
+                    $serialDateIn = clone $recurring->getStartDate();
+                    $serialDateIn->modify("+$dateDiffIn days");
+                }
+
+
+                while ($serialDateOut < $recurring->getEndDate()) {
+                    $oneTime = new OneTime();
+                    $oneTime->setRecurring($recurring);
+                    $oneTime->setRide($ride);
+                    $oneTime->setOutDate(clone $serialDateOut);
+                    $oneTime->setOutHour($outDate->getHour());
+                    $oneTime->setOutMinute($outDate->getMinute());
+                    $ride->addRideDate($oneTime);
+
+                    if (isset($inDates[$inIndex])) {
+                        $oneTime->setInDate(clone $serialDateIn);
+                        $oneTime->setInHour($inDates[$inIndex]->getHour());
+                        $oneTime->setInMinute($inDates[$inIndex]->getMinute());
+                        $serialDateIn->modify("+1 week");
+                        $oneTime->setIsRound(true);
+                    }
+                    else {
+                        $oneTime->setIsRound(false);
+                    }
+
+                    $em->persist($oneTime);
+                    $serialDateOut->modify("+1 week");
+                }
+
+                $inIndex++;
+            }
+        }
+
         $em->persist($ride);
         $em->flush();
 
@@ -180,16 +252,16 @@ class RideController extends Controller
     }
 
     /**
-     * @Route("/ride/{rideId}", name="ride", requirements={"rideId" = "\d+"})
+     * @Route("/ride/{rideDateId}", name="ride", requirements={"rideDateId" = "\d+"})
      * @Template("nxtcarMainBundle:Ride:ride.html.twig")
      */
-    public function rideAction($rideId, Request $request)
+    public function rideAction($rideDateId, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $ride = $em->getRepository('nxtcarMainBundle:Ride')->find($rideId);
+        $rideDate = $em->getRepository('nxtcarMainBundle:RideDate')->find($rideDateId);
 
 
-        $id = 'ride_' . $rideId;
+        $id = 'ride_' . $rideDateId;
         $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
         if (null === $thread) {
             $thread = $this->container->get('fos_comment.manager.thread')->createThread();
@@ -215,14 +287,13 @@ class RideController extends Controller
             $manager = $this->container->get('fos_comment.manager.comment');
             $manager->saveComment($comment);
 
-            return $this->redirect($this->generateUrl('ride', array('rideId' => $rideId)));
+            return $this->redirect($this->generateUrl('ride', array('rideDateId' => $rideDateId)));
         }
 
         $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
 
         return $this->render('nxtcarMainBundle:Ride:ride.html.twig', array(
-            'ride' => $ride,
-            'driverId'  => $ride->getDriver()->getId(),
+            'rideDate'  => $rideDate,
             'comments'  => $comments,
             'thread'    => $thread,
             'form'      => $form->createView()

@@ -25,42 +25,63 @@
 
         <br/>
 
-        {% if ride.rideDate.startDate is defined %}
-            <div class="col-md-4 li-left">Out days</div>
-            <div class="col-md-8 li-right">
+        {% set length = ride.rideDate | length %}
+        {% if length > 1 or (length == 1 and ride.rideDate.first.startDate is defined) %}
 
-                {#{{ dump(ride.rideDate.outDates) }}#}
-                {{ ride.rideDate.outDates.first.weekDay.name }}
-                {% for weekday in ride.rideDate.outDates if weekday != ride.rideDate.outDates.first %}
-                    , {{ weekday.weekDay.name }}
-                {% endfor %}
-                {{ ride.rideDate.outDates.first.hour }}:{{ ride.rideDate.outDates.first.minute }}
-            </div>
-            <div class="col-md-4 li-left">Return days</div>
-            <div class="col-md-8 li-right">
+            {% set recurring = null %}
+            {% if length == 1 and ride.rideDate.first.startDate is defined %}
+                {% set recurring = ride.rideDate %}
+            {% endif %}
 
-                {{ ride.rideDate.inDates.first.weekDay.name }}
-                {% for weekday in ride.rideDate.inDates if weekday != ride.rideDate.inDates.first %}
-                    , {{ weekday.weekDay.name }}
-                {% endfor %}
-                {{ ride.rideDate.inDates.first.hour }}:{{ ride.rideDate.inDates.first.minute }}
-            </div>
+            {% for tempRideDate in ride.rideDate %}
+                {% if tempRideDate.startDate is defined %}
+                    {% set recurring = tempRideDate %}
+                {% endif %}
+            {% endfor %}
 
-            Start Date: {{ ride.rideDate.startDate | date('d M Y') }} <br/>
-            End Date: {{ ride.rideDate.endDate | date('d M Y') }}
+            {% if recurring is not null %}
+
+                <div class="col-md-4 li-left">Out days</div>
+                <div class="col-md-8 li-right">
+
+                    {{ recurring.outDates.first.weekDay.name }}
+                    {% for weekday in recurring.outDates if weekday != recurring.outDates.first %}
+                        , {{ weekday.weekDay.name }}
+                    {% endfor %}
+                    {{ recurring.outDates.first.hour }}:{{ recurring.outDates.first.minute }}
+                </div>
+
+                    {% if recurring.isRound %}
+                        <div class="col-md-4 li-left">Return days</div>
+                        <div class="col-md-8 li-right">
+
+                        {{ recurring.inDates.first.weekDay.name }}
+                        {% for weekday in recurring.inDates if weekday != recurring.inDates.first %}
+                            , {{ weekday.weekDay.name }}
+                        {% endfor %}
+                        {{ recurring.inDates.first.hour }}:{{ recurring.inDates.first.minute }}
+
+                        </div>
+                    {% endif %}
+
+                Start Date: {{ recurring.startDate | date('d M Y') }} <br/>
+                End Date: {{ recurring.endDate | date('d M Y') }}
+            {% endif %}
 
         {% else %}
+
             <div class="col-md-4 li-left">Departure date</div>
             <div class="col-md-8 li-right">
-                {{ ride.rideDate.outDate.date | date('D d M Y') }} - {{ ride.rideDate.outHour }}:{{ ride.rideDate.outMinute }}
+                {{ ride.rideDate.first.outDate.date | date('D d M Y') }} - {{ ride.rideDate.first.outHour }}:{{ ride.rideDate.first.outMinute }}
             </div>
 
-            {% if ride.rideDate.inDate is not null %}
+            {% if ride.rideDate.first.inDate is not null %}
                 <div class="col-md-4 li-left">Return date</div>
                 <div class="col-md-8 li-right">
-                    {{ ride.rideDate.inDate.date | date('D d M Y') }} - {{ ride.rideDate.inHour }}:{{ ride.rideDate.inMinute }}
+                    {{ ride.rideDate.first.inDate.date | date('D d M Y') }} - {{ ride.rideDate.first.inHour }}:{{ ride.rideDate.first.inMinute }}
                 </div>
             {% endif %}
+
         {% endif %}
 
         <br/>

@@ -13,10 +13,10 @@ use nxtcar\MainBundle\Entity\OneTime;
  */
 class RideRepository extends EntityRepository
 {
-    public function findRide($from, $to, $isRecurring = false, $date = null, $timeFrom = null, $timeTo = null)
+    public function findRide($from, $to, $date = null, $timeFrom = null, $timeTo = null)
     {
-        if (!$isRecurring && ($timeFrom || $timeTo || $date)) {
-
+        if ($timeFrom || $timeTo || $date)
+        {
             if ($date) {
                 $dateOutQueryCondition = "AND oneTime.outDate = '$date' ";
                 $dateInQueryCondition  = "AND oneTime.inDate = '$date' ";
@@ -40,15 +40,14 @@ class RideRepository extends EntityRepository
             }
         }
 
-        $resultIds = $this->getEntityManager()
-            ->createQuery("SELECT mainRide.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo
-                           FROM nxtcarMainBundle:Ride mainRide
+        $tempResultIds = $this->getEntityManager()
+            ->createQuery("SELECT rideDate.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo
+                           FROM nxtcarMainBundle:RideDate rideDate
+                           JOIN rideDate.ride mainRide
                            JOIN mainRide.rideTown rideTown1
                            JOIN mainRide.rideTown rideTown2
-                           JOIN mainRide.rideDate rideDate
                            JOIN rideTown1.town town1
                            JOIN rideTown2.town town2
-
                            LEFT JOIN nxtcarMainBundle:Recurring recurring
                            WITH recurring.id = rideDate.id
                            LEFT JOIN nxtcarMainBundle:OneTime oneTime
@@ -80,11 +79,6 @@ class RideRepository extends EntityRepository
                                                AND ride2 = rideTown2.ride)
                            ))
                            AND
-                           ((
-                               rideDate INSTANCE OF nxtcarMainBundle:Recurring
-                               AND recurring.endDate >= CURRENT_DATE()
-                           )
-                           OR
                            (
                                rideDate INSTANCE OF nxtcarMainBundle:OneTime
                                AND
@@ -102,45 +96,36 @@ class RideRepository extends EntityRepository
                                    $fromInQueryCondition
                                    $toInQueryCondition
                                ))
-                           ))
+                           )
                            ")
             ->setParameter('townFrom', $from)
             ->setParameter('townTo', $to)
             ->getResult();
 
-        $rideIds = array_map(function($element){return $element["id"];}, $resultIds);
+        $resultIds = $rideDateIds = array();
+        foreach($tempResultIds as $resultId) {
+            $rideDateIds[] = $resultId['id'];
+            $resultIds[$resultId['id']] = $resultId;
+        }
 
-        $query =  $this->getEntityManager()
+        $ridesDates = $this->getEntityManager()
             ->createQueryBuilder()
-            ->select('ride, rideTown, town, rideDate')
-            ->from('nxtcarMainBundle:Ride', 'ride')
+            ->select('rideDate, rideTown, ride, town')
+            ->from('nxtcarMainBundle:RideDate', 'rideDate')
+            ->join('rideDate.ride', 'ride')
             ->join('ride.rideTown', 'rideTown')
             ->join('rideTown.town', 'town')
-            ->join('ride.rideDate', 'rideDate')
-            ->where('ride.id IN (:rideIds)');
+            ->where('rideDate.id IN (:rideDateIds)')
+            ->andWhere('rideDate INSTANCE OF nxtcarMainBundle:OneTime')
+            ->setParameter('rideDateIds', $rideDateIds)
+            ->getQuery()
+            ->getResult();
 
-        if ($isRecurring) {
-            $query->andWhere('rideDate INSTANCE OF nxtcarMainBundle:Recurring');
-        }
-        else {
-            $query->andWhere('rideDate INSTANCE OF nxtcarMainBundle:OneTime');
-        }
-
-        $rides = $query
-                ->setParameter('rideIds', $rideIds)
-                ->getQuery()
-                ->getResult();
-
-
-        foreach($resultIds as $resultId)
+        $rides = array();
+        foreach($ridesDates as $tempRideDate)
         {
-            $mainRide = null;
-            foreach($rides as $ride) {
-                if ($ride->getId() == $resultId['id']) {
-                    $mainRide = $ride;
-                    break;
-                }
-            }
+            $resultId = $resultIds[$tempRideDate->getId()];
+            $mainRide = clone $tempRideDate->getRide();
 
             if (is_null($mainRide)) {
                 continue;
@@ -152,39 +137,37 @@ class RideRepository extends EntityRepository
                     ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesGo)) as freePlaces
                                    FROM nxtcarMainBundle:RideTown rideTown
                                    JOIN rideTown.ride ride
-                                   WHERE ride.id = {$resultId['id']}
+                                   WHERE ride.id = {$mainRide->getId()}
                                    AND rideTown.positionInRide >= {$resultId['rideTownFrom']}
                                    AND rideTown.positionInRide < {$resultId['rideTownTo']}")
                     ->getSingleResult();
 
-                if ($mainRide->getRideDate() instanceof OneTime) {
-                    $dateTime = new \datetime($mainRide->getRideDate()->getOutDate()->format('Y-m-d') . ' ' .
-                        $mainRide->getRideDate()->getOutHour() . ':' . $mainRide->getRideDate()->getOutMinute());
+                $dateTime = new \datetime($tempRideDate->getOutDate()->format('Y-m-d') . ' ' .
+                    $tempRideDate->getOutHour() . ':' . $tempRideDate->getOutMinute());
 
-                    $mainRide->setOutDate($dateTime);
-                }
             }
             else {
                 $prices = $this->getEntityManager()
                     ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesReturn)) as freePlaces
                                    FROM nxtcarMainBundle:RideTown rideTown
                                    JOIN rideTown.ride ride
-                                   WHERE ride.id = {$resultId['id']}
+                                   WHERE ride.id = {$mainRide->getId()}
                                    AND rideTown.positionInRide < {$resultId['rideTownFrom']}
                                    AND rideTown.positionInRide >= {$resultId['rideTownTo']}")
                     ->getSingleResult();
 
+                $dateTime = new \datetime($tempRideDate->getInDate()->format('Y-m-d') . ' ' .
+                    $tempRideDate->getInHour() . ':' . $tempRideDate->getInMinute());
 
-                if ($mainRide->getRideDate() instanceof OneTime) {
-                    $dateTime = new \datetime($mainRide->getRideDate()->getInDate()->format('Y-m-d') . ' ' .
-                        $mainRide->getRideDate()->getInHour() . ':' . $mainRide->getRideDate()->getInMinute());
 
-                    $mainRide->setOutDate($dateTime);
-                }
             }
 
+            $mainRide->setMainRideDate($tempRideDate);
+            $mainRide->setOutDate($dateTime);
             $mainRide->setPrice($prices['price']);
             $mainRide->setFreePlaces($prices['freePlaces']);
+
+            $rides[] = $mainRide;
         }
 
         return $rides;

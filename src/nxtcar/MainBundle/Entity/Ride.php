@@ -64,7 +64,7 @@ class Ride
     protected $allPlaces;
 
     /**
-     * @ORM\OneToOne(targetEntity="RideDate", mappedBy="ride")
+     * @ORM\OneToMany(targetEntity="RideDate", mappedBy="ride")
      * @Groups({"ride_date"})
      */
     protected $rideDate;
@@ -107,6 +107,30 @@ class Ride
      * @Groups({"ride"})
      */
     protected $outDate;
+
+    /**
+     * @Groups({"ride"})
+     */
+    protected $mainRideDate;
+
+    /**
+     * @param $mainRideDate
+     * @return $this
+     */
+    public function setMainRideDate($mainRideDate)
+    {
+        $this->mainRideDate = $mainRideDate;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainRideDate()
+    {
+        return $this->mainRideDate;
+    }
 
     /**
      * @return mixed
@@ -171,6 +195,7 @@ class Ride
     public function __construct()
     {
         $this->rideTown = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rideDate = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -263,29 +288,6 @@ class Ride
     }
 
     /**
-     * Set rideDate
-     *
-     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
-     * @return Ride
-     */
-    public function setRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate = null)
-    {
-        $this->rideDate = $rideDate;
-
-        return $this;
-    }
-
-    /**
-     * Get rideDate
-     *
-     * @return \nxtcar\MainBundle\Entity\RideDate 
-     */
-    public function getRideDate()
-    {
-        return $this->rideDate;
-    }
-
-    /**
      * Set luggageSize
      *
      * @param integer $luggageSize
@@ -375,5 +377,38 @@ class Ride
     public function getDetail()
     {
         return $this->detail;
+    }
+
+    /**
+     * Add rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     * @return Ride
+     */
+    public function addRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate)
+    {
+        $this->rideDate[] = $rideDate;
+
+        return $this;
+    }
+
+    /**
+     * Remove rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     */
+    public function removeRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate)
+    {
+        $this->rideDate->removeElement($rideDate);
+    }
+
+    /**
+     * Get rideDate
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRideDate()
+    {
+        return $this->rideDate;
     }
 }

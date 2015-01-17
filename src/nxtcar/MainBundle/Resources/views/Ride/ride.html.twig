@@ -10,6 +10,8 @@
 
 {% block content %}
 
+    {% set ride = rideDate.ride %}
+
     <div class="row" ng-cloak>
         <div class="col-md-8">
             <div class="main-block">
@@ -31,39 +33,39 @@
                             <div class="col-md-8 li-right ride-to">{{ ride.rideTown.last.town.fullName }}</div>
                         </li>
 
-                        {% if ride.rideDate.startDate is defined %}
+                        {% if rideDate.startDate is defined %}
 
                             <li class="row">
                                 <div class="col-md-4 li-left">Out days</div>
                                 <div class="col-md-8 li-right">
 
-                                    {{ ride.rideDate.outDates.first.weekDay.name }}
-                                    {% for weekday in ride.rideDate.outDates if weekday != ride.rideDate.outDates.first %}
+                                    {{ rideDate.outDates.first.weekDay.name }}
+                                    {% for weekday in rideDate.outDates if weekday != rideDate.outDates.first %}
                                         , {{ weekday.weekDay.name }}
                                     {% endfor %}
-                                    {{ ride.rideDate.outDates.first.hour }}:{{ ride.rideDate.outDates.first.minute }}
+                                    {{ rideDate.outDates.first.hour }}:{{ rideDate.outDates.first.minute }}
                                 </div>
                             </li>
                             <li class="row">
                                 <div class="col-md-4 li-left">Return days</div>
                                 <div class="col-md-8 li-right">
 
-                                    {{ ride.rideDate.inDates.first.weekDay.name }}
-                                    {% for weekday in ride.rideDate.inDates if weekday != ride.rideDate.inDates.first %}
+                                    {{ rideDate.inDates.first.weekDay.name }}
+                                    {% for weekday in rideDate.inDates if weekday != rideDate.inDates.first %}
                                         , {{ weekday.weekDay.name }}
                                     {% endfor %}
-                                    {{ ride.rideDate.inDates.first.hour }}:{{ ride.rideDate.inDates.first.minute }}
+                                    {{ rideDate.inDates.first.hour }}:{{ rideDate.inDates.first.minute }}
                                 </div>
                             </li>
 
                         {% else %}
                             <li class="row">
                                 <div class="col-md-4 li-left">Departure date</div>
-                                <div class="col-md-8 li-right">{{ ride.rideDate.outDate.date | date('D d M Y') }}</div>
+                                <div class="col-md-8 li-right">{{ rideDate.outDate.date | date('D d M Y') }}</div>
                             </li>
                             <li class="row">
                                 <div class="col-md-4 li-left">Departure time</div>
-                                <div class="col-md-8 li-right">{{ ride.rideDate.outHour }}:{{ ride.rideDate.outMinute }}</div>
+                                <div class="col-md-8 li-right">{{ rideDate.outHour }}:{{ rideDate.outMinute }}</div>
                             </li>
                         {% endif %}
 
@@ -202,7 +204,7 @@
                 {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
             {% endif %}
 
-            {% if commentinfo.comment.author is null or commentinfo.comment.author.id != driverId %}
+            {% if commentinfo.comment.author is null or commentinfo.comment.author.id != ride.driver.id %}
 
                 <div class="margin-bottom">
                     <div class=" trip-qa ">

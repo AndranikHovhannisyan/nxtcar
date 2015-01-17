@@ -46,20 +46,12 @@ class RestRideController extends FOSRestController
         $rides = $em->getRepository('nxtcarMainBundle:Ride')
             ->findRide($this->getField($obj, 'from'),
                        $this->getField($obj, 'to'),
-                       $this->getField($obj, 'isRecurring'),
                        $this->getField($obj, 'date'),
                        $time[0],
                        $time[1]
             );
 
         $page = $this->getField($obj, 'page')  ? $this->getField($obj, 'page')  : 1;
-
-        if ($this->getField($obj, 'isRecurring')) {
-            return array(
-                'rides' => array_slice($rides, ($page - 1) * self::PAGE_COUNT, self::PAGE_COUNT),
-                'count' => count($rides)
-            );
-        }
 
         if (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::PRICE_ASC) {
             usort($rides, function($a, $b) {

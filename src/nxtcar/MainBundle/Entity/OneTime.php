@@ -75,6 +75,13 @@ class OneTime extends RideDate
     protected $ride;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Recurring", inversedBy="oneTime")
+     * @ORM\JoinColumn(name="recurring", referencedColumnName="id")
+     * @Groups({"oneTime_recurring"})
+     */
+    protected $recurring;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -266,5 +273,28 @@ class OneTime extends RideDate
     public function getRide()
     {
         return $this->ride;
+    }
+
+    /**
+     * Set recurring
+     *
+     * @param \nxtcar\MainBundle\Entity\Recurring $recurring
+     * @return OneTime
+     */
+    public function setRecurring(\nxtcar\MainBundle\Entity\Recurring $recurring = null)
+    {
+        $this->recurring = $recurring;
+
+        return $this;
+    }
+
+    /**
+     * Get recurring
+     *
+     * @return \nxtcar\MainBundle\Entity\Recurring 
+     */
+    public function getRecurring()
+    {
+        return $this->recurring;
     }
 }
