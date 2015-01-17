@@ -213,7 +213,7 @@
                     <div class=" trip-qa ">
                         <div class="pull-left msg-photo-container">
                             <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
-                                <img class="tip" alt="Ismael B (29 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
+                                <img class="tip" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
                             </a>
                         </div>
                         <div class="msg-comment">
@@ -231,11 +231,6 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
-                                <span class="pull-right">
-                                    <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
-                                        <i class="alert-flag bbc-icon2-flag"></i>
-                                    </a>
-                                </span>
                             </p>
                         </div>
                     </div>
@@ -263,11 +258,6 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {{ commentinfo.comment.createdAt.date|date('D d M Y h:i') }}
-                                <span class="pull-right">
-                                    <a rel="nofollow" href="/report-message#contact-form-title" class="tip">
-                                        <i class="alert-flag bbc-icon2-flag"></i>
-                                    </a>
-                                </span>
                             </p>
                         </div>
                     </div>
@@ -279,8 +269,8 @@
     {% endif %}
 
 
-    {% if ride.driver is not null and ride.driver.photo is not null %}
-        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ ride.driver.photo.webpath %}
+    {% if app.user is not null and app.user.photo is not null %}
+        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
     {% else %}
         {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
     {% endif %}
