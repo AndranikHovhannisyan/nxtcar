@@ -38,13 +38,18 @@ define([],function(){
             }
 
             /*----------------------------------------*/
-            $scope.$watch('Ride.dateRecurringTo',function(d){
+            $scope.$watch('Ride.dateRecurringFrom',function(d){
                 if(angular.isUndefined(d)){
                     return;
                 }
                 var date = new Date(d);
-                $scope.dateRecurringMaxDate = new Date(date.getFullYear(),date.getMonth()+3,date.getDate());
-            },false)
+                $scope.maxUntilDate = new Date(date.getFullYear(),date.getMonth()+3,date.getDate());
+            },false);
+
+            /*----------------------------------------*/
+            $scope.$watch('Ride.dateRecurringTo',function(d){
+                $scope.dateRecurringMaxDate = angular.isDefined(d) ? d : $scope.maxUntilDate;
+            },false);
         })
         .controller("RideController2",function($scope,countries,$timeout){
             $scope.countries = angular.copy(countries);

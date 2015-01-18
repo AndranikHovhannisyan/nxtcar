@@ -5,7 +5,5 @@ define([],function(){
         .controller("MainController",function($scope,countries){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
-
-            console.log(countries);
         });
 })
