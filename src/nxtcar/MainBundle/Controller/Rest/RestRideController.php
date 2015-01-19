@@ -48,10 +48,12 @@ class RestRideController extends FOSRestController
                        $this->getField($obj, 'to'),
                        $this->getField($obj, 'date'),
                        $time[0],
-                       $time[1]
+                       $time[1],
+                       $this->getField($obj, 'sort'),
+                       $page = $this->getField($obj, 'page')  ? $this->getField($obj, 'page')  : 1
             );
 
-        $page = $this->getField($obj, 'page')  ? $this->getField($obj, 'page')  : 1;
+//        $page = $this->getField($obj, 'page')  ? $this->getField($obj, 'page')  : 1;
 
         if (!is_null($this->getField($obj, 'sort')) && $this->getField($obj, 'sort') == self::PRICE_ASC) {
             usort($rides, function($a, $b) {

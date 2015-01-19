@@ -13,43 +13,101 @@ use nxtcar\MainBundle\Entity\OneTime;
  */
 class RideRepository extends EntityRepository
 {
-    public function findRide($from, $to, $date = null, $timeFrom = null, $timeTo = null)
-    {
-        if ($timeFrom || $timeTo || $date)
-        {
-            if ($date) {
-                $dateOutQueryCondition = "AND oneTime.outDate = '$date' ";
-                $dateInQueryCondition  = "AND oneTime.inDate = '$date' ";
-            }
-            else {
-                $dateOutQueryCondition = "AND oneTime.outDate >= CURRENT_DATE() ";
-                $dateInQueryCondition  = "AND oneTime.inDate >= CURRENT_DATE() ";
-            }
+    const PAGE_COUNT    =  10;
+    const PRICE_ASC     =  1;
+    const PRICE_DESC    = -1;
+    const DATE_ASC      =  2;
+    const DATE_DESC     = -2;
 
-            $fromOutQueryCondition = '';
-            $fromInQueryCondition  = '';
-            $toOutQueryCondition = '';
-            $toInQueryCondition  = '';
-            if ($timeFrom) {
-                $fromOutQueryCondition = "AND oneTime.outHour >= $timeFrom";
-                $fromInQueryCondition  = "AND oneTime.inHour >= $timeFrom";
-            }
-            if ($timeTo) {
-                $toOutQueryCondition = "AND oneTime.outHour <= $timeTo";
-                $toInQueryCondition  = "AND oneTime.inHour <= $timeTo";
-            }
+    public function findRide($from, $to, $date = null, $timeFrom = null, $timeTo = null, $sort = null, $page)
+    {
+        if ($date) {
+            $dateOutQueryCondition = "AND oneTime.outDate = '$date' ";
+            $dateInQueryCondition  = "AND oneTime.inDate = '$date' ";
+        }
+        else {
+            $dateOutQueryCondition = "AND oneTime.outDate >= CURRENT_DATE() ";
+            $dateInQueryCondition  = "AND oneTime.inDate >= CURRENT_DATE() ";
+        }
+
+        $fromOutQueryCondition = '';
+        $fromInQueryCondition  = '';
+        $toOutQueryCondition = '';
+        $toInQueryCondition  = '';
+        if ($timeFrom) {
+            $fromOutQueryCondition = "AND oneTime.outHour >= $timeFrom";
+            $fromInQueryCondition  = "AND oneTime.inHour >= $timeFrom";
+        }
+        if ($timeTo) {
+            $toOutQueryCondition = "AND oneTime.outHour <= $timeTo";
+            $toInQueryCondition  = "AND oneTime.inHour <= $timeTo";
+        }
+
+        $orderBy = '';
+        if ($sort == self::PRICE_ASC) {
+            $orderBy = 'ORDER BY price ASC';
+        }
+        elseif ($sort == self::PRICE_DESC) {
+            $orderBy = 'ORDER BY price DESC';
+        }
+        elseif ($sort == self::DATE_ASC) {
+            $orderBy = 'ORDER BY travelDate ASC, travelHour ASC, travelMinute ASC';
+        }
+        elseif ($sort == self::PRICE_DESC) {
+            $orderBy = 'ORDER BY travelDate DESC, travelHour DESC, travelMinute DESC';
         }
 
         $tempResultIds = $this->getEntityManager()
-            ->createQuery("SELECT rideDate.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo
+            ->createQuery("SELECT rideDate.id, rideTown1.positionInRide as rideTownFrom, rideTown2.positionInRide as rideTownTo,
+
+
+                              (SELECT MAX(rideTown7.busyPlacesGo)
+                               FROM nxtcarMainBundle:RideTown rideTown7
+                               JOIN rideTown7.ride ride7
+                               WHERE ride7.id = mainRide.id
+                               AND
+                               ((
+                                   rideTown7.positionInRide >= rideTown1.positionInRide
+                                   AND rideTown7.positionInRide < rideTown2.positionInRide
+                               )
+                               OR (
+                                   rideTown7.positionInRide < rideTown1.positionInRide
+                                   AND rideTown7.positionInRide >= rideTown2.positionInRide
+                               ))
+
+                               ) busyPlaces,
+
+
+                               (SELECT SUM(___rideTown.priceToNearest)
+                               FROM nxtcarMainBundle:RideTown ___rideTown
+                               JOIN ___rideTown.ride ___ride
+                               WHERE ___ride.id = mainRide.id
+                               AND
+
+                               ((
+                                   ___rideTown.positionInRide >= rideTown1.positionInRide
+                                   AND ___rideTown.positionInRide < rideTown2.positionInRide
+                               )
+                               OR
+                               (
+                                   ___rideTown.positionInRide < rideTown1.positionInRide
+                                   AND ___rideTown.positionInRide >= rideTown2.positionInRide
+                               ))
+
+                               ) price,
+
+
+                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outDate ELSE oneTime.inDate END) as travelDate,
+                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outHour ELSE oneTime.inHour END) as travelHour,
+                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outMinute ELSE oneTime.inMinute END) as travelMinute
+
+
                            FROM nxtcarMainBundle:RideDate rideDate
                            JOIN rideDate.ride mainRide
                            JOIN mainRide.rideTown rideTown1
                            JOIN mainRide.rideTown rideTown2
                            JOIN rideTown1.town town1
                            JOIN rideTown2.town town2
-                           LEFT JOIN nxtcarMainBundle:Recurring recurring
-                           WITH recurring.id = rideDate.id
                            LEFT JOIN nxtcarMainBundle:OneTime oneTime
                            WITH oneTime.id = rideDate.id
 
@@ -97,10 +155,15 @@ class RideRepository extends EntityRepository
                                    $toInQueryCondition
                                ))
                            )
+                           $orderBy
                            ")
             ->setParameter('townFrom', $from)
             ->setParameter('townTo', $to)
+//            TODO will be opened
+//            ->setFirstResult(($page - 1) * self::PAGE_COUNT)
+//            ->setMaxResults(self::PAGE_COUNT + 1)
             ->getResult();
+
 
         $resultIds = $rideDateIds = array();
         foreach($tempResultIds as $resultId) {
@@ -131,41 +194,14 @@ class RideRepository extends EntityRepository
                 continue;
             }
 
+            $dateTime = new \datetime($resultId['travelDate'] . ' ' .
+                $resultId['travelHour'] . ':' . $resultId['travelMinute']);
 
-            if ($resultId['rideTownFrom'] < $resultId['rideTownTo']) {
-                $prices = $this->getEntityManager()
-                    ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesGo)) as freePlaces
-                                   FROM nxtcarMainBundle:RideTown rideTown
-                                   JOIN rideTown.ride ride
-                                   WHERE ride.id = {$mainRide->getId()}
-                                   AND rideTown.positionInRide >= {$resultId['rideTownFrom']}
-                                   AND rideTown.positionInRide < {$resultId['rideTownTo']}")
-                    ->getSingleResult();
-
-                $dateTime = new \datetime($tempRideDate->getOutDate()->format('Y-m-d') . ' ' .
-                    $tempRideDate->getOutHour() . ':' . $tempRideDate->getOutMinute());
-
-            }
-            else {
-                $prices = $this->getEntityManager()
-                    ->createQuery("SELECT SUM(rideTown.priceToNearest) as price, (ride.allPlaces - MAX(rideTown.busyPlacesReturn)) as freePlaces
-                                   FROM nxtcarMainBundle:RideTown rideTown
-                                   JOIN rideTown.ride ride
-                                   WHERE ride.id = {$mainRide->getId()}
-                                   AND rideTown.positionInRide < {$resultId['rideTownFrom']}
-                                   AND rideTown.positionInRide >= {$resultId['rideTownTo']}")
-                    ->getSingleResult();
-
-                $dateTime = new \datetime($tempRideDate->getInDate()->format('Y-m-d') . ' ' .
-                    $tempRideDate->getInHour() . ':' . $tempRideDate->getInMinute());
-
-
-            }
 
             $mainRide->setMainRideDate($tempRideDate);
             $mainRide->setOutDate($dateTime);
-            $mainRide->setPrice($prices['price']);
-            $mainRide->setFreePlaces($prices['freePlaces']);
+            $mainRide->setPrice($resultId['price']);
+            $mainRide->setFreePlaces($mainRide->getAllPlaces() - $resultId['busyPlaces']);
 
             $rides[] = $mainRide;
         }
