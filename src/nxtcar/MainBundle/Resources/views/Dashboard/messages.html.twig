@@ -10,7 +10,9 @@
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
 
     <div>
-
+        example<br/>
+        Old: [[ convertDateToLocal('6/29/2011 4:52:48 PM UTC') ]]<br/>
+        Converted: [[ convertDateToLocal('6/29/2011 4:52:48 PM') ]]
         {% if app.user is not null and app.user.photo is not null %}
             {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
         {% else %}
@@ -27,12 +29,15 @@
                 {{ question.body }}
                 <br>
                 {{ question.createdAt.date|date('D d M Y h:i') }}
+                converted: [[ convertDateToLocal('question.createdAt.date') ]]
             </div>
-
             <br><br>
 
         {% endfor %}
-
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset("/bundles/nxtcaruser/js/require/userRunner.js") }}"></script>
 {% endblock %}

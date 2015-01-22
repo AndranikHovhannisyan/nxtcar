@@ -12,5 +12,10 @@ define([],function(){
                 }
                 angular.element('.currency').html(d.currency);
             },true);
-        })
+
+           $scope.convertDateToLocal = function(date){
+               var d = date;
+               return new Date(d);
+           }
+        });
 })
