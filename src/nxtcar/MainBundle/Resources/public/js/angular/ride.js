@@ -146,7 +146,7 @@ define([],function(){
                         if(angular.isUndefined(d)){
                             return;
                         }
-                        console.log(scope);
+
                         el.datepicker("option", "minDate", scope.minDate);
                     },false);
 
