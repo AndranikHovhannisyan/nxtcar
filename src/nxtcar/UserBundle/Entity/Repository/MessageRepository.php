@@ -27,20 +27,50 @@ class MessageRepository extends EntityRepository
                            JOIN msg.to toUser
                            JOIN msg.rideDate rideDate
                            JOIN msg.tempRideDate tempRideDate
-                           WHERE fromUser = :fromUs
-                           AND toUser = :toUs
+                           WHERE
+                           ((
+                               fromUser = :fromUs
+                               AND toUser = :toUs
+                           )
+                           OR (
+                               fromUser = :toUs
+                               AND toUser = :fromUs
+                           ))
                            AND
                            (
                               rideDate = :rideDate
                               OR
                               tempRideDate = :rideDate
                            )
+
+                           ORDER BY msg.sendDate
                            ")
             ->setParameters(array(
                 'fromUs' => $from,
                 'toUs'  => $to,
                 'rideDate' => $rideDate
             ))
+            ->getResult();
+    }
+
+    /**
+     * @param $user
+     * @return array
+     */
+    public function findMessagesByUser($user)
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT userFrom, tempRideDate, rideDate
+                           FROM nxtcarUserBundle:User userFrom
+                           JOIN nxtcarUserBundle:Message message
+                           WITH message.from = userFrom
+                           LEFT JOIN nxtcarMainBundle:RideDate tempRideDate
+                           WITH message.tempRideDate = tempRideDate
+                           LEFT JOIN nxtcarMainBundle:RideDate rideDate
+                           WITH message.rideDate = rideDate
+                           WHERE message.to = :toUs
+                           GROUP BY userFrom, tempRideDate, rideDate")
+            ->setParameter('toUs', $user)
             ->getResult();
     }
 }

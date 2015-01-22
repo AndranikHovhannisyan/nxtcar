@@ -127,14 +127,28 @@ class MainController extends Controller
      */
     public function messageAction(User $from, User $to, RideDate $rideDate)
     {
+        $user = $this->getUser();
+        $fromUser = null;
+        $toUser = null;
+        if ($user == $from && $rideDate->getRide()->getDriver() == $to) {
+            $fromUser = $from;
+            $toUser = $to;
+        }
+        elseif ($user == $to && $rideDate->getRide()->getDriver() == $to) {
+            $fromUser = $to;
+            $toUser = $from;
+        }
+        else {
+            throw new HttpException(Codes::HTTP_BAD_REQUEST, 'error route parameters');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $messages = $em->getRepository('nxtcarUserBundle:Message')->findPrivateMessages($from, $to, $rideDate);
 
         $message = new Message();
-        $message->setFrom($from);
-        $message->setTo($to);
-        if
-        ($rideDate instanceof OneTime && !is_null($rideDate->getRecurring())) {
+        $message->setFrom($fromUser);
+        $message->setTo($toUser);
+        if ($rideDate instanceof OneTime && !is_null($rideDate->getRecurring())) {
             $message->setRideDate($rideDate->getRecurring());
             $message->setTempRideDate($rideDate);
         }

@@ -10,30 +10,56 @@
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
 
     <div>
-        example<br/>
-        Old: [[ convertDateToLocal('6/29/2011 4:52:48 PM UTC') ]]<br/>
-        Converted: [[ convertDateToLocal('6/29/2011 4:52:48 PM') ]]
+
+        <br><br>
+        {#example<br/>#}
+        {#Old: [[ convertDateToLocal('6/29/2011 4:52:48 PM UTC') ]]<br/>#}
+        {#Converted: [[ convertDateToLocal('6/29/2011 4:52:48 PM') ]]#}
+
         {% if app.user is not null and app.user.photo is not null %}
             {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
         {% else %}
             {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
         {% endif %}
 
-        {% for question in questions %}
+        {% if status == 'questions_answers' %}
 
-            <div class="col-md-2">
-                <img src="{{ photo }}" width="70" height="70">
-            </div>
+            {% for question in questions %}
+                <a href="{{ path('ride', {'rideDateId': (question.thread.id | replace({'ride_': ''})) }) }}">
+                    <div class="col-md-2">
+                        <img src="{{ photo }}" width="70" height="70">
+                    </div>
 
-            <div>
-                {{ question.body }}
-                <br>
-                {{ question.createdAt.date|date('D d M Y h:i') }}
-                converted: [[ convertDateToLocal('question.createdAt.date') ]]
-            </div>
-            <br><br>
+                    <div>
+                        {{ question.body }}
+                        <br>
+                        {{ question.createdAt.date|date('D d M Y h:i') }}
+                    </div>
+                    <br><br>
+                </a>
+            {% endfor %}
 
-        {% endfor %}
+        {% else %}
+
+            {% for question in questions %}
+
+
+
+                {#<a href="{{ path('private_messages', {'from': question.from.id, 'to': app.user, 'rideDate': }) }}">#}
+                    {#<div class="col-md-2">#}
+                        {#<img src="{{ photo }}" width="70" height="70">#}
+                    {#</div>#}
+
+                    {#<div>#}
+                        {#{{ question.body }}#}
+                        {#<br>#}
+                        {#{{ question.createdAt.date|date('D d M Y h:i') }}#}
+                    {#</div>#}
+                    {#<br><br>#}
+                {#</a>#}
+            {% endfor %}
+
+        {% endif %}
     </div>
 
 {% endblock %}
