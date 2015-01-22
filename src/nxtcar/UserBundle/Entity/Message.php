@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Message
  * @package nxtcar\UserBundle\Entity
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="nxtcar\UserBundle\Entity\Repository\MessageRepository")
  * @ORM\Table(name="message")
  */
 class Message
@@ -38,6 +38,28 @@ class Message
      * @ORM\JoinColumn(name="to_user_id", referencedColumnName="id")
      */
     protected $to;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="nxtcar\MainBundle\Entity\RideDate", inversedBy="messages")
+     * @ORM\JoinColumn(name="rid_date_id", referencedColumnName="id")
+     */
+    protected $rideDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="nxtcar\MainBundle\Entity\RideDate")
+     * @ORM\JoinColumn(name="temp_rid_date_id", referencedColumnName="id")
+     */
+    protected $tempRideDate;
+
+    /**
+     * @ORM\Column(name="message", type="string", length=1000, nullable=false)
+     */
+    protected $message;
+
+    /**
+     * @ORM\Column(name="send_date", type="datetime", nullable=false)
+     */
+    protected $sendDate;
 
     /**
      * Get id
@@ -93,5 +115,97 @@ class Message
     public function getTo()
     {
         return $this->to;
+    }
+
+    /**
+     * Set rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     * @return Message
+     */
+    public function setRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate = null)
+    {
+        $this->rideDate = $rideDate;
+
+        return $this;
+    }
+
+    /**
+     * Get rideDate
+     *
+     * @return \nxtcar\MainBundle\Entity\RideDate 
+     */
+    public function getRideDate()
+    {
+        return $this->rideDate;
+    }
+
+    /**
+     * Set tempRideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $tempRideDate
+     * @return Message
+     */
+    public function setTempRideDate(\nxtcar\MainBundle\Entity\RideDate $tempRideDate = null)
+    {
+        $this->tempRideDate = $tempRideDate;
+
+        return $this;
+    }
+
+    /**
+     * Get tempRideDate
+     *
+     * @return \nxtcar\MainBundle\Entity\RideDate 
+     */
+    public function getTempRideDate()
+    {
+        return $this->tempRideDate;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set sendDate
+     *
+     * @param \DateTime $sendDate
+     * @return Message
+     */
+    public function setSendDate($sendDate)
+    {
+        $this->sendDate = $sendDate;
+
+        return $this;
+    }
+
+    /**
+     * Get sendDate
+     *
+     * @return \DateTime 
+     */
+    public function getSendDate()
+    {
+        return $this->sendDate;
     }
 }

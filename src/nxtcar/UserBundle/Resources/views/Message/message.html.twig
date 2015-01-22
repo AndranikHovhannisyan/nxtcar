@@ -1,0 +1,117 @@
+{% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/messages.css") }}">
+    <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_comment.css") }}">
+{% endblock %}
+
+
+{% block content %}
+    {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
+
+    <br><br><br>
+
+
+    <h2>
+        <a href="{{ path('ride', {'rideDateId': rideDate.id}) }}">
+            {{ rideDate.ride.rideTown.first.town.name }}
+            {% for rideTown in rideDate.ride.rideTown if rideTown != rideDate.ride.rideTown.first %}
+                → {{ rideTown.town.name }}
+            {% endfor %}
+        </a>
+    </h2>
+
+
+    {% for message in messages %}
+
+        {% if message.from is not null and message.from.photo is not null %}
+            {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ message.from.photo.webpath %}
+        {% else %}
+            {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+        {% endif %}
+
+        {% if message.from is null or message.from.id != driver.id %}
+
+            <div class="margin-bottom">
+                <div class=" trip-qa ">
+                    <div class="pull-left msg-photo-container">
+                        <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
+                            <img class="tip" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
+                        </a>
+                    </div>
+                    <div class="msg-comment">
+                        <h4>
+                            <strong>
+
+                                {% if message.from is not null %}
+                                    {{ message.from.displayedAs }}
+                                {% else %}
+                                    Anonymous
+                                {% endif %}
+
+                            </strong>
+                        </h4>
+                        <p>"{{ message.message }}"</p>
+                        <p class="msg-date clearfix">
+                            {{ message.sendDate.date|date('D d M Y h:i') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+
+            <div class="margin-bottom">
+                <div class=" trip-my-qa ">
+                    <div class="pull-right msg-photo-container">
+                        <a href="/membre/profil/HlglAV4lcNfv_sOc-DS4Iw"><img class="tip" alt="Gautier T (26 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px"></a>
+                    </div>
+                    <div class="msg-comment">
+                        <h4>
+                            <strong>
+                                {{ message.from.displayedAs }}
+                            </strong>
+                        </h4>
+                        <p>"{{ message.message }}"</p>
+                        <p class="msg-date clearfix">
+                            {{ message.sendDate.date|date('D d M Y h:i') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if app.user is not null and app.user.photo is not null %}
+        {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
+    {% else %}
+        {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+    {% endif %}
+
+    <div class="margin-bottom" ng-cloak>
+        <div class=" trip-qa ">
+            <div class="pull-left msg-photo-container">
+                <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">
+                    <img class="tip" alt="Ismael B (29 ans)" src="{{ photo }}" width="72" height="72" style="width: 72px; height: 72px">
+                </a>
+            </div>
+            <div class="msg-comment">
+                <form action="#" method="POST">
+                    {{ form_widget(form.message, {"attr" : {class: "msg-textarea", required: "required"} }) }}
+                    <br>
+                    <label>type a message</label>
+
+                    <input  class="msg-submit" type="submit" name="submit">
+                    {{ form_widget(form._token) }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

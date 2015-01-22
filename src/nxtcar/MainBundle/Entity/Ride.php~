@@ -109,6 +109,35 @@ class Ride
     protected $outDate;
 
     /**
+     * @Groups({"ride"})
+     */
+    protected $mainRideDate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="nxtcar\UserBundle\Entity\Message", mappedBy="ride")
+     */
+    protected $messages;
+
+    /**
+     * @param $mainRideDate
+     * @return $this
+     */
+    public function setMainRideDate($mainRideDate)
+    {
+        $this->mainRideDate = $mainRideDate;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMainRideDate()
+    {
+        return $this->mainRideDate;
+    }
+
+    /**
      * @return mixed
      */
     public function getOutDate()
@@ -172,6 +201,7 @@ class Ride
     {
         $this->rideTown = new \Doctrine\Common\Collections\ArrayCollection();
         $this->rideDate = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -353,5 +383,38 @@ class Ride
     public function getDetail()
     {
         return $this->detail;
+    }
+
+    /**
+     * Add rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     * @return Ride
+     */
+    public function addRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate)
+    {
+        $this->rideDate[] = $rideDate;
+
+        return $this;
+    }
+
+    /**
+     * Remove rideDate
+     *
+     * @param \nxtcar\MainBundle\Entity\RideDate $rideDate
+     */
+    public function removeRideDate(\nxtcar\MainBundle\Entity\RideDate $rideDate)
+    {
+        $this->rideDate->removeElement($rideDate);
+    }
+
+    /**
+     * Get rideDate
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRideDate()
+    {
+        return $this->rideDate;
     }
 }

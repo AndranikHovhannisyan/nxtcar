@@ -43,6 +43,11 @@ class RideDate
     protected $ride;
 
     /**
+     * @ORM\OneToMany(targetEntity="nxtcar\UserBundle\Entity\Message", mappedBy="ride")
+     */
+    protected $messages;
+
+    /**
      * Get id
      *
      * @return integer 

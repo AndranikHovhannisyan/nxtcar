@@ -43,6 +43,11 @@ class RideDate
     protected $ride;
 
     /**
+     * @ORM\OneToMany(targetEntity="nxtcar\UserBundle\Entity\Message", mappedBy="ride")
+     */
+    protected $messages;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -96,5 +101,45 @@ class RideDate
     public function getRide()
     {
         return $this->ride;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $messages
+     * @return RideDate
+     */
+    public function addMessage(\nxtcar\UserBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \nxtcar\UserBundle\Entity\Message $messages
+     */
+    public function removeMessage(\nxtcar\UserBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

@@ -9,9 +9,13 @@
 namespace nxtcar\UserBundle\Controller;
 
 use FOS\RestBundle\Util\Codes;
+use nxtcar\MainBundle\Entity\OneTime;
+use nxtcar\MainBundle\Entity\Ride;
+use nxtcar\MainBundle\Entity\RideDate;
+use nxtcar\UserBundle\Entity\Message;
 use nxtcar\UserBundle\Entity\Photo;
+use nxtcar\UserBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sonata\UserBundle\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -116,5 +120,56 @@ class MainController extends Controller
         $user = $em->getRepository('nxtcarUserBundle:User')->find($userId);
 
         return array('user' => $user);
+    }
+
+    /**
+     * @Route("/message/{from}/{to}/{rideDate}", name="private_messages", requirements={"from" = "\d+", "to" = "\d+", "rideDate" = "\d+"})
+     */
+    public function messageAction(User $from, User $to, RideDate $rideDate)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $messages = $em->getRepository('nxtcarUserBundle:Message')->findPrivateMessages($from, $to, $rideDate);
+
+        $message = new Message();
+        $message->setFrom($from);
+        $message->setTo($to);
+        if
+        ($rideDate instanceof OneTime && !is_null($rideDate->getRecurring())) {
+            $message->setRideDate($rideDate->getRecurring());
+            $message->setTempRideDate($rideDate);
+        }
+        else {
+            $message->setRideDate($rideDate);
+        }
+
+        $form = $this->createFormBuilder($message)
+            ->setAction('#')
+            ->add('message')
+            ->add('submit', 'submit')
+            ->getForm();
+
+        $form->handleRequest($this->getRequest());
+
+        if ($form->isValid())
+        {
+            $message->setSendDate(new \datetime());
+            $em->persist($message);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('private_messages',
+                array(
+                    'from'      => $from->getId(),
+                    'to'        => $to->getId(),
+                    'rideDate'  => $rideDate->getId()
+                )
+            ));
+        }
+
+        return $this->render('nxtcarUserBundle:Message:message.html.twig', array(
+            'rideDate'  => $rideDate,
+            'driver'    => $rideDate->getRide()->getDriver(),
+            'messages'  => $messages,
+            'form'      => $form->createView()
+        ));
     }
 }
