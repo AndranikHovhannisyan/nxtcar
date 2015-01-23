@@ -60,16 +60,18 @@ class MessageRepository extends EntityRepository
     public function findMessagesByUser($user)
     {
         return $this->getEntityManager()
-            ->createQuery("SELECT userFrom, tempRideDate, rideDate
-                           FROM nxtcarUserBundle:User userFrom
-                           JOIN nxtcarUserBundle:Message message
-                           WITH message.from = userFrom
-                           LEFT JOIN nxtcarMainBundle:RideDate tempRideDate
-                           WITH message.tempRideDate = tempRideDate
-                           LEFT JOIN nxtcarMainBundle:RideDate rideDate
-                           WITH message.rideDate = rideDate
-                           WHERE message.to = :toUs
-                           GROUP BY userFrom, tempRideDate, rideDate")
+            ->createQuery("SELECT message, userFrom, tempRideDate, rideDate
+                           FROM nxtcarUserBundle:Message message
+                           JOIN message.from userFrom
+                           JOIN message.to userTo
+                           LEFT JOIN message.tempRideDate tempRideDate
+                           LEFT JOIN message.rideDate rideDate
+                           WHERE userTo = :toUs
+                           AND userFrom != :toUs
+                           AND message.sendDate = (SELECT MAX(msg.sendDate)
+                                                   FROM nxtcarUserBundle:Message msg
+                                                   WHERE msg.rideDate = rideDate
+                                                   AND msg.from = userFrom)")
             ->setParameter('toUs', $user)
             ->getResult();
     }

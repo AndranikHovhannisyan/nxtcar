@@ -48,7 +48,6 @@ class ProfileController extends Controller
             $questions = $em->getRepository('nxtcarUserBundle:Message')->findMessagesByUser($this->getUser());
         }
 
-
         return array('questions' => $questions, 'status' => $status);
     }
 }

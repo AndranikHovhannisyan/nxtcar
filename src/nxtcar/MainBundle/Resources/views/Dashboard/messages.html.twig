@@ -33,7 +33,8 @@
                     <div>
                         {{ question.body }}
                         <br>
-                        {{ question.createdAt.date|date('D d M Y h:i') }}
+                        {% set date = question.createdAt.date|date('m/d/Y h:i:s A') ~ ' UTC' %}
+                        [[ convertDateToLocal('{{ date }}') | date ]]
                     </div>
                     <br><br>
                 </a>
@@ -43,20 +44,32 @@
 
             {% for question in questions %}
 
+                {% if question.from is not null and question.from.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ question.from.photo.webpath %}
+                {% else %}
+                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                {% endif %}
 
+                {% if question.tempRideDate is not null %}
+                    {% set rideDate = question.tempRideDate %}
+                {% else %}
+                    {% set rideDate = question.rideDate %}
+                {% endif %}
 
-                {#<a href="{{ path('private_messages', {'from': question.from.id, 'to': app.user, 'rideDate': }) }}">#}
-                    {#<div class="col-md-2">#}
-                        {#<img src="{{ photo }}" width="70" height="70">#}
-                    {#</div>#}
+                <a href="{{ path('private_messages', {'from': question.from.id, 'to': app.user.id, 'rideDate': rideDate.id}) }}">
+                    <div class="col-md-2">
+                        <img src="{{ photo }}" width="70" height="70">
+                    </div>
 
-                    {#<div>#}
-                        {#{{ question.body }}#}
-                        {#<br>#}
-                        {#{{ question.createdAt.date|date('D d M Y h:i') }}#}
-                    {#</div>#}
-                    {#<br><br>#}
-                {#</a>#}
+                    <div>
+                        {{ question.message }}
+                        <br>
+                        {% set date = question.sendDate.date|date('m/d/Y h:i:s A') ~ ' UTC' %}
+                        [[ convertDateToLocal('{{ date }}') | date ]]
+
+                    </div>
+                    <br><br>
+                </a>
             {% endfor %}
 
         {% endif %}
