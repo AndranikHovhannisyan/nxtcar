@@ -33,7 +33,7 @@
                     <div>
                         {{ question.body }}
                         <br>
-                        {% set date = question.createdAt.date|date('m/d/Y h:i:s A') ~ ' UTC' %}
+                        {% set date = question.createdAt.date|date('m/d/Y h:i:s A') %}
                         [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
                     </div>
                     <br><br>
@@ -64,7 +64,7 @@
                     <div>
                         {{ question.message }}
                         <br>
-                        {% set date = question.sendDate.date|date('m/d/Y h:i:s A') ~ ' UTC' %}
+                        {% set date = question.sendDate.date|date('m/d/Y h:i:s A') %}
                         [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
 
                     </div>

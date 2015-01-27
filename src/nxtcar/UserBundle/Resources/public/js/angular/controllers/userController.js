@@ -14,7 +14,7 @@ define([],function(){
             },true);
 
            $scope.convertDateToLocal = function(date){
-               var d = date;
+               var d = date.indexOf('UTC') == -1 ? date + 'UTC' : date;
                return new Date(d);
            }
         });
