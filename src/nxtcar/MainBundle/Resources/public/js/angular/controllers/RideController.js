@@ -18,6 +18,7 @@ define([],function(){
                     $scope.hours.push(''+i);
                 }
             }
+
             /*--------------------------------------*/
             $scope.$watch('Ride.Round',function(d){
                 if(angular.isUndefined(d)){
@@ -28,6 +29,7 @@ define([],function(){
                 $scope.Ride.outWeek = [];
                 $scope.Ride.returnWeek = [];
             },false)
+
             /*---------returnWeek--------------------*/
             $scope.removeCity = function(index){
                 if(angular.isUndefined(index) || !angular.isNumber(index)) {
@@ -50,6 +52,12 @@ define([],function(){
             $scope.$watch('Ride.dateRecurringTo',function(d){
                 $scope.dateRecurringMaxDate = angular.isDefined(d) ? d : $scope.maxUntilDate;
             },false);
+
+            /*-----------------------------------------*/
+            $scope.convertDateToLocal = function(date){
+                var d = date.indexOf('UTC') == -1 ? date + 'UTC' : date;
+                return new Date(d);
+            }
         })
         .controller("RideController2",function($scope,countries,$timeout){
             $scope.countries = angular.copy(countries);
