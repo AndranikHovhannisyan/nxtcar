@@ -256,10 +256,10 @@ class RideController extends Controller
     }
 
     /**
-     * @Route("/ride/{rideDateId}", name="ride", requirements={"rideDateId" = "\d+"})
+     * @Route("/ride/{rideDateId}/{direction}", name="ride", requirements={"rideDateId" = "\d+", "direction" = "0|1"}, defaults={"direction" = "0"})
      * @Template("nxtcarMainBundle:Ride:ride.html.twig")
      */
-    public function rideAction($rideDateId, Request $request)
+    public function rideAction($rideDateId, $direction, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $rideDate = $em->getRepository('nxtcarMainBundle:RideDate')->find($rideDateId);
@@ -291,15 +291,21 @@ class RideController extends Controller
             $manager = $this->container->get('fos_comment.manager.comment');
             $manager->saveComment($comment);
 
-            return $this->redirect($this->generateUrl('ride', array('rideDateId' => $rideDateId)));
+            return $this->redirect($this->generateUrl('ride', array('rideDateId' => $rideDateId, 'direction' => $direction)));
         }
 
         $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
+
+        //TODO: May be will be changed
+        if ($rideDate instanceof Recurring) {
+            $direction = 0;
+        }
 
         return $this->render('nxtcarMainBundle:Ride:ride.html.twig', array(
             'rideDate'  => $rideDate,
             'comments'  => $comments,
             'thread'    => $thread,
+            'direction' => $direction,
             'form'      => $form->createView()
         ));
     }

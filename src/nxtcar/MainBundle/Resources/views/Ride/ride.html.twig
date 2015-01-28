@@ -27,20 +27,40 @@
             <div class="main-block">
 
                 <h3 class="main-block-header">
-                    {{ ride.rideTown.first.town.name }}
-                    {% for rideTown in ride.rideTown if rideTown != ride.rideTown.first %}
-                        → {{ rideTown.town.name }}
+
+                    {% if direction == 1 %}
+                        {{ ride.rideTown.last.town.name }}
+                    {% else %}
+                        {{ ride.rideTown.first.town.name }}
+                    {% endif %}
+
+                    {% for i in 1..((ride.rideTown | length) - 1) %}
+                        →
+                        {% if direction == 1 %}
+                            {{ ride.rideTown[((ride.rideTown | length) - 1) - i].town.name }}
+                        {% else %}
+                            {{ ride.rideTown[i].town.name }}
+                        {% endif %}
                     {% endfor %}
                 </h3>
+
+                {% if direction == 1 %}
+                    {% set townFrom = ride.rideTown.last.town.fullName %}
+                    {% set townTo = ride.rideTown.first.town.fullName %}
+                {% else %}
+                    {% set townFrom = ride.rideTown.first.town.fullName %}
+                    {% set townTo = ride.rideTown.last.town.fullName %}
+                {% endif %}
+
                 <div class="main-content">
                     <ul class=" ">
                         <li class="row">
                             <div class="col-md-4 li-left">Pick-up point</div>
-                            <div class="col-md-8 li-right ride-from">{{ ride.rideTown.first.town.fullName }}</div>
+                            <div class="col-md-8 li-right ride-from">{{ townFrom }}</div>
                         </li>
                         <li class="row">
                             <div class="col-md-4 li-left">Drop off point</div>
-                            <div class="col-md-8 li-right ride-to">{{ ride.rideTown.last.town.fullName }}</div>
+                            <div class="col-md-8 li-right ride-to">{{ townTo }}</div>
                         </li>
 
                         {% if rideDate.startDate is defined %}
@@ -72,13 +92,22 @@
                             {% endif %}
 
                         {% else %}
+
+                            {% if direction == 1 %}
+                                {% set date = rideDate.inDate.date | date('D d M Y') %}
+                                {% set time = rideDate.inHour ~ ':' ~ rideDate.inMinute %}
+                            {% else %}
+                                {% set date = rideDate.outDate.date | date('D d M Y') %}
+                                {% set time = rideDate.outHour ~ ':' ~ rideDate.outMinute %}
+                            {% endif %}
+
                             <li class="row">
                                 <div class="col-md-4 li-left">Departure date</div>
-                                <div class="col-md-8 li-right">{{ rideDate.outDate.date | date('D d M Y') }}</div>
+                                <div class="col-md-8 li-right">{{ date }}</div>
                             </li>
                             <li class="row">
                                 <div class="col-md-4 li-left">Departure time</div>
-                                <div class="col-md-8 li-right">{{ rideDate.outHour }}:{{ rideDate.outMinute }}</div>
+                                <div class="col-md-8 li-right">{{ time }}</div>
                             </li>
                         {% endif %}
 

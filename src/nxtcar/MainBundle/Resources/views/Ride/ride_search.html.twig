@@ -38,7 +38,7 @@
                     <button class="order-date"  ng-click="post.sort=-1*sort2;sort2=-1*sort2;updateRideList()"></button>
                 </div>
             </div>
-            <a href="/[[basePath]]/ride/[[ride.main_ride_date.id]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
+            <a href="/[[basePath]]/ride/[[ride.main_ride_date.id]]/[[ride.direction]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" ng-if="ride.driver.photo!=null" ng-src="{{ app.request.getSchemeAndHttpHost() }}/[[ ride.driver.photo.web_path ]]" width="72" height="72" >
@@ -79,7 +79,12 @@
                     </div>
                     <div class="col-md-6 day-form→to" >
                         <p class="day">[[ ride.out_date | date: 'MMM d, y H:mm' ]]</p>
-                        <p class="form→to">
+                        <p class="form→to" data-ng-if="ride.direction==1" >
+                            <span data-ng-repeat="(key,twn) in ride.ride_town">
+                                <i ng-show="key">→</i> [[ ride.ride_town[ride.ride_town.length-1-key].town.full_name ]]
+                            </span>
+                        </p>
+                        <p class="form→to" data-ng-if="ride.direction==0" >
                             <span data-ng-repeat="(key,twn) in ride.ride_town">
                                 <i ng-show="key">→</i> [[ ride.ride_town[key].town.full_name ]]
                             </span>

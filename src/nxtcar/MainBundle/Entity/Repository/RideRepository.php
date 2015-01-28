@@ -99,7 +99,8 @@ class RideRepository extends EntityRepository
 
                                (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outDate ELSE oneTime.inDate END) as travelDate,
                                (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outHour ELSE oneTime.inHour END) as travelHour,
-                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outMinute ELSE oneTime.inMinute END) as travelMinute
+                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN oneTime.outMinute ELSE oneTime.inMinute END) as travelMinute,
+                               (CASE WHEN rideTown1.positionInRide < rideTown2.positionInRide THEN 0 ELSE 1 END) as travelDirection
 
 
                            FROM nxtcarMainBundle:RideDate rideDate
@@ -198,6 +199,7 @@ class RideRepository extends EntityRepository
                 $resultId['travelHour'] . ':' . $resultId['travelMinute']);
 
 
+            $mainRide->setDirection($resultId['travelDirection']);
             $mainRide->setMainRideDate($tempRideDate);
             $mainRide->setOutDate($dateTime);
             $mainRide->setPrice($resultId['price']);

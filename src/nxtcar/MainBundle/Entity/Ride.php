@@ -114,6 +114,30 @@ class Ride
     protected $mainRideDate;
 
     /**
+     * @Groups({"ride"})
+     */
+    protected $direction;
+
+    /**
+     * @param $direction
+     * @return $this
+     */
+    public function setDirection($direction)
+    {
+        $this->direction = $direction;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDirection()
+    {
+        return $this->direction;
+    }
+
+    /**
      * @param $mainRideDate
      * @return $this
      */
