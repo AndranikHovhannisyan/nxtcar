@@ -22,7 +22,9 @@
                 {% endif %}
             {% endfor %}
 
-            <a href="{{ path('ride', {'rideDateId': recurring.id}) }}">
+            {% if recurring is not  null %}
+                <a href="{{ path('ride', {'rideDateId': recurring.id}) }}">
+            {% endif %}
 
         {% else %}
 
