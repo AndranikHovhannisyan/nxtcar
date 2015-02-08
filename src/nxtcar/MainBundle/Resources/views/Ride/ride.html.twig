@@ -270,7 +270,7 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {% set date = commentinfo.comment.createdAt.date|date('m/d/Y h:i:s A') %}
-                                [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
+                                [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]
                             </p>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {% set date = commentinfo.comment.createdAt.date|date('m/d/Y h:i:s A') %}
-                                [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
+                                [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]
                             </p>
                         </div>
                     </div>
