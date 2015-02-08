@@ -1,13 +1,14 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
-{% block AngularController %}ng-controller="MainController"{% endblock %}
+{% block AngularController %}ng-controller="MainController" ng-cloak{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/main_content.css") }}">
 {% endblock %}
 
 {% block bottomHeader %}
-    <div class="background" ng-cloak>
+    <div class="background">
         <span class="lenta-before"></span>
         <div class="lenta">Connecting piople who need to travel with drivers who have empty seats</div>
         <span class="lenta-after" ></span>
@@ -35,7 +36,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row homepage-features" ng-cloak>
+    <div class="row homepage-features">
         <div class="col-xs-6 col-md-4 text-center vertica-lLine">
             <a href="#" class="content-header">Watch How it Works</a>
             <div class="video-tutorial">
@@ -52,7 +53,7 @@
     </div>
 
 
-    <div class="row homepage-explanations" ng-cloak>
+    <div class="row homepage-explanations">
         <div class="col-xs-6 col-md-4">
             <p>	Drivers:</p>
             <p>	Easily cut your motoring costs</p>

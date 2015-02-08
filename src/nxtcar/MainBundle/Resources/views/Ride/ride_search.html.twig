@@ -12,11 +12,11 @@
     </style>
 {% endblock %}
 
-{% block AngularController %}ng-controller="RideSearchController"{% endblock %}
+{% block AngularController %}ng-controller="RideSearchController" ng-cloak{% endblock %}
 
 {% block content %}
 
-    <div class="row" data-ng-init="post.from='{{ from }}';post.to='{{ to }}'" ng-cloak>
+    <div class="row" data-ng-init="post.from='{{ from }}';post.to='{{ to }}'">
         <div class="col-md-3 date" >
             <b>Date</b>
             <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="post.date">
@@ -38,7 +38,7 @@
                     <button class="order-date"  ng-click="post.sort=-1*sort2;sort2=-1*sort2;updateRideList()"></button>
                 </div>
             </div>
-            <a href="/[[basePath]]/ride/[[ride.main_ride_date.id]]/[[ride.direction]]" class="a-user-info" data-ng-repeat="ride in Rides" ng-cloak>
+            <a href="/[[basePath]]/ride/[[ride.main_ride_date.id]]/[[ride.direction]]" class="a-user-info" data-ng-repeat="ride in Rides">
                 <div class="row">
                     <div class="col-md-3 user-info-image">
                         <img class="user-image" ng-if="ride.driver.photo!=null" ng-src="{{ app.request.getSchemeAndHttpHost() }}/[[ ride.driver.photo.web_path ]]" width="72" height="72" >

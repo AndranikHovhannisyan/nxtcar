@@ -1,17 +1,16 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
-
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_offer.css") }}">
     <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="RideController2"{% endblock %}
+{% block AngularController %}ng-controller="RideController2" ng-cloak{% endblock %}
 
 {% block content %}
 
-    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'" ng-cloak>
+    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'">
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">

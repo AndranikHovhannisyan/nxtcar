@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_comment.css") }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="RideController"{% endblock %}
+{% block AngularController %}ng-controller="RideController" ng-cloak{% endblock %}
 
 {% block content %}
 
@@ -22,7 +22,7 @@
         </div>
     {% endif %}
 
-    <div class="row" ng-cloak>
+    <div class="row">
         <div class="col-md-8">
             <div class="main-block">
 
@@ -316,7 +316,7 @@
         {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
     {% endif %}
 
-    <div class="margin-bottom" ng-cloak>
+    <div class="margin-bottom">
         <div class=" trip-qa ">
             <div class="pull-left msg-photo-container">
                 <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">

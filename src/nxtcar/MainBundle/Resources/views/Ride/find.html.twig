@@ -1,12 +1,14 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
+{% block AngularController %}ng-cloak{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_find.css") }}">
 {% endblock %}
 
 {% block content %}
-    <div class="trip-search-form search-form search-container" ng-cloak>
+    <div class="trip-search-form search-form search-container">
         <h2>
             Find a ride
         </h2>

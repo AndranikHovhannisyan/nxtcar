@@ -1,5 +1,7 @@
 {% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
 
+{% block AngularController %}ng-cloak{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/messages.css") }}">
@@ -11,8 +13,6 @@
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
 
     <br><br><br>
-
-
     <h2>
         <a href="{{ path('ride', {'rideDateId': rideDate.id}) }}">
             {{ rideDate.ride.rideTown.first.town.name }}
@@ -21,7 +21,6 @@
             {% endfor %}
         </a>
     </h2>
-
 
     {% for message in messages %}
 
@@ -93,7 +92,7 @@
         {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
     {% endif %}
 
-    <div class="margin-bottom" ng-cloak>
+    <div class="margin-bottom">
         <div class=" trip-qa ">
             <div class="pull-left msg-photo-container">
                 <a href="/membre/profil/-P1q23g0jOs3gIulU3OW2w">

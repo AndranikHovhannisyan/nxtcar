@@ -1,5 +1,7 @@
 {% extends 'nxtcarMainBundle:Dashboard:profileBase.html.twig' %}
 
+{% block AngularController%} ng-cloak {% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/car_list.css") }}">
@@ -7,7 +9,7 @@
 
 {% block sub_content %}
 
-    <div ng-cloak>
+    <div>
         <div>
             <h3 class="user-profil-header">Your car</h3>
         </div>
