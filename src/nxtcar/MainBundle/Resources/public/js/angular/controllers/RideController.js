@@ -37,7 +37,9 @@ define([],function(){
                 }
                 $scope.cities.splice(index,1);
                 $scope.Ride.places.splice(index+1,1);
-                $scope.Ride.places[$scope.Ride.places.length-1].index--;
+                for(var i = index+1; i < $scope.Ride.places.length; i++){
+                    $scope.Ride.places[i].index--;
+                }
             }
 
             /*----------------------------------------*/
