@@ -10,7 +10,7 @@
     {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Messages']) }}
 
     <div>
-        <br><br>
+        <br/><br/>
         {#example<br/>#}
         {#Old: [[ convertDateToLocal('6/29/2011 4:52:48 PM UTC') ]]<br/>#}
         {#Converted: [[ convertDateToLocal('6/29/2011 4:52:48 PM') ]]#}
@@ -31,11 +31,11 @@
 
                     <div>
                         {{ question.body }}
-                        <br>
+                        <br/>
                         {% set date = question.createdAt.date|date('m/d/Y h:i:s A') %}
-                        [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
+                        <span>[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
                     </div>
-                    <br><br>
+                    <br/><br/>
                 </a>
             {% endfor %}
 
@@ -62,10 +62,9 @@
 
                     <div>
                         {{ question.message }}
-                        <br>
+                        <br/>
                         {% set date = question.sendDate.date|date('m/d/Y h:i:s A') %}
-                        [[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy H:m' ]]
-
+                        <span>[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
                     </div>
                     <br><br>
                 </a>

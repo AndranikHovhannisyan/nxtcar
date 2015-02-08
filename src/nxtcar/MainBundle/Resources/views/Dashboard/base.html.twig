@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/dashboard.css") }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="userController"{% endblock %}
+{% block AngularController %}ng-controller="userController" ng-cloak{% endblock %}
 
 {% block bottomHeader %}
     {{ knp_menu_render('nxtcarMainBundle:Builder:profileMenu', {'depth': 1}) }}

@@ -55,7 +55,7 @@ define([],function(){
 
             /*-----------------------------------------*/
             $scope.convertDateToLocal = function(date){
-                var d = date.indexOf('UTC') == -1 ? date + 'UTC' : date;
+                var d = date.indexOf('UTC') == -1 ? date + ' UTC' : date;
                 return new Date(d);
             }
         })
