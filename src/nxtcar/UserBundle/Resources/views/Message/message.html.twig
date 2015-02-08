@@ -1,6 +1,6 @@
 {% extends 'nxtcarMainBundle:Dashboard:base.html.twig' %}
 
-{% block AngularController %}ng-cloak{% endblock %}
+{% block AngularController %}ng-controller="userController" ng-cloak{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -54,7 +54,8 @@
                         </h4>
                         <p>"{{ message.message }}"</p>
                         <p class="msg-date clearfix">
-                            {{ message.sendDate.date|date('D d M Y h:i') }}
+                            {% set date = message.sendDate.date|date('m/d/Y h:i:s A') %}
+                            <span>[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
                         </p>
                     </div>
                 </div>
@@ -75,7 +76,8 @@
                         </h4>
                         <p>"{{ message.message }}"</p>
                         <p class="msg-date clearfix">
-                            {{ message.sendDate.date|date('D d M Y h:i') }}
+                            {% set date = message.sendDate.date|date('m/d/Y h:i:s A') %}
+                            <span>[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
                         </p>
                     </div>
                 </div>
