@@ -166,7 +166,7 @@ class MainController extends Controller
 
         if ($form->isValid())
         {
-            $message->setSendDate(new \datetime());
+            $message->setSendDate(new \DateTime( 'now',  new \DateTimeZone( 'UTC' )));
             $em->persist($message);
             $em->flush();
 

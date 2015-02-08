@@ -289,6 +289,7 @@ class RideController extends Controller
         if ($form->isValid())
         {
             $manager = $this->container->get('fos_comment.manager.comment');
+            $comment->setCreatedAt(new \DateTime( 'now',  new \DateTimeZone( 'UTC' ) ));
             $manager->saveComment($comment);
 
             return $this->redirect($this->generateUrl('ride', array('rideDateId' => $rideDateId, 'direction' => $direction)));
