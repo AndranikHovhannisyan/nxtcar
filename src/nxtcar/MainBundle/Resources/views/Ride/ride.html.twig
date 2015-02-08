@@ -98,7 +98,7 @@
                                 {% set time = rideDate.inHour ~ ':' ~ rideDate.inMinute %}
                             {% else %}
                                 {% set date = rideDate.outDate.date | date('D d M Y') %}
-                                {% set time = rideDate.outHour ~ ':' ~ rideDate.outMinute %}
+                                {% set time = (rideDate.outHour >= 10 ? rideDate.outHour:'0'~rideDate.outHour) ~ ':' ~ (rideDate.outMinute >= 10 ? rideDate.outMinute: '0'~rideDate.outMinute) %}
                             {% endif %}
 
                             <li class="row">
@@ -107,7 +107,7 @@
                             </li>
                             <li class="row">
                                 <div class="col-md-4 li-left">Departure time</div>
-                                <div class="col-md-8 li-right">{{ time }}</div>
+                                <div class="col-md-8 li-right" test="{{ time }}">{{ time }}</div>
                             </li>
                         {% endif %}
 
