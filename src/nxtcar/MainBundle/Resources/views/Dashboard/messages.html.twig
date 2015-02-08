@@ -11,19 +11,17 @@
 
     <div>
         <br/><br/>
-        {#example<br/>#}
-        {#Old: [[ convertDateToLocal('6/29/2011 4:52:48 PM UTC') ]]<br/>#}
-        {#Converted: [[ convertDateToLocal('6/29/2011 4:52:48 PM') ]]#}
-
-        {% if app.user is not null and app.user.photo is not null %}
-            {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ app.user.photo.webpath %}
-        {% else %}
-            {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
-        {% endif %}
 
         {% if status == 'questions_answers' %}
 
             {% for question in questions %}
+
+                {% if question.author is not null and question.author.photo is not null %}
+                    {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ question.author.photo.webpath %}
+                {% else %}
+                    {% set photo = asset('bundles/nxtcaruser/images/user-default.png') %}
+                {% endif %}
+
                 <a href="{{ path('ride', {'rideDateId': (question.thread.id | replace({'ride_': ''})) }) }}">
                     <div class="col-md-2">
                         <img src="{{ photo }}" width="70" height="70">

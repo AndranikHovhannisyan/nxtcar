@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
         $questions = null;
         if ($status == 'questions_answers') {
-            $questions = $em->getRepository('nxtcarUserBundle:Comment')->findByAuthor($user);
+            $questions = $em->getRepository('nxtcarUserBundle:Comment')->findPublicQuestions($user);
         }
         elseif ($status == 'received') {
             $questions = $em->getRepository('nxtcarUserBundle:Message')->findMessagesByUser($this->getUser());
