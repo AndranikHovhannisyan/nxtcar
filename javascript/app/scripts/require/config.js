@@ -2,7 +2,7 @@
 
 require.config({
     basUrl: "",
-    urlArgs: 'v='+(new Date()).getTime(),
+    urlArgs: 'v=1',
     paths: {
         'jquery': '/app/bower_components/jquery/dist/jquery.min',
         'jquery-ui': '/app/bower_components/jquery-ui/jquery-ui.min',
@@ -67,6 +67,5 @@ require.config({
         'google-map': ['ride'],
         'find': ['Interpolation','bootstrap','angular-animate','Geolocation','Facebook','angular-strap','angular-resource'],
         'google-autocomplete': ['find']
-    },
-    waitSeconds: 200
+    }
 });
