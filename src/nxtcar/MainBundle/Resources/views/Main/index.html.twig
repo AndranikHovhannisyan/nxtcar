@@ -1,6 +1,6 @@
 {% extends "nxtcarMainBundle::layout.html.twig" %}
 
-{% block AngularController %}ng-controller="MainController" ng-cloak{% endblock %}
+{% block AngularController %}ng-controller="MainController"{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block bottomHeader %}
-    <div class="background">
+    <div class="background" ng-cloak>
         <span class="lenta-before"></span>
         <div class="lenta">Connecting piople who need to travel with drivers who have empty seats</div>
         <span class="lenta-after" ></span>

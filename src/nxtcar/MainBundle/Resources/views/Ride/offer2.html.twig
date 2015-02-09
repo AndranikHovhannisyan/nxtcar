@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="{{ asset('app/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="RideController2" ng-cloak{% endblock %}
+{% block AngularController %}ng-controller="RideController2"{% endblock %}
 
 {% block content %}
 
-    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'">
+    <div class="publication-container" ng-init="initRide('{{ ride }}','');user='{{ app.user }}'" ng-cloak>
         <h3>Offer a ride on your next long journey</h3>
         <span class="my-schedule"><a> My schedule</a></span>
         <div class="my-schedule-1">

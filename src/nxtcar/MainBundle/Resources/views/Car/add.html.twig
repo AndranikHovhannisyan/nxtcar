@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/car_add.css") }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="CarController" ng-cloak{% endblock %}
+{% block AngularController %}ng-controller="CarController"{% endblock %}
 
 {% block sub_content %}
 
-    <div>
+    <div ng-cloak>
         <div>
             <h3 class="user-profil-header">Your car</h3>
         </div>

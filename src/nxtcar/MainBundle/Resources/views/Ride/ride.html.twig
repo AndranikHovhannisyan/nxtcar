@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="{{ asset("bundles/nxtcarmain/css/ride_comment.css") }}">
 {% endblock %}
 
-{% block AngularController %}ng-controller="RideController" ng-cloak{% endblock %}
+{% block AngularController %}ng-controller="RideController"{% endblock %}
 
 {% block content %}
 
     {% set ride = rideDate.ride %}
 
     {% if app.user is not null and app.user.id != ride.driver.id %}
-        <div>
+        <div ng-cloak>
             <h3>
                 <a href="{{ path('private_messages', {'from': app.user.id, 'to': ride.driver.id, 'rideDate': rideDate.id}) }}">
                     Contact with Driver
