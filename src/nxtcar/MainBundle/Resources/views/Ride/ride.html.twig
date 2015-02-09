@@ -13,7 +13,7 @@
     {% set ride = rideDate.ride %}
 
     {% if app.user is not null and app.user.id != ride.driver.id %}
-        <div ng-cloak>
+        <div class="cloak">
             <h3>
                 <a href="{{ path('private_messages', {'from': app.user.id, 'to': ride.driver.id, 'rideDate': rideDate.id}) }}">
                     Contact with Driver

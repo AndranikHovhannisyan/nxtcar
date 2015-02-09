@@ -7,6 +7,14 @@ define([],function(){
         'Interpolation',
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
+        .directive('cloak',function(){
+            return {
+                restrict: 'C',
+                compile: function(el){
+                    el.removeClass('cloak');
+                }
+            }
+        })
         .directive("currency",function(){
             return {
                 restrict: 'A',

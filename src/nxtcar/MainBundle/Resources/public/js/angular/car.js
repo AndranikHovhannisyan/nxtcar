@@ -13,6 +13,14 @@ define([],function(){
             getModels: {method: 'GET',isArray: true,params: {what: 'model'}}
         })
     })
+    .directive('cloak',function(){
+        return {
+            restrict: 'C',
+            compile: function(el){
+                el.removeClass('cloak');
+            }
+        }
+    })
     .directive("currency",function(){
         return {
             restrict: 'A',

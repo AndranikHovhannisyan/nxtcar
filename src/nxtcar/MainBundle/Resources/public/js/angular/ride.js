@@ -19,7 +19,6 @@ define([],function(){
             restrict: 'C',
             compile: function(el){
                 el.removeClass('cloak');
-                console.log(el);
             }
         }
     })

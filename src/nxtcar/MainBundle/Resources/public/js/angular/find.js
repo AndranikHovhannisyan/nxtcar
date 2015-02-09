@@ -7,5 +7,13 @@ define([],function(){
         'ngResource',
         'Interpolation',
         'mgcrea.ngStrap.popover',
-        'ngAnimate']);
+        'ngAnimate'])
+        .directive('cloak',function(){
+            return {
+                restrict: 'C',
+                compile: function(el){
+                    el.removeClass('cloak');
+                }
+            }
+        });
 })

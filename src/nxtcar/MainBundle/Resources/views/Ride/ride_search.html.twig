@@ -16,7 +16,7 @@
 
 {% block content %}
 
-    <div class="row" data-ng-init="post.from='{{ from }}';post.to='{{ to }}'" ng-cloak>
+    <div class="row cloak" data-ng-init="post.from='{{ from }}';post.to='{{ to }}'">
         <div class="col-md-3 date" >
             <b>Date</b>
             <input type="text" datepicker placeholder="yyyy-mm-dd" ng-model="post.date">
