@@ -413,8 +413,8 @@ form button[type='submit'][disabled='disabled']{
     margin-bottom: 40px;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
+.cloak {
+    opacity: 0 !important;
 }
 
 .date-time .btn-primary:focus {

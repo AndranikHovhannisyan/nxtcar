@@ -14,6 +14,15 @@ define([],function(){
             checkUser: {method: 'GET',isArray:false,params: {where: 'is',what: 'login'}}
         });
     })
+    .directive('cloak',function(){
+        return {
+            restrict: 'C',
+            compile: function(el){
+                el.removeClass('cloak');
+                console.log(el);
+            }
+        }
+    })
     .directive('dbSlider',function(){
         return {
             restrict: 'EA',
