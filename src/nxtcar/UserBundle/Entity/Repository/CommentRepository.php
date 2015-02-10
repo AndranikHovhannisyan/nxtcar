@@ -18,24 +18,23 @@ class CommentRepository extends EntityRepository
      */
     public function findPublicQuestions($user)
     {
-        return $this->getEntityManager()
+        $result = $this->getEntityManager()
             ->createQuery("SELECT comment
                            FROM nxtcarUserBundle:Comment comment
                            JOIN comment.thread thread
-                           JOIN nxtcarMainBundle:Ride ride
-                           WITH CONCAT('ride_', ride.id) = thread.id
-                           WHERE ride.driver = :user
-                           AND (comment.author != :user OR comment.author IS NULL)
-                           AND comment.createdAt = (SELECT MAX(com.createdAt)
-                                                   FROM nxtcarUserBundle:Comment com
-                                                   JOIN com.thread thrd
-                                                   JOIN nxtcarMainBundle:Ride rid
-                                                   WITH CONCAT('ride_', rid.id) = thrd.id
-                                                   WHERE rid.driver = :user
-                                                   AND (com.author != :user OR com.author IS NULL)
-                                                   AND thrd.id = thread.id)
-                           ")
-            ->setParameter('user', $user)
+                           WHERE thread.id IN (SELECT CONCAT('ride_', rideDate.id)
+                                               FROM nxtcarMainBundle:RideDate rideDate
+                                               JOIN rideDate.ride ride
+                                               WHERE ride.driver = :driver)
+                           AND comment.createdAt = (SELECT MAX(cmt.createdAt)
+                                                   FROM nxtcarUserBundle:Comment cmt
+                                                   JOIN cmt.thread thr
+                                                   WHERE thr.id = thread.id
+                                                   AND cmt.author != :driver)
+                                               ")
+            ->setParameter('driver', $user)
             ->getResult();
+
+        return $result;
     }
 }
