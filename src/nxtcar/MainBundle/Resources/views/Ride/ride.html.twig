@@ -93,6 +93,7 @@
 
                         {% else %}
 
+
                             {% if direction == 1 %}
                                 {% set date = rideDate.inDate.date | date('D d M Y') %}
                                 {% set time = rideDate.inHour ~ ':' ~ rideDate.inMinute %}
@@ -339,6 +340,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=gb"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
     <script type="text/javascript" src="{{ asset("/bundles/nxtcarmain/js/require/rideRunner.js") }}"></script>
 {% endblock %}
