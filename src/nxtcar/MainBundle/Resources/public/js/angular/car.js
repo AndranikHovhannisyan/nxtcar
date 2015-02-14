@@ -13,11 +13,13 @@ define([],function(){
             getModels: {method: 'GET',isArray: true,params: {what: 'model'}}
         })
     })
-    .directive('cloak',function(){
+    .directive('cloak',function($timeout){
         return {
             restrict: 'C',
             compile: function(el){
-                el.removeClass('cloak');
+                $timeout(function(){
+                    el.removeClass('cloak');
+                },1);
             }
         }
     })
