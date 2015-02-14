@@ -13,7 +13,7 @@ define([],function(){
             compile: function(el){
                 $timeout(function(){
                     el.removeClass('cloak');
-                },1);
+                },10);
             }
         }
     })
