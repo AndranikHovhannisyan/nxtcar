@@ -2,7 +2,7 @@
 
 define([],function(){
     return angular.module('user')
-        .controller('userController',function($scope,countries){
+        .controller('userController',function($scope,countries,$filter){
             $scope.countries = angular.copy(countries);
             $scope.choosenCountry = $scope.countries.gb;
 
@@ -15,8 +15,7 @@ define([],function(){
 
            $scope.convertDateToLocal = function(date){
                var d = date.indexOf('UTC') == -1 ? date + ' UTC' : date;
-
-               return new Date(d);
+               return $filter('date')(new Date(d),'MMMM d yyyy HH:mm');
            }
         });
 })

@@ -2,7 +2,7 @@
 
 define([],function(){
     return angular.module('Ride')
-        .controller('RideController',function($scope,countries){
+        .controller('RideController',function($scope,countries,$filter){
             $scope.cities = [{name: ""}];
             $scope.minutes = ['00','10','20','30','40','50'];
             $scope.hours = [];
@@ -59,7 +59,7 @@ define([],function(){
             /*-----------------------------------------*/
             $scope.convertDateToLocal = function(date){
                 var d = date.indexOf('UTC') == -1 ? date + ' UTC' : date;
-                return new Date(d);
+                return $filter('date')(new Date(d),'MMMM d yyyy HH:mm');
             }
         })
         .controller("RideController2",function($scope,countries,$timeout){

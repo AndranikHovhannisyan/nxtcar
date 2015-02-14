@@ -31,7 +31,7 @@
                         {{ question.body }}
                         <br/>
                         {% set date = question.createdAt.date|date('m/d/Y h:i:s A') %}
-                        <span class="cloak">[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
+                        <span ng-init="d1 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
                     </div>
                     <br/><br/>
                 </a>
@@ -62,7 +62,7 @@
                         {{ question.message }}
                         <br/>
                         {% set date = question.sendDate.date|date('m/d/Y h:i:s A') %}
-                        <span class="cloak">[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
+                        <span ng-init="d2 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
                     </div>
                     <br><br>
                 </a>

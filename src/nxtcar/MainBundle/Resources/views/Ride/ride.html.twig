@@ -271,7 +271,7 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {% set date = commentinfo.comment.createdAt.date|date('m/d/Y h:i:s A') %}
-                                <span class="cloak">[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
+                                <span ng-init="d1 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
                             </p>
                         </div>
                     </div>
@@ -299,7 +299,7 @@
                             <p>"{{ commentinfo.comment.body }}"</p>
                             <p class="msg-date clearfix">
                                 {% set date = commentinfo.comment.createdAt.date|date('m/d/Y h:i:s A') %}
-                                <span class="cloak">[[ convertDateToLocal('{{ date }}') | date: 'MMMM d yyyy HH:mm' ]]</span>
+                                <span ng-init="d2 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
                             </p>
                         </div>
                     </div>
