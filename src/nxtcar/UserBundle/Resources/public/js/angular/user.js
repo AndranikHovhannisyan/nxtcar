@@ -7,11 +7,13 @@ define([],function(){
         'Interpolation',
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
-    .directive('cloak',function(){
+    .directive('cloak',function($timeout){
         return {
             restrict: 'C',
             compile: function(el){
-                el.removeClass('cloak');
+                $timeout(function(){
+                    el.removeClass('cloak');
+                },1);
             }
         }
     })
