@@ -32,6 +32,7 @@
                         <br/>
                         {% set date = question.createdAt.date|date('m/d/Y h:i:s A') %}
                         <span ng-init="d1 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
+                        <br/>
                     </div>
                     <br/><br/>
                 </a>
@@ -63,6 +64,7 @@
                         <br/>
                         {% set date = question.sendDate.date|date('m/d/Y h:i:s A') %}
                         <span ng-init="d2 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
+                        <br/>
                     </div>
                     <br><br>
                 </a>
