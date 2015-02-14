@@ -14,11 +14,13 @@ define([],function(){
             checkUser: {method: 'GET',isArray:false,params: {where: 'is',what: 'login'}}
         });
     })
-    .directive('cloak',function(){
+    .directive('cloak',function($timeout){
         return {
             restrict: 'C',
             compile: function(el){
-                el.removeClass('cloak');
+                $timeout(function(){
+                    el.removeClass('cloak');
+                },1);
             }
         }
     })
