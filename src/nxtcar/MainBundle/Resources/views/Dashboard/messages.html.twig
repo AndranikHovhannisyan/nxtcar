@@ -14,7 +14,7 @@
 
         {% if status == 'questions_answers' %}
 
-            {% for question in questions %}
+            {% for k,question in questions %}
 
                 {% if question.author is not null and question.author.photo is not null %}
                     {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ question.author.photo.webpath %}
@@ -31,7 +31,7 @@
                         {{ question.body }}
                         <br/>
                         {% set date = question.createdAt.date|date('m/d/Y h:i:s A') %}
-                        <span ng-init="d1 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
+                        <span ng-init="d1{{ k }} = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
                         <br/>
                     </div>
                     <br/><br/>
@@ -40,7 +40,7 @@
 
         {% else %}
 
-            {% for question in questions %}
+            {% for k,question in questions %}
 
                 {% if question.from is not null and question.from.photo is not null %}
                     {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ question.from.photo.webpath %}
@@ -63,7 +63,7 @@
                         {{ question.message }}
                         <br/>
                         {% set date = question.sendDate.date|date('m/d/Y h:i:s A') %}
-                        <span ng-init="d2 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
+                        <span ng-init="d2{{ k }} = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
                         <br/>
                     </div>
                     <br><br>

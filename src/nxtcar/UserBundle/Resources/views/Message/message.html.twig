@@ -22,7 +22,7 @@
         </a>
     </h2>
 
-    {% for message in messages %}
+    {% for k,message in messages %}
 
         {{ message.from.id }}
         {% if message.from is not null and message.from.photo is not null %}
@@ -55,7 +55,7 @@
                         <p>"{{ message.message }}"</p>
                         <p class="msg-date clearfix">
                             {% set date = message.sendDate.date|date('m/d/Y h:i:s A') %}
-                            <span ng-init="d1 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
+                            <span ng-init="d1{{ k }} = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d1"></span>
                         </p>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         <p>"{{ message.message }}"</p>
                         <p class="msg-date clearfix">
                             {% set date = message.sendDate.date|date('m/d/Y h:i:s A') %}
-                            <span ng-init="d2 = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
+                            <span ng-init="d2{{ k }} = [[ convertDateToLocal('{{ date }}') ]]" ng-bind="d2"></span>
                         </p>
                     </div>
                 </div>
