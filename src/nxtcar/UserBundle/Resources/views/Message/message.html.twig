@@ -24,7 +24,6 @@
 
     {% for k,message in messages %}
 
-        {{ message.from.id }}
         {% if message.from is not null and message.from.photo is not null %}
             {% set photo = app.request.getSchemeAndHttpHost() ~ '/' ~ message.from.photo.webpath %}
         {% else %}
