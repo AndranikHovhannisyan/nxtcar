@@ -49,6 +49,14 @@ class WeekDay
     }
 
     /**
+     * @return string
+     */
+    public function toString()
+    {
+        return ($this->name) ? $this->name: "";
+    }
+
+    /**
      * Set name
      *
      * @param string $name
