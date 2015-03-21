@@ -52,3 +52,9 @@ services:
         arguments: [~, nxtcar\MainBundle\Entity\FAQQuestion, SonataAdminBundle:CRUD]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: FAQQuestion}
+
+    nxtcar_main.admin.week_day:
+        class: nxtcar\MainBundle\Admin\WeekDayAdmin
+        arguments: [~, nxtcar\MainBundle\Entity\WeekDay, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: WeekDay}
