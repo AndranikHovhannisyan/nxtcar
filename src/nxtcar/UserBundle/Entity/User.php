@@ -214,7 +214,9 @@ class User extends BaseUser
      */
     public function setDisplayedAs($displayedAs)
     {
-        $this->displayedAs = $displayedAs;
+        if ($displayedAs != "") {
+            $this->displayedAs = $displayedAs;
+        }
 
         return $this;
     }

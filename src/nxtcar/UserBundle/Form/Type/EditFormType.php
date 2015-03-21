@@ -40,6 +40,14 @@ class EditFormType extends AbstractType
         $displayedAs1 = $user->getFirstname();
         $displayedAs2 = $user->getFirstname() . ' ' .substr($user->getLastname(), 0, 1);
 
+        $displayArray = array();
+        if ($displayedAs1 != "") {
+            $displayArray = array(
+                $displayedAs1 => $displayedAs1,
+                $displayedAs2 => $displayedAs2
+            );
+        }
+
         $builder
             ->add('gender', 'choice', array('empty_value' => 'Gender', 'required' => false,
                 'choices' => array(
@@ -50,9 +58,7 @@ class EditFormType extends AbstractType
             ->add('lastname', null, array('required' => false))
             ->add('displayedAs', 'choice', array('required' => false,
                 'data' => $displayedAs1,
-                'choices' => array(
-                    $displayedAs1 => $displayedAs1,
-                    $displayedAs2 => $displayedAs2)
+                'choices' => $displayArray
             ))
             ->add('email', 'email', array('required' => false, 'translation_domain' => 'FOSUserBundle'))
             ->add('locale', 'locale', array('required' => false))
