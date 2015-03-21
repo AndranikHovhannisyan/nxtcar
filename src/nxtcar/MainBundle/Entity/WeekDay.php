@@ -51,7 +51,7 @@ class WeekDay
     /**
      * @return string
      */
-    public function toString()
+    public function __toString()
     {
         return ($this->name) ? $this->name: "";
     }
