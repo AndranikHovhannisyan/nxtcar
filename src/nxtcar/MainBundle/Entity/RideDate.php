@@ -43,7 +43,7 @@ class RideDate
     protected $ride;
 
     /**
-     * @ORM\OneToMany(targetEntity="nxtcar\UserBundle\Entity\Message", mappedBy="ride")
+     * @ORM\OneToMany(targetEntity="nxtcar\UserBundle\Entity\Message", mappedBy="rideDate")
      */
     protected $messages;
 
