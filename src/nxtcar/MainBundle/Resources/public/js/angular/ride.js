@@ -9,7 +9,7 @@ define([],function(){
         'mgcrea.ngStrap.popover',
         'ngAnimate'])
     .service("RideManager",function($resource){
-        return $resource('/app.php/api/rides/:where/:what',{},{
+        return $resource('/app_dev.php/api/rides/:where/:what',{},{
             search: {method: 'POST',isArray: false,params: {where: 'finds'}},
             checkUser: {method: 'GET',isArray:false,params: {where: 'is',what: 'login'}}
         });
