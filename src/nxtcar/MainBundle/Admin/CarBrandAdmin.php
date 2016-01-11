@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class CarBrandAdmin extends Admin
 {
+    
     /**
      * @param DatagridMapper $datagridMapper
      */
