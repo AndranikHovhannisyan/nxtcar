@@ -13,3 +13,26 @@ base:
   car: Car
   password: Password
 
+dashboard:
+  add_photo: Add your photo
+  edit_profile: → Edit your profile
+  view_public_profile: → View your public profile
+  car_preferences: Car share preferences
+  edit_car_preferences: → Edit your car share preferences
+  member_verification: Member verification
+  phone_number_verification: Verify your phone number
+  email_verification: Verify your email
+  complete_verification: → Complete your member verification
+  member_activity: Member activity
+  member_since: Member since
+  notifications: Notifications
+  provide_mini_bio: Provide a mini bio of yourself
+  mini_bio_description: It will soon be necessary to increase or keep your experience level and it helps other members feel comfortable planning a car share with you.
+  fill_in_mini_bio: Fill in your mini bio
+  new_messages: New messages
+  all_messages: See all messages
+
+profile_info: Profile Information
+
+
+

@@ -9,7 +9,7 @@
                         {%  if (app.user.photo is null) %}
                             <div class="add-your-photo">
                                 <a href="{{ path('profile_photo') }}">
-                                    Add your photo
+                                    {{ 'dashboard.add_photo'|trans({}, 'dashboard') }}
                                 </a>
                             </div>
                         {% else %}
@@ -26,12 +26,12 @@
                         <ul class="public-profil  list-unstyled"  >
                             <li>
                                 <a href="{{ path('sonata_user_profile_edit') }}">
-                                    → Edit your profile
+                                    {{ 'dashboard.edit_profile'|trans({}, 'dashboard') }}
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ path('sonata_user_profile_show') }}">
-                                    → View your public profile
+                                    {{ 'dashboard.view_public_profile'|trans({}, 'dashboard') }}
                                 </a>
                             </li>
                         </ul>
@@ -44,7 +44,7 @@
         <div class="col-xs-4 span4">
             <div class="main-column-block">
 
-                <p class="main-column-title">Car share preferences</p>
+                <p class="main-column-title">{{ 'dashboard.car_preferences'|trans({}, 'dashboard') }}</p>
                 <div class="blabla clearfix"></div>
 
                 {% if app.user.music == 0 %}
@@ -74,37 +74,37 @@
                 {% endif %}
 
                 <a href="{{ path('profile_preferences') }}" class="edit-preferences blue">
-                    → Edit your car share preferences
+                    {{ 'dashboard.edit_car_preferences'|trans({}, 'dashboard') }}
                 </a>
             </div>
 
             <div class="main-column-block">
-                <h3 class="main-column-title">Member verification</h3>
+                <h3 class="main-column-title">{{ 'dashboard.member_verification'|trans({}, 'dashboard') }}</h3>
                 <ul class=" list-unstyled main-column-list verification-list margin-bottom unstyled">
                     <li class="img-phone tip">
                         <span class="no-checked">
-                            <a href="" class="blue">Verify your phone number</a>
+                            <a href="" class="blue">{{ 'dashboard.phone_number_verification'|trans({}, 'dashboard') }}</a>
                         </span>
                     </li>
                     <li class="img-email tip">
                         <span class="no-checked">
-                            <a href="" class="blue">Verify your email</a>
+                            <a href="" class="blue">{{ 'dashboard.email_verification'|trans({}, 'dashboard') }}</a>
                         </span>
                     </li>
                 </ul>
                 <span class="full-check">
                     <a href="" class=" profil-verification display-block margin-bottom blue">
-                        → Complete your member verification
+                        {{ 'dashboard.complete_verification'|trans({}, 'dashboard') }}
                     </a>
                 </span>
             </div>
 
             <div class="main-column-block">
-                <h3 class="main-column-title">Member activity</h3>
+                <h3 class="main-column-title">{{ 'dashboard.member_activity'|trans({}, 'dashboard') }}</h3>
 
 
                 <div class=" img-calendar activities-text-container">
-                    Member since: {{ app.user.createdAt.date|date('d M Y') }}
+                    {{ 'dashboard.member_since'|trans({}, 'dashboard') }}: {{ app.user.createdAt.date|date('d M Y') }}
                 </div>
             </div>
         </div>
@@ -112,18 +112,19 @@
             <div class="span8 dashboard-notifications-messages">
                 {% if app.user.biography is empty %}
                     <div class="notifications-header">
-                        <h2 class="notifications">Notifications (1)</h2>
+                        <h2 class="notifications">{{ 'dashboard.notifications'|trans({}, 'dashboard') }} (1)</h2>
                     </div>
                     <ol class="unstyled dashboard-notifications-list">
                         <li class="clearfix">
                             <div class="text-notification-container">
                                 <p>
-                                    <strong>Provide a mini bio of yourself</strong><br>It will soon be necessary to increase or keep your experience level and it helps other members feel comfortable planning a car share with you.
+                                    <strong>{{ 'dashboard.provide_mini_bio'|trans({}, 'dashboard') }}</strong><br>
+                                    {{ 'dashboard.mini_bio_description'|trans({}, 'dashboard') }}
                                 </p>
                             </div>
                             <div class="btn-notification-container">
                                 <a href="{{ path('sonata_user_profile_edit') }}" class="btn-validation">
-                                    Fill in your mini bio
+                                    {{ 'dashboard.fill_in_mini_bio'|trans({}, 'dashboard') }}
                                 </a>
                             </div>
                         </li>
@@ -131,15 +132,15 @@
 
                 {% else %}
                     <div class="notifications-header">
-                        <h2 class="notifications">Notifications (0)</h2>
+                        <h2 class="notifications">{{ 'dashboard.notifications'|trans({}, 'dashboard') }} (0)</h2>
                     </div>
                 {% endif %}
 
                 <div class="messages-header">
-                    <h2 class="messages">New messages (0)</h2>
+                    <h2 class="messages">{{ 'dashboard.new_messages'|trans({}, 'dashboard') }} (0)</h2>
                 </div>
                 <ol class="unstyled dashboard-messages-list clearfix">
-                    <a href="{{ path("messages",{'status': 'received'}) }}" class="blue pull-right margin-top">See all messages</a>
+                    <a href="{{ path("messages",{'status': 'received'}) }}" class="blue pull-right margin-top">{{ 'dashboard.all_messages'|trans({}, 'dashboard') }}</a>
                 </ol>
 
             </div>

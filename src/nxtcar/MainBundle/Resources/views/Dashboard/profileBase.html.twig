@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-3">
             <div class="div-profile-information">
-                <div class="profile-information-header">Profile Information</div>
+                <div class="profile-information-header">{{ 'profile_info'|trans({}, 'dashboard') }}</div>
                 {{ knp_menu_render(['nxtcarMainBundle:Builder:profileMenu', 'Profile']) }}
             </div>
         </div>
