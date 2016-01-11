@@ -1,0 +1,15 @@
+your_car: Your car
+
+add:
+  make: Make
+  model: Model
+  comfort: Comfort
+  seats_number: Number of seats
+  colour: Colour
+  type: Type
+  including_driver: (including driver)
+  save: Save
+
+list:
+  seats: seats
+  add_car: Add a car

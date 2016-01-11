@@ -9,7 +9,7 @@
 
     <div class="cloak">
         <div>
-            <h3 class="user-profil-header">Your car</h3>
+            <h3 class="user-profil-header">{{ 'your_car'|trans({}, 'car') }}</h3>
         </div>
 
         {% for car in cars %}
@@ -26,7 +26,7 @@
                             <h3 class="vehicle-title">{{ car.model.brand.title }} {{ car.model.title }}</h3>
 
                             <div class="stars">
-                                {{ car.numberOfSets }} seats
+                                {{ car.numberOfSets }} {{ 'list.seats'|trans({}, 'car') }}
 
                                 {% for i in 1..(car.comfort + 1) %}
                                     <img src="{{ asset("/bundles/nxtcarmain/images/star-car.png") }}" width="15" height="15" >
@@ -49,7 +49,7 @@
         {% endfor %}
 
 
-        <a href="{{ path('car_add') }}">Add a car</a>
+        <a href="{{ path('car_add') }}">{{ 'list.add_car'|trans({}, 'car') }}</a>
 
     </div>
 

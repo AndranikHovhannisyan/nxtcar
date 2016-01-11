@@ -1,0 +1,15 @@
+base:
+  dashboard: Dashboard
+  rides_offered: Rides offered
+  messages: Messages
+  profile: Profile
+  public_questions: Public questions
+  private_messages: Private messages
+  upcoming_rides: Upcoming rides
+  past_rides: Past rides
+  personal_information: Personal information
+  photo: Photo
+  preferences: Preferences
+  car: Car
+  password: Password
+
